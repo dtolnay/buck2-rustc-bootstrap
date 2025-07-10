@@ -8,8 +8,7 @@ publish = false
 name = "reindeer"
 path = "reindeer.toml"
 
-[dependencies]
-# Standard library
+[target.'cfg(reindeer_universe = "library")'.dependencies]
 alloc = { path = "rust/library/alloc" }
 compiler_builtins = "0.1"
 core = { path = "rust/library/core" }
@@ -19,7 +18,7 @@ proc_macro = { path = "rust/library/proc_macro" }
 std = { path = "rust/library/std", features = ["backtrace", "std_detect_dlsym_getauxval", "std_detect_file_io"] }
 test = { path = "rust/library/test" }
 
-# Compiler
+[target.'cfg(reindeer_universe = "compiler")'.dependencies]
 allocator-api2 = { version = "0.2", default-features = false }
 clippy = { path = "rust/src/tools/clippy", artifact = ["bin"] }
 rustc-main = { path = "rust/compiler/rustc", artifact = ["bin"], features = ["llvm"] }

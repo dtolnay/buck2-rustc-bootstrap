@@ -5,6 +5,43 @@ load("@prelude//rust:proc_macro_alias.bzl", "rust_proc_macro_alias")
 load("@prelude//utils:type_defs.bzl", "is_select")
 load("//constraints:defs.bzl", "transition_alias")
 
+PLATFORM_TEMPLATES = select({
+    "prelude//os:linux": select({
+        "prelude//cpu:arm64": select({
+            "//constraints:library": "linux-arm64-library",
+            "//constraints:compiler": "linux-arm64-compiler",
+        }),
+        "prelude//cpu:x86_64": select({
+            "//constraints:library": "linux-x86_64-library",
+            "//constraints:compiler": "linux-x86_64-compiler",
+        }),
+    }),
+    "prelude//os:macos": select({
+        "prelude//cpu:arm64": select({
+            "//constraints:library": "macos-arm64-library",
+            "//constraints:compiler": "macos-arm64-compiler",
+        }),
+        "prelude//cpu:x86_64": select({
+            "//constraints:library": "macos-x86_64-library",
+            "//constraints:compiler": "macos-x86_64-compiler",
+        }),
+    }),
+    "prelude//os:windows": select({
+        "DEFAULT": select({
+            "//constraints:library": "windows-msvc-library",
+            "//constraints:compiler": "windows-msvc-compiler",
+        }),
+        "prelude//abi:gnu": select({
+            "//constraints:library": "windows-gnu-library",
+            "//constraints:compiler": "windows-gnu-compiler",
+        }),
+        "prelude//abi:msvc": select({
+            "//constraints:library": "windows-msvc-library",
+            "//constraints:compiler": "windows-msvc-compiler",
+        }),
+    }),
+})
+
 def rust_bootstrap_alias(actual, **kwargs):
     if not actual.endswith("-0.0.0"):
         native.alias(
@@ -37,7 +74,11 @@ def rust_bootstrap_binary(
         default_target_platform = default_target_platform,
         rustc_flags = rustc_flags + extra_rustc_flags,
         target_compatible_with = _target_constraints(crate_root),
-        **apply_platform_attrs(platform, kwargs)
+        **apply_platform_attrs(
+            platform,
+            kwargs,
+            templates = PLATFORM_TEMPLATES,
+        )
     )
 
 def rust_bootstrap_library(
@@ -113,11 +154,15 @@ def rust_bootstrap_library(
         srcs = srcs + extra_srcs,
         target_compatible_with = target_compatible_with,
         visibility = visibility,
-        **apply_platform_attrs(platform, kwargs | dict(
-            deps = deps + extra_deps,
-            env = env + extra_env if is_select(env) else env | extra_env,
-            rustc_flags = rustc_flags + extra_rustc_flags,
-        ))
+        **apply_platform_attrs(
+            platform,
+            kwargs | dict(
+                deps = deps + extra_deps,
+                env = env + extra_env if is_select(env) else env | extra_env,
+                rustc_flags = rustc_flags + extra_rustc_flags,
+            ),
+            templates = PLATFORM_TEMPLATES,
+        )
     )
 
 def rust_bootstrap_buildscript_run(**kwargs):

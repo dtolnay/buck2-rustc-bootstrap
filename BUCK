@@ -71,25 +71,64 @@ rust_bootstrap_library(
     crate = "adler2",
     crate_root = "adler2-2.0.0.crate/src/lib.rs",
     edition = "2021",
-    features = select({
-        "//constraints:compiler": [],
-        "//constraints:library": [
-            "compiler_builtins",
-            "core",
-            "rustc-dep-of-std",
-        ],
-    }),
-    named_deps = select({
-        "//constraints:compiler": {},
-        "//constraints:library": {
-            "core": ":rustc-std-workspace-core-1.99.0",
-        },
-    }),
+    platform = {
+        "linux-arm64-library": dict(
+            features = [
+                "compiler_builtins",
+                "core",
+                "rustc-dep-of-std",
+            ],
+            named_deps = {
+                "core": ":rustc-std-workspace-core-1.99.0",
+            },
+            deps = [":compiler_builtins-0.1.146"],
+        ),
+        "linux-x86_64-library": dict(
+            features = [
+                "compiler_builtins",
+                "core",
+                "rustc-dep-of-std",
+            ],
+            named_deps = {
+                "core": ":rustc-std-workspace-core-1.99.0",
+            },
+            deps = [":compiler_builtins-0.1.146"],
+        ),
+        "macos-arm64-library": dict(
+            features = [
+                "compiler_builtins",
+                "core",
+                "rustc-dep-of-std",
+            ],
+            named_deps = {
+                "core": ":rustc-std-workspace-core-1.99.0",
+            },
+            deps = [":compiler_builtins-0.1.146"],
+        ),
+        "macos-x86_64-library": dict(
+            features = [
+                "compiler_builtins",
+                "core",
+                "rustc-dep-of-std",
+            ],
+            named_deps = {
+                "core": ":rustc-std-workspace-core-1.99.0",
+            },
+            deps = [":compiler_builtins-0.1.146"],
+        ),
+        "windows-gnu-library": dict(
+            features = [
+                "compiler_builtins",
+                "core",
+                "rustc-dep-of-std",
+            ],
+            named_deps = {
+                "core": ":rustc-std-workspace-core-1.99.0",
+            },
+            deps = [":compiler_builtins-0.1.146"],
+        ),
+    },
     visibility = [],
-    deps = select({
-        "//constraints:compiler": [],
-        "//constraints:library": [":compiler_builtins-0.1.146"],
-    }),
 )
 
 crate_download(
@@ -106,29 +145,10 @@ rust_bootstrap_library(
     crate = "ahash",
     crate_root = "ahash-0.8.11.crate/src/lib.rs",
     edition = "2018",
-    platform = {
-        "linux-arm64": dict(
-            deps = [":once_cell-1.21.3"],
-        ),
-        "linux-x86_64": dict(
-            deps = [":once_cell-1.21.3"],
-        ),
-        "macos-arm64": dict(
-            deps = [":once_cell-1.21.3"],
-        ),
-        "macos-x86_64": dict(
-            deps = [":once_cell-1.21.3"],
-        ),
-        "windows-gnu": dict(
-            deps = [":once_cell-1.21.3"],
-        ),
-        "windows-msvc": dict(
-            deps = [":once_cell-1.21.3"],
-        ),
-    },
     visibility = [],
     deps = [
         ":cfg-if-1.0.0",
+        ":once_cell-1.21.3",
         ":zerocopy-0.7.35",
     ],
 )
@@ -316,10 +336,10 @@ rust_bootstrap_library(
         "wincon",
     ],
     platform = {
-        "windows-gnu": dict(
+        "windows-gnu-compiler": dict(
             deps = [":anstyle-wincon-3.0.7"],
         ),
-        "windows-msvc": dict(
+        "windows-msvc-compiler": dict(
             deps = [":anstyle-wincon-3.0.7"],
         ),
     },
@@ -392,10 +412,10 @@ rust_bootstrap_library(
     crate_root = "anstyle-query-1.1.2.crate/src/lib.rs",
     edition = "2021",
     platform = {
-        "windows-gnu": dict(
+        "windows-gnu-compiler": dict(
             deps = [":windows-sys-0.59.0"],
         ),
-        "windows-msvc": dict(
+        "windows-msvc-compiler": dict(
             deps = [":windows-sys-0.59.0"],
         ),
     },
@@ -416,22 +436,12 @@ rust_bootstrap_library(
     crate = "anstyle_wincon",
     crate_root = "anstyle-wincon-3.0.7.crate/src/lib.rs",
     edition = "2021",
-    platform = {
-        "windows-gnu": dict(
-            deps = [
-                ":once_cell-1.21.3",
-                ":windows-sys-0.59.0",
-            ],
-        ),
-        "windows-msvc": dict(
-            deps = [
-                ":once_cell-1.21.3",
-                ":windows-sys-0.59.0",
-            ],
-        ),
-    },
     visibility = [],
-    deps = [":anstyle-1.0.10"],
+    deps = [
+        ":anstyle-1.0.10",
+        ":once_cell-1.21.3",
+        ":windows-sys-0.59.0",
+    ],
 )
 
 crate_download(
@@ -562,7 +572,20 @@ rust_bootstrap_library(
     crate = "bitflags",
     crate_root = "bitflags-2.9.0.crate/src/lib.rs",
     edition = "2021",
-    features = ["std"],
+    platform = {
+        "linux-arm64-compiler": dict(
+            features = ["std"],
+        ),
+        "linux-x86_64-compiler": dict(
+            features = ["std"],
+        ),
+        "macos-arm64-compiler": dict(
+            features = ["std"],
+        ),
+        "macos-x86_64-compiler": dict(
+            features = ["std"],
+        ),
+    },
     visibility = [],
 )
 
@@ -605,11 +628,14 @@ rust_bootstrap_library(
         "std",
     ],
     platform = {
-        "linux-arm64": dict(
+        "linux-arm64-compiler": dict(
             rustc_flags = ["--cfg=blake3_neon"],
             deps = [":blake3-1.8.2-simd_neon-aarch64"],
         ),
-        "linux-x86_64": dict(
+        "linux-arm64-library": dict(
+            rustc_flags = ["--cfg=blake3_neon"],
+        ),
+        "linux-x86_64-compiler": dict(
             rustc_flags = [
                 "--cfg=blake3_avx2_ffi",
                 "--cfg=blake3_avx512_ffi",
@@ -618,11 +644,22 @@ rust_bootstrap_library(
             ],
             deps = [":blake3-1.8.2-simd_x86_unix"],
         ),
-        "macos-arm64": dict(
+        "linux-x86_64-library": dict(
+            rustc_flags = [
+                "--cfg=blake3_avx2_ffi",
+                "--cfg=blake3_avx512_ffi",
+                "--cfg=blake3_sse2_ffi",
+                "--cfg=blake3_sse41_ffi",
+            ],
+        ),
+        "macos-arm64-compiler": dict(
             rustc_flags = ["--cfg=blake3_neon"],
             deps = [":blake3-1.8.2-simd_neon-aarch64"],
         ),
-        "macos-x86_64": dict(
+        "macos-arm64-library": dict(
+            rustc_flags = ["--cfg=blake3_neon"],
+        ),
+        "macos-x86_64-compiler": dict(
             rustc_flags = [
                 "--cfg=blake3_avx2_ffi",
                 "--cfg=blake3_avx512_ffi",
@@ -631,7 +668,15 @@ rust_bootstrap_library(
             ],
             deps = [":blake3-1.8.2-simd_x86_unix"],
         ),
-        "windows-gnu": dict(
+        "macos-x86_64-library": dict(
+            rustc_flags = [
+                "--cfg=blake3_avx2_ffi",
+                "--cfg=blake3_avx512_ffi",
+                "--cfg=blake3_sse2_ffi",
+                "--cfg=blake3_sse41_ffi",
+            ],
+        ),
+        "windows-gnu-compiler": dict(
             rustc_flags = [
                 "--cfg=blake3_avx2_ffi",
                 "--cfg=blake3_avx512_ffi",
@@ -640,7 +685,15 @@ rust_bootstrap_library(
             ],
             deps = [":blake3-1.8.2-simd_x86_windows_gnu"],
         ),
-        "windows-msvc": dict(
+        "windows-gnu-library": dict(
+            rustc_flags = [
+                "--cfg=blake3_avx2_ffi",
+                "--cfg=blake3_avx512_ffi",
+                "--cfg=blake3_sse2_ffi",
+                "--cfg=blake3_sse41_ffi",
+            ],
+        ),
+        "windows-msvc-compiler": dict(
             rustc_flags = [
                 "--cfg=blake3_avx2_ffi",
                 "--cfg=blake3_avx512_ffi",
@@ -648,6 +701,14 @@ rust_bootstrap_library(
                 "--cfg=blake3_sse41_ffi",
             ],
             deps = [":blake3-1.8.2-simd_x86_windows_msvc"],
+        ),
+        "windows-msvc-library": dict(
+            rustc_flags = [
+                "--cfg=blake3_avx2_ffi",
+                "--cfg=blake3_avx512_ffi",
+                "--cfg=blake3_sse2_ffi",
+                "--cfg=blake3_sse41_ffi",
+            ],
         ),
     },
     visibility = [],
@@ -779,7 +840,6 @@ rust_bootstrap_library(
     deps = [
         ":memchr-2.7.4",
         ":regex-automata-0.4.9",
-        ":serde-1.0.219",
     ],
 )
 
@@ -909,25 +969,75 @@ rust_bootstrap_library(
     crate = "cfg_if",
     crate_root = "cfg-if-1.0.0.crate/src/lib.rs",
     edition = "2018",
-    features = select({
-        "//constraints:compiler": [],
-        "//constraints:library": [
-            "compiler_builtins",
-            "core",
-            "rustc-dep-of-std",
-        ],
-    }),
-    named_deps = select({
-        "//constraints:compiler": {},
-        "//constraints:library": {
-            "core": ":rustc-std-workspace-core-1.99.0",
-        },
-    }),
+    platform = {
+        "linux-arm64-library": dict(
+            features = [
+                "compiler_builtins",
+                "core",
+                "rustc-dep-of-std",
+            ],
+            named_deps = {
+                "core": ":rustc-std-workspace-core-1.99.0",
+            },
+            deps = [":compiler_builtins-0.1.146"],
+        ),
+        "linux-x86_64-library": dict(
+            features = [
+                "compiler_builtins",
+                "core",
+                "rustc-dep-of-std",
+            ],
+            named_deps = {
+                "core": ":rustc-std-workspace-core-1.99.0",
+            },
+            deps = [":compiler_builtins-0.1.146"],
+        ),
+        "macos-arm64-library": dict(
+            features = [
+                "compiler_builtins",
+                "core",
+                "rustc-dep-of-std",
+            ],
+            named_deps = {
+                "core": ":rustc-std-workspace-core-1.99.0",
+            },
+            deps = [":compiler_builtins-0.1.146"],
+        ),
+        "macos-x86_64-library": dict(
+            features = [
+                "compiler_builtins",
+                "core",
+                "rustc-dep-of-std",
+            ],
+            named_deps = {
+                "core": ":rustc-std-workspace-core-1.99.0",
+            },
+            deps = [":compiler_builtins-0.1.146"],
+        ),
+        "windows-gnu-library": dict(
+            features = [
+                "compiler_builtins",
+                "core",
+                "rustc-dep-of-std",
+            ],
+            named_deps = {
+                "core": ":rustc-std-workspace-core-1.99.0",
+            },
+            deps = [":compiler_builtins-0.1.146"],
+        ),
+        "windows-msvc-library": dict(
+            features = [
+                "compiler_builtins",
+                "core",
+                "rustc-dep-of-std",
+            ],
+            named_deps = {
+                "core": ":rustc-std-workspace-core-1.99.0",
+            },
+            deps = [":compiler_builtins-0.1.146"],
+        ),
+    },
     visibility = [],
-    deps = select({
-        "//constraints:compiler": [],
-        "//constraints:library": [":compiler_builtins-0.1.146"],
-    }),
 )
 
 crate_download(
@@ -2491,10 +2601,10 @@ rust_bootstrap_library(
     crate_root = "cpufeatures-0.2.17.crate/src/lib.rs",
     edition = "2018",
     platform = {
-        "linux-arm64": dict(
+        "linux-arm64-compiler": dict(
             deps = [":libc-0.2.172"],
         ),
-        "macos-arm64": dict(
+        "macos-arm64-compiler": dict(
             deps = [":libc-0.2.172"],
         ),
     },
@@ -2628,22 +2738,22 @@ rust_bootstrap_library(
     crate_root = "ctrlc-3.4.6.crate/src/lib.rs",
     edition = "2021",
     platform = {
-        "linux-arm64": dict(
+        "linux-arm64-compiler": dict(
             deps = [":nix-0.29.0"],
         ),
-        "linux-x86_64": dict(
+        "linux-x86_64-compiler": dict(
             deps = [":nix-0.29.0"],
         ),
-        "macos-arm64": dict(
+        "macos-arm64-compiler": dict(
             deps = [":nix-0.29.0"],
         ),
-        "macos-x86_64": dict(
+        "macos-x86_64-compiler": dict(
             deps = [":nix-0.29.0"],
         ),
-        "windows-gnu": dict(
+        "windows-gnu-compiler": dict(
             deps = [":windows-sys-0.59.0"],
         ),
-        "windows-msvc": dict(
+        "windows-msvc-compiler": dict(
             deps = [":windows-sys-0.59.0"],
         ),
     },
@@ -2957,23 +3067,11 @@ rust_bootstrap_library(
     edition = "2018",
     features = ["std"],
     platform = {
-        "linux-arm64": dict(
+        "macos-arm64-compiler": dict(
             deps = [":libc-0.2.172"],
         ),
-        "linux-x86_64": dict(
+        "macos-x86_64-compiler": dict(
             deps = [":libc-0.2.172"],
-        ),
-        "macos-arm64": dict(
-            deps = [":libc-0.2.172"],
-        ),
-        "macos-x86_64": dict(
-            deps = [":libc-0.2.172"],
-        ),
-        "windows-gnu": dict(
-            deps = [":windows-sys-0.59.0"],
-        ),
-        "windows-msvc": dict(
-            deps = [":windows-sys-0.59.0"],
         ),
     },
     visibility = [],
@@ -3208,26 +3306,76 @@ rust_bootstrap_library(
     crate = "getopts",
     crate_root = "getopts-0.2.21.crate/src/lib.rs",
     edition = "2015",
-    features = select({
-        "//constraints:compiler": [],
-        "//constraints:library": [
-            "core",
-            "rustc-dep-of-std",
-            "std",
-        ],
-    }),
-    named_deps = select({
-        "//constraints:compiler": {},
-        "//constraints:library": {
-            "core": ":rustc-std-workspace-core-1.99.0",
-            "std": ":rustc-std-workspace-std-1.99.0",
-        },
-    }),
+    platform = {
+        "linux-arm64-library": dict(
+            features = [
+                "core",
+                "rustc-dep-of-std",
+                "std",
+            ],
+            named_deps = {
+                "core": ":rustc-std-workspace-core-1.99.0",
+                "std": ":rustc-std-workspace-std-1.99.0",
+            },
+        ),
+        "linux-x86_64-library": dict(
+            features = [
+                "core",
+                "rustc-dep-of-std",
+                "std",
+            ],
+            named_deps = {
+                "core": ":rustc-std-workspace-core-1.99.0",
+                "std": ":rustc-std-workspace-std-1.99.0",
+            },
+        ),
+        "macos-arm64-library": dict(
+            features = [
+                "core",
+                "rustc-dep-of-std",
+                "std",
+            ],
+            named_deps = {
+                "core": ":rustc-std-workspace-core-1.99.0",
+                "std": ":rustc-std-workspace-std-1.99.0",
+            },
+        ),
+        "macos-x86_64-library": dict(
+            features = [
+                "core",
+                "rustc-dep-of-std",
+                "std",
+            ],
+            named_deps = {
+                "core": ":rustc-std-workspace-core-1.99.0",
+                "std": ":rustc-std-workspace-std-1.99.0",
+            },
+        ),
+        "windows-gnu-library": dict(
+            features = [
+                "core",
+                "rustc-dep-of-std",
+                "std",
+            ],
+            named_deps = {
+                "core": ":rustc-std-workspace-core-1.99.0",
+                "std": ":rustc-std-workspace-std-1.99.0",
+            },
+        ),
+        "windows-msvc-library": dict(
+            features = [
+                "core",
+                "rustc-dep-of-std",
+                "std",
+            ],
+            named_deps = {
+                "core": ":rustc-std-workspace-core-1.99.0",
+                "std": ":rustc-std-workspace-std-1.99.0",
+            },
+        ),
+    },
     visibility = [],
-    deps = select({
-        "//constraints:compiler": [":unicode-width-0.1.14"],
-        "//constraints:library": [":unicode-width-0.1.14"],
-    }),
+    deps = [":unicode-width-0.1.14"],
 )
 
 crate_download(
@@ -3246,16 +3394,16 @@ rust_bootstrap_library(
     edition = "2018",
     features = ["std"],
     platform = {
-        "linux-arm64": dict(
+        "linux-arm64-compiler": dict(
             deps = [":libc-0.2.172"],
         ),
-        "linux-x86_64": dict(
+        "linux-x86_64-compiler": dict(
             deps = [":libc-0.2.172"],
         ),
-        "macos-arm64": dict(
+        "macos-arm64-compiler": dict(
             deps = [":libc-0.2.172"],
         ),
-        "macos-x86_64": dict(
+        "macos-x86_64-compiler": dict(
             deps = [":libc-0.2.172"],
         ),
     },
@@ -3277,19 +3425,24 @@ rust_bootstrap_library(
     crate = "getrandom",
     crate_root = "getrandom-0.3.2.crate/src/lib.rs",
     edition = "2021",
-    features = ["std"],
     platform = {
-        "linux-arm64": dict(
+        "linux-arm64-compiler": dict(
             deps = [":libc-0.2.172"],
         ),
-        "linux-x86_64": dict(
+        "linux-x86_64-compiler": dict(
             deps = [":libc-0.2.172"],
         ),
-        "macos-arm64": dict(
+        "macos-arm64-compiler": dict(
             deps = [":libc-0.2.172"],
         ),
-        "macos-x86_64": dict(
+        "macos-x86_64-compiler": dict(
             deps = [":libc-0.2.172"],
+        ),
+        "windows-gnu-compiler": dict(
+            features = ["std"],
+        ),
+        "windows-msvc-compiler": dict(
+            features = ["std"],
         ),
     },
     visibility = [],
@@ -3419,43 +3572,129 @@ rust_bootstrap_library(
     crate = "hashbrown",
     crate_root = "hashbrown-0.15.3.crate/src/lib.rs",
     edition = "2021",
-    features = select({
-        "//constraints:compiler": [
-            "default-hasher",
-            "raw-entry",
-        ],
-        "//constraints:library": [
-            "alloc",
-            "compiler_builtins",
-            "core",
-            "nightly",
-            "raw-entry",
-            "rustc-dep-of-std",
-            "rustc-internal-api",
-        ],
-    }),
-    named_deps = select({
-        "//constraints:compiler": {},
-        "//constraints:library": {
-            "alloc": ":rustc-std-workspace-alloc-1.99.0",
-            "core": ":rustc-std-workspace-core-1.99.0",
-        },
-    }),
+    features = ["raw-entry"],
+    platform = {
+        "linux-arm64-compiler": dict(
+            features = ["default-hasher"],
+            deps = [":foldhash-0.1.5"],
+        ),
+        "linux-arm64-library": dict(
+            features = [
+                "alloc",
+                "compiler_builtins",
+                "core",
+                "nightly",
+                "rustc-dep-of-std",
+                "rustc-internal-api",
+            ],
+            named_deps = {
+                "alloc": ":rustc-std-workspace-alloc-1.99.0",
+                "core": ":rustc-std-workspace-core-1.99.0",
+            },
+            deps = [":compiler_builtins-0.1.146"],
+        ),
+        "linux-x86_64-compiler": dict(
+            features = ["default-hasher"],
+            deps = [":foldhash-0.1.5"],
+        ),
+        "linux-x86_64-library": dict(
+            features = [
+                "alloc",
+                "compiler_builtins",
+                "core",
+                "nightly",
+                "rustc-dep-of-std",
+                "rustc-internal-api",
+            ],
+            named_deps = {
+                "alloc": ":rustc-std-workspace-alloc-1.99.0",
+                "core": ":rustc-std-workspace-core-1.99.0",
+            },
+            deps = [":compiler_builtins-0.1.146"],
+        ),
+        "macos-arm64-compiler": dict(
+            features = ["default-hasher"],
+            deps = [":foldhash-0.1.5"],
+        ),
+        "macos-arm64-library": dict(
+            features = [
+                "alloc",
+                "compiler_builtins",
+                "core",
+                "nightly",
+                "rustc-dep-of-std",
+                "rustc-internal-api",
+            ],
+            named_deps = {
+                "alloc": ":rustc-std-workspace-alloc-1.99.0",
+                "core": ":rustc-std-workspace-core-1.99.0",
+            },
+            deps = [":compiler_builtins-0.1.146"],
+        ),
+        "macos-x86_64-compiler": dict(
+            features = ["default-hasher"],
+            deps = [":foldhash-0.1.5"],
+        ),
+        "macos-x86_64-library": dict(
+            features = [
+                "alloc",
+                "compiler_builtins",
+                "core",
+                "nightly",
+                "rustc-dep-of-std",
+                "rustc-internal-api",
+            ],
+            named_deps = {
+                "alloc": ":rustc-std-workspace-alloc-1.99.0",
+                "core": ":rustc-std-workspace-core-1.99.0",
+            },
+            deps = [":compiler_builtins-0.1.146"],
+        ),
+        "windows-gnu-compiler": dict(
+            features = ["default-hasher"],
+            deps = [":foldhash-0.1.5"],
+        ),
+        "windows-gnu-library": dict(
+            features = [
+                "alloc",
+                "compiler_builtins",
+                "core",
+                "nightly",
+                "rustc-dep-of-std",
+                "rustc-internal-api",
+            ],
+            named_deps = {
+                "alloc": ":rustc-std-workspace-alloc-1.99.0",
+                "core": ":rustc-std-workspace-core-1.99.0",
+            },
+            deps = [":compiler_builtins-0.1.146"],
+        ),
+        "windows-msvc-compiler": dict(
+            features = ["default-hasher"],
+            deps = [":foldhash-0.1.5"],
+        ),
+        "windows-msvc-library": dict(
+            features = [
+                "alloc",
+                "compiler_builtins",
+                "core",
+                "nightly",
+                "rustc-dep-of-std",
+                "rustc-internal-api",
+            ],
+            named_deps = {
+                "alloc": ":rustc-std-workspace-alloc-1.99.0",
+                "core": ":rustc-std-workspace-core-1.99.0",
+            },
+            deps = [":compiler_builtins-0.1.146"],
+        ),
+    },
     rustc_flags = select({
         "//constraints:compiler": [],
         "//constraints:library": ["-Zforce-unstable-if-unmarked"],
     }),
     visibility = [],
-    deps = select({
-        "//constraints:compiler": [
-            ":foldhash-0.1.5",
-            "//allocator:allocator-api2",
-        ],
-        "//constraints:library": [
-            ":compiler_builtins-0.1.146",
-            "//allocator:allocator-api2",
-        ],
-    }),
+    deps = ["//allocator:allocator-api2"],
 )
 
 crate_download(
@@ -3977,22 +4216,22 @@ rust_bootstrap_library(
     crate_root = "jobserver-0.1.33.crate/src/lib.rs",
     edition = "2021",
     platform = {
-        "linux-arm64": dict(
+        "linux-arm64-compiler": dict(
             deps = [":libc-0.2.172"],
         ),
-        "linux-x86_64": dict(
+        "linux-x86_64-compiler": dict(
             deps = [":libc-0.2.172"],
         ),
-        "macos-arm64": dict(
+        "macos-arm64-compiler": dict(
             deps = [":libc-0.2.172"],
         ),
-        "macos-x86_64": dict(
+        "macos-x86_64-compiler": dict(
             deps = [":libc-0.2.172"],
         ),
-        "windows-gnu": dict(
+        "windows-gnu-compiler": dict(
             deps = [":getrandom-0.3.2"],
         ),
-        "windows-msvc": dict(
+        "windows-msvc-compiler": dict(
             deps = [":getrandom-0.3.2"],
         ),
     },
@@ -4047,32 +4286,93 @@ rust_bootstrap_library(
     crate = "libc",
     crate_root = "libc-0.2.172.crate/src/lib.rs",
     edition = "2021",
-    env = select({
-        "//constraints:compiler": {
-            "OUT_DIR": "$(location :libc-0.2.172-build-script-run[out_dir])",
-        },
-        "//constraints:library": {
-            "OUT_DIR": "$(location :libc-0.2.172-build-script-run[out_dir])",
-        },
-    }),
-    features = select({
-        "//constraints:compiler": [
-            "default",
-            "extra_traits",
-            "std",
-        ],
-        "//constraints:library": [
-            "align",
-            "rustc-dep-of-std",
-            "rustc-std-workspace-core",
-        ],
-    }),
+    env = {
+        "OUT_DIR": "$(location :libc-0.2.172-build-script-run[out_dir])",
+    },
+    platform = {
+        "linux-arm64-compiler": dict(
+            features = [
+                "default",
+                "extra_traits",
+                "std",
+            ],
+        ),
+        "linux-arm64-library": dict(
+            features = [
+                "align",
+                "rustc-dep-of-std",
+                "rustc-std-workspace-core",
+            ],
+            deps = [":rustc-std-workspace-core-1.99.0"],
+        ),
+        "linux-x86_64-compiler": dict(
+            features = [
+                "default",
+                "extra_traits",
+                "std",
+            ],
+        ),
+        "linux-x86_64-library": dict(
+            features = [
+                "align",
+                "rustc-dep-of-std",
+                "rustc-std-workspace-core",
+            ],
+            deps = [":rustc-std-workspace-core-1.99.0"],
+        ),
+        "macos-arm64-compiler": dict(
+            features = [
+                "default",
+                "extra_traits",
+                "std",
+            ],
+        ),
+        "macos-arm64-library": dict(
+            features = [
+                "align",
+                "rustc-dep-of-std",
+                "rustc-std-workspace-core",
+            ],
+            deps = [":rustc-std-workspace-core-1.99.0"],
+        ),
+        "macos-x86_64-compiler": dict(
+            features = [
+                "default",
+                "extra_traits",
+                "std",
+            ],
+        ),
+        "macos-x86_64-library": dict(
+            features = [
+                "align",
+                "rustc-dep-of-std",
+                "rustc-std-workspace-core",
+            ],
+            deps = [":rustc-std-workspace-core-1.99.0"],
+        ),
+        "windows-gnu-compiler": dict(
+            features = [
+                "default",
+                "std",
+            ],
+        ),
+        "windows-gnu-library": dict(
+            features = [
+                "align",
+                "rustc-dep-of-std",
+                "rustc-std-workspace-core",
+            ],
+            deps = [":rustc-std-workspace-core-1.99.0"],
+        ),
+        "windows-msvc-compiler": dict(
+            features = [
+                "default",
+                "std",
+            ],
+        ),
+    },
     rustc_flags = ["@$(location :libc-0.2.172-build-script-run[rustc_flags])"],
     visibility = [],
-    deps = select({
-        "//constraints:compiler": [],
-        "//constraints:library": [":rustc-std-workspace-core-1.99.0"],
-    }),
 )
 
 rust_bootstrap_binary(
@@ -4081,18 +4381,83 @@ rust_bootstrap_binary(
     crate = "build_script_build",
     crate_root = "libc-0.2.172.crate/build.rs",
     edition = "2021",
-    features = select({
-        "//constraints:compiler": [
-            "default",
-            "extra_traits",
-            "std",
-        ],
-        "//constraints:library": [
-            "align",
-            "rustc-dep-of-std",
-            "rustc-std-workspace-core",
-        ],
-    }),
+    platform = {
+        "linux-arm64-compiler": dict(
+            features = [
+                "default",
+                "extra_traits",
+                "std",
+            ],
+        ),
+        "linux-arm64-library": dict(
+            features = [
+                "align",
+                "rustc-dep-of-std",
+                "rustc-std-workspace-core",
+            ],
+        ),
+        "linux-x86_64-compiler": dict(
+            features = [
+                "default",
+                "extra_traits",
+                "std",
+            ],
+        ),
+        "linux-x86_64-library": dict(
+            features = [
+                "align",
+                "rustc-dep-of-std",
+                "rustc-std-workspace-core",
+            ],
+        ),
+        "macos-arm64-compiler": dict(
+            features = [
+                "default",
+                "extra_traits",
+                "std",
+            ],
+        ),
+        "macos-arm64-library": dict(
+            features = [
+                "align",
+                "rustc-dep-of-std",
+                "rustc-std-workspace-core",
+            ],
+        ),
+        "macos-x86_64-compiler": dict(
+            features = [
+                "default",
+                "extra_traits",
+                "std",
+            ],
+        ),
+        "macos-x86_64-library": dict(
+            features = [
+                "align",
+                "rustc-dep-of-std",
+                "rustc-std-workspace-core",
+            ],
+        ),
+        "windows-gnu-compiler": dict(
+            features = [
+                "default",
+                "std",
+            ],
+        ),
+        "windows-gnu-library": dict(
+            features = [
+                "align",
+                "rustc-dep-of-std",
+                "rustc-std-workspace-core",
+            ],
+        ),
+        "windows-msvc-compiler": dict(
+            features = [
+                "default",
+                "std",
+            ],
+        ),
+    },
     visibility = [],
 )
 
@@ -4100,18 +4465,83 @@ rust_bootstrap_buildscript_run(
     name = "libc-0.2.172-build-script-run",
     package_name = "libc",
     buildscript_rule = ":libc-0.2.172-build-script-build",
-    features = select({
-        "//constraints:compiler": [
-            "default",
-            "extra_traits",
-            "std",
-        ],
-        "//constraints:library": [
-            "align",
-            "rustc-dep-of-std",
-            "rustc-std-workspace-core",
-        ],
-    }),
+    platform = {
+        "linux-arm64-compiler": dict(
+            features = [
+                "default",
+                "extra_traits",
+                "std",
+            ],
+        ),
+        "linux-arm64-library": dict(
+            features = [
+                "align",
+                "rustc-dep-of-std",
+                "rustc-std-workspace-core",
+            ],
+        ),
+        "linux-x86_64-compiler": dict(
+            features = [
+                "default",
+                "extra_traits",
+                "std",
+            ],
+        ),
+        "linux-x86_64-library": dict(
+            features = [
+                "align",
+                "rustc-dep-of-std",
+                "rustc-std-workspace-core",
+            ],
+        ),
+        "macos-arm64-compiler": dict(
+            features = [
+                "default",
+                "extra_traits",
+                "std",
+            ],
+        ),
+        "macos-arm64-library": dict(
+            features = [
+                "align",
+                "rustc-dep-of-std",
+                "rustc-std-workspace-core",
+            ],
+        ),
+        "macos-x86_64-compiler": dict(
+            features = [
+                "default",
+                "extra_traits",
+                "std",
+            ],
+        ),
+        "macos-x86_64-library": dict(
+            features = [
+                "align",
+                "rustc-dep-of-std",
+                "rustc-std-workspace-core",
+            ],
+        ),
+        "windows-gnu-compiler": dict(
+            features = [
+                "default",
+                "std",
+            ],
+        ),
+        "windows-gnu-library": dict(
+            features = [
+                "align",
+                "rustc-dep-of-std",
+                "rustc-std-workspace-core",
+            ],
+        ),
+        "windows-msvc-compiler": dict(
+            features = [
+                "default",
+                "std",
+            ],
+        ),
+    },
     version = "0.2.172",
 )
 
@@ -4130,22 +4560,22 @@ rust_bootstrap_library(
     crate_root = "libloading-0.8.6.crate/src/lib.rs",
     edition = "2015",
     platform = {
-        "linux-arm64": dict(
+        "linux-arm64-compiler": dict(
             deps = [":cfg-if-1.0.0"],
         ),
-        "linux-x86_64": dict(
+        "linux-x86_64-compiler": dict(
             deps = [":cfg-if-1.0.0"],
         ),
-        "macos-arm64": dict(
+        "macos-arm64-compiler": dict(
             deps = [":cfg-if-1.0.0"],
         ),
-        "macos-x86_64": dict(
+        "macos-x86_64-compiler": dict(
             deps = [":cfg-if-1.0.0"],
         ),
-        "windows-gnu": dict(
+        "windows-gnu-compiler": dict(
             deps = [":windows-targets-0.52.6"],
         ),
-        "windows-msvc": dict(
+        "windows-msvc-compiler": dict(
             deps = [":windows-targets-0.52.6"],
         ),
     },
@@ -4321,7 +4751,7 @@ rust_bootstrap_library(
     crate_root = "measureme-11.0.1.crate/src/lib.rs",
     edition = "2018",
     platform = {
-        "linux-x86_64": dict(
+        "linux-x86_64-compiler": dict(
             deps = [
                 ":memmap2-0.2.3",
                 ":perf-event-open-sys-3.0.0",
@@ -4351,29 +4781,106 @@ rust_bootstrap_library(
     crate = "memchr",
     crate_root = "memchr-2.7.4.crate/src/lib.rs",
     edition = "2021",
-    features = select({
-        "//constraints:compiler": [
-            "alloc",
-            "default",
-            "std",
-        ],
-        "//constraints:library": [
-            "compiler_builtins",
-            "core",
-            "rustc-dep-of-std",
-        ],
-    }),
-    named_deps = select({
-        "//constraints:compiler": {},
-        "//constraints:library": {
-            "core": ":rustc-std-workspace-core-1.99.0",
-        },
-    }),
+    platform = {
+        "linux-arm64-compiler": dict(
+            features = [
+                "alloc",
+                "default",
+                "std",
+            ],
+        ),
+        "linux-arm64-library": dict(
+            features = [
+                "compiler_builtins",
+                "core",
+                "rustc-dep-of-std",
+            ],
+            named_deps = {
+                "core": ":rustc-std-workspace-core-1.99.0",
+            },
+            deps = [":compiler_builtins-0.1.146"],
+        ),
+        "linux-x86_64-compiler": dict(
+            features = [
+                "alloc",
+                "default",
+                "std",
+            ],
+        ),
+        "linux-x86_64-library": dict(
+            features = [
+                "compiler_builtins",
+                "core",
+                "rustc-dep-of-std",
+            ],
+            named_deps = {
+                "core": ":rustc-std-workspace-core-1.99.0",
+            },
+            deps = [":compiler_builtins-0.1.146"],
+        ),
+        "macos-arm64-compiler": dict(
+            features = [
+                "alloc",
+                "default",
+                "std",
+            ],
+        ),
+        "macos-arm64-library": dict(
+            features = [
+                "compiler_builtins",
+                "core",
+                "rustc-dep-of-std",
+            ],
+            named_deps = {
+                "core": ":rustc-std-workspace-core-1.99.0",
+            },
+            deps = [":compiler_builtins-0.1.146"],
+        ),
+        "macos-x86_64-compiler": dict(
+            features = [
+                "alloc",
+                "default",
+                "std",
+            ],
+        ),
+        "macos-x86_64-library": dict(
+            features = [
+                "compiler_builtins",
+                "core",
+                "rustc-dep-of-std",
+            ],
+            named_deps = {
+                "core": ":rustc-std-workspace-core-1.99.0",
+            },
+            deps = [":compiler_builtins-0.1.146"],
+        ),
+        "windows-gnu-compiler": dict(
+            features = [
+                "alloc",
+                "default",
+                "std",
+            ],
+        ),
+        "windows-gnu-library": dict(
+            features = [
+                "compiler_builtins",
+                "core",
+                "rustc-dep-of-std",
+            ],
+            named_deps = {
+                "core": ":rustc-std-workspace-core-1.99.0",
+            },
+            deps = [":compiler_builtins-0.1.146"],
+        ),
+        "windows-msvc-compiler": dict(
+            features = [
+                "alloc",
+                "default",
+                "std",
+            ],
+        ),
+    },
     visibility = [],
-    deps = select({
-        "//constraints:compiler": [],
-        "//constraints:library": [":compiler_builtins-0.1.146"],
-    }),
 )
 
 crate_download(
@@ -4391,16 +4898,16 @@ rust_bootstrap_library(
     crate_root = "memmap2-0.2.3.crate/src/lib.rs",
     edition = "2018",
     platform = {
-        "linux-arm64": dict(
+        "linux-arm64-compiler": dict(
             deps = [":libc-0.2.172"],
         ),
-        "linux-x86_64": dict(
+        "linux-x86_64-compiler": dict(
             deps = [":libc-0.2.172"],
         ),
-        "macos-arm64": dict(
+        "macos-arm64-compiler": dict(
             deps = [":libc-0.2.172"],
         ),
-        "macos-x86_64": dict(
+        "macos-x86_64-compiler": dict(
             deps = [":libc-0.2.172"],
         ),
     },
@@ -4528,30 +5035,93 @@ rust_bootstrap_library(
     crate = "miniz_oxide",
     crate_root = "miniz_oxide-0.8.8.crate/src/lib.rs",
     edition = "2021",
-    features = select({
-        "//constraints:compiler": ["with-alloc"],
-        "//constraints:library": [
-            "alloc",
-            "compiler_builtins",
-            "core",
-            "rustc-dep-of-std",
-        ],
-    }),
-    named_deps = select({
-        "//constraints:compiler": {},
-        "//constraints:library": {
-            "alloc": ":rustc-std-workspace-alloc-1.99.0",
-            "core": ":rustc-std-workspace-core-1.99.0",
-        },
-    }),
+    platform = {
+        "linux-arm64-compiler": dict(
+            features = ["with-alloc"],
+        ),
+        "linux-arm64-library": dict(
+            features = [
+                "alloc",
+                "compiler_builtins",
+                "core",
+                "rustc-dep-of-std",
+            ],
+            named_deps = {
+                "alloc": ":rustc-std-workspace-alloc-1.99.0",
+                "core": ":rustc-std-workspace-core-1.99.0",
+            },
+            deps = [":compiler_builtins-0.1.146"],
+        ),
+        "linux-x86_64-compiler": dict(
+            features = ["with-alloc"],
+        ),
+        "linux-x86_64-library": dict(
+            features = [
+                "alloc",
+                "compiler_builtins",
+                "core",
+                "rustc-dep-of-std",
+            ],
+            named_deps = {
+                "alloc": ":rustc-std-workspace-alloc-1.99.0",
+                "core": ":rustc-std-workspace-core-1.99.0",
+            },
+            deps = [":compiler_builtins-0.1.146"],
+        ),
+        "macos-arm64-compiler": dict(
+            features = ["with-alloc"],
+        ),
+        "macos-arm64-library": dict(
+            features = [
+                "alloc",
+                "compiler_builtins",
+                "core",
+                "rustc-dep-of-std",
+            ],
+            named_deps = {
+                "alloc": ":rustc-std-workspace-alloc-1.99.0",
+                "core": ":rustc-std-workspace-core-1.99.0",
+            },
+            deps = [":compiler_builtins-0.1.146"],
+        ),
+        "macos-x86_64-compiler": dict(
+            features = ["with-alloc"],
+        ),
+        "macos-x86_64-library": dict(
+            features = [
+                "alloc",
+                "compiler_builtins",
+                "core",
+                "rustc-dep-of-std",
+            ],
+            named_deps = {
+                "alloc": ":rustc-std-workspace-alloc-1.99.0",
+                "core": ":rustc-std-workspace-core-1.99.0",
+            },
+            deps = [":compiler_builtins-0.1.146"],
+        ),
+        "windows-gnu-compiler": dict(
+            features = ["with-alloc"],
+        ),
+        "windows-gnu-library": dict(
+            features = [
+                "alloc",
+                "compiler_builtins",
+                "core",
+                "rustc-dep-of-std",
+            ],
+            named_deps = {
+                "alloc": ":rustc-std-workspace-alloc-1.99.0",
+                "core": ":rustc-std-workspace-core-1.99.0",
+            },
+            deps = [":compiler_builtins-0.1.146"],
+        ),
+        "windows-msvc-compiler": dict(
+            features = ["with-alloc"],
+        ),
+    },
     visibility = [],
-    deps = select({
-        "//constraints:compiler": [":adler2-2.0.0"],
-        "//constraints:library": [
-            ":adler2-2.0.0",
-            ":compiler_builtins-0.1.146",
-        ],
-    }),
+    deps = [":adler2-2.0.0"],
 )
 
 crate_download(
@@ -4653,10 +5223,10 @@ rust_bootstrap_library(
     crate_root = "nu-ansi-term-0.46.0.crate/src/lib.rs",
     edition = "2018",
     platform = {
-        "windows-gnu": dict(
+        "windows-gnu-compiler": dict(
             deps = [":winapi-0.3.9"],
         ),
-        "windows-msvc": dict(
+        "windows-msvc-compiler": dict(
             deps = [":winapi-0.3.9"],
         ),
     },
@@ -4679,12 +5249,12 @@ rust_bootstrap_library(
     crate_root = "nu-ansi-term-0.50.1.crate/src/lib.rs",
     edition = "2021",
     platform = {
-        "windows-gnu": dict(
+        "windows-gnu-compiler": dict(
             named_deps = {
                 "windows": ":windows-sys-0.52.0",
             },
         ),
-        "windows-msvc": dict(
+        "windows-msvc-compiler": dict(
             named_deps = {
                 "windows": ":windows-sys-0.52.0",
             },
@@ -4725,16 +5295,16 @@ rust_bootstrap_library(
     crate_root = "num_cpus-1.16.0.crate/src/lib.rs",
     edition = "2015",
     platform = {
-        "linux-arm64": dict(
+        "linux-arm64-compiler": dict(
             deps = [":libc-0.2.172"],
         ),
-        "linux-x86_64": dict(
+        "linux-x86_64-compiler": dict(
             deps = [":libc-0.2.172"],
         ),
-        "macos-arm64": dict(
+        "macos-arm64-compiler": dict(
             deps = [":libc-0.2.172"],
         ),
-        "macos-x86_64": dict(
+        "macos-x86_64-compiler": dict(
             deps = [":libc-0.2.172"],
         ),
     },
@@ -4755,71 +5325,208 @@ rust_bootstrap_library(
     crate = "object",
     crate_root = "object-0.36.7.crate/src/lib.rs",
     edition = "2018",
-    env = select({
-        "//constraints:compiler": {
-            "OUT_DIR": "$(location :object-0.36.7-build-script-run[out_dir])",
-        },
-        "//constraints:library": {
-            "OUT_DIR": "$(location :object-0.36.7-build-script-run[out_dir])",
-        },
-    }),
-    features = select({
-        "//constraints:compiler": [
-            "archive",
-            "coff",
-            "compression",
-            "elf",
-            "macho",
-            "pe",
-            "read",
-            "read_core",
-            "std",
-            "unaligned",
-            "wasm",
-            "write",
-            "write_core",
-            "write_std",
-            "xcoff",
-        ],
-        "//constraints:library": [
-            "alloc",
-            "archive",
-            "coff",
-            "compiler_builtins",
-            "core",
-            "elf",
-            "macho",
-            "pe",
-            "read_core",
-            "rustc-dep-of-std",
-            "unaligned",
-            "xcoff",
-        ],
-    }),
-    named_deps = select({
-        "//constraints:compiler": {},
-        "//constraints:library": {
-            "alloc": ":rustc-std-workspace-alloc-1.99.0",
-            "core": ":rustc-std-workspace-core-1.99.0",
-        },
-    }),
+    env = {
+        "OUT_DIR": "$(location :object-0.36.7-build-script-run[out_dir])",
+    },
+    features = [
+        "archive",
+        "coff",
+        "elf",
+        "macho",
+        "pe",
+        "read_core",
+        "unaligned",
+    ],
+    platform = {
+        "linux-arm64-compiler": dict(
+            features = [
+                "compression",
+                "read",
+                "std",
+                "wasm",
+                "write",
+                "write_core",
+                "write_std",
+                "xcoff",
+            ],
+            deps = [
+                ":crc32fast-1.4.2",
+                ":flate2-1.1.1",
+                ":hashbrown-0.15.3",
+                ":indexmap-2.9.0",
+                ":ruzstd-0.7.3",
+                ":wasmparser-0.222.1",
+            ],
+        ),
+        "linux-arm64-library": dict(
+            features = [
+                "alloc",
+                "compiler_builtins",
+                "core",
+                "rustc-dep-of-std",
+            ],
+            named_deps = {
+                "alloc": ":rustc-std-workspace-alloc-1.99.0",
+                "core": ":rustc-std-workspace-core-1.99.0",
+            },
+            deps = [":compiler_builtins-0.1.146"],
+        ),
+        "linux-x86_64-compiler": dict(
+            features = [
+                "compression",
+                "read",
+                "std",
+                "wasm",
+                "write",
+                "write_core",
+                "write_std",
+                "xcoff",
+            ],
+            deps = [
+                ":crc32fast-1.4.2",
+                ":flate2-1.1.1",
+                ":hashbrown-0.15.3",
+                ":indexmap-2.9.0",
+                ":ruzstd-0.7.3",
+                ":wasmparser-0.222.1",
+            ],
+        ),
+        "linux-x86_64-library": dict(
+            features = [
+                "alloc",
+                "compiler_builtins",
+                "core",
+                "rustc-dep-of-std",
+            ],
+            named_deps = {
+                "alloc": ":rustc-std-workspace-alloc-1.99.0",
+                "core": ":rustc-std-workspace-core-1.99.0",
+            },
+            deps = [":compiler_builtins-0.1.146"],
+        ),
+        "macos-arm64-compiler": dict(
+            features = [
+                "compression",
+                "read",
+                "std",
+                "wasm",
+                "write",
+                "write_core",
+                "write_std",
+                "xcoff",
+            ],
+            deps = [
+                ":crc32fast-1.4.2",
+                ":flate2-1.1.1",
+                ":hashbrown-0.15.3",
+                ":indexmap-2.9.0",
+                ":ruzstd-0.7.3",
+                ":wasmparser-0.222.1",
+            ],
+        ),
+        "macos-arm64-library": dict(
+            features = [
+                "alloc",
+                "compiler_builtins",
+                "core",
+                "rustc-dep-of-std",
+            ],
+            named_deps = {
+                "alloc": ":rustc-std-workspace-alloc-1.99.0",
+                "core": ":rustc-std-workspace-core-1.99.0",
+            },
+            deps = [":compiler_builtins-0.1.146"],
+        ),
+        "macos-x86_64-compiler": dict(
+            features = [
+                "compression",
+                "read",
+                "std",
+                "wasm",
+                "write",
+                "write_core",
+                "write_std",
+                "xcoff",
+            ],
+            deps = [
+                ":crc32fast-1.4.2",
+                ":flate2-1.1.1",
+                ":hashbrown-0.15.3",
+                ":indexmap-2.9.0",
+                ":ruzstd-0.7.3",
+                ":wasmparser-0.222.1",
+            ],
+        ),
+        "macos-x86_64-library": dict(
+            features = [
+                "alloc",
+                "compiler_builtins",
+                "core",
+                "rustc-dep-of-std",
+            ],
+            named_deps = {
+                "alloc": ":rustc-std-workspace-alloc-1.99.0",
+                "core": ":rustc-std-workspace-core-1.99.0",
+            },
+            deps = [":compiler_builtins-0.1.146"],
+        ),
+        "windows-gnu-compiler": dict(
+            features = [
+                "compression",
+                "read",
+                "std",
+                "wasm",
+                "write",
+                "write_core",
+                "write_std",
+                "xcoff",
+            ],
+            deps = [
+                ":crc32fast-1.4.2",
+                ":flate2-1.1.1",
+                ":hashbrown-0.15.3",
+                ":indexmap-2.9.0",
+                ":ruzstd-0.7.3",
+                ":wasmparser-0.222.1",
+            ],
+        ),
+        "windows-gnu-library": dict(
+            features = [
+                "alloc",
+                "compiler_builtins",
+                "core",
+                "rustc-dep-of-std",
+            ],
+            named_deps = {
+                "alloc": ":rustc-std-workspace-alloc-1.99.0",
+                "core": ":rustc-std-workspace-core-1.99.0",
+            },
+            deps = [":compiler_builtins-0.1.146"],
+        ),
+        "windows-msvc-compiler": dict(
+            features = [
+                "compression",
+                "read",
+                "std",
+                "wasm",
+                "write",
+                "write_core",
+                "write_std",
+                "xcoff",
+            ],
+            deps = [
+                ":crc32fast-1.4.2",
+                ":flate2-1.1.1",
+                ":hashbrown-0.15.3",
+                ":indexmap-2.9.0",
+                ":ruzstd-0.7.3",
+                ":wasmparser-0.222.1",
+            ],
+        ),
+    },
     rustc_flags = ["@$(location :object-0.36.7-build-script-run[rustc_flags])"],
     visibility = [],
-    deps = select({
-        "//constraints:compiler": [
-            ":crc32fast-1.4.2",
-            ":flate2-1.1.1",
-            ":hashbrown-0.15.3",
-            ":indexmap-2.9.0",
-            ":memchr-2.7.4",
-            ":ruzstd-0.7.3",
-            ":wasmparser-0.222.1",
-        ],
-        "//constraints:library": [
-            ":compiler_builtins-0.1.146",
-            ":memchr-2.7.4",
-        ],
-    }),
+    deps = [":memchr-2.7.4"],
 )
 
 rust_bootstrap_binary(
@@ -4828,39 +5535,129 @@ rust_bootstrap_binary(
     crate = "build_script_build",
     crate_root = "object-0.36.7.crate/build.rs",
     edition = "2018",
-    features = select({
-        "//constraints:compiler": [
-            "archive",
-            "coff",
-            "compression",
-            "elf",
-            "macho",
-            "pe",
-            "read",
-            "read_core",
-            "std",
-            "unaligned",
-            "wasm",
-            "write",
-            "write_core",
-            "write_std",
-            "xcoff",
-        ],
-        "//constraints:library": [
-            "alloc",
-            "archive",
-            "coff",
-            "compiler_builtins",
-            "core",
-            "elf",
-            "macho",
-            "pe",
-            "read_core",
-            "rustc-dep-of-std",
-            "unaligned",
-            "xcoff",
-        ],
-    }),
+    features = [
+        "archive",
+        "coff",
+        "elf",
+        "macho",
+        "pe",
+        "read_core",
+        "unaligned",
+    ],
+    platform = {
+        "linux-arm64-compiler": dict(
+            features = [
+                "compression",
+                "read",
+                "std",
+                "wasm",
+                "write",
+                "write_core",
+                "write_std",
+                "xcoff",
+            ],
+        ),
+        "linux-arm64-library": dict(
+            features = [
+                "alloc",
+                "compiler_builtins",
+                "core",
+                "rustc-dep-of-std",
+            ],
+        ),
+        "linux-x86_64-compiler": dict(
+            features = [
+                "compression",
+                "read",
+                "std",
+                "wasm",
+                "write",
+                "write_core",
+                "write_std",
+                "xcoff",
+            ],
+        ),
+        "linux-x86_64-library": dict(
+            features = [
+                "alloc",
+                "compiler_builtins",
+                "core",
+                "rustc-dep-of-std",
+            ],
+        ),
+        "macos-arm64-compiler": dict(
+            features = [
+                "compression",
+                "read",
+                "std",
+                "wasm",
+                "write",
+                "write_core",
+                "write_std",
+                "xcoff",
+            ],
+        ),
+        "macos-arm64-library": dict(
+            features = [
+                "alloc",
+                "compiler_builtins",
+                "core",
+                "rustc-dep-of-std",
+            ],
+        ),
+        "macos-x86_64-compiler": dict(
+            features = [
+                "compression",
+                "read",
+                "std",
+                "wasm",
+                "write",
+                "write_core",
+                "write_std",
+                "xcoff",
+            ],
+        ),
+        "macos-x86_64-library": dict(
+            features = [
+                "alloc",
+                "compiler_builtins",
+                "core",
+                "rustc-dep-of-std",
+            ],
+        ),
+        "windows-gnu-compiler": dict(
+            features = [
+                "compression",
+                "read",
+                "std",
+                "wasm",
+                "write",
+                "write_core",
+                "write_std",
+                "xcoff",
+            ],
+        ),
+        "windows-gnu-library": dict(
+            features = [
+                "alloc",
+                "compiler_builtins",
+                "core",
+                "rustc-dep-of-std",
+            ],
+        ),
+        "windows-msvc-compiler": dict(
+            features = [
+                "compression",
+                "read",
+                "std",
+                "wasm",
+                "write",
+                "write_core",
+                "write_std",
+                "xcoff",
+            ],
+        ),
+    },
     visibility = [],
 )
 
@@ -4868,39 +5665,129 @@ rust_bootstrap_buildscript_run(
     name = "object-0.36.7-build-script-run",
     package_name = "object",
     buildscript_rule = ":object-0.36.7-build-script-build",
-    features = select({
-        "//constraints:compiler": [
-            "archive",
-            "coff",
-            "compression",
-            "elf",
-            "macho",
-            "pe",
-            "read",
-            "read_core",
-            "std",
-            "unaligned",
-            "wasm",
-            "write",
-            "write_core",
-            "write_std",
-            "xcoff",
-        ],
-        "//constraints:library": [
-            "alloc",
-            "archive",
-            "coff",
-            "compiler_builtins",
-            "core",
-            "elf",
-            "macho",
-            "pe",
-            "read_core",
-            "rustc-dep-of-std",
-            "unaligned",
-            "xcoff",
-        ],
-    }),
+    features = [
+        "archive",
+        "coff",
+        "elf",
+        "macho",
+        "pe",
+        "read_core",
+        "unaligned",
+    ],
+    platform = {
+        "linux-arm64-compiler": dict(
+            features = [
+                "compression",
+                "read",
+                "std",
+                "wasm",
+                "write",
+                "write_core",
+                "write_std",
+                "xcoff",
+            ],
+        ),
+        "linux-arm64-library": dict(
+            features = [
+                "alloc",
+                "compiler_builtins",
+                "core",
+                "rustc-dep-of-std",
+            ],
+        ),
+        "linux-x86_64-compiler": dict(
+            features = [
+                "compression",
+                "read",
+                "std",
+                "wasm",
+                "write",
+                "write_core",
+                "write_std",
+                "xcoff",
+            ],
+        ),
+        "linux-x86_64-library": dict(
+            features = [
+                "alloc",
+                "compiler_builtins",
+                "core",
+                "rustc-dep-of-std",
+            ],
+        ),
+        "macos-arm64-compiler": dict(
+            features = [
+                "compression",
+                "read",
+                "std",
+                "wasm",
+                "write",
+                "write_core",
+                "write_std",
+                "xcoff",
+            ],
+        ),
+        "macos-arm64-library": dict(
+            features = [
+                "alloc",
+                "compiler_builtins",
+                "core",
+                "rustc-dep-of-std",
+            ],
+        ),
+        "macos-x86_64-compiler": dict(
+            features = [
+                "compression",
+                "read",
+                "std",
+                "wasm",
+                "write",
+                "write_core",
+                "write_std",
+                "xcoff",
+            ],
+        ),
+        "macos-x86_64-library": dict(
+            features = [
+                "alloc",
+                "compiler_builtins",
+                "core",
+                "rustc-dep-of-std",
+            ],
+        ),
+        "windows-gnu-compiler": dict(
+            features = [
+                "compression",
+                "read",
+                "std",
+                "wasm",
+                "write",
+                "write_core",
+                "write_std",
+                "xcoff",
+            ],
+        ),
+        "windows-gnu-library": dict(
+            features = [
+                "alloc",
+                "compiler_builtins",
+                "core",
+                "rustc-dep-of-std",
+            ],
+        ),
+        "windows-msvc-compiler": dict(
+            features = [
+                "compression",
+                "read",
+                "std",
+                "wasm",
+                "write",
+                "write_core",
+                "write_std",
+                "xcoff",
+            ],
+        ),
+    },
     version = "0.36.7",
 )
 
@@ -4980,19 +5867,19 @@ rust_bootstrap_library(
     crate_root = "rust/library/panic_abort/src/lib.rs",
     edition = "2021",
     platform = {
-        "linux-arm64": dict(
+        "linux-arm64-library": dict(
             deps = [":libc-0.2.172"],
         ),
-        "linux-x86_64": dict(
+        "linux-x86_64-library": dict(
             deps = [":libc-0.2.172"],
         ),
-        "macos-arm64": dict(
+        "macos-arm64-library": dict(
             deps = [":libc-0.2.172"],
         ),
-        "macos-x86_64": dict(
+        "macos-x86_64-library": dict(
             deps = [":libc-0.2.172"],
         ),
-        "windows-gnu": dict(
+        "windows-gnu-library": dict(
             deps = [":libc-0.2.172"],
         ),
     },
@@ -5027,19 +5914,19 @@ rust_bootstrap_library(
     crate_root = "rust/library/panic_unwind/src/lib.rs",
     edition = "2021",
     platform = {
-        "linux-arm64": dict(
+        "linux-arm64-library": dict(
             deps = [":libc-0.2.172"],
         ),
-        "linux-x86_64": dict(
+        "linux-x86_64-library": dict(
             deps = [":libc-0.2.172"],
         ),
-        "macos-arm64": dict(
+        "macos-arm64-library": dict(
             deps = [":libc-0.2.172"],
         ),
-        "macos-x86_64": dict(
+        "macos-x86_64-library": dict(
             deps = [":libc-0.2.172"],
         ),
-        "windows-gnu": dict(
+        "windows-gnu-library": dict(
             deps = [":libc-0.2.172"],
         ),
     },
@@ -5093,22 +5980,22 @@ rust_bootstrap_library(
         "OUT_DIR": "$(location :parking_lot_core-0.9.10-build-script-run[out_dir])",
     },
     platform = {
-        "linux-arm64": dict(
+        "linux-arm64-compiler": dict(
             deps = [":libc-0.2.172"],
         ),
-        "linux-x86_64": dict(
+        "linux-x86_64-compiler": dict(
             deps = [":libc-0.2.172"],
         ),
-        "macos-arm64": dict(
+        "macos-arm64-compiler": dict(
             deps = [":libc-0.2.172"],
         ),
-        "macos-x86_64": dict(
+        "macos-x86_64-compiler": dict(
             deps = [":libc-0.2.172"],
         ),
-        "windows-gnu": dict(
+        "windows-gnu-compiler": dict(
             deps = [":windows-targets-0.52.6"],
         ),
-        "windows-msvc": dict(
+        "windows-msvc-compiler": dict(
             deps = [":windows-targets-0.52.6"],
         ),
     },
@@ -5396,41 +6283,71 @@ rust_bootstrap_library(
     crate_root = "psm-0.1.26.crate/src/lib.rs",
     edition = "2021",
     platform = {
-        "linux-arm64": dict(
+        "linux-arm64-compiler": dict(
             rustc_flags = [
                 "--cfg=asm",
                 "--cfg=switchable_stack",
             ],
             deps = [":psm-0.1.26-psm_s-linux-aarch64"],
         ),
-        "linux-x86_64": dict(
+        "linux-arm64-library": dict(
+            rustc_flags = [
+                "--cfg=asm",
+                "--cfg=switchable_stack",
+            ],
+        ),
+        "linux-x86_64-compiler": dict(
             rustc_flags = [
                 "--cfg=asm",
                 "--cfg=switchable_stack",
             ],
             deps = [":psm-0.1.26-psm_s-linux-x86_64"],
         ),
-        "macos-arm64": dict(
+        "linux-x86_64-library": dict(
+            rustc_flags = [
+                "--cfg=asm",
+                "--cfg=switchable_stack",
+            ],
+        ),
+        "macos-arm64-compiler": dict(
             rustc_flags = [
                 "--cfg=asm",
                 "--cfg=switchable_stack",
             ],
             deps = [":psm-0.1.26-psm_s-macos-aarch64"],
         ),
-        "macos-x86_64": dict(
+        "macos-arm64-library": dict(
+            rustc_flags = [
+                "--cfg=asm",
+                "--cfg=switchable_stack",
+            ],
+        ),
+        "macos-x86_64-compiler": dict(
             rustc_flags = [
                 "--cfg=asm",
                 "--cfg=switchable_stack",
             ],
             deps = [":psm-0.1.26-psm_s-macos-x86_64"],
         ),
-        "windows-gnu": dict(
+        "macos-x86_64-library": dict(
+            rustc_flags = [
+                "--cfg=asm",
+                "--cfg=switchable_stack",
+            ],
+        ),
+        "windows-gnu-compiler": dict(
             rustc_flags = ["--cfg=asm"],
             deps = [":psm-0.1.26-psm_s-windows-x86_64-gnu"],
         ),
-        "windows-msvc": dict(
+        "windows-gnu-library": dict(
+            rustc_flags = ["--cfg=asm"],
+        ),
+        "windows-msvc-compiler": dict(
             rustc_flags = ["--cfg=asm"],
             deps = [":psm-0.1.26-psm_s-windows-x86_64-msvc"],
+        ),
+        "windows-msvc-library": dict(
+            rustc_flags = ["--cfg=asm"],
         ),
     },
     visibility = [],
@@ -5632,16 +6549,16 @@ rust_bootstrap_library(
         "std_rng",
     ],
     platform = {
-        "linux-arm64": dict(
+        "linux-arm64-compiler": dict(
             deps = [":libc-0.2.172"],
         ),
-        "linux-x86_64": dict(
+        "linux-x86_64-compiler": dict(
             deps = [":libc-0.2.172"],
         ),
-        "macos-arm64": dict(
+        "macos-arm64-compiler": dict(
             deps = [":libc-0.2.172"],
         ),
-        "macos-x86_64": dict(
+        "macos-x86_64-compiler": dict(
             deps = [":libc-0.2.172"],
         ),
     },
@@ -5994,25 +6911,75 @@ rust_bootstrap_library(
     crate = "rustc_demangle",
     crate_root = "rustc-demangle-0.1.24.crate/src/lib.rs",
     edition = "2015",
-    features = select({
-        "//constraints:compiler": [],
-        "//constraints:library": [
-            "compiler_builtins",
-            "core",
-            "rustc-dep-of-std",
-        ],
-    }),
-    named_deps = select({
-        "//constraints:compiler": {},
-        "//constraints:library": {
-            "core": ":rustc-std-workspace-core-1.99.0",
-        },
-    }),
+    platform = {
+        "linux-arm64-library": dict(
+            features = [
+                "compiler_builtins",
+                "core",
+                "rustc-dep-of-std",
+            ],
+            named_deps = {
+                "core": ":rustc-std-workspace-core-1.99.0",
+            },
+            deps = [":compiler_builtins-0.1.146"],
+        ),
+        "linux-x86_64-library": dict(
+            features = [
+                "compiler_builtins",
+                "core",
+                "rustc-dep-of-std",
+            ],
+            named_deps = {
+                "core": ":rustc-std-workspace-core-1.99.0",
+            },
+            deps = [":compiler_builtins-0.1.146"],
+        ),
+        "macos-arm64-library": dict(
+            features = [
+                "compiler_builtins",
+                "core",
+                "rustc-dep-of-std",
+            ],
+            named_deps = {
+                "core": ":rustc-std-workspace-core-1.99.0",
+            },
+            deps = [":compiler_builtins-0.1.146"],
+        ),
+        "macos-x86_64-library": dict(
+            features = [
+                "compiler_builtins",
+                "core",
+                "rustc-dep-of-std",
+            ],
+            named_deps = {
+                "core": ":rustc-std-workspace-core-1.99.0",
+            },
+            deps = [":compiler_builtins-0.1.146"],
+        ),
+        "windows-gnu-library": dict(
+            features = [
+                "compiler_builtins",
+                "core",
+                "rustc-dep-of-std",
+            ],
+            named_deps = {
+                "core": ":rustc-std-workspace-core-1.99.0",
+            },
+            deps = [":compiler_builtins-0.1.146"],
+        ),
+        "windows-msvc-library": dict(
+            features = [
+                "compiler_builtins",
+                "core",
+                "rustc-dep-of-std",
+            ],
+            named_deps = {
+                "core": ":rustc-std-workspace-core-1.99.0",
+            },
+            deps = [":compiler_builtins-0.1.146"],
+        ),
+    },
     visibility = [],
-    deps = select({
-        "//constraints:compiler": [],
-        "//constraints:library": [":compiler_builtins-0.1.146"],
-    }),
 )
 
 crate_download(
@@ -6825,22 +7792,22 @@ rust_bootstrap_library(
     crate_root = "rust/compiler/rustc_codegen_ssa/src/lib.rs",
     edition = "2021",
     platform = {
-        "linux-arm64": dict(
+        "linux-arm64-compiler": dict(
             deps = [":libc-0.2.172"],
         ),
-        "linux-x86_64": dict(
+        "linux-x86_64-compiler": dict(
             deps = [":libc-0.2.172"],
         ),
-        "macos-arm64": dict(
+        "macos-arm64-compiler": dict(
             deps = [":libc-0.2.172"],
         ),
-        "macos-x86_64": dict(
+        "macos-x86_64-compiler": dict(
             deps = [":libc-0.2.172"],
         ),
-        "windows-gnu": dict(
+        "windows-gnu-compiler": dict(
             deps = [":windows-0.59.0"],
         ),
-        "windows-msvc": dict(
+        "windows-msvc-compiler": dict(
             deps = [":windows-0.59.0"],
         ),
     },
@@ -7054,41 +8021,23 @@ rust_bootstrap_library(
         "jobserver_crate": ":jobserver-0.1.33",
     },
     platform = {
-        "linux-arm64": dict(
-            deps = [
-                ":libc-0.2.172",
-                ":memmap2-0.2.3",
-            ],
+        "linux-arm64-compiler": dict(
+            deps = [":libc-0.2.172"],
         ),
-        "linux-x86_64": dict(
-            deps = [
-                ":libc-0.2.172",
-                ":memmap2-0.2.3",
-            ],
+        "linux-x86_64-compiler": dict(
+            deps = [":libc-0.2.172"],
         ),
-        "macos-arm64": dict(
-            deps = [
-                ":libc-0.2.172",
-                ":memmap2-0.2.3",
-            ],
+        "macos-arm64-compiler": dict(
+            deps = [":libc-0.2.172"],
         ),
-        "macos-x86_64": dict(
-            deps = [
-                ":libc-0.2.172",
-                ":memmap2-0.2.3",
-            ],
+        "macos-x86_64-compiler": dict(
+            deps = [":libc-0.2.172"],
         ),
-        "windows-gnu": dict(
-            deps = [
-                ":memmap2-0.2.3",
-                ":windows-0.59.0",
-            ],
+        "windows-gnu-compiler": dict(
+            deps = [":windows-0.59.0"],
         ),
-        "windows-msvc": dict(
-            deps = [
-                ":memmap2-0.2.3",
-                ":windows-0.59.0",
-            ],
+        "windows-msvc-compiler": dict(
+            deps = [":windows-0.59.0"],
         ),
     },
     visibility = [],
@@ -7100,6 +8049,7 @@ rust_bootstrap_library(
         ":ena-0.14.3",
         ":indexmap-2.9.0",
         ":measureme-11.0.1",
+        ":memmap2-0.2.3",
         ":parking_lot-0.12.3",
         ":rustc-hash-2.1.1",
         ":rustc-rayon-0.5.1",
@@ -7132,45 +8082,28 @@ rust_bootstrap_library(
     edition = "2021",
     features = ["llvm"],
     platform = {
-        "linux-arm64": dict(
-            deps = [
-                ":ctrlc-3.4.6",
-                ":libc-0.2.172",
-            ],
+        "linux-arm64-compiler": dict(
+            deps = [":libc-0.2.172"],
         ),
-        "linux-x86_64": dict(
-            deps = [
-                ":ctrlc-3.4.6",
-                ":libc-0.2.172",
-            ],
+        "linux-x86_64-compiler": dict(
+            deps = [":libc-0.2.172"],
         ),
-        "macos-arm64": dict(
-            deps = [
-                ":ctrlc-3.4.6",
-                ":libc-0.2.172",
-            ],
+        "macos-arm64-compiler": dict(
+            deps = [":libc-0.2.172"],
         ),
-        "macos-x86_64": dict(
-            deps = [
-                ":ctrlc-3.4.6",
-                ":libc-0.2.172",
-            ],
+        "macos-x86_64-compiler": dict(
+            deps = [":libc-0.2.172"],
         ),
-        "windows-gnu": dict(
-            deps = [
-                ":ctrlc-3.4.6",
-                ":windows-0.59.0",
-            ],
+        "windows-gnu-compiler": dict(
+            deps = [":windows-0.59.0"],
         ),
-        "windows-msvc": dict(
-            deps = [
-                ":ctrlc-3.4.6",
-                ":windows-0.59.0",
-            ],
+        "windows-msvc-compiler": dict(
+            deps = [":windows-0.59.0"],
         ),
     },
     visibility = [],
     deps = [
+        ":ctrlc-3.4.6",
         ":rustc_abi-0.0.0",
         ":rustc_ast-0.0.0",
         ":rustc_ast_lowering-0.0.0",
@@ -7796,10 +8729,10 @@ rust_bootstrap_library(
     crate_root = "rust/compiler/rustc_errors/src/lib.rs",
     edition = "2021",
     platform = {
-        "windows-gnu": dict(
+        "windows-gnu-compiler": dict(
             deps = [":windows-0.59.0"],
         ),
-        "windows-msvc": dict(
+        "windows-msvc-compiler": dict(
             deps = [":windows-0.59.0"],
         ),
     },
@@ -9528,22 +10461,22 @@ rust_bootstrap_library(
     crate_root = "rust/compiler/rustc_session/src/lib.rs",
     edition = "2021",
     platform = {
-        "linux-arm64": dict(
+        "linux-arm64-compiler": dict(
             deps = [":libc-0.2.172"],
         ),
-        "linux-x86_64": dict(
+        "linux-x86_64-compiler": dict(
             deps = [":libc-0.2.172"],
         ),
-        "macos-arm64": dict(
+        "macos-arm64-compiler": dict(
             deps = [":libc-0.2.172"],
         ),
-        "macos-x86_64": dict(
+        "macos-x86_64-compiler": dict(
             deps = [":libc-0.2.172"],
         ),
-        "windows-gnu": dict(
+        "windows-gnu-compiler": dict(
             deps = [":windows-0.59.0"],
         ),
-        "windows-msvc": dict(
+        "windows-msvc-compiler": dict(
             deps = [":windows-0.59.0"],
         ),
     },
@@ -10846,47 +11779,23 @@ rust_bootstrap_library(
         "std",
     ],
     platform = {
-        "linux-arm64": dict(
-            named_deps = {
-                "libc_errno": ":errno-0.3.11",
-            },
-            deps = [
-                ":libc-0.2.172",
-                ":linux-raw-sys-0.9.4",
-            ],
+        "linux-arm64-compiler": dict(
+            deps = [":linux-raw-sys-0.9.4"],
         ),
-        "linux-x86_64": dict(
-            named_deps = {
-                "libc_errno": ":errno-0.3.11",
-            },
-            deps = [
-                ":libc-0.2.172",
-                ":linux-raw-sys-0.9.4",
-            ],
+        "linux-x86_64-compiler": dict(
+            deps = [":linux-raw-sys-0.9.4"],
         ),
-        "macos-arm64": dict(
+        "macos-arm64-compiler": dict(
             named_deps = {
                 "libc_errno": ":errno-0.3.11",
             },
             deps = [":libc-0.2.172"],
         ),
-        "macos-x86_64": dict(
+        "macos-x86_64-compiler": dict(
             named_deps = {
                 "libc_errno": ":errno-0.3.11",
             },
             deps = [":libc-0.2.172"],
-        ),
-        "windows-gnu": dict(
-            named_deps = {
-                "libc_errno": ":errno-0.3.11",
-            },
-            deps = [":windows-sys-0.59.0"],
-        ),
-        "windows-msvc": dict(
-            named_deps = {
-                "libc_errno": ":errno-0.3.11",
-            },
-            deps = [":windows-sys-0.59.0"],
         ),
     },
     rustc_flags = ["@$(location :rustix-1.0.7-build-script-run[rustc_flags])"],
@@ -11264,29 +12173,10 @@ rust_bootstrap_library(
         "default",
         "std",
     ],
-    platform = {
-        "linux-arm64": dict(
-            deps = [":cpufeatures-0.2.17"],
-        ),
-        "linux-x86_64": dict(
-            deps = [":cpufeatures-0.2.17"],
-        ),
-        "macos-arm64": dict(
-            deps = [":cpufeatures-0.2.17"],
-        ),
-        "macos-x86_64": dict(
-            deps = [":cpufeatures-0.2.17"],
-        ),
-        "windows-gnu": dict(
-            deps = [":cpufeatures-0.2.17"],
-        ),
-        "windows-msvc": dict(
-            deps = [":cpufeatures-0.2.17"],
-        ),
-    },
     visibility = [],
     deps = [
         ":cfg-if-1.0.0",
+        ":cpufeatures-0.2.17",
         ":digest-0.10.7",
     ],
 )
@@ -11309,29 +12199,10 @@ rust_bootstrap_library(
         "default",
         "std",
     ],
-    platform = {
-        "linux-arm64": dict(
-            deps = [":cpufeatures-0.2.17"],
-        ),
-        "linux-x86_64": dict(
-            deps = [":cpufeatures-0.2.17"],
-        ),
-        "macos-arm64": dict(
-            deps = [":cpufeatures-0.2.17"],
-        ),
-        "macos-x86_64": dict(
-            deps = [":cpufeatures-0.2.17"],
-        ),
-        "windows-gnu": dict(
-            deps = [":cpufeatures-0.2.17"],
-        ),
-        "windows-msvc": dict(
-            deps = [":cpufeatures-0.2.17"],
-        ),
-    },
     visibility = [],
     deps = [
         ":cfg-if-1.0.0",
+        ":cpufeatures-0.2.17",
         ":digest-0.10.7",
     ],
 )
@@ -11463,13 +12334,13 @@ rust_bootstrap_library(
     crate_root = "stacker-0.1.21.crate/src/lib.rs",
     edition = "2021",
     platform = {
-        "windows-gnu": dict(
+        "windows-gnu-compiler": dict(
             deps = [
                 ":stacker-0.1.21-windows",
                 ":windows-sys-0.59.0",
             ],
         ),
-        "windows-msvc": dict(
+        "windows-msvc-compiler": dict(
             deps = [
                 ":stacker-0.1.21-windows",
                 ":windows-sys-0.59.0",
@@ -12156,83 +13027,127 @@ rust_bootstrap_library(
     crate_root = "rust/library/std/src/lib.rs",
     edition = "2021",
     features = [
-        "addr2line",
         "backtrace",
-        "miniz_oxide",
-        "object",
         "std_detect_dlsym_getauxval",
         "std_detect_file_io",
     ],
     platform = {
-        "linux-arm64": dict(
+        "linux-arm64-compiler": dict(
             env = {
                 "STD_ENV_ARCH": "aarch64",
             },
-            deps = [
-                ":addr2line-0.24.2",
-                ":libc-0.2.172",
-                ":miniz_oxide-0.8.8",
-                ":object-0.36.7",
-                ":panic_unwind-0.0.0",
-            ],
         ),
-        "linux-x86_64": dict(
-            env = {
-                "STD_ENV_ARCH": "x86_64",
-            },
-            deps = [
-                ":addr2line-0.24.2",
-                ":libc-0.2.172",
-                ":miniz_oxide-0.8.8",
-                ":object-0.36.7",
-                ":panic_unwind-0.0.0",
-            ],
-        ),
-        "macos-arm64": dict(
+        "linux-arm64-library": dict(
             env = {
                 "STD_ENV_ARCH": "aarch64",
             },
+            features = [
+                "addr2line",
+                "miniz_oxide",
+                "object",
+            ],
             deps = [
                 ":addr2line-0.24.2",
                 ":libc-0.2.172",
                 ":miniz_oxide-0.8.8",
                 ":object-0.36.7",
-                ":panic_unwind-0.0.0",
             ],
         ),
-        "macos-x86_64": dict(
+        "linux-x86_64-compiler": dict(
             env = {
                 "STD_ENV_ARCH": "x86_64",
             },
-            deps = [
-                ":addr2line-0.24.2",
-                ":libc-0.2.172",
-                ":miniz_oxide-0.8.8",
-                ":object-0.36.7",
-                ":panic_unwind-0.0.0",
-            ],
         ),
-        "windows-gnu": dict(
+        "linux-x86_64-library": dict(
             env = {
                 "STD_ENV_ARCH": "x86_64",
             },
+            features = [
+                "addr2line",
+                "miniz_oxide",
+                "object",
+            ],
             deps = [
                 ":addr2line-0.24.2",
                 ":libc-0.2.172",
                 ":miniz_oxide-0.8.8",
                 ":object-0.36.7",
-                ":panic_unwind-0.0.0",
+            ],
+        ),
+        "macos-arm64-compiler": dict(
+            env = {
+                "STD_ENV_ARCH": "aarch64",
+            },
+        ),
+        "macos-arm64-library": dict(
+            env = {
+                "STD_ENV_ARCH": "aarch64",
+            },
+            features = [
+                "addr2line",
+                "miniz_oxide",
+                "object",
+            ],
+            deps = [
+                ":addr2line-0.24.2",
+                ":libc-0.2.172",
+                ":miniz_oxide-0.8.8",
+                ":object-0.36.7",
+            ],
+        ),
+        "macos-x86_64-compiler": dict(
+            env = {
+                "STD_ENV_ARCH": "x86_64",
+            },
+        ),
+        "macos-x86_64-library": dict(
+            env = {
+                "STD_ENV_ARCH": "x86_64",
+            },
+            features = [
+                "addr2line",
+                "miniz_oxide",
+                "object",
+            ],
+            deps = [
+                ":addr2line-0.24.2",
+                ":libc-0.2.172",
+                ":miniz_oxide-0.8.8",
+                ":object-0.36.7",
+            ],
+        ),
+        "windows-gnu-compiler": dict(
+            env = {
+                "STD_ENV_ARCH": "x86_64",
+            },
+        ),
+        "windows-gnu-library": dict(
+            env = {
+                "STD_ENV_ARCH": "x86_64",
+            },
+            features = [
+                "addr2line",
+                "miniz_oxide",
+                "object",
+            ],
+            deps = [
+                ":addr2line-0.24.2",
+                ":libc-0.2.172",
+                ":miniz_oxide-0.8.8",
+                ":object-0.36.7",
                 ":windows-targets-0.0.0",
             ],
         ),
-        "windows-msvc": dict(
+        "windows-msvc-compiler": dict(
             env = {
                 "STD_ENV_ARCH": "x86_64",
             },
-            deps = [
-                ":panic_unwind-0.0.0",
-                ":windows-targets-0.0.0",
-            ],
+        ),
+        "windows-msvc-library": dict(
+            env = {
+                "STD_ENV_ARCH": "x86_64",
+            },
+            deps = [":windows-targets-0.0.0"],
         ),
     },
     preferred_linkage = "any",
@@ -12247,6 +13162,7 @@ rust_bootstrap_library(
         ":compiler_builtins-0.1.146",
         ":core-0.0.0",
         ":hashbrown-0.15.3",
+        ":panic_unwind-0.0.0",
         ":rustc-demangle-0.1.24",
         ":std_detect-0.1.5",
         ":unwind-0.0.0",
@@ -12309,16 +13225,16 @@ rust_bootstrap_library(
         "core": ":rustc-std-workspace-core-1.99.0",
     },
     platform = {
-        "linux-arm64": dict(
+        "linux-arm64-library": dict(
             deps = [":libc-0.2.172"],
         ),
-        "linux-x86_64": dict(
+        "linux-x86_64-library": dict(
             deps = [":libc-0.2.172"],
         ),
-        "macos-arm64": dict(
+        "macos-arm64-library": dict(
             deps = [":libc-0.2.172"],
         ),
-        "macos-x86_64": dict(
+        "macos-x86_64-library": dict(
             deps = [":libc-0.2.172"],
         ),
     },
@@ -12426,46 +13342,29 @@ rust_bootstrap_library(
         "getrandom",
     ],
     platform = {
-        "linux-arm64": dict(
-            deps = [
-                ":getrandom-0.3.2",
-                ":rustix-1.0.7",
-            ],
+        "linux-arm64-compiler": dict(
+            deps = [":rustix-1.0.7"],
         ),
-        "linux-x86_64": dict(
-            deps = [
-                ":getrandom-0.3.2",
-                ":rustix-1.0.7",
-            ],
+        "linux-x86_64-compiler": dict(
+            deps = [":rustix-1.0.7"],
         ),
-        "macos-arm64": dict(
-            deps = [
-                ":getrandom-0.3.2",
-                ":rustix-1.0.7",
-            ],
+        "macos-arm64-compiler": dict(
+            deps = [":rustix-1.0.7"],
         ),
-        "macos-x86_64": dict(
-            deps = [
-                ":getrandom-0.3.2",
-                ":rustix-1.0.7",
-            ],
+        "macos-x86_64-compiler": dict(
+            deps = [":rustix-1.0.7"],
         ),
-        "windows-gnu": dict(
-            deps = [
-                ":getrandom-0.3.2",
-                ":windows-sys-0.59.0",
-            ],
+        "windows-gnu-compiler": dict(
+            deps = [":windows-sys-0.59.0"],
         ),
-        "windows-msvc": dict(
-            deps = [
-                ":getrandom-0.3.2",
-                ":windows-sys-0.59.0",
-            ],
+        "windows-msvc-compiler": dict(
+            deps = [":windows-sys-0.59.0"],
         ),
     },
     visibility = [],
     deps = [
         ":fastrand-2.3.0",
+        ":getrandom-0.3.2",
         ":once_cell-1.21.3",
     ],
 )
@@ -12485,10 +13384,10 @@ rust_bootstrap_library(
     crate_root = "termcolor-1.4.1.crate/src/lib.rs",
     edition = "2018",
     platform = {
-        "windows-gnu": dict(
+        "windows-gnu-compiler": dict(
             deps = [":winapi-util-0.1.9"],
         ),
-        "windows-msvc": dict(
+        "windows-msvc-compiler": dict(
             deps = [":winapi-util-0.1.9"],
         ),
     },
@@ -12510,22 +13409,22 @@ rust_bootstrap_library(
     crate_root = "termize-0.1.1.crate/src/lib.rs",
     edition = "2018",
     platform = {
-        "linux-arm64": dict(
+        "linux-arm64-compiler": dict(
             deps = [":libc-0.2.172"],
         ),
-        "linux-x86_64": dict(
+        "linux-x86_64-compiler": dict(
             deps = [":libc-0.2.172"],
         ),
-        "macos-arm64": dict(
+        "macos-arm64-compiler": dict(
             deps = [":libc-0.2.172"],
         ),
-        "macos-x86_64": dict(
+        "macos-x86_64-compiler": dict(
             deps = [":libc-0.2.172"],
         ),
-        "windows-gnu": dict(
+        "windows-gnu-compiler": dict(
             deps = [":winapi-0.3.9"],
         ),
-        "windows-msvc": dict(
+        "windows-msvc-compiler": dict(
             deps = [":winapi-0.3.9"],
         ),
     },
@@ -12576,19 +13475,19 @@ rust_bootstrap_library(
     crate_root = "rust/library/test/src/lib.rs",
     edition = "2021",
     platform = {
-        "linux-arm64": dict(
+        "linux-arm64-library": dict(
             deps = [":libc-0.2.172"],
         ),
-        "linux-x86_64": dict(
+        "linux-x86_64-library": dict(
             deps = [":libc-0.2.172"],
         ),
-        "macos-arm64": dict(
+        "macos-arm64-library": dict(
             deps = [":libc-0.2.172"],
         ),
-        "macos-x86_64": dict(
+        "macos-x86_64-library": dict(
             deps = [":libc-0.2.172"],
         ),
-        "windows-gnu": dict(
+        "windows-gnu-library": dict(
             deps = [":libc-0.2.172"],
         ),
     },
@@ -12750,7 +13649,6 @@ rust_bootstrap_library(
         ":itoa-1.0.15",
         ":num-conv-0.1.0",
         ":powerfmt-0.2.0",
-        ":serde-1.0.219",
         ":time-core-0.1.4",
         ":time-macros-0.2.22",
     ],
@@ -13009,7 +13907,6 @@ rust_bootstrap_library(
         "default",
         "once_cell",
         "std",
-        "valuable",
     ],
     visibility = [],
     deps = [":once_cell-1.21.3"],
@@ -13411,32 +14308,91 @@ rust_bootstrap_library(
     crate = "unicode_width",
     crate_root = "unicode-width-0.1.14.crate/src/lib.rs",
     edition = "2021",
-    features = select({
-        "//constraints:compiler": [
-            "cjk",
-            "default",
-        ],
-        "//constraints:library": [
-            "cjk",
-            "compiler_builtins",
-            "core",
-            "default",
-            "rustc-dep-of-std",
-            "std",
-        ],
-    }),
-    named_deps = select({
-        "//constraints:compiler": {},
-        "//constraints:library": {
-            "core": ":rustc-std-workspace-core-1.99.0",
-            "std": ":rustc-std-workspace-std-1.99.0",
-        },
-    }),
+    features = [
+        "cjk",
+        "default",
+    ],
+    platform = {
+        "linux-arm64-library": dict(
+            features = [
+                "compiler_builtins",
+                "core",
+                "rustc-dep-of-std",
+                "std",
+            ],
+            named_deps = {
+                "core": ":rustc-std-workspace-core-1.99.0",
+                "std": ":rustc-std-workspace-std-1.99.0",
+            },
+            deps = [":compiler_builtins-0.1.146"],
+        ),
+        "linux-x86_64-library": dict(
+            features = [
+                "compiler_builtins",
+                "core",
+                "rustc-dep-of-std",
+                "std",
+            ],
+            named_deps = {
+                "core": ":rustc-std-workspace-core-1.99.0",
+                "std": ":rustc-std-workspace-std-1.99.0",
+            },
+            deps = [":compiler_builtins-0.1.146"],
+        ),
+        "macos-arm64-library": dict(
+            features = [
+                "compiler_builtins",
+                "core",
+                "rustc-dep-of-std",
+                "std",
+            ],
+            named_deps = {
+                "core": ":rustc-std-workspace-core-1.99.0",
+                "std": ":rustc-std-workspace-std-1.99.0",
+            },
+            deps = [":compiler_builtins-0.1.146"],
+        ),
+        "macos-x86_64-library": dict(
+            features = [
+                "compiler_builtins",
+                "core",
+                "rustc-dep-of-std",
+                "std",
+            ],
+            named_deps = {
+                "core": ":rustc-std-workspace-core-1.99.0",
+                "std": ":rustc-std-workspace-std-1.99.0",
+            },
+            deps = [":compiler_builtins-0.1.146"],
+        ),
+        "windows-gnu-library": dict(
+            features = [
+                "compiler_builtins",
+                "core",
+                "rustc-dep-of-std",
+                "std",
+            ],
+            named_deps = {
+                "core": ":rustc-std-workspace-core-1.99.0",
+                "std": ":rustc-std-workspace-std-1.99.0",
+            },
+            deps = [":compiler_builtins-0.1.146"],
+        ),
+        "windows-msvc-library": dict(
+            features = [
+                "compiler_builtins",
+                "core",
+                "rustc-dep-of-std",
+                "std",
+            ],
+            named_deps = {
+                "core": ":rustc-std-workspace-core-1.99.0",
+                "std": ":rustc-std-workspace-std-1.99.0",
+            },
+            deps = [":compiler_builtins-0.1.146"],
+        ),
+    },
     visibility = [],
-    deps = select({
-        "//constraints:compiler": [],
-        "//constraints:library": [":compiler_builtins-0.1.146"],
-    }),
 )
 
 crate_download(
@@ -13490,19 +14446,19 @@ rust_bootstrap_library(
     crate_root = "rust/library/unwind/src/lib.rs",
     edition = "2021",
     platform = {
-        "linux-arm64": dict(
+        "linux-arm64-library": dict(
             deps = [":libc-0.2.172"],
         ),
-        "linux-x86_64": dict(
+        "linux-x86_64-library": dict(
             deps = [":libc-0.2.172"],
         ),
-        "macos-arm64": dict(
+        "macos-arm64-library": dict(
             deps = [":libc-0.2.172"],
         ),
-        "macos-x86_64": dict(
+        "macos-x86_64-library": dict(
             deps = [":libc-0.2.172"],
         ),
-        "windows-gnu": dict(
+        "windows-gnu-library": dict(
             deps = [":libc-0.2.172"],
         ),
     },
@@ -13611,35 +14567,7 @@ rust_bootstrap_library(
         "default",
     ],
     visibility = [],
-    deps = [
-        ":leb128-0.2.5",
-        ":wasmparser-0.219.2",
-    ],
-)
-
-crate_download(
-    name = "wasmparser-0.219.2.crate",
-    sha256 = "5220ee4c6ffcc0cb9d7c47398052203bc902c8ef3985b0c8134118440c0b2921",
-    strip_prefix = "wasmparser-0.219.2",
-    urls = ["https://static.crates.io/crates/wasmparser/0.219.2/download"],
-    visibility = [],
-)
-
-rust_bootstrap_library(
-    name = "wasmparser-0.219.2",
-    srcs = [":wasmparser-0.219.2.crate"],
-    crate = "wasmparser",
-    crate_root = "wasmparser-0.219.2.crate/src/lib.rs",
-    edition = "2021",
-    features = [
-        "component-model",
-        "std",
-    ],
-    visibility = [],
-    deps = [
-        ":bitflags-2.9.0",
-        ":indexmap-2.9.0",
-    ],
+    deps = [":leb128-0.2.5"],
 )
 
 crate_download(
@@ -13704,173 +14632,109 @@ rust_bootstrap_library(
         "wincon",
     ],
     platform = {
-        "windows-gnu": dict(
+        "windows-gnu-compiler": dict(
             env = {
                 "OUT_DIR": "$(location :winapi-0.3.9-build-script-run[out_dir])",
             },
             rustc_flags = ["@$(location :winapi-0.3.9-build-script-run[rustc_flags])"],
-            deps = [
-                ":winapi-x86_64-pc-windows-gnu-0.4.0",
-                "//platforms/windows:advapi32.lib",
-                "//platforms/windows:avrt.lib",
-                "//platforms/windows:bcrypt.lib",
-                "//platforms/windows:bluetoothapis.lib",
-                "//platforms/windows:bthprops.lib",
-                "//platforms/windows:cfgmgr32.lib",
-                "//platforms/windows:comctl32.lib",
-                "//platforms/windows:comdlg32.lib",
-                "//platforms/windows:credui.lib",
-                "//platforms/windows:crypt32.lib",
-                "//platforms/windows:cryptnet.lib",
-                "//platforms/windows:d2d1.lib",
-                "//platforms/windows:d3d11.lib",
-                "//platforms/windows:d3d12.lib",
-                "//platforms/windows:d3d9.lib",
-                "//platforms/windows:d3dcompiler.lib",
-                "//platforms/windows:dbghelp.lib",
-                "//platforms/windows:dcomp.lib",
-                "//platforms/windows:dsound.lib",
-                "//platforms/windows:dwmapi.lib",
-                "//platforms/windows:dwrite.lib",
-                "//platforms/windows:dxgi.lib",
-                "//platforms/windows:dxva2.lib",
-                "//platforms/windows:fwpuclnt.lib",
-                "//platforms/windows:gdi32.lib",
-                "//platforms/windows:hid.lib",
-                "//platforms/windows:httpapi.lib",
-                "//platforms/windows:imm32.lib",
-                "//platforms/windows:iphlpapi.lib",
-                "//platforms/windows:kernel32.lib",
-                "//platforms/windows:ktmw32.lib",
-                "//platforms/windows:mmdevapi.lib",
-                "//platforms/windows:mpr.lib",
-                "//platforms/windows:msimg32.lib",
-                "//platforms/windows:mswsock.lib",
-                "//platforms/windows:ncrypt.lib",
-                "//platforms/windows:netapi32.lib",
-                "//platforms/windows:ntdll.lib",
-                "//platforms/windows:odbc32.lib",
-                "//platforms/windows:ole32.lib",
-                "//platforms/windows:oleaut32.lib",
-                "//platforms/windows:opengl32.lib",
-                "//platforms/windows:pdh.lib",
-                "//platforms/windows:powrprof.lib",
-                "//platforms/windows:psapi.lib",
-                "//platforms/windows:rstrtmgr.lib",
-                "//platforms/windows:runtimeobject.lib",
-                "//platforms/windows:secur32.lib",
-                "//platforms/windows:setupapi.lib",
-                "//platforms/windows:shcore.lib",
-                "//platforms/windows:shell32.lib",
-                "//platforms/windows:shlwapi.lib",
-                "//platforms/windows:sporder.lib",
-                "//platforms/windows:synchronization.lib",
-                "//platforms/windows:user32.lib",
-                "//platforms/windows:userenv.lib",
-                "//platforms/windows:usp10.lib",
-                "//platforms/windows:uxtheme.lib",
-                "//platforms/windows:version.lib",
-                "//platforms/windows:vssapi.lib",
-                "//platforms/windows:wer.lib",
-                "//platforms/windows:wevtapi.lib",
-                "//platforms/windows:windowscodecs.lib",
-                "//platforms/windows:winhttp.lib",
-                "//platforms/windows:wininet.lib",
-                "//platforms/windows:winmm.lib",
-                "//platforms/windows:winscard.lib",
-                "//platforms/windows:winspool.lib",
-                "//platforms/windows:wintrust.lib",
-                "//platforms/windows:winusb.lib",
-                "//platforms/windows:wlanapi.lib",
-                "//platforms/windows:ws2_32.lib",
-                "//platforms/windows:wtsapi32.lib",
-                "//platforms/windows:xinput.lib",
-            ],
+            deps = [":winapi-x86_64-pc-windows-gnu-0.4.0"],
         ),
-        "windows-msvc": dict(
+        "windows-gnu-library": dict(
             env = {
                 "OUT_DIR": "$(location :winapi-0.3.9-build-script-run[out_dir])",
             },
             rustc_flags = ["@$(location :winapi-0.3.9-build-script-run[rustc_flags])"],
-            deps = [
-                "//platforms/windows:advapi32.lib",
-                "//platforms/windows:avrt.lib",
-                "//platforms/windows:bcrypt.lib",
-                "//platforms/windows:bluetoothapis.lib",
-                "//platforms/windows:bthprops.lib",
-                "//platforms/windows:cfgmgr32.lib",
-                "//platforms/windows:comctl32.lib",
-                "//platforms/windows:comdlg32.lib",
-                "//platforms/windows:credui.lib",
-                "//platforms/windows:crypt32.lib",
-                "//platforms/windows:cryptnet.lib",
-                "//platforms/windows:d2d1.lib",
-                "//platforms/windows:d3d11.lib",
-                "//platforms/windows:d3d12.lib",
-                "//platforms/windows:d3d9.lib",
-                "//platforms/windows:d3dcompiler.lib",
-                "//platforms/windows:dbghelp.lib",
-                "//platforms/windows:dcomp.lib",
-                "//platforms/windows:dsound.lib",
-                "//platforms/windows:dwmapi.lib",
-                "//platforms/windows:dwrite.lib",
-                "//platforms/windows:dxgi.lib",
-                "//platforms/windows:dxva2.lib",
-                "//platforms/windows:fwpuclnt.lib",
-                "//platforms/windows:gdi32.lib",
-                "//platforms/windows:hid.lib",
-                "//platforms/windows:httpapi.lib",
-                "//platforms/windows:imm32.lib",
-                "//platforms/windows:iphlpapi.lib",
-                "//platforms/windows:kernel32.lib",
-                "//platforms/windows:ktmw32.lib",
-                "//platforms/windows:mmdevapi.lib",
-                "//platforms/windows:mpr.lib",
-                "//platforms/windows:msimg32.lib",
-                "//platforms/windows:mswsock.lib",
-                "//platforms/windows:ncrypt.lib",
-                "//platforms/windows:netapi32.lib",
-                "//platforms/windows:ntdll.lib",
-                "//platforms/windows:odbc32.lib",
-                "//platforms/windows:ole32.lib",
-                "//platforms/windows:oleaut32.lib",
-                "//platforms/windows:opengl32.lib",
-                "//platforms/windows:pdh.lib",
-                "//platforms/windows:powrprof.lib",
-                "//platforms/windows:psapi.lib",
-                "//platforms/windows:rstrtmgr.lib",
-                "//platforms/windows:runtimeobject.lib",
-                "//platforms/windows:secur32.lib",
-                "//platforms/windows:setupapi.lib",
-                "//platforms/windows:shcore.lib",
-                "//platforms/windows:shell32.lib",
-                "//platforms/windows:shlwapi.lib",
-                "//platforms/windows:sporder.lib",
-                "//platforms/windows:synchronization.lib",
-                "//platforms/windows:user32.lib",
-                "//platforms/windows:userenv.lib",
-                "//platforms/windows:usp10.lib",
-                "//platforms/windows:uxtheme.lib",
-                "//platforms/windows:version.lib",
-                "//platforms/windows:vssapi.lib",
-                "//platforms/windows:wer.lib",
-                "//platforms/windows:wevtapi.lib",
-                "//platforms/windows:windowscodecs.lib",
-                "//platforms/windows:winhttp.lib",
-                "//platforms/windows:wininet.lib",
-                "//platforms/windows:winmm.lib",
-                "//platforms/windows:winscard.lib",
-                "//platforms/windows:winspool.lib",
-                "//platforms/windows:wintrust.lib",
-                "//platforms/windows:winusb.lib",
-                "//platforms/windows:wlanapi.lib",
-                "//platforms/windows:ws2_32.lib",
-                "//platforms/windows:wtsapi32.lib",
-                "//platforms/windows:xinput.lib",
-            ],
+        ),
+        "windows-msvc-compiler": dict(
+            env = {
+                "OUT_DIR": "$(location :winapi-0.3.9-build-script-run[out_dir])",
+            },
+            rustc_flags = ["@$(location :winapi-0.3.9-build-script-run[rustc_flags])"],
+        ),
+        "windows-msvc-library": dict(
+            env = {
+                "OUT_DIR": "$(location :winapi-0.3.9-build-script-run[out_dir])",
+            },
+            rustc_flags = ["@$(location :winapi-0.3.9-build-script-run[rustc_flags])"],
         ),
     },
     visibility = [],
+    deps = [
+        "//platforms/windows:advapi32.lib",
+        "//platforms/windows:avrt.lib",
+        "//platforms/windows:bcrypt.lib",
+        "//platforms/windows:bluetoothapis.lib",
+        "//platforms/windows:bthprops.lib",
+        "//platforms/windows:cfgmgr32.lib",
+        "//platforms/windows:comctl32.lib",
+        "//platforms/windows:comdlg32.lib",
+        "//platforms/windows:credui.lib",
+        "//platforms/windows:crypt32.lib",
+        "//platforms/windows:cryptnet.lib",
+        "//platforms/windows:d2d1.lib",
+        "//platforms/windows:d3d11.lib",
+        "//platforms/windows:d3d12.lib",
+        "//platforms/windows:d3d9.lib",
+        "//platforms/windows:d3dcompiler.lib",
+        "//platforms/windows:dbghelp.lib",
+        "//platforms/windows:dcomp.lib",
+        "//platforms/windows:dsound.lib",
+        "//platforms/windows:dwmapi.lib",
+        "//platforms/windows:dwrite.lib",
+        "//platforms/windows:dxgi.lib",
+        "//platforms/windows:dxva2.lib",
+        "//platforms/windows:fwpuclnt.lib",
+        "//platforms/windows:gdi32.lib",
+        "//platforms/windows:hid.lib",
+        "//platforms/windows:httpapi.lib",
+        "//platforms/windows:imm32.lib",
+        "//platforms/windows:iphlpapi.lib",
+        "//platforms/windows:kernel32.lib",
+        "//platforms/windows:ktmw32.lib",
+        "//platforms/windows:mmdevapi.lib",
+        "//platforms/windows:mpr.lib",
+        "//platforms/windows:msimg32.lib",
+        "//platforms/windows:mswsock.lib",
+        "//platforms/windows:ncrypt.lib",
+        "//platforms/windows:netapi32.lib",
+        "//platforms/windows:ntdll.lib",
+        "//platforms/windows:odbc32.lib",
+        "//platforms/windows:ole32.lib",
+        "//platforms/windows:oleaut32.lib",
+        "//platforms/windows:opengl32.lib",
+        "//platforms/windows:pdh.lib",
+        "//platforms/windows:powrprof.lib",
+        "//platforms/windows:psapi.lib",
+        "//platforms/windows:rstrtmgr.lib",
+        "//platforms/windows:runtimeobject.lib",
+        "//platforms/windows:secur32.lib",
+        "//platforms/windows:setupapi.lib",
+        "//platforms/windows:shcore.lib",
+        "//platforms/windows:shell32.lib",
+        "//platforms/windows:shlwapi.lib",
+        "//platforms/windows:sporder.lib",
+        "//platforms/windows:synchronization.lib",
+        "//platforms/windows:user32.lib",
+        "//platforms/windows:userenv.lib",
+        "//platforms/windows:usp10.lib",
+        "//platforms/windows:uxtheme.lib",
+        "//platforms/windows:version.lib",
+        "//platforms/windows:vssapi.lib",
+        "//platforms/windows:wer.lib",
+        "//platforms/windows:wevtapi.lib",
+        "//platforms/windows:windowscodecs.lib",
+        "//platforms/windows:winhttp.lib",
+        "//platforms/windows:wininet.lib",
+        "//platforms/windows:winmm.lib",
+        "//platforms/windows:winscard.lib",
+        "//platforms/windows:winspool.lib",
+        "//platforms/windows:wintrust.lib",
+        "//platforms/windows:winusb.lib",
+        "//platforms/windows:wlanapi.lib",
+        "//platforms/windows:ws2_32.lib",
+        "//platforms/windows:wtsapi32.lib",
+        "//platforms/windows:xinput.lib",
+    ],
 )
 
 rust_bootstrap_binary(
@@ -13904,6 +14768,12 @@ rust_bootstrap_buildscript_run(
         "winbase",
         "wincon",
     ],
+    platform = {
+        "windows-gnu-compiler": dict(),
+        "windows-gnu-library": dict(),
+        "windows-msvc-compiler": dict(),
+        "windows-msvc-library": dict(),
+    },
     version = "0.3.9",
 )
 
@@ -13921,15 +14791,8 @@ rust_bootstrap_library(
     crate = "winapi_util",
     crate_root = "winapi-util-0.1.9.crate/src/lib.rs",
     edition = "2021",
-    platform = {
-        "windows-gnu": dict(
-            deps = [":windows-sys-0.59.0"],
-        ),
-        "windows-msvc": dict(
-            deps = [":windows-sys-0.59.0"],
-        ),
-    },
     visibility = [],
+    deps = [":windows-sys-0.59.0"],
 )
 
 crate_download(
@@ -13950,21 +14813,11 @@ rust_bootstrap_library(
     crate = "winapi_x86_64_pc_windows_gnu",
     crate_root = "winapi-x86_64-pc-windows-gnu-0.4.0.crate/src/lib.rs",
     edition = "2015",
-    platform = {
-        "windows-gnu": dict(
-            deps = [
-                ":winapi-x86_64-pc-windows-gnu-0.4.0-extra_libraries-libwinapi_ole32.a",
-                ":winapi-x86_64-pc-windows-gnu-0.4.0-extra_libraries-libwinapi_shell32.a",
-            ],
-        ),
-        "windows-msvc": dict(
-            deps = [
-                ":winapi-x86_64-pc-windows-gnu-0.4.0-extra_libraries-libwinapi_ole32.a",
-                ":winapi-x86_64-pc-windows-gnu-0.4.0-extra_libraries-libwinapi_shell32.a",
-            ],
-        ),
-    },
     visibility = [],
+    deps = [
+        ":winapi-x86_64-pc-windows-gnu-0.4.0-extra_libraries-libwinapi_ole32.a",
+        ":winapi-x86_64-pc-windows-gnu-0.4.0-extra_libraries-libwinapi_shell32.a",
+    ],
 )
 
 prebuilt_cxx_library(
@@ -14188,15 +15041,11 @@ rust_bootstrap_library(
     features = [
         "Win32",
         "Win32_Foundation",
-        "Win32_Networking",
-        "Win32_Networking_WinSock",
         "Win32_Security",
         "Win32_Storage",
         "Win32_Storage_FileSystem",
         "Win32_System",
         "Win32_System_Console",
-        "Win32_System_Diagnostics",
-        "Win32_System_Diagnostics_Debug",
         "Win32_System_Memory",
         "Win32_System_SystemInformation",
         "Win32_System_Threading",
@@ -14230,13 +15079,10 @@ rust_bootstrap_library(
     crate_root = "windows-targets-0.52.6.crate/src/lib.rs",
     edition = "2021",
     platform = {
-        "linux-x86_64": dict(
+        "windows-gnu-compiler": dict(
             deps = [":windows_x86_64_gnu-0.52.6"],
         ),
-        "windows-gnu": dict(
-            deps = [":windows_x86_64_gnu-0.52.6"],
-        ),
-        "windows-msvc": dict(
+        "windows-msvc-compiler": dict(
             deps = [":windows_x86_64_msvc-0.52.6"],
         ),
     },
@@ -14258,13 +15104,10 @@ rust_bootstrap_library(
     crate_root = "windows-targets-0.53.0.crate/src/lib.rs",
     edition = "2021",
     platform = {
-        "linux-x86_64": dict(
+        "windows-gnu-compiler": dict(
             deps = [":windows_x86_64_gnu-0.53.0"],
         ),
-        "windows-gnu": dict(
-            deps = [":windows_x86_64_gnu-0.53.0"],
-        ),
-        "windows-msvc": dict(
+        "windows-msvc-compiler": dict(
             deps = [":windows_x86_64_msvc-0.53.0"],
         ),
     },
@@ -14359,7 +15202,6 @@ rust_bootstrap_library(
         "std",
     ],
     visibility = [],
-    deps = [":memchr-2.7.4"],
 )
 
 crate_download(
@@ -14419,7 +15261,6 @@ rust_bootstrap_library(
     ],
     visibility = [],
     deps = [
-        ":serde-1.0.219",
         ":stable_deref_trait-1.2.0",
         ":yoke-derive-0.7.5",
         ":zerofrom-0.1.6",
