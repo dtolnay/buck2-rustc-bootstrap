@@ -1,0 +1,682 @@
+14c14
+<                 lib=<build artifact CPPL/librepro_repro.so bound to rust//repro:repro (rust//platforms/stage1:compiler#4613bb47f78f03c2)>,
+---
+>                 lib=<build artifact DPHL/librepro_repro.so bound to rust//repro:repro (rust//platforms/stage1:compiler#4613bb47f78f03c2)>,
+25c25
+<                 lib=<build artifact CPPL/librepro_repro.so bound to rust//repro:repro (rust//platforms/stage1:compiler#4613bb47f78f03c2)>,
+---
+>                 lib=<build artifact DPHL/librepro_repro.so bound to rust//repro:repro (rust//platforms/stage1:compiler#4613bb47f78f03c2)>,
+36c36
+<                 lib=<build artifact CPPL/librepro_repro.so bound to rust//repro:repro (rust//platforms/stage1:compiler#4613bb47f78f03c2)>,
+---
+>                 lib=<build artifact DPHL/librepro_repro.so bound to rust//repro:repro (rust//platforms/stage1:compiler#4613bb47f78f03c2)>,
+47,48c47,48
+<           output=<build artifact CPPL/librepro_repro.so bound to rust//repro:repro (rust//platforms/stage1:compiler#4613bb47f78f03c2)>,
+<           unstripped_output=<build artifact CPPL/librepro_repro.so bound to rust//repro:repro (rust//platforms/stage1:compiler#4613bb47f78f03c2)>,
+---
+>           output=<build artifact DPHL/librepro_repro.so bound to rust//repro:repro (rust//platforms/stage1:compiler#4613bb47f78f03c2)>,
+>           unstripped_output=<build artifact DPHL/librepro_repro.so bound to rust//repro:repro (rust//platforms/stage1:compiler#4613bb47f78f03c2)>,
+50c50
+<         stripped_lib=<build artifact stripped/CPPL/librepro_repro.so bound to rust//repro:repro (rust//platforms/stage1:compiler#4613bb47f78f03c2)>,
+---
+>         stripped_lib=<build artifact stripped/DPHL/librepro_repro.so bound to rust//repro:repro (rust//platforms/stage1:compiler#4613bb47f78f03c2)>,
+56c56
+<       0 children
+---
+>       2 children
+66,67c66,73
+<             deps=[],
+<             all_deps=[],
+---
+>             deps=[
+>               rust//repro:repro_impl (rust//platforms/stage1:compiler#4613bb47f78f03c2),
+>               rust//allocator:rust_allocator (rust//platforms/stage1:compiler#4613bb47f78f03c2)
+>             ],
+>             all_deps=[
+>               rust//repro:repro_impl (rust//platforms/stage1:compiler#4613bb47f78f03c2),
+>               rust//allocator:rust_allocator (rust//platforms/stage1:compiler#4613bb47f78f03c2)
+>             ],
+74c80
+<                       artifact=<build artifact SSTL/librepro-27070c3b.a bound to rust//repro:repro (rust//platforms/stage1:compiler#4613bb47f78f03c2)>,
+---
+>                       artifact=<build artifact LSTL/librepro-27070c3b.rlib bound to rust//repro:repro (rust//platforms/stage1:compiler#4613bb47f78f03c2)>,
+82c88
+<                       artifact=<build artifact __stripped__/SSTL/stripped/librepro.a bound to rust//repro:repro (rust//platforms/stage1:compiler#4613bb47f78f03c2)>,
+---
+>                       artifact=<build artifact __stripped__/LSTL/stripped/librepro.rlib bound to rust//repro:repro (rust//platforms/stage1:compiler#4613bb47f78f03c2)>,
+92c98
+<                       artifact=<build artifact SPPL/librepro-27070c3b_pic.a bound to rust//repro:repro (rust//platforms/stage1:compiler#4613bb47f78f03c2)>,
+---
+>                       artifact=<build artifact LPPL/librepro-27070c3b.rlib bound to rust//repro:repro (rust//platforms/stage1:compiler#4613bb47f78f03c2)>,
+100c106
+<                       artifact=<build artifact __stripped__/SPPL/stripped/librepro_pic.a bound to rust//repro:repro (rust//platforms/stage1:compiler#4613bb47f78f03c2)>,
+---
+>                       artifact=<build artifact __stripped__/LPPL/stripped/librepro.rlib bound to rust//repro:repro (rust//platforms/stage1:compiler#4613bb47f78f03c2)>,
+109c115
+<                     lib=<build artifact CPPL/librepro_repro.so bound to rust//repro:repro (rust//platforms/stage1:compiler#4613bb47f78f03c2)>,
+---
+>                     lib=<build artifact DPHL/librepro_repro.so bound to rust//repro:repro (rust//platforms/stage1:compiler#4613bb47f78f03c2)>,
+116,117c122,123
+<                 output=<build artifact CPPL/librepro_repro.so bound to rust//repro:repro (rust//platforms/stage1:compiler#4613bb47f78f03c2)>,
+<                 unstripped_output=<build artifact CPPL/librepro_repro.so bound to rust//repro:repro (rust//platforms/stage1:compiler#4613bb47f78f03c2)>,
+---
+>                 output=<build artifact DPHL/librepro_repro.so bound to rust//repro:repro (rust//platforms/stage1:compiler#4613bb47f78f03c2)>,
+>                 unstripped_output=<build artifact DPHL/librepro_repro.so bound to rust//repro:repro (rust//platforms/stage1:compiler#4613bb47f78f03c2)>,
+119c125
+<               stripped_lib=<build artifact stripped/CPPL/librepro_repro.so bound to rust//repro:repro (rust//platforms/stage1:compiler#4613bb47f78f03c2)>,
+---
+>               stripped_lib=<build artifact stripped/DPHL/librepro_repro.so bound to rust//repro:repro (rust//platforms/stage1:compiler#4613bb47f78f03c2)>,
+129c135
+<         0 children
+---
+>         2 children
+139c145
+<               artifact=<build artifact SPPL/librepro-27070c3b_pic.a bound to rust//repro:repro (rust//platforms/stage1:compiler#4613bb47f78f03c2)>,
+---
+>               artifact=<build artifact LPPL/librepro-27070c3b.rlib bound to rust//repro:repro (rust//platforms/stage1:compiler#4613bb47f78f03c2)>,
+145c151,154
+<       deps=[],
+---
+>       deps=[
+>         rust//repro:repro_impl (rust//platforms/stage1:compiler#4613bb47f78f03c2),
+>         rust//allocator:rust_allocator (rust//platforms/stage1:compiler#4613bb47f78f03c2)
+>       ]
+155c164
+<             MetadataKind("full"): <build artifact DPHF/librepro-27070c3b.so bound to rust//repro:repro (rust//platforms/stage1:compiler#4613bb47f78f03c2)>,
+---
+>             MetadataKind("full"): <build artifact LPHF/librepro-27070c3b.rlib bound to rust//repro:repro (rust//platforms/stage1:compiler#4613bb47f78f03c2)>,
+188c197
+<             MetadataKind("full"): <build artifact DPHF/librepro-27070c3b.so bound to rust//repro:repro (rust//platforms/stage1:compiler#4613bb47f78f03c2)>,
+---
+>             MetadataKind("full"): <build artifact LPHF/librepro-27070c3b.rlib bound to rust//repro:repro (rust//platforms/stage1:compiler#4613bb47f78f03c2)>,
+221c230
+<             MetadataKind("full"): <build artifact DPHF/librepro-27070c3b.so bound to rust//repro:repro (rust//platforms/stage1:compiler#4613bb47f78f03c2)>,
+---
+>             MetadataKind("full"): <build artifact LPHF/librepro-27070c3b.rlib bound to rust//repro:repro (rust//platforms/stage1:compiler#4613bb47f78f03c2)>,
+252,254c261,656
+<       merged_link_infos={},
+<       linkable_graphs=[],
+<       shared_libs=SharedLibraryInfo( set=None ),
+---
+>       merged_link_infos={
+>         rust//repro:repro_impl (rust//platforms/stage1:compiler#4613bb47f78f03c2): MergedLinkInfo(
+>           _infos={
+>             LinkStrategy("static"): LinkInfosTSet(
+>               value=record[LinkInfos](
+>                 default=record[LinkInfo](
+>                   name=None,
+>                   linkables=[ record[ArchiveLinkable](
+>                     archive=record[Archive](
+>                       artifact=<build artifact LSTL/librepro_impl-7f792fae.rlib bound to rust//repro:repro_impl (rust//platforms/stage1:compiler#4613bb47f78f03c2)>,
+>                     ),
+>                   ) ],
+>                 ),
+>                 stripped=record[LinkInfo](
+>                   name=None,
+>                   linkables=[ record[ArchiveLinkable](
+>                     archive=record[Archive](
+>                       artifact=<build artifact __stripped__/LSTL/stripped/librepro_impl.rlib bound to rust//repro:repro_impl (rust//platforms/stage1:compiler#4613bb47f78f03c2)>,
+>                     ),
+>                   ) ],
+>                 )
+>               ),
+>               0 children
+>             ),
+>             LinkStrategy("static_pic"): LinkInfosTSet(
+>               value=record[LinkInfos](
+>                 default=record[LinkInfo](
+>                   name=None,
+>                   linkables=[ record[ArchiveLinkable](
+>                     archive=record[Archive](
+>                       artifact=<build artifact LPPL/librepro_impl-7f792fae.rlib bound to rust//repro:repro_impl (rust//platforms/stage1:compiler#4613bb47f78f03c2)>,
+>                     ),
+>                   ) ],
+>                 ),
+>                 stripped=record[LinkInfo](
+>                   name=None,
+>                   linkables=[ record[ArchiveLinkable](
+>                     archive=record[Archive](
+>                       artifact=<build artifact __stripped__/LPPL/stripped/librepro_impl.rlib bound to rust//repro:repro_impl (rust//platforms/stage1:compiler#4613bb47f78f03c2)>,
+>                     ),
+>                   ) ],
+>                 )
+>               ),
+>               0 children
+>             ),
+>             LinkStrategy("shared"): LinkInfosTSet(
+>               value=record[LinkInfos](
+>                 default=record[LinkInfo](
+>                   name=None,
+>                   linkables=[ record[ArchiveLinkable](
+>                     archive=record[Archive](
+>                       artifact=<build artifact LPPL/librepro_impl-7f792fae.rlib bound to rust//repro:repro_impl (rust//platforms/stage1:compiler#4613bb47f78f03c2)>,
+>                     ),
+>                   ) ],
+>                 ),
+>                 stripped=record[LinkInfo](
+>                   name=None,
+>                   linkables=[ record[ArchiveLinkable](
+>                     archive=record[Archive](
+>                       artifact=<build artifact __stripped__/LPPL/stripped/librepro_impl.rlib bound to rust//repro:repro_impl (rust//platforms/stage1:compiler#4613bb47f78f03c2)>,
+>                     ),
+>                   ) ],
+>                 )
+>               ),
+>               0 children
+>             )
+>           }
+>         ),
+>         rust//allocator:rust_allocator (rust//platforms/stage1:compiler#4613bb47f78f03c2): MergedLinkInfo(
+>           _infos={
+>             LinkStrategy("static"): LinkInfosTSet(
+>               value=record[LinkInfos](
+>                 default=record[LinkInfo](
+>                   name=None,
+>                   linkables=[ record[ArchiveLinkable](
+>                     archive=record[Archive](
+>                       artifact=<build artifact LSTL/librust_allocator-18aa8e58.rlib bound to rust//allocator:rust_allocator (rust//platforms/stage1:compiler#4613bb47f78f03c2)>,
+>                     ),
+>                   ) ],
+>                 ),
+>                 stripped=record[LinkInfo](
+>                   name=None,
+>                   linkables=[ record[ArchiveLinkable](
+>                     archive=record[Archive](
+>                       artifact=<build artifact __stripped__/LSTL/stripped/librust_allocator.rlib bound to rust//allocator:rust_allocator (rust//platforms/stage1:compiler#4613bb47f78f03c2)>,
+>                     ),
+>                   ) ],
+>                 )
+>               ),
+>               0 children
+>             ),
+>             LinkStrategy("static_pic"): LinkInfosTSet(
+>               value=record[LinkInfos](
+>                 default=record[LinkInfo](
+>                   name=None,
+>                   linkables=[ record[ArchiveLinkable](
+>                     archive=record[Archive](
+>                       artifact=<build artifact LPPL/librust_allocator-18aa8e58.rlib bound to rust//allocator:rust_allocator (rust//platforms/stage1:compiler#4613bb47f78f03c2)>,
+>                     ),
+>                   ) ],
+>                 ),
+>                 stripped=record[LinkInfo](
+>                   name=None,
+>                   linkables=[ record[ArchiveLinkable](
+>                     archive=record[Archive](
+>                       artifact=<build artifact __stripped__/LPPL/stripped/librust_allocator.rlib bound to rust//allocator:rust_allocator (rust//platforms/stage1:compiler#4613bb47f78f03c2)>,
+>                     ),
+>                   ) ],
+>                 )
+>               ),
+>               0 children
+>             ),
+>             LinkStrategy("shared"): LinkInfosTSet(
+>               value=record[LinkInfos](
+>                 default=record[LinkInfo](
+>                   name=None,
+>                   linkables=[ record[ArchiveLinkable](
+>                     archive=record[Archive](
+>                       artifact=<build artifact LPPL/librust_allocator-18aa8e58.rlib bound to rust//allocator:rust_allocator (rust//platforms/stage1:compiler#4613bb47f78f03c2)>,
+>                     ),
+>                   ) ],
+>                 ),
+>                 stripped=record[LinkInfo](
+>                   name=None,
+>                   linkables=[ record[ArchiveLinkable](
+>                     archive=record[Archive](
+>                       artifact=<build artifact __stripped__/LPPL/stripped/librust_allocator.rlib bound to rust//allocator:rust_allocator (rust//platforms/stage1:compiler#4613bb47f78f03c2)>,
+>                     ),
+>                   ) ],
+>                 )
+>               ),
+>               0 children
+>             )
+>           }
+>         ),
+>         rust//repro:repro (rust//platforms/stage1:compiler#4613bb47f78f03c2): MergedLinkInfo(
+>           _infos={
+>             LinkStrategy("static"): LinkInfosTSet(
+>               value=record[LinkInfos](
+>                 default=record[LinkInfo](
+>                   name=None,
+>                   linkables=[ record[SharedLibLinkable](
+>                     lib=<build artifact DPHL/librepro_repro.so bound to rust//repro:repro (rust//platforms/stage1:compiler#4613bb47f78f03c2)>,
+>                   ) ],
+>                 ),
+>               ),
+>               0 children
+>             ),
+>             LinkStrategy("static_pic"): LinkInfosTSet(
+>               value=record[LinkInfos](
+>                 default=record[LinkInfo](
+>                   name=None,
+>                   linkables=[ record[SharedLibLinkable](
+>                     lib=<build artifact DPHL/librepro_repro.so bound to rust//repro:repro (rust//platforms/stage1:compiler#4613bb47f78f03c2)>,
+>                   ) ],
+>                 ),
+>               ),
+>               0 children
+>             ),
+>             LinkStrategy("shared"): LinkInfosTSet(
+>               value=record[LinkInfos](
+>                 default=record[LinkInfo](
+>                   name=None,
+>                   linkables=[ record[SharedLibLinkable](
+>                     lib=<build artifact DPHL/librepro_repro.so bound to rust//repro:repro (rust//platforms/stage1:compiler#4613bb47f78f03c2)>,
+>                   ) ],
+>                 ),
+>               ),
+>               0 children
+>             )
+>           }
+>         )
+>       },
+>       linkable_graphs=[
+>         LinkableGraph(
+>           label=rust//repro:repro_impl (rust//platforms/stage1:compiler#4613bb47f78f03c2),
+>           nodes=LinkableGraphTSet(
+>             value=record[LinkableGraphNode](
+>               label=rust//repro:repro_impl (rust//platforms/stage1:compiler#4613bb47f78f03c2),
+>               linkable=record[LinkableNode](
+>                 preferred_linkage=Linkage("static"),
+>                 default_link_strategy=LinkStrategy("shared"),
+>                 link_infos={
+>                   LibOutputStyle("archive"): record[LinkInfos](
+>                     default=record[LinkInfo](
+>                       name=None,
+>                       linkables=[ record[ArchiveLinkable](
+>                         archive=record[Archive](
+>                           artifact=<build artifact LSTL/librepro_impl-7f792fae.rlib bound to rust//repro:repro_impl (rust//platforms/stage1:compiler#4613bb47f78f03c2)>,
+>                         ),
+>                       ) ],
+>                     ),
+>                     stripped=record[LinkInfo](
+>                       name=None,
+>                       linkables=[ record[ArchiveLinkable](
+>                         archive=record[Archive](
+>                           artifact=<build artifact __stripped__/LSTL/stripped/librepro_impl.rlib bound to rust//repro:repro_impl (rust//platforms/stage1:compiler#4613bb47f78f03c2)>,
+>                         ),
+>                       ) ],
+>                     )
+>                   ),
+>                   LibOutputStyle("pic_archive"): record[LinkInfos](
+>                     default=record[LinkInfo](
+>                       name=None,
+>                       linkables=[ record[ArchiveLinkable](
+>                         archive=record[Archive](
+>                           artifact=<build artifact LPPL/librepro_impl-7f792fae.rlib bound to rust//repro:repro_impl (rust//platforms/stage1:compiler#4613bb47f78f03c2)>,
+>                         ),
+>                       ) ],
+>                     ),
+>                     stripped=record[LinkInfo](
+>                       name=None,
+>                       linkables=[ record[ArchiveLinkable](
+>                         archive=record[Archive](
+>                           artifact=<build artifact __stripped__/LPPL/stripped/librepro_impl.rlib bound to rust//repro:repro_impl (rust//platforms/stage1:compiler#4613bb47f78f03c2)>,
+>                         ),
+>                       ) ],
+>                     )
+>                   ),
+>                   LibOutputStyle("shared_lib"): record[LinkInfos](
+>                     default=record[LinkInfo](
+>                       name=None,
+>                       linkables=[ record[SharedLibLinkable](
+>                         lib=<build artifact DPHL/librepro_repro_impl.so bound to rust//repro:repro_impl (rust//platforms/stage1:compiler#4613bb47f78f03c2)>,
+>                       ) ],
+>                     ),
+>                   )
+>                 },
+>                 shared_libs=record[SharedLibraries]( libraries=[] ),
+>                 default_soname="librepro_repro_impl.so",
+>                 srcs=[ <source repro/repro_impl.rs> ],
+>               ),
+>             ),
+>             0 children
+>           )
+>         ),
+>         LinkableGraph(
+>           label=rust//allocator:rust_allocator (rust//platforms/stage1:compiler#4613bb47f78f03c2),
+>           nodes=LinkableGraphTSet(
+>             value=record[LinkableGraphNode](
+>               label=rust//allocator:rust_allocator (rust//platforms/stage1:compiler#4613bb47f78f03c2),
+>               linkable=record[LinkableNode](
+>                 preferred_linkage=Linkage("static"),
+>                 default_link_strategy=LinkStrategy("shared"),
+>                 link_infos={
+>                   LibOutputStyle("archive"): record[LinkInfos](
+>                     default=record[LinkInfo](
+>                       name=None,
+>                       linkables=[ record[ArchiveLinkable](
+>                         archive=record[Archive](
+>                           artifact=<build artifact LSTL/librust_allocator-18aa8e58.rlib bound to rust//allocator:rust_allocator (rust//platforms/stage1:compiler#4613bb47f78f03c2)>,
+>                         ),
+>                       ) ],
+>                     ),
+>                     stripped=record[LinkInfo](
+>                       name=None,
+>                       linkables=[ record[ArchiveLinkable](
+>                         archive=record[Archive](
+>                           artifact=<build artifact __stripped__/LSTL/stripped/librust_allocator.rlib bound to rust//allocator:rust_allocator (rust//platforms/stage1:compiler#4613bb47f78f03c2)>,
+>                         ),
+>                       ) ],
+>                     )
+>                   ),
+>                   LibOutputStyle("pic_archive"): record[LinkInfos](
+>                     default=record[LinkInfo](
+>                       name=None,
+>                       linkables=[ record[ArchiveLinkable](
+>                         archive=record[Archive](
+>                           artifact=<build artifact LPPL/librust_allocator-18aa8e58.rlib bound to rust//allocator:rust_allocator (rust//platforms/stage1:compiler#4613bb47f78f03c2)>,
+>                         ),
+>                       ) ],
+>                     ),
+>                     stripped=record[LinkInfo](
+>                       name=None,
+>                       linkables=[ record[ArchiveLinkable](
+>                         archive=record[Archive](
+>                           artifact=<build artifact __stripped__/LPPL/stripped/librust_allocator.rlib bound to rust//allocator:rust_allocator (rust//platforms/stage1:compiler#4613bb47f78f03c2)>,
+>                         ),
+>                       ) ],
+>                     )
+>                   ),
+>                   LibOutputStyle("shared_lib"): record[LinkInfos](
+>                     default=record[LinkInfo](
+>                       name=None,
+>                       linkables=[ record[SharedLibLinkable](
+>                         lib=<build artifact DPHL/liballocator_rust_allocator.so bound to rust//allocator:rust_allocator (rust//platforms/stage1:compiler#4613bb47f78f03c2)>,
+>                       ) ],
+>                     ),
+>                   )
+>                 },
+>                 shared_libs=record[SharedLibraries]( libraries=[] ),
+>                 default_soname="liballocator_rust_allocator.so",
+>                 srcs=[
+>                   <source allocator/allocator.rs>,
+>                   <source allocator/std_alloc.rs>
+>                 ],
+>               ),
+>             ),
+>             0 children
+>           )
+>         ),
+>         LinkableGraph(
+>           label=rust//repro:repro (rust//platforms/stage1:compiler#4613bb47f78f03c2),
+>           nodes=LinkableGraphTSet(
+>             value=record[LinkableGraphNode](
+>               label=rust//repro:repro (rust//platforms/stage1:compiler#4613bb47f78f03c2),
+>               linkable=record[LinkableNode](
+>                 preferred_linkage=Linkage("shared"),
+>                 default_link_strategy=LinkStrategy("shared"),
+>                 deps=[
+>                   rust//repro:repro_impl (rust//platforms/stage1:compiler#4613bb47f78f03c2),
+>                   rust//allocator:rust_allocator (rust//platforms/stage1:compiler#4613bb47f78f03c2)
+>                 ],
+>                 all_deps=[
+>                   rust//repro:repro_impl (rust//platforms/stage1:compiler#4613bb47f78f03c2),
+>                   rust//allocator:rust_allocator (rust//platforms/stage1:compiler#4613bb47f78f03c2)
+>                 ],
+>                 link_infos={
+>                   LibOutputStyle("archive"): record[LinkInfos](
+>                     default=record[LinkInfo](
+>                       name=None,
+>                       linkables=[ record[ArchiveLinkable](
+>                         archive=record[Archive](
+>                           artifact=<build artifact LSTL/librepro-27070c3b.rlib bound to rust//repro:repro (rust//platforms/stage1:compiler#4613bb47f78f03c2)>,
+>                         ),
+>                       ) ],
+>                     ),
+>                     stripped=record[LinkInfo](
+>                       name=None,
+>                       linkables=[ record[ArchiveLinkable](
+>                         archive=record[Archive](
+>                           artifact=<build artifact __stripped__/LSTL/stripped/librepro.rlib bound to rust//repro:repro (rust//platforms/stage1:compiler#4613bb47f78f03c2)>,
+>                         ),
+>                       ) ],
+>                     )
+>                   ),
+>                   LibOutputStyle("pic_archive"): record[LinkInfos](
+>                     default=record[LinkInfo](
+>                       name=None,
+>                       linkables=[ record[ArchiveLinkable](
+>                         archive=record[Archive](
+>                           artifact=<build artifact LPPL/librepro-27070c3b.rlib bound to rust//repro:repro (rust//platforms/stage1:compiler#4613bb47f78f03c2)>,
+>                         ),
+>                       ) ],
+>                     ),
+>                     stripped=record[LinkInfo](
+>                       name=None,
+>                       linkables=[ record[ArchiveLinkable](
+>                         archive=record[Archive](
+>                           artifact=<build artifact __stripped__/LPPL/stripped/librepro.rlib bound to rust//repro:repro (rust//platforms/stage1:compiler#4613bb47f78f03c2)>,
+>                         ),
+>                       ) ],
+>                     )
+>                   ),
+>                   LibOutputStyle("shared_lib"): record[LinkInfos](
+>                     default=record[LinkInfo](
+>                       name=None,
+>                       linkables=[ record[SharedLibLinkable](
+>                         lib=<build artifact DPHL/librepro_repro.so bound to rust//repro:repro (rust//platforms/stage1:compiler#4613bb47f78f03c2)>,
+>                       ) ],
+>                     ),
+>                   )
+>                 },
+>                 shared_libs=record[SharedLibraries]( libraries=[ record[SharedLibrary](
+>                   lib=record[LinkedObject](
+>                     output=<build artifact DPHL/librepro_repro.so bound to rust//repro:repro (rust//platforms/stage1:compiler#4613bb47f78f03c2)>,
+>                     unstripped_output=<build artifact DPHL/librepro_repro.so bound to rust//repro:repro (rust//platforms/stage1:compiler#4613bb47f78f03c2)>,
+>                   ),
+>                   stripped_lib=<build artifact stripped/DPHL/librepro_repro.so bound to rust//repro:repro (rust//platforms/stage1:compiler#4613bb47f78f03c2)>,
+>                   soname=record[Soname](
+>                     _soname="librepro_repro.so"
+>                   ),
+>                   label=rust//repro:repro (rust//platforms/stage1:compiler#4613bb47f78f03c2),
+>                 ) ] ),
+>                 default_soname="librepro_repro.so",
+>                 srcs=[ <source repro/repro.rs> ],
+>               ),
+>             ),
+>             2 children
+>           )
+>         )
+>       ],
+>       shared_libs=SharedLibraryInfo( set=SharedLibrariesTSet(
+>         value=record[SharedLibraries]( libraries=[ record[SharedLibrary](
+>           lib=record[LinkedObject](
+>             output=<build artifact DPHL/librepro_repro.so bound to rust//repro:repro (rust//platforms/stage1:compiler#4613bb47f78f03c2)>,
+>             unstripped_output=<build artifact DPHL/librepro_repro.so bound to rust//repro:repro (rust//platforms/stage1:compiler#4613bb47f78f03c2)>,
+>           ),
+>           stripped_lib=<build artifact stripped/DPHL/librepro_repro.so bound to rust//repro:repro (rust//platforms/stage1:compiler#4613bb47f78f03c2)>,
+>           soname=record[Soname](
+>             _soname="librepro_repro.so"
+>           ),
+>           label=rust//repro:repro (rust//platforms/stage1:compiler#4613bb47f78f03c2),
+>         ) ] ),
+>         2 children
+>       ) ),
+270c672
+<                   artifact=<build artifact SSTL/librepro_impl-7f792fae.a bound to rust//repro:repro_impl (rust//platforms/stage1:compiler#4613bb47f78f03c2)>,
+---
+>                   artifact=<build artifact LSTL/librepro_impl-7f792fae.rlib bound to rust//repro:repro_impl (rust//platforms/stage1:compiler#4613bb47f78f03c2)>,
+278c680
+<                   artifact=<build artifact __stripped__/SSTL/stripped/librepro_impl.a bound to rust//repro:repro_impl (rust//platforms/stage1:compiler#4613bb47f78f03c2)>,
+---
+>                   artifact=<build artifact __stripped__/LSTL/stripped/librepro_impl.rlib bound to rust//repro:repro_impl (rust//platforms/stage1:compiler#4613bb47f78f03c2)>,
+291c693
+<                   artifact=<build artifact SPPL/librepro_impl-7f792fae_pic.a bound to rust//repro:repro_impl (rust//platforms/stage1:compiler#4613bb47f78f03c2)>,
+---
+>                   artifact=<build artifact LPPL/librepro_impl-7f792fae.rlib bound to rust//repro:repro_impl (rust//platforms/stage1:compiler#4613bb47f78f03c2)>,
+299c701
+<                   artifact=<build artifact __stripped__/SPPL/stripped/librepro_impl_pic.a bound to rust//repro:repro_impl (rust//platforms/stage1:compiler#4613bb47f78f03c2)>,
+---
+>                   artifact=<build artifact __stripped__/LPPL/stripped/librepro_impl.rlib bound to rust//repro:repro_impl (rust//platforms/stage1:compiler#4613bb47f78f03c2)>,
+312c714
+<                   artifact=<build artifact SPPL/librepro_impl-7f792fae_pic.a bound to rust//repro:repro_impl (rust//platforms/stage1:compiler#4613bb47f78f03c2)>,
+---
+>                   artifact=<build artifact LPPL/librepro_impl-7f792fae.rlib bound to rust//repro:repro_impl (rust//platforms/stage1:compiler#4613bb47f78f03c2)>,
+320c722
+<                   artifact=<build artifact __stripped__/SPPL/stripped/librepro_impl_pic.a bound to rust//repro:repro_impl (rust//platforms/stage1:compiler#4613bb47f78f03c2)>,
+---
+>                   artifact=<build artifact __stripped__/LPPL/stripped/librepro_impl.rlib bound to rust//repro:repro_impl (rust//platforms/stage1:compiler#4613bb47f78f03c2)>,
+343c745
+<                       artifact=<build artifact SSTL/librepro_impl-7f792fae.a bound to rust//repro:repro_impl (rust//platforms/stage1:compiler#4613bb47f78f03c2)>,
+---
+>                       artifact=<build artifact LSTL/librepro_impl-7f792fae.rlib bound to rust//repro:repro_impl (rust//platforms/stage1:compiler#4613bb47f78f03c2)>,
+351c753
+<                       artifact=<build artifact __stripped__/SSTL/stripped/librepro_impl.a bound to rust//repro:repro_impl (rust//platforms/stage1:compiler#4613bb47f78f03c2)>,
+---
+>                       artifact=<build artifact __stripped__/LSTL/stripped/librepro_impl.rlib bound to rust//repro:repro_impl (rust//platforms/stage1:compiler#4613bb47f78f03c2)>,
+361c763
+<                       artifact=<build artifact SPPL/librepro_impl-7f792fae_pic.a bound to rust//repro:repro_impl (rust//platforms/stage1:compiler#4613bb47f78f03c2)>,
+---
+>                       artifact=<build artifact LPPL/librepro_impl-7f792fae.rlib bound to rust//repro:repro_impl (rust//platforms/stage1:compiler#4613bb47f78f03c2)>,
+369c771
+<                       artifact=<build artifact __stripped__/SPPL/stripped/librepro_impl_pic.a bound to rust//repro:repro_impl (rust//platforms/stage1:compiler#4613bb47f78f03c2)>,
+---
+>                       artifact=<build artifact __stripped__/LPPL/stripped/librepro_impl.rlib bound to rust//repro:repro_impl (rust//platforms/stage1:compiler#4613bb47f78f03c2)>,
+378c780
+<                     lib=<build artifact CPPL/librepro_repro_impl.so bound to rust//repro:repro_impl (rust//platforms/stage1:compiler#4613bb47f78f03c2)>,
+---
+>                     lib=<build artifact DPHL/librepro_repro_impl.so bound to rust//repro:repro_impl (rust//platforms/stage1:compiler#4613bb47f78f03c2)>,
+398c800
+<               artifact=<build artifact SPPL/librepro_impl-7f792fae_pic.a bound to rust//repro:repro_impl (rust//platforms/stage1:compiler#4613bb47f78f03c2)>,
+---
+>               artifact=<build artifact LPPL/librepro_impl-7f792fae.rlib bound to rust//repro:repro_impl (rust//platforms/stage1:compiler#4613bb47f78f03c2)>,
+447,449c849,981
+<       merged_link_infos={},
+<       linkable_graphs=[],
+<       shared_libs=SharedLibraryInfo( set=None ),
+---
+>       merged_link_infos={ rust//repro:repro_impl (rust//platforms/stage1:compiler#4613bb47f78f03c2): MergedLinkInfo(
+>         _infos={
+>           LinkStrategy("static"): LinkInfosTSet(
+>             value=record[LinkInfos](
+>               default=record[LinkInfo](
+>                 name=None,
+>                 linkables=[ record[ArchiveLinkable](
+>                   archive=record[Archive](
+>                     artifact=<build artifact LSTL/librepro_impl-7f792fae.rlib bound to rust//repro:repro_impl (rust//platforms/stage1:compiler#4613bb47f78f03c2)>,
+>                   ),
+>                 ) ],
+>               ),
+>               stripped=record[LinkInfo](
+>                 name=None,
+>                 linkables=[ record[ArchiveLinkable](
+>                   archive=record[Archive](
+>                     artifact=<build artifact __stripped__/LSTL/stripped/librepro_impl.rlib bound to rust//repro:repro_impl (rust//platforms/stage1:compiler#4613bb47f78f03c2)>,
+>                   ),
+>                 ) ],
+>               )
+>             ),
+>             0 children
+>           ),
+>           LinkStrategy("static_pic"): LinkInfosTSet(
+>             value=record[LinkInfos](
+>               default=record[LinkInfo](
+>                 name=None,
+>                 linkables=[ record[ArchiveLinkable](
+>                   archive=record[Archive](
+>                     artifact=<build artifact LPPL/librepro_impl-7f792fae.rlib bound to rust//repro:repro_impl (rust//platforms/stage1:compiler#4613bb47f78f03c2)>,
+>                   ),
+>                 ) ],
+>               ),
+>               stripped=record[LinkInfo](
+>                 name=None,
+>                 linkables=[ record[ArchiveLinkable](
+>                   archive=record[Archive](
+>                     artifact=<build artifact __stripped__/LPPL/stripped/librepro_impl.rlib bound to rust//repro:repro_impl (rust//platforms/stage1:compiler#4613bb47f78f03c2)>,
+>                   ),
+>                 ) ],
+>               )
+>             ),
+>             0 children
+>           ),
+>           LinkStrategy("shared"): LinkInfosTSet(
+>             value=record[LinkInfos](
+>               default=record[LinkInfo](
+>                 name=None,
+>                 linkables=[ record[ArchiveLinkable](
+>                   archive=record[Archive](
+>                     artifact=<build artifact LPPL/librepro_impl-7f792fae.rlib bound to rust//repro:repro_impl (rust//platforms/stage1:compiler#4613bb47f78f03c2)>,
+>                   ),
+>                 ) ],
+>               ),
+>               stripped=record[LinkInfo](
+>                 name=None,
+>                 linkables=[ record[ArchiveLinkable](
+>                   archive=record[Archive](
+>                     artifact=<build artifact __stripped__/LPPL/stripped/librepro_impl.rlib bound to rust//repro:repro_impl (rust//platforms/stage1:compiler#4613bb47f78f03c2)>,
+>                   ),
+>                 ) ],
+>               )
+>             ),
+>             0 children
+>           )
+>         }
+>       ) },
+>       linkable_graphs=[ LinkableGraph(
+>         label=rust//repro:repro_impl (rust//platforms/stage1:compiler#4613bb47f78f03c2),
+>         nodes=LinkableGraphTSet(
+>           value=record[LinkableGraphNode](
+>             label=rust//repro:repro_impl (rust//platforms/stage1:compiler#4613bb47f78f03c2),
+>             linkable=record[LinkableNode](
+>               preferred_linkage=Linkage("static"),
+>               default_link_strategy=LinkStrategy("shared"),
+>               link_infos={
+>                 LibOutputStyle("archive"): record[LinkInfos](
+>                   default=record[LinkInfo](
+>                     name=None,
+>                     linkables=[ record[ArchiveLinkable](
+>                       archive=record[Archive](
+>                         artifact=<build artifact LSTL/librepro_impl-7f792fae.rlib bound to rust//repro:repro_impl (rust//platforms/stage1:compiler#4613bb47f78f03c2)>,
+>                       ),
+>                     ) ],
+>                   ),
+>                   stripped=record[LinkInfo](
+>                     name=None,
+>                     linkables=[ record[ArchiveLinkable](
+>                       archive=record[Archive](
+>                         artifact=<build artifact __stripped__/LSTL/stripped/librepro_impl.rlib bound to rust//repro:repro_impl (rust//platforms/stage1:compiler#4613bb47f78f03c2)>,
+>                       ),
+>                     ) ],
+>                   )
+>                 ),
+>                 LibOutputStyle("pic_archive"): record[LinkInfos](
+>                   default=record[LinkInfo](
+>                     name=None,
+>                     linkables=[ record[ArchiveLinkable](
+>                       archive=record[Archive](
+>                         artifact=<build artifact LPPL/librepro_impl-7f792fae.rlib bound to rust//repro:repro_impl (rust//platforms/stage1:compiler#4613bb47f78f03c2)>,
+>                       ),
+>                     ) ],
+>                   ),
+>                   stripped=record[LinkInfo](
+>                     name=None,
+>                     linkables=[ record[ArchiveLinkable](
+>                       archive=record[Archive](
+>                         artifact=<build artifact __stripped__/LPPL/stripped/librepro_impl.rlib bound to rust//repro:repro_impl (rust//platforms/stage1:compiler#4613bb47f78f03c2)>,
+>                       ),
+>                     ) ],
+>                   )
+>                 ),
+>                 LibOutputStyle("shared_lib"): record[LinkInfos](
+>                   default=record[LinkInfo](
+>                     name=None,
+>                     linkables=[ record[SharedLibLinkable](
+>                       lib=<build artifact DPHL/librepro_repro_impl.so bound to rust//repro:repro_impl (rust//platforms/stage1:compiler#4613bb47f78f03c2)>,
+>                     ) ],
+>                   ),
+>                 )
+>               },
+>               shared_libs=record[SharedLibraries]( libraries=[] ),
+>               default_soname="librepro_repro_impl.so",
+>               srcs=[ <source repro/repro_impl.rs> ],
+>             ),
+>           ),
+>           0 children
+>         )
+>       ) ],
+>       shared_libs=SharedLibraryInfo( set=SharedLibrariesTSet(
+>         value=record[SharedLibraries]( libraries=[] ),
+>         0 children
+>       ) ),

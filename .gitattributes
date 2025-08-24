@@ -1,1 +1,3 @@
 /BUCK linguist-generated
+*.diff linguist-generated
+*.providers linguist-generated

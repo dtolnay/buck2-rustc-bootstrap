@@ -1,0 +1,30 @@
+rust_binary(
+    name = "A",
+    srcs = ["A.rs"],
+    default_target_platform = "//platforms/stage1:compiler",
+    edition = "2024",
+    link_style = "static_pic",
+    deps = [":repro"],
+)
+
+rust_library(
+    name = "repro",
+    srcs = ["repro.rs"],
+    default_target_platform = "//platforms/stage1:compiler",
+    edition = "2024",
+    preferred_linkage = "shared",
+    rustc_flags = ["-Cprefer-dynamic=no"],
+    visibility = ["PUBLIC"],
+    deps = [
+        ":repro_impl",
+        "//allocator:rust_allocator",
+    ],
+)
+
+rust_library(
+    name = "repro_impl",
+    srcs = ["repro_impl.rs"],
+    default_target_platform = "//platforms/stage1:compiler",
+    edition = "2024",
+    preferred_linkage = "static",
+)
