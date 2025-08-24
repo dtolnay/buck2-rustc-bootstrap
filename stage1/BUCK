@@ -18,11 +18,18 @@ transition_alias(
     visibility = ["toolchains//:rust"],
 )
 
+transition_alias(
+    name = "rustc_driver",
+    actual = "//:rustc_driver[shared]",
+    incoming_transition = "//platforms/stage1:compiler",
+)
+
 rust_tool(
     name = "rustc",
     exe = "//:rustc-main-rustc-main",
     incoming_transition = "//platforms/stage1:compiler",
     llvm = "//stage0:ci_llvm",
+    rustc_driver = "//:rustc_driver[shared]",
     visibility = ["toolchains//:rust"],
 )
 
@@ -31,6 +38,7 @@ rust_tool(
     exe = "//:rustdoc-tool-rustdoc_tool_binary",
     incoming_transition = "//platforms/stage1:compiler",
     llvm = "//stage0:ci_llvm",
+    rustc_driver = "//:rustc_driver[shared]",
     visibility = ["toolchains//:rust"],
 )
 
@@ -39,6 +47,7 @@ rust_tool(
     exe = "//:clippy-clippy-driver",
     incoming_transition = "//platforms/stage1:compiler",
     llvm = "//stage0:ci_llvm",
+    rustc_driver = "//:rustc_driver[shared]",
     visibility = ["toolchains//:rust"],
 )
 

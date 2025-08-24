@@ -28,6 +28,10 @@ rust_bootstrap_library(
     crate = "rustc_driver",
     crate_root = "rust/compiler/rustc_driver/src/lib.rs",
     edition = "2021",
+    linker_flags = ["-Wl,-rpath,$ORIGIN/../lib"],
+    preferred_linkage = "shared",
+    rustc_flags = ["-Cprefer-dynamic=no"],
+    soname = "librustc_driver.$(ext)",
     visibility = [],
     deps = [":rustc_driver_impl-0.0.0"],
 )
