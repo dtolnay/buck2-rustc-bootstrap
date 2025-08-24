@@ -43,3 +43,11 @@ config_setting(
         ":build-script=true",
     ],
 )
+
+config_setting(
+    name = "compiler-build-script",
+    constraint_values = [
+        ":compiler",
+        ":build-script=true",
+    ],
+)

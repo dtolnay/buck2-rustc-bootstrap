@@ -33,7 +33,7 @@ def _rust_toolchain_impl(ctx: AnalysisContext) -> list[Provider]:
     return [
         DefaultInfo(),
         RustToolchainInfo(
-            advanced_unstable_linking = True,
+            advanced_unstable_linking = ctx.attrs.advanced_unstable_linking,
             clippy_driver = ctx.attrs.clippy_driver[RunInfo],
             compiler = ctx.attrs.compiler[RunInfo],
             explicit_sysroot_deps = explicit_sysroot_deps,
@@ -49,6 +49,7 @@ def _rust_toolchain_impl(ctx: AnalysisContext) -> list[Provider]:
 rust_toolchain = rule(
     impl = _rust_toolchain_impl,
     attrs = {
+        "advanced_unstable_linking": attrs.bool(),
         "clippy_driver": attrs.exec_dep(providers = [RunInfo]),
         "compiler": attrs.exec_dep(providers = [RunInfo]),
         "rustc_flags": attrs.list(attrs.arg(), default = []),

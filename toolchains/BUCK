@@ -29,6 +29,11 @@ cxx_toolchain(
 
 rust_toolchain(
     name = "rust",
+    advanced_unstable_linking = select({
+        "rust//constraints:compiler": False,
+        "rust//constraints:compiler-build-script": True,
+        "rust//constraints:library": True,
+    }),
     clippy_driver = select({
         "rust//constraints:stage1": "rust//stage0:clippy-driver",
         "rust//constraints:stage2": "rust//stage1:clippy-driver",
