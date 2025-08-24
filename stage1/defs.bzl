@@ -18,6 +18,7 @@ SYSROOT_CRATES = [
 def _rust_tool_impl(ctx: AnalysisContext) -> list[Provider]:
     llvm = ctx.attrs.llvm[DefaultInfo].default_outputs[0]
     exe = ctx.attrs.exe[DefaultInfo].default_outputs[0]
+    rustc_driver = ctx.attrs.rustc_driver[DefaultInfo].default_outputs[0]
 
     dist = ctx.actions.declare_output("toolchain", dir = True)
     ctx.actions.run(
@@ -25,12 +26,14 @@ def _rust_tool_impl(ctx: AnalysisContext) -> list[Provider]:
             ctx.attrs._frob[RunInfo],
             cmd_args(llvm, format = "llvm={}", relative_to = dist),
             cmd_args(exe, format = "exe={}"),
+            cmd_args(rustc_driver, format = "rustc_driver={}", relative_to = dist.project("lib")),
             cmd_args(dist.as_output(), format = "dist={}"),
             ["--mkdir", "{dist}"],
             ["--mkdir", "{dist}/bin"],
             ["--cp", "{exe}", "{dist}/bin/" + ctx.label.name],
             ["--symlink", "{llvm}/lib", "{dist}/lib"],
             ["--elaborate", "{dist}/lib"],
+            ["--symlink", "{rustc_driver}", "{dist}/lib/" + rustc_driver.basename],
         ],
         category = "dist",
     )
@@ -53,6 +56,7 @@ rust_tool = rule(
     attrs = {
         "exe": attrs.dep(),
         "llvm": attrs.dep(),
+        "rustc_driver": attrs.dep(),
         "_frob": attrs.default_only(attrs.exec_dep(providers = [RunInfo], default = "//stage0:frob")),
     },
     supports_incoming_transition = True,
