@@ -1,0 +1,6 @@
+load(":defs.bzl", "troubleshoot")
+
+troubleshoot(
+    name = "troubleshoot",
+    script = "troubleshoot.sh",
+)
