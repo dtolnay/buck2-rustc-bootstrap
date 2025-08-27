@@ -25,15 +25,24 @@ def _rustc_cfg_llvm_component_impl(
     return []
 
 def _llvm_link_type_impl(ctx: AnalysisContext) -> list[Provider]:
-    link_type = ctx.actions.copy_file(
-        "link-type.txt",
-        ctx.attrs.llvm[DefaultInfo].default_outputs[0].project("link-type.txt"),
+    link_type = ctx.actions.declare_output("link-type.txt")
+    ctx.actions.run(
+        [
+            ctx.attrs._frob[RunInfo],
+            cmd_args(ctx.attrs.llvm[DefaultInfo].default_outputs[0], format = "source={}"),
+            cmd_args(link_type.as_output(), format = "dest={}"),
+            ["--cp", "{source}/link-type.txt", "{dest}"],
+        ],
+        category = "cp",
     )
     return [DefaultInfo(default_output = link_type)]
 
 llvm_link_type = rule(
     impl = _llvm_link_type_impl,
-    attrs = {"llvm": attrs.dep()},
+    attrs = {
+        "llvm": attrs.dep(),
+        "_frob": attrs.default_only(attrs.exec_dep(providers = [RunInfo], default = "//stage0:frob")),
+    },
 )
 
 _rustc_cfg_llvm_component = dynamic_actions(
