@@ -2,6 +2,7 @@ load(
     ":defs.bzl",
     "llvm_config",
     "llvm_cxx_flags",
+    "llvm_link_type",
     "llvm_linker_flags",
     "llvm_preprocessor_flags",
     "llvm_rustc_flags",
@@ -16,6 +17,11 @@ configured_alias(
     name = "host-llvm-config",
     actual = ":llvm-config",
     platform = "//platforms:host",
+)
+
+llvm_link_type(
+    name = "target-llvm-link-type",
+    llvm = "//stage0:ci_llvm",
 )
 
 llvm_rustc_flags(
@@ -39,7 +45,7 @@ llvm_preprocessor_flags(
 llvm_linker_flags(
     name = "linker-flags",
     host_llvm_config = ":host-llvm-config",
-    target_llvm = "//stage0:ci_llvm",
+    target_llvm_link_type = ":target-llvm-link-type",
 )
 
 prebuilt_cxx_library(

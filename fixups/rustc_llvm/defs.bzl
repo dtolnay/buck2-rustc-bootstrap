@@ -24,6 +24,18 @@ def _rustc_cfg_llvm_component_impl(
     actions.write(output, "".join(cfg))
     return []
 
+def _llvm_link_type_impl(ctx: AnalysisContext) -> list[Provider]:
+    link_type = ctx.actions.copy_file(
+        "link-type.txt",
+        ctx.attrs.llvm[DefaultInfo].default_outputs[0].project("link-type.txt"),
+    )
+    return [DefaultInfo(default_output = link_type)]
+
+llvm_link_type = rule(
+    impl = _llvm_link_type_impl,
+    attrs = {"llvm": attrs.dep()},
+)
+
 _rustc_cfg_llvm_component = dynamic_actions(
     impl = _rustc_cfg_llvm_component_impl,
     attrs = {
@@ -211,16 +223,11 @@ _linker_flags = dynamic_actions(
 )
 
 def _llvm_linker_flags_impl(ctx: AnalysisContext) -> list[Provider]:
-    link_type = ctx.actions.copy_file(
-        "link-type.txt",
-        ctx.attrs.target_llvm[DefaultInfo].default_outputs[0].project("link-type.txt"),
-    )
-
     llvm_config_libs = ctx.actions.declare_output("libs")
     ctx.actions.dynamic_output_new(
         _run_llvm_config_for_linker_flags(
             host_llvm_config = ctx.attrs.host_llvm_config[RunInfo],
-            link_type = link_type,
+            link_type = ctx.attrs.target_llvm_link_type[DefaultInfo].default_outputs[0],
             output = llvm_config_libs.as_output(),
             redirect_stdout = ctx.attrs._redirect_stdout[RunInfo],
         ),
@@ -240,7 +247,7 @@ llvm_linker_flags = rule(
     impl = _llvm_linker_flags_impl,
     attrs = {
         "host_llvm_config": attrs.dep(providers = [RunInfo]),
-        "target_llvm": attrs.dep(),
+        "target_llvm_link_type": attrs.dep(),
         "_redirect_stdout": attrs.default_only(attrs.exec_dep(providers = [RunInfo], default = "prelude//rust/tools:redirect_stdout")),
     },
 )
