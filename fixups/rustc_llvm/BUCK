@@ -20,25 +20,25 @@ configured_alias(
 
 llvm_rustc_flags(
     name = "rustc-flags",
-    llvm_config = ":host-llvm-config",
+    host_llvm_config = ":host-llvm-config",
     visibility = ["//:rustc_llvm"],
 )
 
 llvm_cxx_flags(
     name = "cxx-flags",
-    llvm_config = ":host-llvm-config",
+    host_llvm_config = ":host-llvm-config",
     visibility = ["//:rustc_llvm-0.0.0-llvm-wrapper-compile"],
 )
 
 llvm_preprocessor_flags(
     name = "preprocessor-flags",
-    llvm_config = ":host-llvm-config",
+    host_llvm_config = ":host-llvm-config",
     visibility = ["//:rustc_llvm-0.0.0-llvm-wrapper-compile"],
 )
 
 llvm_linker_flags(
     name = "linker-flags",
-    llvm_config = ":host-llvm-config",
+    host_llvm_config = ":host-llvm-config",
 )
 
 prebuilt_cxx_library(
