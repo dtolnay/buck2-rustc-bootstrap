@@ -1,4 +1,5 @@
 load("//remote_execution:config.bzl", "executor_config")
+load(":name.bzl", "platform_info_label")
 
 def _platform_impl(ctx: AnalysisContext) -> list[Provider]:
     platform_label = ctx.label.raw_target()
@@ -28,7 +29,7 @@ def _platform_impl(ctx: AnalysisContext) -> list[Provider]:
                 constraints[setting] = value
 
         return PlatformInfo(
-            label = str(platform_label),
+            label = platform_info_label(constraints),
             configuration = ConfigurationInfo(
                 constraints = constraints,
                 values = platform.configuration.values,
@@ -38,7 +39,7 @@ def _platform_impl(ctx: AnalysisContext) -> list[Provider]:
     return [
         DefaultInfo(),
         PlatformInfo(
-            label = str(platform_label),
+            label = platform_info_label(configuration.constraints),
             configuration = configuration,
         ),
         TransitionInfo(impl = transition_impl),

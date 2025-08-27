@@ -8,7 +8,6 @@ configuration_transition(
         "rust//constraints:build-script",
         "rust//constraints:workspace",
     ],
-    label = "cxx",
 )
 
 prebuilt_cxx_library(
