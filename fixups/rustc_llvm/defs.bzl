@@ -211,11 +211,16 @@ _linker_flags = dynamic_actions(
 )
 
 def _llvm_linker_flags_impl(ctx: AnalysisContext) -> list[Provider]:
+    link_type = ctx.actions.copy_file(
+        "link-type.txt",
+        ctx.attrs.target_llvm[DefaultInfo].default_outputs[0].project("link-type.txt"),
+    )
+
     llvm_config_libs = ctx.actions.declare_output("libs")
     ctx.actions.dynamic_output_new(
         _run_llvm_config_for_linker_flags(
             host_llvm_config = ctx.attrs.host_llvm_config[RunInfo],
-            link_type = ctx.attrs.target_llvm[DefaultInfo].default_outputs[0].project("link-type.txt"),
+            link_type = link_type,
             output = llvm_config_libs.as_output(),
             redirect_stdout = ctx.attrs._redirect_stdout[RunInfo],
         ),
