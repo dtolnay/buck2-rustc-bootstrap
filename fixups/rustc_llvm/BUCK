@@ -39,6 +39,7 @@ llvm_preprocessor_flags(
 llvm_linker_flags(
     name = "linker-flags",
     host_llvm_config = ":host-llvm-config",
+    target_llvm = "//stage0:ci_llvm",
 )
 
 prebuilt_cxx_library(
