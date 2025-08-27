@@ -87,7 +87,7 @@ def rust_bootstrap_library(
             "//constraints:stage2": "(buckified stage2)",
         })
         extra_env["CFG_COMPILER_HOST_TRIPLE"] = "$(target_triple)"
-        extra_deps.append("toolchains//target:target_triple")
+        extra_deps.append("toolchains//target:rustc_target_triple")
     else:
         default_target_platform = None
         extra_rustc_flags.append("--cap-lints=allow")

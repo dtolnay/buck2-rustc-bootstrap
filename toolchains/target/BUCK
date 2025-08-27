@@ -1,13 +1,36 @@
 load(":target_triple.bzl", "target_triple")
 
 target_triple(
-    name = "target_triple",
+    name = "rustc_target_triple",
     incoming_transition = "rust//stage0:stage0_configuration",
     value = select({
         "prelude//os:linux": select({
             "prelude//cpu:arm64": "aarch64-unknown-linux-gnu",
             "prelude//cpu:riscv64": "riscv64gc-unknown-linux-gnu",
             "prelude//cpu:x86_64": "x86_64-unknown-linux-gnu",
+        }),
+        "prelude//os:macos": select({
+            "prelude//cpu:arm64": "aarch64-apple-darwin",
+            "prelude//cpu:x86_64": "x86_64-apple-darwin",
+        }),
+        "prelude//os:windows": select({
+            "prelude//cpu:arm64": "aarch64-pc-windows-msvc",
+            "prelude//cpu:x86_64": "x86_64-pc-windows-msvc",
+        }),
+    }),
+    visibility = ["PUBLIC"],
+)
+
+target_triple(
+    name = "clang_target_triple",
+    incoming_transition = "rust//stage0:stage0_configuration",
+    value = select({
+        # Different from rustc triple: `unknown` -> `pc`
+        "prelude//os:linux": select({
+            "prelude//cpu:arm64": "aarch64-pc-linux-gnu",
+            # Different from rustc triple: no `gc`
+            "prelude//cpu:riscv64": "riscv64-pc-linux-gnu",
+            "prelude//cpu:x86_64": "x86_64-pc-linux-gnu",
         }),
         "prelude//os:macos": select({
             "prelude//cpu:arm64": "aarch64-apple-darwin",

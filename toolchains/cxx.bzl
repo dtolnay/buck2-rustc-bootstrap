@@ -110,7 +110,7 @@ cxx_toolchain = rule(
     attrs = {
         "c_flags": attrs.list(attrs.arg(), default = []),
         "cxx_flags": attrs.list(attrs.arg(), default = []),
-        "target_triple": attrs.default_only(attrs.dep(providers = [TargetTriple], default = "//target:target_triple")),
+        "target_triple": attrs.default_only(attrs.dep(providers = [TargetTriple], default = "//target:clang_target_triple")),
         "_cxx_tools_info": attrs.exec_dep(providers = [CxxToolsInfo], default = "prelude//toolchains/msvc:msvc_tools" if host_info().os.is_windows else "prelude//toolchains/cxx/clang:path_clang_tools"),
         "_internal_tools": attrs.default_only(attrs.exec_dep(providers = [CxxInternalTools], default = "prelude//cxx/tools:internal_tools")),
         "_target_os_type": attrs.default_only(attrs.dep(providers = [OsLookup], default = "prelude//os_lookup/targets:os_lookup")),
