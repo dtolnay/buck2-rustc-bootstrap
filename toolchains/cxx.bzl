@@ -23,7 +23,7 @@ def _cxx_toolchain_impl(ctx: AnalysisContext):
     target_triple = ctx.attrs.target_triple[TargetTriple].value
     tools = ctx.attrs._cxx_tools_info[CxxToolsInfo]
 
-    linker_flags = []
+    linker_flags = ["--target={}".format(target_triple)]
     if target.os == Os("linux") and tools.linker != "g++" and tools.cxx_compiler != "g++":
         linker_flags.append("-fuse-ld=lld")
 
