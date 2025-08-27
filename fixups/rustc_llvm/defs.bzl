@@ -38,7 +38,7 @@ def _llvm_rustc_flags_impl(ctx: AnalysisContext) -> list[Provider]:
         [
             ctx.attrs._redirect_stdout[RunInfo],
             llvm_config_components.as_output(),
-            ctx.attrs.llvm_config[RunInfo],
+            ctx.attrs.host_llvm_config[RunInfo],
             "--components",
         ],
         category = "llvm_config",
@@ -57,7 +57,7 @@ def _llvm_rustc_flags_impl(ctx: AnalysisContext) -> list[Provider]:
 llvm_rustc_flags = rule(
     impl = _llvm_rustc_flags_impl,
     attrs = {
-        "llvm_config": attrs.dep(providers = [RunInfo]),
+        "host_llvm_config": attrs.dep(providers = [RunInfo]),
         "_redirect_stdout": attrs.default_only(attrs.exec_dep(providers = [RunInfo], default = "prelude//rust/tools:redirect_stdout")),
     },
 )
@@ -89,7 +89,7 @@ def _llvm_cxx_flags_impl(ctx: AnalysisContext) -> list[Provider]:
         [
             ctx.attrs._redirect_stdout[RunInfo],
             llvm_config_cxxflags.as_output(),
-            ctx.attrs.llvm_config[RunInfo],
+            ctx.attrs.host_llvm_config[RunInfo],
             "--cxxflags",
         ],
         category = "llvm_config",
@@ -108,7 +108,7 @@ def _llvm_cxx_flags_impl(ctx: AnalysisContext) -> list[Provider]:
 llvm_cxx_flags = rule(
     impl = _llvm_cxx_flags_impl,
     attrs = {
-        "llvm_config": attrs.dep(providers = [RunInfo]),
+        "host_llvm_config": attrs.dep(providers = [RunInfo]),
         "_redirect_stdout": attrs.default_only(attrs.exec_dep(providers = [RunInfo], default = "prelude//rust/tools:redirect_stdout")),
     },
 )
@@ -138,7 +138,7 @@ def _llvm_preprocessor_flags_impl(ctx: AnalysisContext) -> list[Provider]:
         [
             ctx.attrs._redirect_stdout[RunInfo],
             llvm_config_cxxflags.as_output(),
-            ctx.attrs.llvm_config[RunInfo],
+            ctx.attrs.host_llvm_config[RunInfo],
             "--cxxflags",
         ],
         category = "llvm_config",
@@ -157,8 +157,38 @@ def _llvm_preprocessor_flags_impl(ctx: AnalysisContext) -> list[Provider]:
 llvm_preprocessor_flags = rule(
     impl = _llvm_preprocessor_flags_impl,
     attrs = {
-        "llvm_config": attrs.dep(providers = [RunInfo]),
+        "host_llvm_config": attrs.dep(providers = [RunInfo]),
         "_redirect_stdout": attrs.default_only(attrs.exec_dep(providers = [RunInfo], default = "prelude//rust/tools:redirect_stdout")),
+    },
+)
+
+def _run_llvm_config_for_linker_flags_impl(
+        actions: AnalysisActions,
+        host_llvm_config: RunInfo,
+        link_type: ArtifactValue,
+        output: OutputArtifact,
+        redirect_stdout: RunInfo) -> list[Provider]:
+    link_type = link_type.read_string().strip()
+    if link_type == "static":
+        link_type_flags = ["--link-static", "--ignore-libllvm"]
+    elif link_type == "dynamic":
+        link_type_flags = ["--link-shared"]
+    else:
+        fail("unknown LLVM link type:", link_type)
+
+    actions.run(
+        [redirect_stdout, output, host_llvm_config, "--libs", link_type_flags],
+        category = "llvm_config",
+    )
+    return []
+
+_run_llvm_config_for_linker_flags = dynamic_actions(
+    impl = _run_llvm_config_for_linker_flags_impl,
+    attrs = {
+        "host_llvm_config": dynattrs.value(RunInfo),
+        "link_type": dynattrs.artifact_value(),
+        "output": dynattrs.output(),
+        "redirect_stdout": dynattrs.value(RunInfo),
     },
 )
 
@@ -182,14 +212,13 @@ _linker_flags = dynamic_actions(
 
 def _llvm_linker_flags_impl(ctx: AnalysisContext) -> list[Provider]:
     llvm_config_libs = ctx.actions.declare_output("libs")
-    ctx.actions.run(
-        [
-            ctx.attrs._redirect_stdout[RunInfo],
-            llvm_config_libs.as_output(),
-            ctx.attrs.llvm_config[RunInfo],
-            "--libs",
-        ],
-        category = "llvm_config",
+    ctx.actions.dynamic_output_new(
+        _run_llvm_config_for_linker_flags(
+            host_llvm_config = ctx.attrs.host_llvm_config[RunInfo],
+            link_type = ctx.attrs.target_llvm[DefaultInfo].default_outputs[0].project("link-type.txt"),
+            output = llvm_config_libs.as_output(),
+            redirect_stdout = ctx.attrs._redirect_stdout[RunInfo],
+        ),
     )
 
     linker_flags = ctx.actions.declare_output("linker-flags")
@@ -205,7 +234,8 @@ def _llvm_linker_flags_impl(ctx: AnalysisContext) -> list[Provider]:
 llvm_linker_flags = rule(
     impl = _llvm_linker_flags_impl,
     attrs = {
-        "llvm_config": attrs.dep(providers = [RunInfo]),
+        "host_llvm_config": attrs.dep(providers = [RunInfo]),
+        "target_llvm": attrs.dep(),
         "_redirect_stdout": attrs.default_only(attrs.exec_dep(providers = [RunInfo], default = "prelude//rust/tools:redirect_stdout")),
     },
 )
