@@ -1,3 +1,8 @@
+load(
+    "@prelude//cfg/modifier:cfg_constructor.bzl",
+    "PostConstraintAnalysisParams",
+    prelude_post_constraint_analysis = "cfg_constructor_post_constraint_analysis",
+)
 load("@prelude//platforms:defs.bzl", "host_configuration")
 
 def platform_info_label(constraints: dict[TargetLabel, ConstraintValueInfo]) -> str:
@@ -33,3 +38,13 @@ def platform_info_label(constraints: dict[TargetLabel, ConstraintValueInfo]) -> 
         return "null"
 
     return "cfg"
+
+def cfg_constructor_post_constraint_analysis(
+        *,
+        refs: dict[str, ProviderCollection],
+        params: PostConstraintAnalysisParams) -> PlatformInfo:
+    platform = prelude_post_constraint_analysis(refs = refs, params = params)
+    return PlatformInfo(
+        label = platform_info_label(platform.configuration.constraints),
+        configuration = platform.configuration,
+    )
