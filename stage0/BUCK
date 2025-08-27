@@ -16,7 +16,6 @@ configuration_transition(
         "prelude//cpu/constraints:cpu",
         "prelude//os/constraints:os",
     ],
-    label = "stage0",
 )
 
 stage0_download(

@@ -1,3 +1,5 @@
+load("//platforms:name.bzl", "platform_info_label")
+
 def _unified_constraint_impl(ctx: AnalysisContext) -> list[Provider]:
     label = ctx.label.raw_target()
     setting = ConstraintSettingInfo(label = label)
@@ -38,8 +40,6 @@ def constraint(setting, values = []):
         )
 
 def _configuration_transition_impl(ctx: AnalysisContext) -> list[Provider]:
-    label = ctx.attrs.label or ctx.label.name
-
     if ctx.attrs.add_fallback_settings:
         fallback_constraints = ctx.attrs.add_fallback_settings[PlatformInfo].configuration.constraints
     else:
@@ -60,7 +60,7 @@ def _configuration_transition_impl(ctx: AnalysisContext) -> list[Provider]:
                 constraints[setting] = value
 
         return PlatformInfo(
-            label = label,
+            label = platform_info_label(constraints),
             configuration = ConfigurationInfo(
                 constraints = constraints,
                 values = platform.configuration.values,
@@ -78,7 +78,6 @@ configuration_transition = rule(
         "add_fallback_settings": attrs.option(attrs.dep(providers = [PlatformInfo]), default = None),
         "discard_settings": attrs.option(attrs.list(attrs.dep(providers = [ConstraintSettingInfo])), default = None),
         "keep_settings": attrs.option(attrs.list(attrs.dep(providers = [ConstraintSettingInfo])), default = None),
-        "label": attrs.option(attrs.string(), default = None),
     },
     is_configuration_rule = True,
 )
