@@ -1,0 +1,21 @@
+load(":defs.bzl", "target")
+
+platform(
+    name = "platform",
+    constraint_values = [
+        "prelude//cpu/constraints:riscv64",
+    ],
+)
+
+configured_alias(
+    name = "repro",
+    actual = ":repro_impl",
+    platform = ":platform",
+)
+
+target(
+    name = "repro_impl",
+    target_compatible_with = [
+        "prelude//cpu/constraints:riscv64",
+    ],
+)
