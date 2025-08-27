@@ -211,11 +211,22 @@ _linker_flags = dynamic_actions(
 )
 
 def _llvm_linker_flags_impl(ctx: AnalysisContext) -> list[Provider]:
+    link_type = ctx.actions.declare_output("link-type.txt")
+    ctx.actions.run(
+        [
+            ctx.attrs._frob[RunInfo],
+            cmd_args(ctx.attrs.target_llvm[DefaultInfo].default_outputs[0], format = "source={}"),
+            cmd_args(link_type.as_output(), format = "dest={}"),
+            ["--cp", "{source}/link-type.txt", "{dest}"],
+        ],
+        category = "link_type",
+    )
+
     llvm_config_libs = ctx.actions.declare_output("libs")
     ctx.actions.dynamic_output_new(
         _run_llvm_config_for_linker_flags(
             host_llvm_config = ctx.attrs.host_llvm_config[RunInfo],
-            link_type = ctx.attrs.target_llvm[DefaultInfo].default_outputs[0].project("link-type.txt"),
+            link_type = link_type,
             output = llvm_config_libs.as_output(),
             redirect_stdout = ctx.attrs._redirect_stdout[RunInfo],
         ),
@@ -236,6 +247,7 @@ llvm_linker_flags = rule(
     attrs = {
         "host_llvm_config": attrs.dep(providers = [RunInfo]),
         "target_llvm": attrs.dep(),
+        "_frob": attrs.default_only(attrs.exec_dep(providers = [RunInfo], default = "//stage0:frob")),
         "_redirect_stdout": attrs.default_only(attrs.exec_dep(providers = [RunInfo], default = "prelude//rust/tools:redirect_stdout")),
     },
 )
