@@ -1,11 +1,6 @@
-load(
-    "@prelude//cfg/modifier:cfg_constructor.bzl",
-    "PostConstraintAnalysisParams",
-    prelude_post_constraint_analysis = "cfg_constructor_post_constraint_analysis",
-)
 load("@prelude//platforms:defs.bzl", "host_configuration")
 
-def platform_info_label(constraints: dict[TargetLabel, ConstraintValueInfo]) -> str:
+def platform_info_label(constraints: dict[TargetLabel, ConstraintValueInfo], target = None) -> str:
     settings = {}
     for constraint in constraints.values():
         settings[str(constraint.setting.label)] = constraint.label.name
@@ -18,6 +13,9 @@ def platform_info_label(constraints: dict[TargetLabel, ConstraintValueInfo]) -> 
 
     host_os = host_configuration.os.split(":")[1]
     host_cpu = host_configuration.cpu.split(":")[1]
+
+    if target:
+        return "target={}".format(target)
 
     if not stage and not workspace and not build_script and os == host_os and cpu == host_cpu:
         return "rust//platforms:host"
@@ -38,13 +36,3 @@ def platform_info_label(constraints: dict[TargetLabel, ConstraintValueInfo]) -> 
         return "null"
 
     return "cfg"
-
-def cfg_constructor_post_constraint_analysis(
-        *,
-        refs: dict[str, ProviderCollection],
-        params: PostConstraintAnalysisParams) -> PlatformInfo:
-    platform = prelude_post_constraint_analysis(refs = refs, params = params)
-    return PlatformInfo(
-        label = platform_info_label(platform.configuration.constraints),
-        configuration = platform.configuration,
-    )

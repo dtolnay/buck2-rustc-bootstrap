@@ -1,8 +1,7 @@
-load("@prelude//cfg/modifier:cfg_constructor.bzl", "cfg_constructor_pre_constraint_analysis")
 load("@prelude//cfg/modifier:common.bzl", "MODIFIER_METADATA_KEY")
 load("@prelude//cfg/modifier/set_cfg_modifiers.bzl", "set_cfg_modifiers")
 load("@prelude//rust:cargo_package.bzl", "set_reindeer_platforms")
-load("//platforms:name.bzl", "cfg_constructor_post_constraint_analysis")
+load("//platforms:modifiers.bzl", "cfg_constructor_post_constraint_analysis", "cfg_constructor_pre_constraint_analysis")
 
 set_cfg_modifiers([])
 
