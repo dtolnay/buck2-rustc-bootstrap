@@ -1,19 +1,30 @@
+load(":defs.bzl", "rustc_target_platform")
+load(":target_list.bzl", "TARGETS")
+
+constraint_setting(
+    name = "rustc_target_triple",
+    visibility = ["PUBLIC"],
+)
+
 [
-    platform(
+    rustc_target_platform(
         name = name,
-        constraint_values = [
-            "prelude//cpu/constraints:{}".format(cpu),
-            "prelude//os/constraints:{}".format(os),
-        ],
+        cpu_os_constraints = {
+            name: (
+                "prelude//cpu/constraints:{}".format(cpu),
+                "prelude//os/constraints:{}".format(os),
+            )
+            for name, cpu, os in [
+                ("aarch64-apple-darwin", "arm64", "macos"),
+                ("aarch64-pc-windows-msvc", "arm64", "windows"),
+                ("aarch64-unknown-linux-gnu", "arm64", "linux"),
+                ("riscv64gc-unknown-linux-gnu", "riscv64", "linux"),
+                ("x86_64-apple-darwin", "x86_64", "macos"),
+                ("x86_64-pc-windows-msvc", "x86_64", "windows"),
+                ("x86_64-unknown-linux-gnu", "x86_64", "linux"),
+            ]
+        }.get(name),
         visibility = ["PUBLIC"],
     )
-    for name, cpu, os in [
-        ("aarch64-apple-darwin", "arm64", "macos"),
-        ("aarch64-pc-windows-msvc", "arm64", "windows"),
-        ("aarch64-unknown-linux-gnu", "arm64", "linux"),
-        ("riscv64gc-unknown-linux-gnu", "riscv64", "linux"),
-        ("x86_64-apple-darwin", "x86_64", "macos"),
-        ("x86_64-pc-windows-msvc", "x86_64", "windows"),
-        ("x86_64-unknown-linux-gnu", "x86_64", "linux"),
-    ]
+    for name in TARGETS
 ]

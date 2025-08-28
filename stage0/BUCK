@@ -13,6 +13,7 @@ configuration_transition(
     name = "stage0_configuration",
     add_fallback_settings = "//platforms:host",
     keep_settings = [
+        "//platforms/cross:rustc_target_triple",
         "prelude//cpu/constraints:cpu",
         "prelude//os/constraints:os",
     ],

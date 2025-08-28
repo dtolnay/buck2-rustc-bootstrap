@@ -1,22 +1,28 @@
+load("@rust//platforms/cross:target_list.bzl", "TARGETS")
 load(":target_triple.bzl", "target_triple")
 
 target_triple(
     name = "rustc_target_triple",
     incoming_transition = "rust//stage0:stage0_configuration",
     value = select({
-        "prelude//os:linux": select({
-            "prelude//cpu:arm64": "aarch64-unknown-linux-gnu",
-            "prelude//cpu:riscv64": "riscv64gc-unknown-linux-gnu",
-            "prelude//cpu:x86_64": "x86_64-unknown-linux-gnu",
+        "DEFAULT": select({
+            "prelude//os:linux": select({
+                "prelude//cpu:arm64": "aarch64-unknown-linux-gnu",
+                "prelude//cpu:riscv64": "riscv64gc-unknown-linux-gnu",
+                "prelude//cpu:x86_64": "x86_64-unknown-linux-gnu",
+            }),
+            "prelude//os:macos": select({
+                "prelude//cpu:arm64": "aarch64-apple-darwin",
+                "prelude//cpu:x86_64": "x86_64-apple-darwin",
+            }),
+            "prelude//os:windows": select({
+                "prelude//cpu:arm64": "aarch64-pc-windows-msvc",
+                "prelude//cpu:x86_64": "x86_64-pc-windows-msvc",
+            }),
         }),
-        "prelude//os:macos": select({
-            "prelude//cpu:arm64": "aarch64-apple-darwin",
-            "prelude//cpu:x86_64": "x86_64-apple-darwin",
-        }),
-        "prelude//os:windows": select({
-            "prelude//cpu:arm64": "aarch64-pc-windows-msvc",
-            "prelude//cpu:x86_64": "x86_64-pc-windows-msvc",
-        }),
+    } | {
+        "rust//platforms/cross:{}".format(target): target
+        for target in TARGETS
     }),
     visibility = ["PUBLIC"],
 )

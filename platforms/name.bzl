@@ -8,6 +8,8 @@ load("@prelude//platforms:defs.bzl", "host_configuration")
 def platform_info_label(constraints: dict[TargetLabel, ConstraintValueInfo]) -> str:
     settings = {}
     for constraint in constraints.values():
+        if str(constraint.label.path) == "rust//platforms/cross":
+            return str(constraint.label)
         settings[str(constraint.setting.label)] = constraint.label.name
 
     stage = settings.get("rust//constraints:bootstrap-stage")
