@@ -44,6 +44,13 @@ if __name__ == "__main__":
                 (link / f.name).symlink_to(".." / target / f.name)
         elif instruction == "--mkdir":
             parse(next(argv)).mkdir()
+        elif instruction == "--overlay":
+            source, dest = parse(next(argv)), parse(next(argv))
+            if source.is_dir():
+                shutil.copytree(source, dest, symlinks=True, dirs_exist_ok=True)
+            else:
+                dest.parent.mkdir(parents=True, exist_ok=True)
+                shutil.copy2(source, dest)
         elif instruction == "--read":
             name, path = next(argv).split("=", 1)
             with open(parse(path)) as f:

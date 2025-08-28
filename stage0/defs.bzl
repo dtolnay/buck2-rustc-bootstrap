@@ -3,6 +3,7 @@ load("@prelude//http_archive:unarchive.bzl", "unarchive")
 load("@prelude//os_lookup:defs.bzl", "OsLookup")
 load("@prelude//rust:targets.bzl", "targets")
 load("@prelude//utils:cmd_script.bzl", "cmd_script")
+load("//stage1:defs.bzl", "RustDistInfo")
 
 Stage0Info = provider(
     fields = {
@@ -352,7 +353,10 @@ def _ci_llvm_impl(ctx: AnalysisContext) -> list[Provider]:
         sub_targets = {},
     )
 
-    return [DefaultInfo(default_output = contents)]
+    return [
+        DefaultInfo(default_output = contents),
+        RustDistInfo(artifacts = {"lib": contents.project("lib")}),
+    ]
 
 ci_llvm = rule(
     impl = _ci_llvm_impl,
