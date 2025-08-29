@@ -76,8 +76,8 @@ configuration_transition = rule(
     impl = _configuration_transition_impl,
     attrs = {
         "add_fallback_settings": attrs.option(attrs.dep(providers = [PlatformInfo]), default = None),
-        "discard_settings": attrs.option(attrs.list(attrs.dep(providers = [ConstraintSettingInfo])), default = None),
-        "keep_settings": attrs.option(attrs.list(attrs.dep(providers = [ConstraintSettingInfo])), default = None),
+        "discard_settings": attrs.option(attrs.set(attrs.dep(providers = [ConstraintSettingInfo])), default = None),
+        "keep_settings": attrs.option(attrs.set(attrs.dep(providers = [ConstraintSettingInfo])), default = None),
     },
     is_configuration_rule = True,
 )

@@ -125,7 +125,7 @@ def _stage0_download_impl(ctx: AnalysisContext) -> list[Provider]:
 stage0_download = rule(
     impl = _stage0_download_impl,
     attrs = {
-        "components": attrs.list(attrs.string()),
+        "components": attrs.set(attrs.string()),
         "manifest": attrs.dep(),
         "_exec_os_type": attrs.default_only(attrs.dep(providers = [OsLookup], default = "//platforms/exec:os_lookup")),
     },
