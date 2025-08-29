@@ -53,11 +53,11 @@ def _platform_impl(ctx: AnalysisContext) -> list[Provider]:
 
 _platform_attrs = {
     "base": attrs.option(attrs.dep(providers = [PlatformInfo]), default = None),
-    "constraint_values": attrs.list(attrs.configuration_label(), default = []),
+    "constraint_values": attrs.set(attrs.configuration_label(), default = []),
     # Configuration settings in this list are overwritten during a
     # transition to this platform, whereas configuration settings not in
     # this list are preserved.
-    "transition": attrs.list(attrs.configuration_label(), default = [
+    "transition": attrs.set(attrs.configuration_label(), default = [
         "//constraints:bootstrap-stage",
         "//constraints:build-script",
         "//constraints:opt-level",

@@ -33,7 +33,7 @@ crate_download = rule(
         "_exec_deps": attrs.default_only(attrs.exec_dep(providers = [HttpArchiveExecDeps], default = "//platforms/exec:http_archive")),
         "sha256": attrs.string(),
         "strip_prefix": attrs.string(),
-        "sub_targets": attrs.list(attrs.string(), default = []),
+        "sub_targets": attrs.set(attrs.string(), default = []),
         "urls": attrs.list(attrs.string()),
     },
     supports_incoming_transition = True,

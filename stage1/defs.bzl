@@ -100,9 +100,9 @@ def _sysroot_impl(ctx: AnalysisContext) -> list[Provider]:
 sysroot = rule(
     impl = _sysroot_impl,
     attrs = {
-        "deps": attrs.list(attrs.dep()),
+        "deps": attrs.set(attrs.dep()),
         "named_deps": attrs.default_only(attrs.dict(key = attrs.string(), value = attrs.dep(), default = {})),
-        "flagged_deps": attrs.default_only(attrs.list(attrs.tuple(attrs.dep(), attrs.list(attrs.string())), default = [])),
+        "flagged_deps": attrs.default_only(attrs.set(attrs.tuple(attrs.dep(), attrs.list(attrs.string())), default = [])),
         "rust_toolchain": attrs.default_only(attrs.toolchain_dep(providers = [RustToolchainInfo], default = "toolchains//:rust")),
     },
     supports_incoming_transition = True,
