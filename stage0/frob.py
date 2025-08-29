@@ -1,7 +1,5 @@
 """Tiny interpreter for manipulating downloaded artifacts and sysroots."""
 
-import os
-import subprocess
 import shutil
 import sys
 from pathlib import Path
@@ -44,14 +42,6 @@ if __name__ == "__main__":
             link.mkdir()
             for f in (link.parent / target).iterdir():
                 (link / f.name).symlink_to(".." / target / f.name)
-        elif instruction == "--exec":
-            exe = parse(next(argv))
-            env = os.environ.copy()
-            while (var := next(argv, "--")) != "--":
-                k, v = var.split("=", 1)
-                env[k] = v
-            res = subprocess.run([exe] + list(argv), env=env)
-            sys.exit(res.returncode)
         elif instruction == "--mkdir":
             parse(next(argv)).mkdir()
         elif instruction == "--read":
