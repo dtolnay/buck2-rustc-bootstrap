@@ -30,7 +30,7 @@ if __name__ == "__main__":
     while (instruction := next(argv, None)) is not None:
         if "=" in instruction:
             name, value = instruction.split("=", 1)
-            symbols[name] = parse(value)
+            symbols[name] = value
         elif instruction == "--basename":
             name, path = next(argv).split("=", 1)
             symbols[name] = parse(path).name
