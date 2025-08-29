@@ -35,8 +35,8 @@ if __name__ == "__main__":
             name, path = next(argv).split("=", 1)
             symbols[name] = parse(path).name
         elif instruction == "--cp":
-            source, dest = next(argv), next(argv)
-            shutil.copy2(parse(source), parse(dest))
+            source, dest = parse(next(argv)), parse(next(argv))
+            shutil.copy2(source, dest)
         elif instruction == "--elaborate":
             link = parse(next(argv))
             target = link.readlink()
@@ -59,7 +59,7 @@ if __name__ == "__main__":
             with open(parse(path)) as f:
                 symbols[name] = f.read().strip()
         elif instruction == "--symlink":
-            target, link = next(argv), next(argv)
-            parse(link).symlink_to(parse(target))
+            target, link = parse(next(argv)), parse(next(argv))
+            link.symlink_to(target)
         else:
             raise RuntimeError(instruction)
