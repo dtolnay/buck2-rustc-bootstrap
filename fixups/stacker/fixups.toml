@@ -4,3 +4,4 @@ buildscript.run = false
 name = "windows"
 srcs = ["src/arch/windows.c"]
 compiler_flags = ["-DWINDOWS"]
+target_compatible_with = ["prelude//os/constraints:windows"]

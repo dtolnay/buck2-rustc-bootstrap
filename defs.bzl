@@ -131,25 +131,35 @@ def rust_bootstrap_buildscript_run(**kwargs):
 
 def cxx_bootstrap_library(
         name,
-        compatible_with = None,
         deps = [],
+        target_compatible_with = [],
         visibility = None,
         **kwargs):
     extra_deps = ["toolchains//cxx:stdlib"]
 
+    target_compatible_with = [
+        select({
+            "DEFAULT": "prelude//:none",
+        } | {
+            constraint: constraint
+            for constraint in disjunction.split(" || ")
+        })
+        for disjunction in target_compatible_with
+    ]
+
     native.cxx_library(
         name = "{}-compile".format(name),
-        compatible_with = compatible_with,
         deps = deps + extra_deps,
         preferred_linkage = "static",
+        target_compatible_with = target_compatible_with,
         **kwargs
     )
 
     transition_alias(
         name = name,
         actual = ":{}-compile".format(name),
-        compatible_with = compatible_with,
         incoming_transition = "toolchains//cxx:prune_cxx_configuration",
+        target_compatible_with = target_compatible_with,
         visibility = visibility,
     )
 

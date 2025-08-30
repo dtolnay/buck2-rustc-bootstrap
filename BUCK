@@ -746,6 +746,7 @@ cxx_bootstrap_library(
         ":blake3-1.8.2.crate[c/blake3.h]",
         ":blake3-1.8.2.crate[c/blake3_impl.h]",
     ],
+    target_compatible_with = ["prelude//cpu/constraints:arm64"],
     visibility = [],
 )
 
@@ -764,13 +765,13 @@ cxx_bootstrap_library(
         ":blake3-1.8.2.crate[c/blake3.h]",
         ":blake3-1.8.2.crate[c/blake3_impl.h]",
     ],
-    compatible_with = [
-        "prelude//os/constraints:linux",
-        "prelude//os/constraints:macos",
-    ],
     compiler_flags = [
         "-mavx512f",
         "-mavx512vl",
+    ],
+    target_compatible_with = [
+        "prelude//cpu/constraints:x86_64",
+        "prelude//os/constraints:linux || prelude//os/constraints:macos",
     ],
     visibility = [],
 )
@@ -790,10 +791,13 @@ cxx_bootstrap_library(
         ":blake3-1.8.2.crate[c/blake3.h]",
         ":blake3-1.8.2.crate[c/blake3_impl.h]",
     ],
-    compatible_with = ["prelude//os/constraints:windows"],
     compiler_flags = [
         "-mavx512f",
         "-mavx512vl",
+    ],
+    target_compatible_with = [
+        "prelude//cpu/constraints:x86_64",
+        "prelude//os/constraints:windows",
     ],
     visibility = [],
 )
@@ -813,7 +817,10 @@ cxx_bootstrap_library(
         ":blake3-1.8.2.crate[c/blake3.h]",
         ":blake3-1.8.2.crate[c/blake3_impl.h]",
     ],
-    compatible_with = ["prelude//os/constraints:windows"],
+    target_compatible_with = [
+        "prelude//cpu/constraints:x86_64",
+        "prelude//os/constraints:windows",
+    ],
     visibility = [],
 )
 
@@ -6972,6 +6979,10 @@ cxx_bootstrap_library(
     srcs = [":psm-0.1.26.crate[src/arch/aarch_aapcs64.s]"],
     headers = [":psm-0.1.26.crate[src/arch/psm.h]"],
     compiler_flags = ["-xassembler-with-cpp"],
+    target_compatible_with = [
+        "prelude//cpu/constraints:arm64",
+        "prelude//os/constraints:linux",
+    ],
     visibility = [],
 )
 
@@ -6980,6 +6991,10 @@ cxx_bootstrap_library(
     srcs = [":psm-0.1.26.crate[src/arch/x86_64.s]"],
     headers = [":psm-0.1.26.crate[src/arch/psm.h]"],
     compiler_flags = ["-xassembler-with-cpp"],
+    target_compatible_with = [
+        "prelude//cpu/constraints:x86_64",
+        "prelude//os/constraints:linux",
+    ],
     visibility = [],
 )
 
@@ -6989,6 +7004,10 @@ cxx_bootstrap_library(
     headers = [":psm-0.1.26.crate[src/arch/psm.h]"],
     compiler_flags = ["-xassembler-with-cpp"],
     preprocessor_flags = ["-DCFG_TARGET_OS_macos"],
+    target_compatible_with = [
+        "prelude//cpu/constraints:arm64",
+        "prelude//os/constraints:macos",
+    ],
     visibility = [],
 )
 
@@ -6998,6 +7017,10 @@ cxx_bootstrap_library(
     headers = [":psm-0.1.26.crate[src/arch/psm.h]"],
     compiler_flags = ["-xassembler-with-cpp"],
     preprocessor_flags = ["-DCFG_TARGET_OS_macos"],
+    target_compatible_with = [
+        "prelude//cpu/constraints:x86_64",
+        "prelude//os/constraints:macos",
+    ],
     visibility = [],
 )
 
@@ -7006,6 +7029,10 @@ cxx_bootstrap_library(
     srcs = [":psm-0.1.26.crate[src/arch/x86_64_windows_gnu.s]"],
     headers = [":psm-0.1.26.crate[src/arch/psm.h]"],
     compiler_flags = ["-xassembler-with-cpp"],
+    target_compatible_with = [
+        "prelude//cpu/constraints:x86_64",
+        "prelude//os/constraints:windows",
+    ],
     visibility = [],
 )
 
@@ -7013,6 +7040,10 @@ cxx_bootstrap_library(
     name = "psm-0.1.26-psm_s-windows-x86_64-msvc",
     srcs = [":psm-0.1.26.crate[src/arch/x86_64_msvc.asm]"],
     headers = [":psm-0.1.26.crate[src/arch/psm.h]"],
+    target_compatible_with = [
+        "prelude//cpu/constraints:x86_64",
+        "prelude//os/constraints:windows",
+    ],
     visibility = [],
 )
 
@@ -13115,6 +13146,7 @@ cxx_bootstrap_library(
     srcs = [":stacker-0.1.21.crate[src/arch/windows.c]"],
     headers = [],
     compiler_flags = ["-DWINDOWS"],
+    target_compatible_with = ["prelude//os/constraints:windows"],
     visibility = [],
 )
 
@@ -16339,12 +16371,14 @@ rust_bootstrap_library(
 prebuilt_cxx_library(
     name = "winapi-x86_64-pc-windows-gnu-0.4.0-extra_libraries-libwinapi_ole32.a",
     static_lib = ":winapi-x86_64-pc-windows-gnu-0.4.0.crate[lib/libwinapi_ole32.a]",
+    target_compatible_with = ["prelude//os/constraints:windows"],
     visibility = [],
 )
 
 prebuilt_cxx_library(
     name = "winapi-x86_64-pc-windows-gnu-0.4.0-extra_libraries-libwinapi_shell32.a",
     static_lib = ":winapi-x86_64-pc-windows-gnu-0.4.0.crate[lib/libwinapi_shell32.a]",
+    target_compatible_with = ["prelude//os/constraints:windows"],
     visibility = [],
 )
 
