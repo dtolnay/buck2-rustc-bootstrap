@@ -122,8 +122,10 @@ def rust_bootstrap_library(
     )
 
 def rust_bootstrap_buildscript_run(**kwargs):
+    constraints = _target_constraints(None)
     buildscript_run(
-        target_compatible_with = _target_constraints(None),
+        target_compatible_with = constraints,
+        buildscript_compatible_with = constraints,
         **kwargs
     )
 
