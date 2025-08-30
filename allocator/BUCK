@@ -6,6 +6,7 @@ rust_library(
     ],
     crate = "rust_allocator",
     crate_root = "allocator.rs",
+    default_target_platform = "//platforms/stage1:compiler",
     edition = "2024",
     features = [
         "std",
