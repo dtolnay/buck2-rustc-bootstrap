@@ -123,6 +123,50 @@ $ buck2 bxl scripts/check.bxl:main -- --target stage1:rustc --output clippy.txt 
 $ buck2 bxl scripts/check.bxl:main -- --target stage1:rustc --output clippy.json | xargs cat
 ```
 
+## "Keep-stage" workflows
+
+The Rust repo's Cargo-based x.py bootstrap system has a pair of flags
+`--keep-stage=` and `--keep-stage-std=` to ask it to bypass recompiling a
+particular stage. These are useful when iterating on compiler changes that
+definitely do not affect the ABI of the standard library, such as a diagnostics
+improvement.
+
+Here, the same thing is accomplished using the _./keep/last1_ and _./keep/last2_
+directories. Any toolchain written to these directories supplants the
+from-source stage1 and stage2 toolchain respectively.
+
+```console
+  # Build stage1 rustc + std, write output to ./keep/last1
+  # All further builds will use this as their stage1, instead of rebuilding stage1
+$ buck2 build stage1:dist --out keep/last1
+
+$ #...Make your compiler code changes
+
+  # Build stage2 using the old stage1 from ./keep/last1, even though rebuilding
+  # stage1 from source now would produce something different
+$ buck2 build stage2:rustc
+
+  # Old stage1 continues to be used until you make the directory go away
+$ git clean -fx keep
+$ rm -r keep/last1
+$ mv keep/last1 keep/last1.bak
+```
+
+The subdirectories "last1" and "last2" are special in that they automatically
+become part of every subsequent build command if present. (Any time this
+happens, a warning banner is printed as a reminder.) If you prefer an opt-in
+model, choose any other directory name and use `-c keep.stage1=` in builds where
+you want to use that toolchain.
+
+```console
+$ buck2 build stage1:dist --out keep/mine
+$ buck2 build stage2:rustc -c keep.stage1=mine
+```
+
+To keep only an old stage1 standard library while continuing to rebuild stage1
+compilers from source, use `buck2 build stage1:sysroot --out keep/last1`
+(instead of `stage1:dist`).
+
 ## Build speed
 
 Several factors add to make Buck-based bootstrap consistently faster than the

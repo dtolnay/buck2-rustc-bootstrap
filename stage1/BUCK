@@ -46,7 +46,7 @@ sysroot(
     name = "sysroot",
     incoming_transition = "//platforms/stage1:library",
     visibility = ["toolchains//:rust"],
-    deps = [":std"],
+    deps = [":{}".format(crate) for crate in SYSROOT_CRATES],
 )
 
 rust_dist(

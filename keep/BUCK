@@ -1,0 +1,27 @@
+load(":defs.bzl", "keep_stage", "name_of_keep")
+
+last1 = name_of_keep(
+    "stage1",
+    default = "last1",
+)
+
+last2 = name_of_keep(
+    "stage2",
+    default = "last2",
+)
+
+keep_stage(
+    name = "stage1",
+    libs = glob([last1 + "/lib/rustlib/*/lib/lib*.rlib"]),
+    llvm = glob([last1 + "/lib/*"]),
+    rustc = glob([last1 + "/bin/rustc"]),
+    visibility = ["toolchains//:rust"],
+)
+
+keep_stage(
+    name = "stage2",
+    libs = glob([last2 + "/lib/rustlib/*/lib/lib*.rlib"]),
+    llvm = glob([last2 + "/lib/*"]),
+    rustc = glob([last2 + "/bin/rustc"]),
+    visibility = ["toolchains//:rust"],
+)
