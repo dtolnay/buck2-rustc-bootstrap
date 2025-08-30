@@ -281,3 +281,24 @@ action_cache_address = cas-whoami-zzzzzz.build-faster.nativelink.net
 cas_address = cas-whoami-zzzzzz.build-faster.nativelink.net
 http_headers = x-nativelink-api-key:zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz
 ```
+
+## Recommendations
+
+Install [Watchman] to make builds even snappier. Their GitHub releases are
+perpetually broken, building it from source is messy, and most distros / package
+repositories ship a years-outdated version. Of all the installation options,
+Homebrew is the one that provides a recent release and works reliably, including
+on Linux, and is worth using just for Watchman.
+
+[Watchman]: https://facebook.github.io/watchman/
+
+After installing and confirming that you are able to run `watchman watch-list`,
+add the following in `.buckconfig.local` in the repo root:
+
+```ini
+[buck2]
+file_watcher = watchman
+```
+
+then run `buck2 kill; buck2 server; watchman watch-list` to confirm that the
+buck2-rustc-bootstrap repo location appears in "roots".
