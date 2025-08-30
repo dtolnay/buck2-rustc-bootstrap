@@ -172,19 +172,20 @@ compilers from source, use `buck2 build stage1:sysroot --out keep/last1`
 Several factors add to make Buck-based bootstrap consistently faster than the
 Rust repo's custom x.py Cargo-based bootstrap system.
 
-On my machine, building stage2 rustc takes about 6.5 minutes with `buck2 clean;
-time buck2 build stage2:rustc` and about 8 minutes with `x.py clean && time x.py
-build compiler --stage=2`. The Buck build is **20%** faster.
+On my machine, building stage2 rustc takes about 5.8 minutes with `buck2 clean;
+time buck2 build stage2:rustc --local-only --no-remote-cache` and about 6.8
+minutes with `x.py clean && time x.py build compiler --stage=2`. The Buck build
+is **15%** faster.
 
 The difference widens when building multiple tools, not only rustc. Buck will
 build an arbitrary dependency graph concurrently while x.py is limited to
 building each different tool serially. `buck2 build stage2:rustc stage2:rustdoc
-stage2:clippy-driver` takes +46 seconds longer than building rustc alone, because
+stage2:clippy-driver` takes +62 seconds longer than building rustc alone, because
 Clippy is the long pole and takes exactly that much longer to build than
 rustc\_driver, which it depends on. But the equivalent `x.py build compiler
-src/tools/rustdoc src/tools/clippy --stage=2` takes +153 seconds longer than
-building rustc alone, because rustdoc takes +69 seconds and clippy takes +84
-seconds, and all three tools build serially. Altogether Buck is **32%** faster
+src/tools/rustdoc src/tools/clippy --stage=2` takes +130 seconds longer than
+building rustc alone, because rustdoc takes +51 seconds and clippy takes +79
+seconds, and all three tools build serially. Altogether Buck is **24%** faster
 at building this group of tools.
 
 Some less significant factors that also make the Buck build faster:
@@ -194,12 +195,14 @@ Some less significant factors that also make the Buck build faster:
   tracing versus when rustdoc depends on tracing. In the Buck build, there is
   just one build of `tracing` that both rustc and rustdoc use.
 
-- In x.py, C++ dependencies (like the `llvm-wrapper` built by rustc\_llvm's
-  build.rs) build pretty late in the build process, after a stage1 standard
-  library is finished compiling, after rustc\_llvm's build-dependencies and
-  build script are finished compiling. In Buck the llvm-wrapper build is one of
-  the first things to build because it does not depend on any Rust code or
-  anything else other than the unpack of downloaded LLVM headers.
+- In x.py, the compilation of C++ dependencies like rustc\_llvm's `llvm-wrapper`
+  is not natively understood by Cargo. The way that a Cargo-based builds finds
+  out about non-Rust dependencies is by executing a build.rs, which first needs
+  to be compiled, and first needs its build-dependencies compiled. In Buck,
+  non-Rust dependencies can be natively described to the build system, and
+  llvm-wrapper is among the first build actions to become ready to run because
+  it does not depend on any Rust code or anything else other than the unpack of
+  downloaded LLVM headers.
 
 - The previous item is exacerbated by the fact that x.py builds llvm-wrapper
   multiple times, separately for stage1 and stage2, because there is no facility
