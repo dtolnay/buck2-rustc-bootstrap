@@ -1,5 +1,5 @@
 load("//constraints:defs.bzl", "transition_alias")
-load(":defs.bzl", "SYSROOT_CRATES", "rust_tool", "sysroot")
+load(":defs.bzl", "SYSROOT_CRATES", "rust_dist", "rust_tool", "sysroot")
 
 [
     transition_alias(
@@ -47,4 +47,13 @@ sysroot(
     incoming_transition = "//platforms/stage1:library",
     visibility = ["toolchains//:rust"],
     deps = [":std"],
+)
+
+rust_dist(
+    name = "dist",
+    deps = [
+        ":rustc",
+        ":sysroot",
+        "//stage0:ci_llvm",
+    ],
 )
