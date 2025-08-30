@@ -95,3 +95,9 @@ python_bootstrap_binary(
     main = "frob.py",
     visibility = ["PUBLIC"],
 )
+
+python_bootstrap_binary(
+    name = "exec",
+    main = "exec.py",
+    visibility = ["PUBLIC"],
+)

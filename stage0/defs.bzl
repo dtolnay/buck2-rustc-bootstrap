@@ -2,6 +2,7 @@ load("@prelude//http_archive:exec_deps.bzl", "HttpArchiveExecDeps")
 load("@prelude//http_archive:unarchive.bzl", "unarchive")
 load("@prelude//os_lookup:defs.bzl", "OsLookup")
 load("@prelude//rust:targets.bzl", "targets")
+load("@prelude//utils:cmd_script.bzl", "cmd_script")
 
 Stage0Info = provider(
     fields = {
@@ -161,37 +162,52 @@ stage0_extract = rule(
 
 def _stage0_executable_impl(ctx: AnalysisContext) -> list[Provider]:
     dist = ctx.attrs.dist[DefaultInfo].default_outputs[0]
+    overlay = ctx.actions.declare_output("dist", dir = True)
+
+    hidden = []
+    frob = [
+        ctx.attrs._frob[RunInfo],
+        cmd_args(dist, format = "dist={}"),
+        cmd_args(overlay.as_output(), format = "overlay={}"),
+        "exe={}".format(ctx.label.name),
+        ["--basename", "toplevel={dist}/?"],
+        ["--read", "component={dist}/{toplevel}/components"],
+        ["--mkdir", "{overlay}"],
+        ["--mkdir", "{overlay}/bin"],
+    ]
 
     if ctx.attrs.libdir:
         libdir = ctx.attrs.libdir[DefaultInfo].default_outputs[0]
-        overlay = ctx.actions.declare_output("overlay", dir = True)
-        ctx.actions.run(
-            [
-                ctx.attrs._frob[RunInfo],
-                cmd_args(dist, format = "dist={}"),
-                "exe={}".format(ctx.label.name),
-                cmd_args(libdir, format = "libdir={}", relative_to = overlay),
-                cmd_args(overlay.as_output(), format = "overlay={}"),
-                ["--read", "component={dist}/?/components"],
-                ["--mkdir", "{overlay}"],
-                ["--mkdir", "{overlay}/bin"],
-                ["--cp", "{dist}/?/{component}/bin/{exe}", "{overlay}/bin"],
-                ["--basename", "toplevel={overlay}/{libdir}/?"],
-                ["--read", "component={overlay}/{libdir}/{toplevel}/components"],
-                ["--symlink", "{libdir}/{toplevel}/{component}/lib", "{overlay}/lib"],
-            ],
-            category = "overlay",
-        )
-        command = overlay.project("bin").project(ctx.label.name).with_associated_artifacts([overlay])
+        hidden.append(libdir)
+        frob.extend([
+            ["--cp", "{dist}/{toplevel}/{component}/bin/{exe}", "{overlay}/bin/{exe}"],
+            cmd_args(libdir, format = "libdir={}", relative_to = overlay),
+            ["--basename", "toplevel={overlay}/{libdir}/?"],
+            ["--read", "component={overlay}/{libdir}/{toplevel}/components"],
+            ["--symlink", "{libdir}/{toplevel}/{component}/lib", "{overlay}/lib"],
+        ])
     else:
-        command = cmd_args(
-            ctx.attrs._frob[RunInfo],
-            cmd_args(dist, format = "dist={}"),
-            "exe={}".format(ctx.label.name),
-            ["--read", "component={dist}/?/components"],
-            ["--exec", "{dist}/?/{component}/bin/{exe}"],
-            ["{}={}".format(k, v) for k, v in ctx.attrs.env.items()],
-            "--",
+        hidden.append(dist)
+        frob.extend([
+            cmd_args(dist, format = "relative={}", relative_to = overlay.project("bin")),
+            ["--symlink", "{relative}/{toplevel}/{component}/bin/{exe}", "{overlay}/bin/{exe}"],
+        ])
+
+    ctx.actions.run(frob, category = "dist")
+
+    command = overlay.project("bin").project(ctx.label.name).with_associated_artifacts(hidden)
+
+    if ctx.attrs.env:
+        command = cmd_script(
+            ctx = ctx,
+            name = ctx.label.name,
+            cmd = cmd_args(
+                ctx.attrs._exec[RunInfo],
+                command,
+                ["{}={}".format(k, v) for k, v in ctx.attrs.env.items()],
+                "--",
+            ),
+            language = ctx.attrs._exec_os_type[OsLookup].script,
         )
 
     return [
@@ -205,7 +221,9 @@ stage0_executable = rule(
         "dist": attrs.dep(),
         "env": attrs.dict(key = attrs.string(), value = attrs.string(), default = {}),
         "libdir": attrs.option(attrs.dep(), default = None),
+        "_exec": attrs.default_only(attrs.exec_dep(providers = [RunInfo], default = "//stage0:exec")),
         "_frob": attrs.default_only(attrs.exec_dep(providers = [RunInfo], default = "//stage0:frob")),
+        "_exec_os_type": attrs.default_only(attrs.dep(providers = [OsLookup], default = "//platforms/exec:os_lookup")),
     },
     supports_incoming_transition = True,
 )
