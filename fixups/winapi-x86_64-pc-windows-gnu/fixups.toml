@@ -3,3 +3,4 @@ buildscript.run = false
 [['cfg(target_os = "windows")'.prebuilt_cxx_library]]
 name = "extra_libraries"
 static_libs = ["lib/libwinapi_ole32.a", "lib/libwinapi_shell32.a"]
+target_compatible_with = ["prelude//os/constraints:windows"]
