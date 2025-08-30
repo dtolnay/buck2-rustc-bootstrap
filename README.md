@@ -240,3 +240,44 @@ At least 2 factors contribute to x.py's overhead:
   Cargo reloads the world each time it runs, including parsing Cargo.toml files
   and lockfiles and Cargo config files. And as mentioned, x.py will do multiple
   of these Cargo invocations serially.
+
+## Remote execution
+
+With remote execution, your build can be distributed across a pool of remote
+cores that is larger than what is available on your local machine, and can
+leverage a remote cache to skip over build steps that have already previously
+succeeded.
+
+Remote execution _does not_ involve naively uploading and downloading the input
+and output of every compiler command. The bytes stay in the cloud, and only
+small checksums are received by your machine, as well as the end result of the
+build (which you can skip with `--materializations=none` or `-M none` when you
+only care about the success or compiler diagnostics, not the resulting binary).
+
+To enable remote execution, add the following 4 entries to `.buckconfig.local`
+in the repo root, using values given by your remote execution provider. The
+format for some specific services is shown below, but anything that supports
+Bazel's [remote execution API] is likely to work.
+
+[remote execution API]: https://github.com/bazelbuild/remote-apis
+
+**BuildBuddy** has a generous free tier with 80 cores of parallelism on fast
+machines, and is easy to sign up for.
+
+```ini
+[buck2_re_client]
+engine_address = remote.buildbuddy.io
+action_cache_address = remote.buildbuddy.io
+cas_address = remote.buildbuddy.io
+http_headers = x-buildbuddy-api-key:zzzzzzzzzzzzzzzzzzzz
+```
+
+**NativeLink**
+
+```ini
+[buck2_re_client]
+engine_address = scheduler-whoami-zzzzzz.build-faster.nativelink.net
+action_cache_address = cas-whoami-zzzzzz.build-faster.nativelink.net
+cas_address = cas-whoami-zzzzzz.build-faster.nativelink.net
+http_headers = x-nativelink-api-key:zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz
+```
