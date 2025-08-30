@@ -1,0 +1,15 @@
+# Bootstrap.toml used for the x.py timings in "Build speed" section of readme.
+# Not used by Buck builds.
+
+change-id = 142379
+
+[build]
+docs = false
+extended = false
+tools = []
+
+[llvm]
+download-ci-llvm = true
+
+[rust]
+channel = "stable"
