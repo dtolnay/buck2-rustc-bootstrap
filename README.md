@@ -233,7 +233,7 @@ At least 2 factors contribute to x.py's overhead:
   Cargo could choose to rebuild the standard library if it were necessary (which
   it isn't), adding latency. In contrast, a single Buck process coordinates the
   entire dependency graph from top-level targets to build actions to input files
-  which those actions operate on. If is quick to map from a file change to
+  which those actions operate on. It is quick to map from a file change to
   exactly which build actions need to be kicked off right away.
 
 - The state of the Buck build graph is preserved in memory across CLI commands.
