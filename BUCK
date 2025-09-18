@@ -520,8 +520,8 @@ rust_bootstrap_library(
         ":proc-macro2-1.0.101",
         ":quote-1.0.40",
         ":rustc-hash-2.1.1",
-        ":serde-1.0.219",
-        ":serde_derive-1.0.219",
+        ":serde-1.0.225",
+        ":serde_derive-1.0.225",
         ":syn-2.0.106",
     ],
 )
@@ -544,8 +544,8 @@ rust_bootstrap_library(
     visibility = [],
     deps = [
         ":memchr-2.7.5",
-        ":serde-1.0.219",
-        ":serde_derive-1.0.219",
+        ":serde-1.0.225",
+        ":serde_derive-1.0.225",
         ":winnow-0.7.13",
     ],
 )
@@ -609,7 +609,7 @@ rust_bootstrap_library(
         "CARGO_PKG_VERSION_PATCH": "10",
     },
     visibility = [],
-    deps = [":serde-1.0.219"],
+    deps = [":serde-1.0.225"],
 )
 
 crate_download(
@@ -892,7 +892,7 @@ rust_bootstrap_library(
     ],
     rustc_flags = ["@$(location :camino-1.1.11-build-script-run[rustc_flags])"],
     visibility = [],
-    deps = [":serde-1.0.219"],
+    deps = [":serde-1.0.225"],
 )
 
 rust_bootstrap_binary(
@@ -934,7 +934,7 @@ rust_bootstrap_library(
     crate_root = "cargo-platform-0.1.9.crate/src/lib.rs",
     edition = "2021",
     visibility = [],
-    deps = [":serde-1.0.219"],
+    deps = [":serde-1.0.225"],
 )
 
 crate_download(
@@ -957,7 +957,7 @@ rust_bootstrap_library(
         ":camino-1.1.11",
         ":cargo-platform-0.1.9",
         ":semver-1.0.26",
-        ":serde-1.0.219",
+        ":serde-1.0.225",
         ":serde_json-1.0.143",
         ":thiserror-1.0.69",
     ],
@@ -1177,7 +1177,7 @@ rust_bootstrap_library(
         ":rustc_middle-0.0.0",
         ":rustc_session-0.0.0",
         ":rustc_span-0.0.0",
-        ":serde-1.0.219",
+        ":serde-1.0.225",
         ":toml-0.7.8",
     ],
 )
@@ -1892,7 +1892,7 @@ rust_bootstrap_library(
         ":rustc_target-0.0.0",
         ":rustc_trait_selection-0.0.0",
         ":semver-1.0.26",
-        ":serde-1.0.219",
+        ":serde-1.0.225",
         ":smallvec-1.15.1",
         ":thin-vec-0.2.14",
         ":toml-0.7.8",
@@ -1965,7 +1965,7 @@ rust_bootstrap_library(
         ":rustc_session-0.0.0",
         ":rustc_span-0.0.0",
         ":rustc_trait_selection-0.0.0",
-        ":serde-1.0.219",
+        ":serde-1.0.225",
         ":smallvec-1.15.1",
     ],
 )
@@ -3949,7 +3949,7 @@ rust_bootstrap_library(
     crate_root = "gsgdt-0.1.2.crate/src/lib.rs",
     edition = "2018",
     visibility = [],
-    deps = [":serde-1.0.219"],
+    deps = [":serde-1.0.225"],
 )
 
 crate_download(
@@ -8375,7 +8375,7 @@ rust_bootstrap_library(
         ":rustc_span-0.0.0",
         ":rustc_symbol_mangling-0.0.0",
         ":rustc_target-0.0.0",
-        ":serde-1.0.219",
+        ":serde-1.0.225",
         ":serde_json-1.0.143",
         ":smallvec-1.15.1",
         ":tracing-0.1.37",
@@ -9426,7 +9426,7 @@ rust_bootstrap_library(
         ":rustc_span-0.0.0",
         ":rustc_target-0.0.0",
         ":rustc_type_ir-0.0.0",
-        ":serde-1.0.219",
+        ":serde-1.0.225",
         ":serde_json-1.0.143",
         ":termcolor-1.4.1",
         ":termize-0.1.1",
@@ -9503,7 +9503,7 @@ rust_bootstrap_library(
     deps = [
         ":rustc_data_structures-0.0.0",
         ":rustc_span-0.0.0",
-        ":serde-1.0.219",
+        ":serde-1.0.225",
         ":serde_json-1.0.143",
     ],
 )
@@ -10127,7 +10127,7 @@ rust_bootstrap_library(
         ":rustc_macros-0.0.0",
         ":rustc_serialize-0.0.0",
         ":rustc_span-0.0.0",
-        ":serde-1.0.219",
+        ":serde-1.0.225",
     ],
 )
 
@@ -10707,7 +10707,7 @@ rust_bootstrap_library(
         ":rustc_span-0.0.0",
         ":rustc_symbol_mangling-0.0.0",
         ":rustc_target-0.0.0",
-        ":serde-1.0.219",
+        ":serde-1.0.225",
         ":serde_json-1.0.143",
         ":tracing-0.1.37",
     ],
@@ -11272,7 +11272,7 @@ rust_bootstrap_library(
         ":rustc_span-0.0.0",
         ":rustc_target-0.0.0",
         ":scoped-tls-1.0.1",
-        ":serde-1.0.219",
+        ":serde-1.0.225",
         ":tracing-0.1.37",
     ],
 )
@@ -12309,7 +12309,7 @@ rust_bootstrap_library(
         ":rustc_target-0.0.0",
         ":rustc_trait_selection-0.0.0",
         ":rustdoc-json-types-0.1.0",
-        ":serde-1.0.219",
+        ":serde-1.0.225",
         ":serde_json-1.0.143",
         ":smallvec-1.15.1",
         ":tempfile-3.21.0",
@@ -12512,8 +12512,8 @@ rust_bootstrap_library(
     visibility = [],
     deps = [
         ":rustc-hash-2.1.1",
-        ":serde-1.0.219",
-        ":serde_derive-1.0.219",
+        ":serde-1.0.225",
+        ":serde_derive-1.0.225",
     ],
 )
 
@@ -12728,7 +12728,7 @@ rust_bootstrap_library(
     ],
     rustc_flags = ["@$(location :semver-1.0.26-build-script-run[rustc_flags])"],
     visibility = [],
-    deps = [":serde-1.0.219"],
+    deps = [":serde-1.0.225"],
 )
 
 rust_bootstrap_binary(
@@ -12758,21 +12758,22 @@ rust_bootstrap_buildscript_run(
 )
 
 crate_download(
-    name = "serde-1.0.219.crate",
-    sha256 = "5f0e2c6ed6606019b4e29e69dbaba95b11854410e5347d525002456dbbb786b6",
-    strip_prefix = "serde-1.0.219",
-    urls = ["https://static.crates.io/crates/serde/1.0.219/download"],
+    name = "serde-1.0.225.crate",
+    sha256 = "fd6c24dee235d0da097043389623fb913daddf92c76e9f5a1db88607a0bcbd1d",
+    strip_prefix = "serde-1.0.225",
+    urls = ["https://static.crates.io/crates/serde/1.0.225/download"],
     visibility = [],
 )
 
 rust_bootstrap_library(
-    name = "serde-1.0.219",
-    srcs = [":serde-1.0.219.crate"],
+    name = "serde-1.0.225",
+    srcs = [":serde-1.0.225.crate"],
     crate = "serde",
-    crate_root = "serde-1.0.219.crate/src/lib.rs",
-    edition = "2018",
+    crate_root = "serde-1.0.225.crate/src/lib.rs",
+    edition = "2021",
     env = {
-        "OUT_DIR": "$(location :serde-1.0.219-build-script-run[out_dir])",
+        "CARGO_PKG_VERSION_PATCH": "225",
+        "OUT_DIR": "$(location :serde-1.0.225-build-script-run[out_dir])",
     },
     features = [
         "alloc",
@@ -12781,17 +12782,23 @@ rust_bootstrap_library(
         "serde_derive",
         "std",
     ],
-    rustc_flags = ["@$(location :serde-1.0.219-build-script-run[rustc_flags])"],
+    rustc_flags = ["@$(location :serde-1.0.225-build-script-run[rustc_flags])"],
     visibility = [],
-    deps = [":serde_derive-1.0.219"],
+    deps = [
+        ":serde_core-1.0.225",
+        ":serde_derive-1.0.225",
+    ],
 )
 
 rust_bootstrap_binary(
-    name = "serde-1.0.219-build-script-build",
-    srcs = [":serde-1.0.219.crate"],
+    name = "serde-1.0.225-build-script-build",
+    srcs = [":serde-1.0.225.crate"],
     crate = "build_script_build",
-    crate_root = "serde-1.0.219.crate/build.rs",
-    edition = "2018",
+    crate_root = "serde-1.0.225.crate/build.rs",
+    edition = "2021",
+    env = {
+        "CARGO_PKG_VERSION_PATCH": "225",
+    },
     features = [
         "alloc",
         "default",
@@ -12803,9 +12810,12 @@ rust_bootstrap_binary(
 )
 
 rust_bootstrap_buildscript_run(
-    name = "serde-1.0.219-build-script-run",
+    name = "serde-1.0.225-build-script-run",
     package_name = "serde",
-    buildscript_rule = ":serde-1.0.219-build-script-build",
+    buildscript_rule = ":serde-1.0.225-build-script-build",
+    env = {
+        "CARGO_PKG_VERSION_PATCH": "225",
+    },
     features = [
         "alloc",
         "default",
@@ -12813,23 +12823,85 @@ rust_bootstrap_buildscript_run(
         "serde_derive",
         "std",
     ],
-    version = "1.0.219",
+    version = "1.0.225",
 )
 
 crate_download(
-    name = "serde_derive-1.0.219.crate",
-    sha256 = "5b0276cf7f2c73365f7157c8123c21cd9a50fbbd844757af28ca1f5925fc2a00",
-    strip_prefix = "serde_derive-1.0.219",
-    urls = ["https://static.crates.io/crates/serde_derive/1.0.219/download"],
+    name = "serde_core-1.0.225.crate",
+    sha256 = "659356f9a0cb1e529b24c01e43ad2bdf520ec4ceaf83047b83ddcc2251f96383",
+    strip_prefix = "serde_core-1.0.225",
+    urls = ["https://static.crates.io/crates/serde_core/1.0.225/download"],
     visibility = [],
 )
 
 rust_bootstrap_library(
-    name = "serde_derive-1.0.219",
-    srcs = [":serde_derive-1.0.219.crate"],
+    name = "serde_core-1.0.225",
+    srcs = [":serde_core-1.0.225.crate"],
+    crate = "serde_core",
+    crate_root = "serde_core-1.0.225.crate/src/lib.rs",
+    edition = "2021",
+    env = {
+        "CARGO_PKG_VERSION_PATCH": "225",
+        "OUT_DIR": "$(location :serde_core-1.0.225-build-script-run[out_dir])",
+    },
+    features = [
+        "alloc",
+        "result",
+        "std",
+    ],
+    rustc_flags = ["@$(location :serde_core-1.0.225-build-script-run[rustc_flags])"],
+    visibility = [],
+)
+
+rust_bootstrap_binary(
+    name = "serde_core-1.0.225-build-script-build",
+    srcs = [":serde_core-1.0.225.crate"],
+    crate = "build_script_build",
+    crate_root = "serde_core-1.0.225.crate/build.rs",
+    edition = "2021",
+    env = {
+        "CARGO_PKG_VERSION_PATCH": "225",
+    },
+    features = [
+        "alloc",
+        "result",
+        "std",
+    ],
+    visibility = [],
+)
+
+rust_bootstrap_buildscript_run(
+    name = "serde_core-1.0.225-build-script-run",
+    package_name = "serde_core",
+    buildscript_rule = ":serde_core-1.0.225-build-script-build",
+    env = {
+        "CARGO_PKG_VERSION_PATCH": "225",
+    },
+    features = [
+        "alloc",
+        "result",
+        "std",
+    ],
+    version = "1.0.225",
+)
+
+crate_download(
+    name = "serde_derive-1.0.225.crate",
+    sha256 = "0ea936adf78b1f766949a4977b91d2f5595825bd6ec079aa9543ad2685fc4516",
+    strip_prefix = "serde_derive-1.0.225",
+    urls = ["https://static.crates.io/crates/serde_derive/1.0.225/download"],
+    visibility = [],
+)
+
+rust_bootstrap_library(
+    name = "serde_derive-1.0.225",
+    srcs = [":serde_derive-1.0.225.crate"],
     crate = "serde_derive",
-    crate_root = "serde_derive-1.0.219.crate/src/lib.rs",
-    edition = "2015",
+    crate_root = "serde_derive-1.0.225.crate/src/lib.rs",
+    edition = "2021",
+    env = {
+        "CARGO_PKG_VERSION_PATCH": "225",
+    },
     features = ["default"],
     proc_macro = True,
     visibility = [],
@@ -12869,7 +12941,7 @@ rust_bootstrap_library(
         ":itoa-1.0.15",
         ":memchr-2.7.5",
         ":ryu-1.0.20",
-        ":serde-1.0.219",
+        ":serde-1.0.225",
     ],
 )
 
@@ -12917,7 +12989,7 @@ rust_bootstrap_library(
     edition = "2021",
     features = ["serde"],
     visibility = [],
-    deps = [":serde-1.0.219"],
+    deps = [":serde-1.0.225"],
 )
 
 crate_download(
@@ -15387,7 +15459,7 @@ rust_bootstrap_library(
     ],
     visibility = [],
     deps = [
-        ":serde-1.0.219",
+        ":serde-1.0.225",
         ":serde_spanned-0.6.9",
         ":toml_datetime-0.6.11",
         ":toml_edit-0.19.15",
@@ -15410,7 +15482,7 @@ rust_bootstrap_library(
     edition = "2021",
     features = ["serde"],
     visibility = [],
-    deps = [":serde-1.0.219"],
+    deps = [":serde-1.0.225"],
 )
 
 crate_download(
@@ -15434,7 +15506,7 @@ rust_bootstrap_library(
     visibility = [],
     deps = [
         ":indexmap-2.11.0",
-        ":serde-1.0.219",
+        ":serde-1.0.225",
         ":serde_spanned-0.6.9",
         ":toml_datetime-0.6.11",
         ":winnow-0.5.40",
@@ -16081,7 +16153,7 @@ rust_bootstrap_library(
         ":form_urlencoded-1.2.2",
         ":idna-1.1.0",
         ":percent-encoding-2.3.2",
-        ":serde-1.0.219",
+        ":serde-1.0.225",
     ],
 )
 
