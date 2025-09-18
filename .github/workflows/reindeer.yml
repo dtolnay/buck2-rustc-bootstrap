@@ -23,7 +23,8 @@ jobs:
       - uses: actions/checkout@v4
       - uses: dtolnay/rust-toolchain@stable
       - uses: dtolnay/install@reindeer
-      - run: ./submodule_init.sh
+      - name: git submodule init
+        uses: ./.github/actions/checkout
       - run: reindeer buckify
       - name: Check reindeer-generated BUCK file up to date
         run: git diff --exit-code
