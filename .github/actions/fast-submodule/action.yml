@@ -1,0 +1,62 @@
+name: git submodule init
+
+inputs:
+  working-directory:
+    description: root directory of parent repository
+    required: false
+  submodule:
+    description: path of submodule relative to parent repository root
+    required: true
+
+runs:
+  using: composite
+  steps:
+    - run: git submodule init "$SUBMODULE"
+      env:
+        SUBMODULE: ${{inputs.submodule}}
+      working-directory: ${{inputs.working-directory}}
+      shell: bash
+    - id: path
+      run: (echo -n gitdir=; git rev-parse --absolute-git-dir) | tee -a $GITHUB_OUTPUT
+      working-directory: ${{inputs.working-directory}}
+      shell: bash
+    - run: mkdir -p "$DIR"
+      env:
+        DIR: ${{steps.path.outputs.gitdir}}/modules/${{inputs.submodule}}
+      working-directory: ${{inputs.working-directory}}
+      shell: bash
+    - run: git -c advice.defaultBranchName=false init --separate-git-dir="$DIR" "$SUBMODULE"
+      env:
+        DIR: ${{steps.path.outputs.gitdir}}/modules/${{inputs.submodule}}
+        SUBMODULE: ${{inputs.submodule}}
+      working-directory: ${{inputs.working-directory}}
+      shell: bash
+    - id: config
+      run: (echo -n url=; git config submodule."$SUBMODULE".url) | tee -a $GITHUB_OUTPUT
+      env:
+        SUBMODULE: ${{inputs.submodule}}
+      working-directory: ${{inputs.working-directory}}
+      shell: bash
+    - run: git -C "$SUBMODULE" remote add origin "$URL"
+      env:
+        SUBMODULE: ${{inputs.submodule}}
+        URL: ${{steps.config.outputs.url}}
+      working-directory: ${{inputs.working-directory}}
+      shell: bash
+    - id: commit
+      run: (echo -n commit=; git rev-parse :"$SUBMODULE") | tee -a $GITHUB_OUTPUT
+      env:
+        SUBMODULE: ${{inputs.submodule}}
+      working-directory: ${{inputs.working-directory}}
+      shell: bash
+    - run: git -C "$SUBMODULE" fetch origin --refmap= --depth=1 "$COMMIT"
+      env:
+        COMMIT: ${{steps.commit.outputs.commit}}
+        SUBMODULE: ${{inputs.submodule}}
+      working-directory: ${{inputs.working-directory}}
+      shell: bash
+    - run: git -C "$SUBMODULE" -c advice.detachedHead=false checkout FETCH_HEAD
+      env:
+        SUBMODULE: ${{inputs.submodule}}
+      working-directory: ${{inputs.working-directory}}
+      shell: bash
