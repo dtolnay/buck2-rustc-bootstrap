@@ -68,18 +68,18 @@ stage0_sysroot(
 
 ci_artifact(
     name = "rust_dev",
-    commit = "b1237106c5e2d06b3874865bef6fc79181de32bf",
-    component = "rust-dev-beta",
+    commit = "81af9d45698a19183b8552079cbc7bf893fad1e5",
+    component = "rust-dev-nightly",
     incoming_transition = ":stage0_configuration",
     manifest = "//:stage0_manifest",
     sha256 = {
-        "aarch64-apple-darwin": "00b60db97f509682e521687b2118361de2bfed175758b8c2a5319e9e521aab93",
-        "aarch64-pc-windows-msvc": "7ca8d82470afe815c6c27dd4ccf93319d83fd3531f1040661576dae68e314ec6",
-        "aarch64-unknown-linux-gnu": "7fc2a25a67c30d0566f39421e16a0e0f9a3928b083f36a96b9bd344819f21ae9",
-        "riscv64gc-unknown-linux-gnu": "70e6e8b952f199d1ed64ecfb285ec098039f59596debcd596b4fa6a247e910a0",
-        "x86_64-apple-darwin": "610e8aa0c721b42ab5526e1918dc99c08615ea425dcab9687d00b130005c905a",
-        "x86_64-pc-windows-msvc": "4d4b5d47a4a8c25802dece8d4eee1682144da7d81b9164a55f75312ea45b90c0",
-        "x86_64-unknown-linux-gnu": "5a2c511322715777f68b7e43e52c40b98f1b94338f0e78fd7901aaa15f8f19a3",
+        "aarch64-apple-darwin": "7d8b0918c99af46ddeaa9b2c9b348ada5c95d01a8e7bd42d934024f29d3c357b",
+        "aarch64-pc-windows-msvc": "ad619afae852a22852d899aa7b3a7df04a64676c14ebb042c8f5b47f3723a959",
+        "aarch64-unknown-linux-gnu": "d99965b85549cc680e3f0aa65bd4409d3c45eae21eb6616a22d2aeb8ac4f2cb5",
+        "riscv64gc-unknown-linux-gnu": "aa8b4ea5acd54fd8b1ffa886288f1d3c8a7c790ed0249bae432aacd6701dae3b",
+        "x86_64-apple-darwin": "559e70ef0dd3cfdcab5b7abcfb0464ad0d28be6400b1d5821a80ba39018e05bc",
+        "x86_64-pc-windows-msvc": "a91f63c41993c0f8c8d752a9f14605827c781aee9f5191375d579be6c7f058c0",
+        "x86_64-unknown-linux-gnu": "7e655d785f98ef1c6c3e8b000026e281cb6237bee41f0b04ec94a8d197e73e19",
     },
 )
 

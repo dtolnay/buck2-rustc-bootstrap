@@ -6,4 +6,3 @@ cd -P -- "$(dirname -- "$0")"
 git submodule update --init rust
 cd rust
 git submodule update --init library/backtrace
-git submodule update --init library/stdarch

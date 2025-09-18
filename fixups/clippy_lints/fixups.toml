@@ -4,7 +4,6 @@ extra_deps = [
     ":rustc_arena-0.0.0",
     ":rustc_ast-0.0.0",
     ":rustc_ast_pretty-0.0.0",
-    ":rustc_attr_data_structures-0.0.0",
     ":rustc_data_structures-0.0.0",
     ":rustc_driver-0.0.0",
     ":rustc_errors-0.0.0",
