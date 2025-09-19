@@ -12,7 +12,3 @@ runs:
       with:
         working-directory: rust
         submodule: library/backtrace
-    - uses: dtolnay/.github/.github/actions/fast-submodule@master
-      with:
-        working-directory: rust
-        submodule: library/stdarch

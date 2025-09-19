@@ -1,0 +1,4 @@
+extra_deps = [
+    ":rustc_lint-0.0.0",
+    ":rustc_session-0.0.0",
+]
