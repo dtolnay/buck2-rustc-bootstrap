@@ -1,4 +1,4 @@
-name: Buck2
+name: Build
 
 on:
   workflow_dispatch:
