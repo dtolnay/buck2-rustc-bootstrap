@@ -7,7 +7,7 @@ load("@prelude//rust:link_info.bzl", "RustLinkInfo", "RustLinkStrategyInfo")
 load("@toolchains//:rust.bzl", "RustcFlags")
 
 def keep(default: str) -> (str, str):
-    stage, subtarget = default.removeprefix("rust//").split(":")
+    stage, _subtarget = default.removeprefix("rust//").split(":")
     if stage not in ["stage1", "stage2"]:
         fail("unexpected keep target:", default)
     return (default, stage)
