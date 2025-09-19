@@ -28,3 +28,16 @@ jobs:
       - run: reindeer buckify
       - name: Check reindeer-generated BUCK file up to date
         run: git diff --exit-code
+
+  starlark:
+    name: Starlark lint
+    needs: pre_ci
+    if: needs.pre_ci.outputs.continue
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+      - uses: dtolnay/install-buck2@latest
+      - name: git submodule init
+        uses: ./.github/actions/checkout
+      - run: git ls-files '*.bzl' '*.bxl' | xargs buck2 starlark lint
