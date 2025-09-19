@@ -1,4 +1,4 @@
-name: Reindeer
+name: Lint
 
 on:
   push:
