@@ -196,7 +196,7 @@ def _stage0_executable_impl(ctx: AnalysisContext) -> list[Provider]:
 
     ctx.actions.run(frob, category = "dist")
 
-    command = overlay.project("bin").project(ctx.label.name).with_associated_artifacts(hidden)
+    command = overlay.project("bin").project(ctx.label.name).with_associated_artifacts([overlay] + hidden)
 
     if ctx.attrs.env:
         command = cmd_script(
