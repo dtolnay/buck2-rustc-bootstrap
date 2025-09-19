@@ -22,7 +22,7 @@ set_cfg_constructor(
         linux = "prelude//os/constraints:linux",
         macos = "prelude//os/constraints:macos",
         windows = "prelude//os/constraints:windows",
-    ),
+    ),  # buildifier: leave-alone
     extra_data = struct(),
     key = MODIFIER_METADATA_KEY,
     stage0 = cfg_constructor_pre_constraint_analysis,
