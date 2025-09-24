@@ -50,8 +50,9 @@ use alloc::alloc::__alloc_error_handler;
 
 #[rustc_std_internal_symbol]
 #[linkage = "weak"]
-#[allow(non_upper_case_globals)]
-pub static __rust_alloc_error_handler_should_panic: u8 = 1;
+pub unsafe fn __rust_alloc_error_handler_should_panic_v2() -> u8 {
+    1
+}
 
 #[rustc_std_internal_symbol]
 #[linkage = "weak"]
