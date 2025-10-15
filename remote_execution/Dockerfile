@@ -1,5 +1,5 @@
-#$ <remote_execution/Dockerfile docker build --tag=dtolnay/buck2-rustc-bootstrap:latest -
-#$ docker push dtolnay/buck2-rustc-bootstrap:latest
+#$ docker buildx create --driver=cloud dtolnay/buck2-rustc-bootstrap
+#$ <remote_execution/Dockerfile docker build --builder=cloud-dtolnay-buck2-rustc-bootstrap --platform=linux/amd64,linux/arm64 --tag=dtolnay/buck2-rustc-bootstrap:latest --push -
 
 FROM debian:trixie-slim
 
