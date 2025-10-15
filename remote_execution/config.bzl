@@ -23,6 +23,7 @@ def executor_config(configuration: ConfigurationInfo) -> CommandExecutorConfig:
             use_limited_hybrid = True,
             remote_execution_properties = _buckconfig_remote_execution_properties | {
                 "OSFamily": "Linux",
+                "Arch": "amd64",
                 "container-image": "docker://docker.io/dtolnay/buck2-rustc-bootstrap:latest",
             },
             remote_execution_use_case = "buck2-rustc-bootstrap",
