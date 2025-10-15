@@ -1,3 +1,6 @@
+#$ <remote_execution/Dockerfile docker build --tag=dtolnay/buck2-rustc-bootstrap:latest -
+#$ docker push dtolnay/buck2-rustc-bootstrap:latest
+
 FROM debian:trixie-slim
 
 RUN apt-get update && apt-get install -y --no-install-recommends \
