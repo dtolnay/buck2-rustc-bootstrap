@@ -1,4 +1,3 @@
-strict_globs = true
 unresolved_fixup_error = true
 
 [cargo]
