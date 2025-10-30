@@ -1,5 +1,5 @@
 extra_deps = [
-    ":indexmap-2.11.4",
+    ":indexmap-2.12.0",
     ":rustc_abi-0.0.0",
     ":rustc_ast-0.0.0",
     ":rustc_attr_parsing-0.0.0",
