@@ -200,7 +200,7 @@ def _stage0_executable_impl(ctx: AnalysisContext) -> list[Provider]:
 
     if ctx.attrs.env:
         command = cmd_script(
-            ctx = ctx,
+            actions = ctx.actions,
             name = ctx.label.name,
             cmd = cmd_args(
                 ctx.attrs._exec[RunInfo],
