@@ -1,3 +1,4 @@
+precise_srcs = true
 unresolved_fixup_error = true
 
 [cargo]

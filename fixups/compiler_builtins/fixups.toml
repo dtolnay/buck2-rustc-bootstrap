@@ -1,5 +1,3 @@
-extra_srcs = ["../libm/src/math/**/*.rs"]
-
 rustc_flags = [
     # Port of Cargo change: https://github.com/rust-lang/rust/pull/73136/files
     #

@@ -1,0 +1,2 @@
+# modules declared inside `declare_passes!`
+precise_srcs = false

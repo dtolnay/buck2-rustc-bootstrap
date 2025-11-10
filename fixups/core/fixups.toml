@@ -1,3 +1,4 @@
+precise_srcs = false
 extra_srcs = [
     "src/**/*.md",
     "../portable-simd/crates/core_simd/src/core_simd_docs.md",

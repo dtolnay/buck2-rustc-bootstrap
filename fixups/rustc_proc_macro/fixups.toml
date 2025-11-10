@@ -1,5 +1,3 @@
-extra_srcs = ["../../library/proc_macro/**/*.rs"]
-
 # This is a compiler crate despite having source code located in the library
 # directory.
 target_compatible_with = ["//constraints:compiler"]

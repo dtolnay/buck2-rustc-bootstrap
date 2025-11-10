@@ -1,1 +1,5 @@
-extra_srcs = ["src/spec/targets/*.ld"]
+# modules declared inside `supported_targets!`
+extra_srcs = [
+    "src/spec/targets/*.ld",
+    "src/spec/targets/*.rs",
+]
