@@ -48,8 +48,7 @@ jobs:
     timeout-minutes: 45
     steps:
       - uses: actions/checkout@v4
-      - run: go install github.com/bazelbuild/buildtools/buildifier/cmd@latest
-      - run: mv $(go env GOPATH)/bin/{cmd,buildifier}
+      - run: go install github.com/bazelbuild/buildtools/buildifier@latest
       - run: echo $(go env GOPATH)/bin >> $GITHUB_PATH
       - run: git ls-files '*.bzl' | xargs buildifier
       - run: git ls-files '*/BUCK' BUCK_TREE | xargs -n1 buildifier -path BUILD.bazel -lint fix
