@@ -5,6 +5,34 @@ load(":cxx.bzl", "cxx_toolchain")
 load(":python.bzl", "python_bootstrap_toolchain")
 load(":rust.bzl", "rust_toolchain")
 
+_macos_sysroot_flags = [
+    "-isysroot",
+    "/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk",
+]
+
+_os_specific_c_flags = select({
+    "DEFAULT": [],
+    "prelude//os:macos": _macos_sysroot_flags,
+})
+
+_opt_level_c_flags = select({
+    "DEFAULT": [],
+    "rust//constraints:opt-level=0": ["-O0"],
+    "rust//constraints:opt-level=3": ["-O3"],
+})
+
+_os_specific_cxx_flags = select({
+    "DEFAULT": [],
+    "prelude//os:linux": ["-stdlib=libstdc++"],
+    "prelude//os:macos": _macos_sysroot_flags,
+})
+
+_opt_level_cxx_flags = select({
+    "DEFAULT": [],
+    "rust//constraints:opt-level=0": ["-O0"],
+    "rust//constraints:opt-level=3": ["-O3"],
+})
+
 python_bootstrap_toolchain(
     name = "python_bootstrap",
     visibility = ["PUBLIC"],
@@ -12,19 +40,8 @@ python_bootstrap_toolchain(
 
 cxx_toolchain(
     name = "cxx",
-    c_flags = select({
-        "DEFAULT": [],
-        "rust//constraints:opt-level=0": ["-O0"],
-        "rust//constraints:opt-level=3": ["-O3"],
-    }),
-    cxx_flags = select({
-        "DEFAULT": [],
-        "prelude//os:linux": ["-stdlib=libstdc++"],
-    }) + select({
-        "DEFAULT": [],
-        "rust//constraints:opt-level=0": ["-O0"],
-        "rust//constraints:opt-level=3": ["-O3"],
-    }),
+    c_flags = _os_specific_c_flags + _opt_level_c_flags,
+    cxx_flags = _os_specific_cxx_flags + _opt_level_cxx_flags,
     visibility = ["PUBLIC"],
 )
 
