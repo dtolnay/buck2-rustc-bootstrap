@@ -14,12 +14,22 @@ cxx_toolchain(
     name = "cxx",
     c_flags = select({
         "DEFAULT": [],
+        "prelude//os:macos": [
+            "-isysroot",
+            "/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk",
+        ],
+    }) + select({
+        "DEFAULT": [],
         "rust//constraints:opt-level=0": ["-O0"],
         "rust//constraints:opt-level=3": ["-O3"],
     }),
     cxx_flags = select({
         "DEFAULT": [],
         "prelude//os:linux": ["-stdlib=libstdc++"],
+        "prelude//os:macos": [
+            "-isysroot",
+            "/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk",
+        ],
     }) + select({
         "DEFAULT": [],
         "rust//constraints:opt-level=0": ["-O0"],
