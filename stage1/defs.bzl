@@ -1,7 +1,7 @@
 load("@prelude//linking:link_info.bzl", "LinkStrategy")
 load("@prelude//rust:build_params.bzl", "MetadataKind")
 load("@prelude//rust:context.bzl", "DepCollectionContext")
-load("@prelude//rust:link_info.bzl", "RustLinkInfo", "resolve_deps")
+load("@prelude//rust:link_info.bzl", "RustLinkInfo", "TransitiveDeps", "resolve_deps")
 load("@prelude//rust:rust_toolchain.bzl", "PanicRuntime", "RustToolchainInfo")
 
 SYSROOT_CRATES = [
@@ -76,17 +76,17 @@ def _sysroot_impl(ctx: AnalysisContext) -> list[Provider]:
 
     rustc_target_triple = ctx.attrs.rust_toolchain[RustToolchainInfo].rustc_target_triple
 
-    sysroot_content = {}
+    transitive_deps = []
     for crate in deps:
         strategy = crate.dep[RustLinkInfo].strategies[LinkStrategy("static_pic")]
         dep_metadata_kind = MetadataKind("link")
-        artifact = strategy.outputs[dep_metadata_kind]
-        path = "lib/rustlib/{}/lib/{}".format(rustc_target_triple, artifact.basename)
-        sysroot_content[path] = artifact
+        transitive_deps.append(strategy.singleton_tset[dep_metadata_kind])
+        transitive_deps.append(strategy.transitive_deps[dep_metadata_kind])
 
-        for artifact in strategy.transitive_deps[dep_metadata_kind].keys():
-            path = "lib/rustlib/{}/lib/{}".format(rustc_target_triple, artifact.basename)
-            sysroot_content[path] = artifact
+    sysroot_content = {}
+    for dep in ctx.actions.tset(TransitiveDeps, children = transitive_deps).traverse():
+        path = "lib/rustlib/{}/lib/{}".format(rustc_target_triple, dep.artifact.basename)
+        sysroot_content[path] = dep.artifact
 
     sysroot = ctx.actions.copied_dir("sysroot", sysroot_content)
     return [
