@@ -59,13 +59,7 @@ pub unsafe fn __rust_alloc_error_handler_should_panic_v2() -> u8 {
 pub unsafe fn __rust_no_alloc_shim_is_unstable_v2() {}
 
 #[rustc_std_internal_symbol]
-#[cfg_attr(not(target_os = "ios"), linkage = "weak")]
-pub unsafe fn __rust_alloc_error_handler(size: usize, align: usize) -> ! {
-    unsafe { __alloc_error_handler::__rdl_oom(size, align) }
-}
-
-#[rustc_std_internal_symbol]
 #[linkage = "weak"]
-pub unsafe fn __rg_oom(size: usize, align: usize) -> ! {
-    unsafe { __alloc_error_handler::__rdl_oom(size, align) }
+pub unsafe fn __rust_alloc_error_handler(size: usize, align: usize) -> ! {
+    unsafe { __alloc_error_handler::__rdl_alloc_error_handler(size, align) }
 }
