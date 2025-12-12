@@ -9898,6 +9898,7 @@ rust_bootstrap_library(
     crate_root = "rust/compiler/rustc_interface/src/lib.rs",
     edition = "2024",
     env = {
+        "CFG_DEFAULT_CODEGEN_BACKEND": "llvm",
         "RUSTC_INSTALL_BINDIR": "bin",
     },
     features = ["llvm"],
