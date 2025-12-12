@@ -25,7 +25,7 @@ $ buck2 run stage2:rustc -- --version --verbose
   # Build various intermediate crates (stage1 by default)
 $ buck2 build :rustc_ast
 $ buck2 build :rustc_ast -m=stage2
-$ buck2 build :syn-2.0.108 --target-platforms //platforms/stage1:compiler
+$ buck2 build :syn-2.0.111 --target-platforms //platforms/stage1:compiler
 
   # Document a crate using stage0 or stage1 rustdoc
 $ buck2 build :rustc_ast[doc] --show-simple-output

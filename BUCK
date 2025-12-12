@@ -308,17 +308,17 @@ rust_bootstrap_library(
     ],
     platform = {
         "windows-gnu-compiler": dict(
-            deps = [":anstyle-wincon-3.0.10"],
+            deps = [":anstyle-wincon-3.0.11"],
         ),
         "windows-msvc-compiler": dict(
-            deps = [":anstyle-wincon-3.0.10"],
+            deps = [":anstyle-wincon-3.0.11"],
         ),
     },
     visibility = [],
     deps = [
         ":anstyle-1.0.13",
         ":anstyle-parse-0.2.7",
-        ":anstyle-query-1.1.4",
+        ":anstyle-query-1.1.5",
         ":colorchoice-1.0.4",
         ":is_terminal_polyfill-1.70.2",
         ":utf8parse-0.2.2",
@@ -369,49 +369,49 @@ rust_bootstrap_library(
 )
 
 crate_download(
-    name = "anstyle-query-1.1.4.crate",
-    sha256 = "9e231f6134f61b71076a3eab506c379d4f36122f2af15a9ff04415ea4c3339e2",
-    strip_prefix = "anstyle-query-1.1.4",
-    urls = ["https://static.crates.io/crates/anstyle-query/1.1.4/download"],
+    name = "anstyle-query-1.1.5.crate",
+    sha256 = "40c48f72fd53cd289104fc64099abca73db4166ad86ea0b4341abe65af83dadc",
+    strip_prefix = "anstyle-query-1.1.5",
+    urls = ["https://static.crates.io/crates/anstyle-query/1.1.5/download"],
     visibility = [],
 )
 
 rust_bootstrap_library(
-    name = "anstyle-query-1.1.4",
-    srcs = [":anstyle-query-1.1.4.crate"],
+    name = "anstyle-query-1.1.5",
+    srcs = [":anstyle-query-1.1.5.crate"],
     crate = "anstyle_query",
-    crate_root = "anstyle-query-1.1.4.crate/src/lib.rs",
+    crate_root = "anstyle-query-1.1.5.crate/src/lib.rs",
     edition = "2021",
     platform = {
         "windows-gnu-compiler": dict(
-            deps = [":windows-sys-0.60.2"],
+            deps = [":windows-sys-0.61.2"],
         ),
         "windows-msvc-compiler": dict(
-            deps = [":windows-sys-0.60.2"],
+            deps = [":windows-sys-0.61.2"],
         ),
     },
     visibility = [],
 )
 
 crate_download(
-    name = "anstyle-wincon-3.0.10.crate",
-    sha256 = "3e0633414522a32ffaac8ac6cc8f748e090c5717661fddeea04219e2344f5f2a",
-    strip_prefix = "anstyle-wincon-3.0.10",
-    urls = ["https://static.crates.io/crates/anstyle-wincon/3.0.10/download"],
+    name = "anstyle-wincon-3.0.11.crate",
+    sha256 = "291e6a250ff86cd4a820112fb8898808a366d8f9f58ce16d1f538353ad55747d",
+    strip_prefix = "anstyle-wincon-3.0.11",
+    urls = ["https://static.crates.io/crates/anstyle-wincon/3.0.11/download"],
     visibility = [],
 )
 
 rust_bootstrap_library(
-    name = "anstyle-wincon-3.0.10",
-    srcs = [":anstyle-wincon-3.0.10.crate"],
+    name = "anstyle-wincon-3.0.11",
+    srcs = [":anstyle-wincon-3.0.11.crate"],
     crate = "anstyle_wincon",
-    crate_root = "anstyle-wincon-3.0.10.crate/src/lib.rs",
+    crate_root = "anstyle-wincon-3.0.11.crate/src/lib.rs",
     edition = "2021",
     visibility = [],
     deps = [
         ":anstyle-1.0.13",
         ":once_cell_polyfill-1.70.2",
-        ":windows-sys-0.60.2",
+        ":windows-sys-0.61.2",
     ],
 )
 
@@ -520,11 +520,11 @@ rust_bootstrap_library(
         ":basic-toml-0.1.10",
         ":memchr-2.7.6",
         ":proc-macro2-1.0.103",
-        ":quote-1.0.41",
+        ":quote-1.0.42",
         ":rustc-hash-2.1.1",
         ":serde-1.0.228",
         ":serde_derive-1.0.228",
-        ":syn-2.0.108",
+        ":syn-2.0.111",
     ],
 )
 
@@ -548,7 +548,7 @@ rust_bootstrap_library(
         ":memchr-2.7.6",
         ":serde-1.0.228",
         ":serde_derive-1.0.228",
-        ":winnow-0.7.13",
+        ":winnow-0.7.14",
     ],
 )
 
@@ -824,7 +824,7 @@ rust_bootstrap_library(
     crate_root = "block-buffer-0.10.4.crate/src/lib.rs",
     edition = "2018",
     visibility = [],
-    deps = [":generic-array-0.14.9"],
+    deps = [":generic-array-0.14.7"],
 )
 
 crate_download(
@@ -1897,7 +1897,7 @@ rust_bootstrap_library(
         ":thin-vec-0.2.14",
         ":toml-0.7.8",
         ":unicode-normalization-0.1.25",
-        ":unicode-script-0.5.7",
+        ":unicode-script-0.5.8",
         ":url-2.5.7",
     ],
 )
@@ -1945,7 +1945,7 @@ rust_bootstrap_library(
     visibility = [],
     deps = [
         ":arrayvec-0.7.6",
-        ":indexmap-2.12.0",
+        ":indexmap-2.12.1",
         ":itertools-0.12.1",
         ":rustc_abi-0.0.0",
         ":rustc_apfloat-0.2.3+llvm-462a31f5a5ab",
@@ -2009,8 +2009,8 @@ rust_bootstrap_library(
     deps = [
         ":nom-7.1.3",
         ":proc-macro2-1.0.103",
-        ":quote-1.0.41",
-        ":syn-2.0.108",
+        ":quote-1.0.42",
+        ":syn-2.0.111",
     ],
 )
 
@@ -2991,23 +2991,23 @@ rust_bootstrap_library(
 )
 
 crate_download(
-    name = "crypto-common-0.1.6.crate",
-    sha256 = "1bfb12502f3fc46cca1bb51ac28df9d618d813cdc3d2f25b9fe775a34af26bb3",
-    strip_prefix = "crypto-common-0.1.6",
-    urls = ["https://static.crates.io/crates/crypto-common/0.1.6/download"],
+    name = "crypto-common-0.1.7.crate",
+    sha256 = "78c8292055d1c1df0cce5d180393dc8cce0abec0a7102adb6c7b1eef6016d60a",
+    strip_prefix = "crypto-common-0.1.7",
+    urls = ["https://static.crates.io/crates/crypto-common/0.1.7/download"],
     visibility = [],
 )
 
 rust_bootstrap_library(
-    name = "crypto-common-0.1.6",
-    srcs = [":crypto-common-0.1.6.crate"],
+    name = "crypto-common-0.1.7",
+    srcs = [":crypto-common-0.1.7.crate"],
     crate = "crypto_common",
-    crate_root = "crypto-common-0.1.6.crate/src/lib.rs",
+    crate_root = "crypto-common-0.1.7.crate/src/lib.rs",
     edition = "2018",
     features = ["std"],
     visibility = [],
     deps = [
-        ":generic-array-0.14.9",
+        ":generic-array-0.14.7",
         ":typenum-1.19.0",
     ],
 )
@@ -3106,9 +3106,9 @@ rust_bootstrap_library(
         ":fnv-1.0.7",
         ":ident_case-1.0.1",
         ":proc-macro2-1.0.103",
-        ":quote-1.0.41",
+        ":quote-1.0.42",
         ":strsim-0.11.1",
-        ":syn-2.0.108",
+        ":syn-2.0.111",
     ],
 )
 
@@ -3130,8 +3130,8 @@ rust_bootstrap_library(
     visibility = [],
     deps = [
         ":darling_core-0.20.11",
-        ":quote-1.0.41",
-        ":syn-2.0.108",
+        ":quote-1.0.42",
+        ":syn-2.0.111",
     ],
 )
 
@@ -3183,8 +3183,8 @@ rust_bootstrap_library(
     visibility = [],
     deps = [
         ":proc-macro2-1.0.103",
-        ":quote-1.0.41",
-        ":syn-2.0.108",
+        ":quote-1.0.42",
+        ":syn-2.0.111",
     ],
 )
 
@@ -3207,8 +3207,8 @@ rust_bootstrap_library(
     deps = [
         ":darling-0.20.11",
         ":proc-macro2-1.0.103",
-        ":quote-1.0.41",
-        ":syn-2.0.108",
+        ":quote-1.0.42",
+        ":syn-2.0.111",
     ],
 )
 
@@ -3236,7 +3236,7 @@ rust_bootstrap_library(
     visibility = [],
     deps = [
         ":block-buffer-0.10.4",
-        ":crypto-common-0.1.6",
+        ":crypto-common-0.1.7",
     ],
 )
 
@@ -3289,8 +3289,8 @@ rust_bootstrap_library(
     visibility = [],
     deps = [
         ":proc-macro2-1.0.103",
-        ":quote-1.0.41",
-        ":syn-2.0.108",
+        ":quote-1.0.42",
+        ":syn-2.0.111",
     ],
 )
 
@@ -3367,7 +3367,7 @@ rust_bootstrap_library(
     crate_root = "ena-0.14.3.crate/src/lib.rs",
     edition = "2015",
     visibility = [],
-    deps = [":log-0.4.28"],
+    deps = [":log-0.4.29"],
 )
 
 crate_download(
@@ -3613,18 +3613,18 @@ rust_bootstrap_library(
 )
 
 crate_download(
-    name = "generic-array-0.14.9.crate",
-    sha256 = "4bb6743198531e02858aeaea5398fcc883e71851fcbcb5a2f773e2fb6cb1edf2",
-    strip_prefix = "generic-array-0.14.9",
-    urls = ["https://static.crates.io/crates/generic-array/0.14.9/download"],
+    name = "generic-array-0.14.7.crate",
+    sha256 = "85649ca51fd72272d7821adaf274ad91c288277713d9c18820d8499a7ff69e9a",
+    strip_prefix = "generic-array-0.14.7",
+    urls = ["https://static.crates.io/crates/generic-array/0.14.7/download"],
     visibility = [],
 )
 
 rust_bootstrap_library(
-    name = "generic-array-0.14.9",
-    srcs = [":generic-array-0.14.9.crate"],
+    name = "generic-array-0.14.7",
+    srcs = [":generic-array-0.14.7.crate"],
     crate = "generic_array",
-    crate_root = "generic-array-0.14.9.crate/src/lib.rs",
+    crate_root = "generic-array-0.14.7.crate/src/lib.rs",
     edition = "2015",
     features = ["more_lengths"],
     visibility = [],
@@ -3875,7 +3875,7 @@ rust_bootstrap_library(
     visibility = [],
     deps = [
         ":fallible-iterator-0.3.0",
-        ":indexmap-2.12.0",
+        ":indexmap-2.12.1",
         ":stable_deref_trait-1.2.1",
     ],
 )
@@ -4138,18 +4138,18 @@ rust_bootstrap_library(
 )
 
 crate_download(
-    name = "hashbrown-0.16.0.crate",
-    sha256 = "5419bdc4f6a9207fbeba6d11b604d481addf78ecd10c11ad51e76c2f6482748d",
-    strip_prefix = "hashbrown-0.16.0",
-    urls = ["https://static.crates.io/crates/hashbrown/0.16.0/download"],
+    name = "hashbrown-0.16.1.crate",
+    sha256 = "841d1cc9bed7f9236f321df977030373f4a4163ae1a7dbfe1a51a2c1a51d9100",
+    strip_prefix = "hashbrown-0.16.1",
+    urls = ["https://static.crates.io/crates/hashbrown/0.16.1/download"],
     visibility = [],
 )
 
 rust_bootstrap_library(
-    name = "hashbrown-0.16.0",
-    srcs = [":hashbrown-0.16.0.crate"],
+    name = "hashbrown-0.16.1",
+    srcs = [":hashbrown-0.16.1.crate"],
     crate = "hashbrown",
-    crate_root = "hashbrown-0.16.0.crate/src/lib.rs",
+    crate_root = "hashbrown-0.16.1.crate/src/lib.rs",
     edition = "2021",
     rustc_flags = select({
         "//constraints:compiler": [],
@@ -4321,25 +4321,25 @@ rust_bootstrap_library(
 )
 
 crate_download(
-    name = "icu_properties-2.1.1.crate",
-    sha256 = "e93fcd3157766c0c8da2f8cff6ce651a31f0810eaa1c51ec363ef790bbb5fb99",
-    strip_prefix = "icu_properties-2.1.1",
-    urls = ["https://static.crates.io/crates/icu_properties/2.1.1/download"],
+    name = "icu_properties-2.1.2.crate",
+    sha256 = "020bfc02fe870ec3a66d93e677ccca0562506e5872c650f893269e08615d74ec",
+    strip_prefix = "icu_properties-2.1.2",
+    urls = ["https://static.crates.io/crates/icu_properties/2.1.2/download"],
     visibility = [],
 )
 
 rust_bootstrap_library(
-    name = "icu_properties-2.1.1",
-    srcs = [":icu_properties-2.1.1.crate"],
+    name = "icu_properties-2.1.2",
+    srcs = [":icu_properties-2.1.2.crate"],
     crate = "icu_properties",
-    crate_root = "icu_properties-2.1.1.crate/src/lib.rs",
+    crate_root = "icu_properties-2.1.2.crate/src/lib.rs",
     edition = "2021",
     features = ["compiled_data"],
     visibility = [],
     deps = [
         ":icu_collections-2.1.1",
         ":icu_locale_core-2.1.1",
-        ":icu_properties_data-2.1.1",
+        ":icu_properties_data-2.1.2",
         ":icu_provider-2.1.1",
         ":zerotrie-0.2.3",
         ":zerovec-0.11.5",
@@ -4347,18 +4347,18 @@ rust_bootstrap_library(
 )
 
 crate_download(
-    name = "icu_properties_data-2.1.1.crate",
-    sha256 = "02845b3647bb045f1100ecd6480ff52f34c35f82d9880e029d329c21d1054899",
-    strip_prefix = "icu_properties_data-2.1.1",
-    urls = ["https://static.crates.io/crates/icu_properties_data/2.1.1/download"],
+    name = "icu_properties_data-2.1.2.crate",
+    sha256 = "616c294cf8d725c6afcd8f55abc17c56464ef6211f9ed59cccffe534129c77af",
+    strip_prefix = "icu_properties_data-2.1.2",
+    urls = ["https://static.crates.io/crates/icu_properties_data/2.1.2/download"],
     visibility = [],
 )
 
 rust_bootstrap_library(
-    name = "icu_properties_data-2.1.1",
-    srcs = [":icu_properties_data-2.1.1.crate"],
+    name = "icu_properties_data-2.1.2",
+    srcs = [":icu_properties_data-2.1.2.crate"],
     crate = "icu_properties_data",
-    crate_root = "icu_properties_data-2.1.1.crate/src/lib.rs",
+    crate_root = "icu_properties_data-2.1.2.crate/src/lib.rs",
     edition = "2021",
     visibility = [],
 )
@@ -4457,23 +4457,23 @@ rust_bootstrap_library(
     visibility = [],
     deps = [
         ":icu_normalizer-2.1.1",
-        ":icu_properties-2.1.1",
+        ":icu_properties-2.1.2",
     ],
 )
 
 crate_download(
-    name = "indexmap-2.12.0.crate",
-    sha256 = "6717a8d2a5a929a1a2eb43a12812498ed141a0bcfb7e8f7844fbdbe4303bba9f",
-    strip_prefix = "indexmap-2.12.0",
-    urls = ["https://static.crates.io/crates/indexmap/2.12.0/download"],
+    name = "indexmap-2.12.1.crate",
+    sha256 = "0ad4bb2b565bca0645f4d68c5c9af97fba094e9791da685bf83cb5f3ce74acf2",
+    strip_prefix = "indexmap-2.12.1",
+    urls = ["https://static.crates.io/crates/indexmap/2.12.1/download"],
     visibility = [],
 )
 
 rust_bootstrap_library(
-    name = "indexmap-2.12.0",
-    srcs = [":indexmap-2.12.0.crate"],
+    name = "indexmap-2.12.1",
+    srcs = [":indexmap-2.12.1.crate"],
     crate = "indexmap",
-    crate_root = "indexmap-2.12.0.crate/src/lib.rs",
+    crate_root = "indexmap-2.12.1.crate/src/lib.rs",
     edition = "2021",
     features = [
         "default",
@@ -4482,7 +4482,7 @@ rust_bootstrap_library(
     visibility = [],
     deps = [
         ":equivalent-1.0.2",
-        ":hashbrown-0.16.0",
+        ":hashbrown-0.16.1",
     ],
 )
 
@@ -4584,18 +4584,18 @@ rust_bootstrap_library(
 )
 
 crate_download(
-    name = "jiff-0.2.15.crate",
-    sha256 = "be1f93b8b1eb69c77f24bbb0afdf66f54b632ee39af40ca21c4365a1d7347e49",
-    strip_prefix = "jiff-0.2.15",
-    urls = ["https://static.crates.io/crates/jiff/0.2.15/download"],
+    name = "jiff-0.2.16.crate",
+    sha256 = "49cce2b81f2098e7e3efc35bc2e0a6b7abec9d34128283d7a26fa8f32a6dbb35",
+    strip_prefix = "jiff-0.2.16",
+    urls = ["https://static.crates.io/crates/jiff/0.2.16/download"],
     visibility = [],
 )
 
 rust_bootstrap_library(
-    name = "jiff-0.2.15",
-    srcs = [":jiff-0.2.15.crate"],
+    name = "jiff-0.2.16",
+    srcs = [":jiff-0.2.16.crate"],
     crate = "jiff",
-    crate_root = "jiff-0.2.15.crate/src/lib.rs",
+    crate_root = "jiff-0.2.16.crate/src/lib.rs",
     edition = "2021",
     features = [
         "alloc",
@@ -5100,18 +5100,18 @@ rust_bootstrap_library(
 )
 
 crate_download(
-    name = "log-0.4.28.crate",
-    sha256 = "34080505efa8e45a4b816c349525ebe327ceaa8559756f0356cba97ef3bf7432",
-    strip_prefix = "log-0.4.28",
-    urls = ["https://static.crates.io/crates/log/0.4.28/download"],
+    name = "log-0.4.29.crate",
+    sha256 = "5e5032e24019045c762d3c0f28f5b6b8bbf38563a65908389bf7978758920897",
+    strip_prefix = "log-0.4.29",
+    urls = ["https://static.crates.io/crates/log/0.4.29/download"],
     visibility = [],
 )
 
 rust_bootstrap_library(
-    name = "log-0.4.28",
-    srcs = [":log-0.4.28.crate"],
+    name = "log-0.4.29",
+    srcs = [":log-0.4.29.crate"],
     crate = "log",
-    crate_root = "log-0.4.28.crate/src/lib.rs",
+    crate_root = "log-0.4.29.crate/src/lib.rs",
     edition = "2021",
     features = ["std"],
     visibility = [],
@@ -5184,7 +5184,7 @@ rust_bootstrap_library(
     },
     visibility = [],
     deps = [
-        ":log-0.4.28",
+        ":log-0.4.29",
         ":parking_lot-0.12.5",
         ":rustc-hash-1.1.0",
         ":smallvec-1.15.1",
@@ -5403,7 +5403,7 @@ rust_bootstrap_library(
                 "simd-adler32",
                 "with-alloc",
             ],
-            deps = [":simd-adler32-0.3.7"],
+            deps = [":simd-adler32-0.3.8"],
         ),
         "linux-arm64-library": dict(
             features = [
@@ -5422,7 +5422,7 @@ rust_bootstrap_library(
                 "simd-adler32",
                 "with-alloc",
             ],
-            deps = [":simd-adler32-0.3.7"],
+            deps = [":simd-adler32-0.3.8"],
         ),
         "linux-riscv64-library": dict(
             features = [
@@ -5441,7 +5441,7 @@ rust_bootstrap_library(
                 "simd-adler32",
                 "with-alloc",
             ],
-            deps = [":simd-adler32-0.3.7"],
+            deps = [":simd-adler32-0.3.8"],
         ),
         "linux-x86_64-library": dict(
             features = [
@@ -5460,7 +5460,7 @@ rust_bootstrap_library(
                 "simd-adler32",
                 "with-alloc",
             ],
-            deps = [":simd-adler32-0.3.7"],
+            deps = [":simd-adler32-0.3.8"],
         ),
         "macos-arm64-library": dict(
             features = [
@@ -5479,7 +5479,7 @@ rust_bootstrap_library(
                 "simd-adler32",
                 "with-alloc",
             ],
-            deps = [":simd-adler32-0.3.7"],
+            deps = [":simd-adler32-0.3.8"],
         ),
         "macos-x86_64-library": dict(
             features = [
@@ -5498,7 +5498,7 @@ rust_bootstrap_library(
                 "simd-adler32",
                 "with-alloc",
             ],
-            deps = [":simd-adler32-0.3.7"],
+            deps = [":simd-adler32-0.3.8"],
         ),
         "windows-gnu-library": dict(
             features = [
@@ -5517,7 +5517,7 @@ rust_bootstrap_library(
                 "simd-adler32",
                 "with-alloc",
             ],
-            deps = [":simd-adler32-0.3.7"],
+            deps = [":simd-adler32-0.3.8"],
         ),
     },
     visibility = [],
@@ -5786,7 +5786,7 @@ rust_bootstrap_library(
         ":crc32fast-1.5.0",
         ":flate2-1.1.5",
         ":hashbrown-0.15.5",
-        ":indexmap-2.12.0",
+        ":indexmap-2.12.1",
         ":memchr-2.7.6",
         ":ruzstd-0.7.3",
     ],
@@ -5880,7 +5880,7 @@ rust_bootstrap_library(
             deps = [
                 ":crc32fast-1.5.0",
                 ":hashbrown-0.15.5",
-                ":indexmap-2.12.0",
+                ":indexmap-2.12.1",
                 ":wasmparser-0.236.1",
             ],
         ),
@@ -5908,7 +5908,7 @@ rust_bootstrap_library(
             deps = [
                 ":crc32fast-1.5.0",
                 ":hashbrown-0.15.5",
-                ":indexmap-2.12.0",
+                ":indexmap-2.12.1",
                 ":wasmparser-0.236.1",
             ],
         ),
@@ -5936,7 +5936,7 @@ rust_bootstrap_library(
             deps = [
                 ":crc32fast-1.5.0",
                 ":hashbrown-0.15.5",
-                ":indexmap-2.12.0",
+                ":indexmap-2.12.1",
                 ":wasmparser-0.236.1",
             ],
         ),
@@ -5964,7 +5964,7 @@ rust_bootstrap_library(
             deps = [
                 ":crc32fast-1.5.0",
                 ":hashbrown-0.15.5",
-                ":indexmap-2.12.0",
+                ":indexmap-2.12.1",
                 ":wasmparser-0.236.1",
             ],
         ),
@@ -5992,7 +5992,7 @@ rust_bootstrap_library(
             deps = [
                 ":crc32fast-1.5.0",
                 ":hashbrown-0.15.5",
-                ":indexmap-2.12.0",
+                ":indexmap-2.12.1",
                 ":wasmparser-0.236.1",
             ],
         ),
@@ -6020,7 +6020,7 @@ rust_bootstrap_library(
             deps = [
                 ":crc32fast-1.5.0",
                 ":hashbrown-0.15.5",
-                ":indexmap-2.12.0",
+                ":indexmap-2.12.1",
                 ":wasmparser-0.236.1",
             ],
         ),
@@ -6048,7 +6048,7 @@ rust_bootstrap_library(
             deps = [
                 ":crc32fast-1.5.0",
                 ":hashbrown-0.15.5",
-                ":indexmap-2.12.0",
+                ":indexmap-2.12.1",
                 ":wasmparser-0.236.1",
             ],
         ),
@@ -6643,7 +6643,7 @@ rust_bootstrap_library(
     visibility = [],
     deps = [
         ":datafrog-2.0.1",
-        ":log-0.4.28",
+        ":log-0.4.29",
         ":rustc-hash-1.1.0",
     ],
 )
@@ -6693,7 +6693,7 @@ rust_bootstrap_library(
         "std",
     ],
     visibility = [],
-    deps = [":zerocopy-0.8.27"],
+    deps = [":zerocopy-0.8.31"],
 )
 
 crate_download(
@@ -7021,36 +7021,36 @@ rust_bootstrap_library(
 )
 
 crate_download(
-    name = "quote-1.0.41.crate",
-    sha256 = "ce25767e7b499d1b604768e7cde645d14cc8584231ea6b295e9c9eb22c02e1d1",
-    strip_prefix = "quote-1.0.41",
-    urls = ["https://static.crates.io/crates/quote/1.0.41/download"],
+    name = "quote-1.0.42.crate",
+    sha256 = "a338cc41d27e6cc6dce6cefc13a0729dfbb81c262b1f519331575dd80ef3067f",
+    strip_prefix = "quote-1.0.42",
+    urls = ["https://static.crates.io/crates/quote/1.0.42/download"],
     visibility = [],
 )
 
 rust_bootstrap_library(
-    name = "quote-1.0.41",
-    srcs = [":quote-1.0.41.crate"],
+    name = "quote-1.0.42",
+    srcs = [":quote-1.0.42.crate"],
     crate = "quote",
-    crate_root = "quote-1.0.41.crate/src/lib.rs",
+    crate_root = "quote-1.0.42.crate/src/lib.rs",
     edition = "2018",
     env = {
-        "OUT_DIR": "$(location :quote-1.0.41-build-script-run[out_dir])",
+        "OUT_DIR": "$(location :quote-1.0.42-build-script-run[out_dir])",
     },
     features = [
         "default",
         "proc-macro",
     ],
-    rustc_flags = ["@$(location :quote-1.0.41-build-script-run[rustc_flags])"],
+    rustc_flags = ["@$(location :quote-1.0.42-build-script-run[rustc_flags])"],
     visibility = [],
     deps = [":proc-macro2-1.0.103"],
 )
 
 rust_bootstrap_binary(
-    name = "quote-1.0.41-build-script-build",
-    srcs = [":quote-1.0.41.crate"],
+    name = "quote-1.0.42-build-script-build",
+    srcs = [":quote-1.0.42.crate"],
     crate = "build_script_build",
-    crate_root = "quote-1.0.41.crate/build.rs",
+    crate_root = "quote-1.0.42.crate/build.rs",
     edition = "2018",
     features = [
         "default",
@@ -7060,14 +7060,14 @@ rust_bootstrap_binary(
 )
 
 rust_bootstrap_buildscript_run(
-    name = "quote-1.0.41-build-script-run",
+    name = "quote-1.0.42-build-script-run",
     package_name = "quote",
-    buildscript_rule = ":quote-1.0.41-build-script-build",
+    buildscript_rule = ":quote-1.0.42-build-script-build",
     features = [
         "default",
         "proc-macro",
     ],
-    version = "1.0.41",
+    version = "1.0.42",
 )
 
 crate_download(
@@ -7320,8 +7320,8 @@ rust_bootstrap_library(
     visibility = [],
     deps = [
         ":proc-macro2-1.0.103",
-        ":quote-1.0.41",
-        ":syn-2.0.108",
+        ":quote-1.0.42",
+        ":syn-2.0.111",
     ],
 )
 
@@ -7747,7 +7747,7 @@ rust_bootstrap_library(
         ":rustc_macros-0.0.0",
         ":rustc_serialize-0.0.0",
         ":rustc_span-0.0.0",
-        ":tracing-0.1.41",
+        ":tracing-0.1.43",
     ],
 )
 
@@ -7827,7 +7827,7 @@ rust_bootstrap_library(
         ":rustc_span-0.0.0",
         ":smallvec-1.15.1",
         ":thin-vec-0.2.14",
-        ":tracing-0.1.41",
+        ":tracing-0.1.43",
     ],
 )
 
@@ -7891,7 +7891,7 @@ rust_bootstrap_library(
         ":rustc_target-0.0.0",
         ":smallvec-1.15.1",
         ":thin-vec-0.2.14",
-        ":tracing-0.1.41",
+        ":tracing-0.1.43",
     ],
 )
 
@@ -8125,7 +8125,7 @@ rust_bootstrap_library(
         ":rustc_trait_selection-0.0.0",
         ":rustc_traits-0.0.0",
         ":smallvec-1.15.1",
-        ":tracing-0.1.41",
+        ":tracing-0.1.43",
     ],
 )
 
@@ -8208,7 +8208,7 @@ rust_bootstrap_library(
         ":rustc_target-0.0.0",
         ":smallvec-1.15.1",
         ":thin-vec-0.2.14",
-        ":tracing-0.1.41",
+        ":tracing-0.1.43",
     ],
 )
 
@@ -8303,7 +8303,7 @@ rust_bootstrap_library(
         ":serde-1.0.228",
         ":serde_json-1.0.145",
         ":smallvec-1.15.1",
-        ":tracing-0.1.41",
+        ":tracing-0.1.43",
     ],
 )
 
@@ -8429,7 +8429,7 @@ rust_bootstrap_library(
         ":tempfile-3.23.0",
         ":thin-vec-0.2.14",
         ":thorin-dwp-0.9.0",
-        ":tracing-0.1.41",
+        ":tracing-0.1.43",
         ":wasm-encoder-0.219.2",
     ],
 )
@@ -8500,7 +8500,7 @@ rust_bootstrap_library(
         ":rustc_span-0.0.0",
         ":rustc_target-0.0.0",
         ":rustc_trait_selection-0.0.0",
-        ":tracing-0.1.41",
+        ":tracing-0.1.43",
     ],
 )
 
@@ -8626,7 +8626,7 @@ rust_bootstrap_library(
         ":elsa-1.11.2",
         ":ena-0.14.3",
         ":hashbrown-0.15.5",
-        ":indexmap-2.12.0",
+        ":indexmap-2.12.1",
         ":measureme-12.0.3",
         ":memmap2-0.2.3",
         ":parking_lot-0.12.5",
@@ -8643,7 +8643,7 @@ rust_bootstrap_library(
         ":stacker-0.1.21",
         ":tempfile-3.23.0",
         ":thin-vec-0.2.14",
-        ":tracing-0.1.41",
+        ":tracing-0.1.43",
     ],
 )
 
@@ -8693,7 +8693,7 @@ rust_bootstrap_library(
     visibility = [],
     deps = [
         ":ctrlc-3.5.1",
-        ":jiff-0.2.15",
+        ":jiff-0.2.16",
         ":rustc_abi-0.0.0",
         ":rustc_ast-0.0.0",
         ":rustc_ast_lowering-0.0.0",
@@ -8739,7 +8739,7 @@ rust_bootstrap_library(
         ":rustc_ty_utils-0.0.0",
         ":serde_json-1.0.145",
         ":shlex-1.3.0",
-        ":tracing-0.1.41",
+        ":tracing-0.1.43",
     ],
 )
 
@@ -8775,7 +8775,7 @@ rust_bootstrap_library(
         ":rustc_macros-0.0.0",
         ":rustc_serialize-0.0.0",
         ":rustc_span-0.0.0",
-        ":tracing-0.1.41",
+        ":tracing-0.1.43",
         ":unic-langid-0.9.6",
     ],
 )
@@ -9355,7 +9355,7 @@ rust_bootstrap_library(
         ":serde_json-1.0.145",
         ":termcolor-1.4.1",
         ":termize-0.2.1",
-        ":tracing-0.1.41",
+        ":tracing-0.1.43",
     ],
 )
 
@@ -9406,7 +9406,7 @@ rust_bootstrap_library(
         ":rustc_span-0.0.0",
         ":smallvec-1.15.1",
         ":thin-vec-0.2.14",
-        ":tracing-0.1.41",
+        ":tracing-0.1.43",
     ],
 )
 
@@ -9449,8 +9449,8 @@ rust_bootstrap_library(
         ":fluent-bundle-0.16.0",
         ":fluent-syntax-0.12.0",
         ":proc-macro2-1.0.103",
-        ":quote-1.0.41",
-        ":syn-2.0.108",
+        ":quote-1.0.42",
+        ":syn-2.0.111",
         ":unic-langid-0.9.6",
     ],
 )
@@ -9536,7 +9536,7 @@ rust_bootstrap_library(
         ":rustc_target-0.0.0",
         ":smallvec-1.15.1",
         ":thin-vec-0.2.14",
-        ":tracing-0.1.41",
+        ":tracing-0.1.43",
     ],
 )
 
@@ -9620,7 +9620,7 @@ rust_bootstrap_library(
         ":rustc_target-0.0.0",
         ":rustc_trait_selection-0.0.0",
         ":smallvec-1.15.1",
-        ":tracing-0.1.41",
+        ":tracing-0.1.43",
     ],
 )
 
@@ -9725,7 +9725,7 @@ rust_bootstrap_library(
         ":rustc_target-0.0.0",
         ":rustc_trait_selection-0.0.0",
         ":smallvec-1.15.1",
-        ":tracing-0.1.41",
+        ":tracing-0.1.43",
     ],
 )
 
@@ -9765,7 +9765,7 @@ rust_bootstrap_library(
         ":rustc_session-0.0.0",
         ":rustc_span-0.0.0",
         ":thin-vec-0.2.14",
-        ":tracing-0.1.41",
+        ":tracing-0.1.43",
     ],
 )
 
@@ -9812,8 +9812,8 @@ rust_bootstrap_library(
     visibility = [],
     deps = [
         ":proc-macro2-1.0.103",
-        ":quote-1.0.41",
-        ":syn-2.0.108",
+        ":quote-1.0.42",
+        ":syn-2.0.111",
     ],
 )
 
@@ -9876,7 +9876,7 @@ rust_bootstrap_library(
         ":rustc_type_ir-0.0.0",
         ":smallvec-1.15.1",
         ":thin-vec-0.2.14",
-        ":tracing-0.1.41",
+        ":tracing-0.1.43",
     ],
 )
 
@@ -9944,7 +9944,7 @@ rust_bootstrap_library(
         ":rustc_trait_selection-0.0.0",
         ":rustc_traits-0.0.0",
         ":rustc_ty_utils-0.0.0",
-        ":tracing-0.1.41",
+        ":tracing-0.1.43",
     ],
 )
 
@@ -10050,7 +10050,7 @@ rust_bootstrap_library(
         ":rustc_target-0.0.0",
         ":rustc_trait_selection-0.0.0",
         ":smallvec-1.15.1",
-        ":tracing-0.1.41",
+        ":tracing-0.1.43",
         ":unicode-security-0.1.2",
     ],
 )
@@ -10121,8 +10121,8 @@ rust_bootstrap_library(
     edition = "2024",
     visibility = [],
     deps = [
-        ":tracing-0.1.41",
-        ":tracing-subscriber-0.3.20",
+        ":tracing-0.1.43",
+        ":tracing-subscriber-0.3.22",
         ":tracing-tree-0.3.1",
     ],
 )
@@ -10158,8 +10158,8 @@ rust_bootstrap_library(
     visibility = [],
     deps = [
         ":proc-macro2-1.0.103",
-        ":quote-1.0.41",
-        ":syn-2.0.108",
+        ":quote-1.0.42",
+        ":syn-2.0.111",
         ":synstructure-0.13.2",
     ],
 )
@@ -10212,7 +10212,7 @@ rust_bootstrap_library(
         ":rustc_span-0.0.0",
         ":rustc_target-0.0.0",
         ":tempfile-3.23.0",
-        ":tracing-0.1.41",
+        ":tracing-0.1.43",
     ],
 )
 
@@ -10369,7 +10369,7 @@ rust_bootstrap_library(
         ":rustc_type_ir-0.0.0",
         ":smallvec-1.15.1",
         ":thin-vec-0.2.14",
-        ":tracing-0.1.41",
+        ":tracing-0.1.43",
     ],
 )
 
@@ -10438,7 +10438,7 @@ rust_bootstrap_library(
         ":rustc_session-0.0.0",
         ":rustc_span-0.0.0",
         ":rustc_trait_selection-0.0.0",
-        ":tracing-0.1.41",
+        ":tracing-0.1.43",
     ],
 )
 
@@ -10488,7 +10488,7 @@ rust_bootstrap_library(
         ":rustc_middle-0.0.0",
         ":rustc_span-0.0.0",
         ":smallvec-1.15.1",
-        ":tracing-0.1.41",
+        ":tracing-0.1.43",
     ],
 )
 
@@ -10615,7 +10615,7 @@ rust_bootstrap_library(
         ":rustc_target-0.0.0",
         ":rustc_trait_selection-0.0.0",
         ":smallvec-1.15.1",
-        ":tracing-0.1.41",
+        ":tracing-0.1.43",
     ],
 )
 
@@ -10649,7 +10649,7 @@ rust_bootstrap_library(
         ":rustc_target-0.0.0",
         ":serde-1.0.228",
         ":serde_json-1.0.145",
-        ":tracing-0.1.41",
+        ":tracing-0.1.43",
     ],
 )
 
@@ -10696,7 +10696,7 @@ rust_bootstrap_library(
         ":rustc_macros-0.0.0",
         ":rustc_type_ir-0.0.0",
         ":rustc_type_ir_macros-0.0.0",
-        ":tracing-0.1.41",
+        ":tracing-0.1.43",
     ],
 )
 
@@ -10747,7 +10747,7 @@ rust_bootstrap_library(
         ":rustc_session-0.0.0",
         ":rustc_span-0.0.0",
         ":thin-vec-0.2.14",
-        ":tracing-0.1.41",
+        ":tracing-0.1.43",
         ":unicode-normalization-0.1.25",
         ":unicode-width-0.2.2",
     ],
@@ -10817,7 +10817,7 @@ rust_bootstrap_library(
         ":rustc_span-0.0.0",
         ":rustc_target-0.0.0",
         ":rustc_trait_selection-0.0.0",
-        ":tracing-0.1.41",
+        ":tracing-0.1.43",
     ],
 )
 
@@ -10858,7 +10858,7 @@ rust_bootstrap_library(
         ":rustc_session-0.0.0",
         ":rustc_span-0.0.0",
         ":smallvec-1.15.1",
-        ":tracing-0.1.41",
+        ":tracing-0.1.43",
     ],
 )
 
@@ -10883,7 +10883,7 @@ rust_bootstrap_library(
         ":rustc_session-0.0.0",
         ":rustc_span-0.0.0",
         ":rustc_ty_utils-0.0.0",
-        ":tracing-0.1.41",
+        ":tracing-0.1.43",
     ],
 )
 
@@ -10960,7 +10960,7 @@ rust_bootstrap_library(
         ":rustc_target-0.0.0",
         ":scoped-tls-1.0.1",
         ":serde-1.0.228",
-        ":tracing-0.1.41",
+        ":tracing-0.1.43",
     ],
 )
 
@@ -11012,7 +11012,7 @@ rust_bootstrap_library(
         ":rustc_query_system-0.0.0",
         ":rustc_serialize-0.0.0",
         ":rustc_span-0.0.0",
-        ":tracing-0.1.41",
+        ":tracing-0.1.43",
     ],
 )
 
@@ -11061,7 +11061,7 @@ rust_bootstrap_library(
         ":rustc_span-0.0.0",
         ":rustc_thread_pool-0.0.0",
         ":smallvec-1.15.1",
-        ":tracing-0.1.41",
+        ":tracing-0.1.43",
     ],
 )
 
@@ -11089,7 +11089,7 @@ rust_bootstrap_library(
     visibility = [],
     deps = [
         ":bitflags-2.10.0",
-        ":indexmap-2.12.0",
+        ":indexmap-2.12.1",
         ":itertools-0.12.1",
         ":pulldown-cmark-0.11.3",
         ":rustc_arena-0.0.0",
@@ -11111,7 +11111,7 @@ rust_bootstrap_library(
         ":rustc_span-0.0.0",
         ":smallvec-1.15.1",
         ":thin-vec-0.2.14",
-        ":tracing-0.1.41",
+        ":tracing-0.1.43",
     ],
 )
 
@@ -11140,7 +11140,7 @@ rust_bootstrap_library(
         ":rustc_span-0.0.0",
         ":rustc_target-0.0.0",
         ":rustc_trait_selection-0.0.0",
-        ":tracing-0.1.41",
+        ":tracing-0.1.43",
         ":twox-hash-1.6.3",
     ],
 )
@@ -11162,7 +11162,7 @@ rust_bootstrap_library(
     edition = "2024",
     visibility = [],
     deps = [
-        ":indexmap-2.12.0",
+        ":indexmap-2.12.1",
         ":rustc_hashes-0.0.0",
         ":smallvec-1.15.1",
         ":thin-vec-0.2.14",
@@ -11237,7 +11237,7 @@ rust_bootstrap_library(
         ":rustc_span-0.0.0",
         ":rustc_target-0.0.0",
         ":termize-0.2.1",
-        ":tracing-0.1.41",
+        ":tracing-0.1.43",
     ],
 )
 
@@ -11269,7 +11269,7 @@ rust_bootstrap_library(
     deps = [
         ":blake3-1.8.2",
         ":derive-where-1.6.0",
-        ":indexmap-2.12.0",
+        ":indexmap-2.12.1",
         ":itoa-1.0.15",
         ":md-5-0.10.6",
         ":rustc_arena-0.0.0",
@@ -11281,7 +11281,7 @@ rust_bootstrap_library(
         ":scoped-tls-1.0.1",
         ":sha1-0.10.6",
         ":sha2-0.10.9",
-        ":tracing-0.1.41",
+        ":tracing-0.1.43",
         ":unicode-width-0.2.2",
     ],
 )
@@ -11312,7 +11312,7 @@ rust_bootstrap_library(
         ":rustc_middle-0.0.0",
         ":rustc_session-0.0.0",
         ":rustc_span-0.0.0",
-        ":tracing-0.1.41",
+        ":tracing-0.1.43",
     ],
 )
 
@@ -11732,12 +11732,12 @@ rust_bootstrap_library(
         ":rustc_macros-0.0.0",
         ":rustc_serialize-0.0.0",
         ":rustc_span-0.0.0",
-        ":schemars-1.0.4",
+        ":schemars-1.1.0",
         ":serde-1.0.228",
         ":serde_derive-1.0.228",
         ":serde_json-1.0.145",
         ":serde_path_to_error-0.1.20",
-        ":tracing-0.1.41",
+        ":tracing-0.1.43",
     ],
 )
 
@@ -11892,7 +11892,7 @@ rust_bootstrap_library(
         ":rustc_transmute-0.0.0",
         ":smallvec-1.15.1",
         ":thin-vec-0.2.14",
-        ":tracing-0.1.41",
+        ":tracing-0.1.43",
     ],
 )
 
@@ -11919,7 +11919,7 @@ rust_bootstrap_library(
         ":rustc_middle-0.0.0",
         ":rustc_span-0.0.0",
         ":rustc_trait_selection-0.0.0",
-        ":tracing-0.1.41",
+        ":tracing-0.1.43",
     ],
 )
 
@@ -11947,7 +11947,7 @@ rust_bootstrap_library(
         ":rustc_middle-0.0.0",
         ":rustc_span-0.0.0",
         ":smallvec-1.15.1",
-        ":tracing-0.1.41",
+        ":tracing-0.1.43",
     ],
 )
 
@@ -11992,7 +11992,7 @@ rust_bootstrap_library(
         ":rustc_span-0.0.0",
         ":rustc_target-0.0.0",
         ":rustc_trait_selection-0.0.0",
-        ":tracing-0.1.41",
+        ":tracing-0.1.43",
     ],
 )
 
@@ -12052,7 +12052,7 @@ rust_bootstrap_library(
         ":bitflags-2.10.0",
         ":derive-where-1.6.0",
         ":ena-0.14.3",
-        ":indexmap-2.12.0",
+        ":indexmap-2.12.1",
         ":rustc-hash-2.1.1",
         ":rustc_ast_ir-0.0.0",
         ":rustc_data_structures-0.0.0",
@@ -12064,7 +12064,7 @@ rust_bootstrap_library(
         ":rustc_type_ir_macros-0.0.0",
         ":smallvec-1.15.1",
         ":thin-vec-0.2.14",
-        ":tracing-0.1.41",
+        ":tracing-0.1.43",
     ],
 )
 
@@ -12078,8 +12078,8 @@ rust_bootstrap_library(
     visibility = [],
     deps = [
         ":proc-macro2-1.0.103",
-        ":quote-1.0.41",
-        ":syn-2.0.108",
+        ":quote-1.0.42",
+        ":syn-2.0.111",
         ":synstructure-0.13.2",
     ],
 )
@@ -12256,7 +12256,7 @@ rust_bootstrap_library(
         ":arrayvec-0.7.6",
         ":askama-0.14.0",
         ":base64-0.21.7",
-        ":indexmap-2.12.0",
+        ":indexmap-2.12.1",
         ":itertools-0.12.1",
         ":minifier-0.3.6",
         ":pulldown-cmark-0.11.3",
@@ -12300,8 +12300,8 @@ rust_bootstrap_library(
         ":tempfile-3.23.0",
         ":thin-vec-0.2.14",
         ":threadpool-1.8.1",
-        ":tracing-0.1.41",
-        ":tracing-subscriber-0.3.20",
+        ":tracing-0.1.43",
+        ":tracing-subscriber-0.3.22",
         ":tracing-tree-0.3.1",
         ":unicode-segmentation-1.12.0",
     ],
@@ -12592,18 +12592,18 @@ rust_bootstrap_library(
 )
 
 crate_download(
-    name = "schemars-1.0.4.crate",
-    sha256 = "82d20c4491bc164fa2f6c5d44565947a52ad80b9505d8e36f8d54c27c739fcd0",
-    strip_prefix = "schemars-1.0.4",
-    urls = ["https://static.crates.io/crates/schemars/1.0.4/download"],
+    name = "schemars-1.1.0.crate",
+    sha256 = "9558e172d4e8533736ba97870c4b2cd63f84b382a3d6eb063da41b91cce17289",
+    strip_prefix = "schemars-1.1.0",
+    urls = ["https://static.crates.io/crates/schemars/1.1.0/download"],
     visibility = [],
 )
 
 rust_bootstrap_library(
-    name = "schemars-1.0.4",
-    srcs = [":schemars-1.0.4.crate"],
+    name = "schemars-1.1.0",
+    srcs = [":schemars-1.1.0.crate"],
     crate = "schemars",
-    crate_root = "schemars-1.0.4.crate/src/lib.rs",
+    crate_root = "schemars-1.1.0.crate/src/lib.rs",
     edition = "2021",
     features = [
         "default",
@@ -12615,33 +12615,33 @@ rust_bootstrap_library(
     deps = [
         ":dyn-clone-1.0.20",
         ":ref-cast-1.0.25",
-        ":schemars_derive-1.0.4",
+        ":schemars_derive-1.1.0",
         ":serde-1.0.228",
         ":serde_json-1.0.145",
     ],
 )
 
 crate_download(
-    name = "schemars_derive-1.0.4.crate",
-    sha256 = "33d020396d1d138dc19f1165df7545479dcd58d93810dc5d646a16e55abefa80",
-    strip_prefix = "schemars_derive-1.0.4",
-    urls = ["https://static.crates.io/crates/schemars_derive/1.0.4/download"],
+    name = "schemars_derive-1.1.0.crate",
+    sha256 = "301858a4023d78debd2353c7426dc486001bddc91ae31a76fb1f55132f7e2633",
+    strip_prefix = "schemars_derive-1.1.0",
+    urls = ["https://static.crates.io/crates/schemars_derive/1.1.0/download"],
     visibility = [],
 )
 
 rust_bootstrap_library(
-    name = "schemars_derive-1.0.4",
-    srcs = [":schemars_derive-1.0.4.crate"],
+    name = "schemars_derive-1.1.0",
+    srcs = [":schemars_derive-1.1.0.crate"],
     crate = "schemars_derive",
-    crate_root = "schemars_derive-1.0.4.crate/src/lib.rs",
+    crate_root = "schemars_derive-1.1.0.crate/src/lib.rs",
     edition = "2021",
     proc_macro = True,
     visibility = [],
     deps = [
         ":proc-macro2-1.0.103",
-        ":quote-1.0.41",
+        ":quote-1.0.42",
         ":serde_derive_internals-0.29.1",
-        ":syn-2.0.108",
+        ":syn-2.0.111",
     ],
 )
 
@@ -12874,8 +12874,8 @@ rust_bootstrap_library(
     visibility = [],
     deps = [
         ":proc-macro2-1.0.103",
-        ":quote-1.0.41",
-        ":syn-2.0.108",
+        ":quote-1.0.42",
+        ":syn-2.0.111",
     ],
 )
 
@@ -12896,8 +12896,8 @@ rust_bootstrap_library(
     visibility = [],
     deps = [
         ":proc-macro2-1.0.103",
-        ":quote-1.0.41",
-        ":syn-2.0.108",
+        ":quote-1.0.42",
+        ":syn-2.0.111",
     ],
 )
 
@@ -13132,18 +13132,18 @@ rust_bootstrap_library(
 )
 
 crate_download(
-    name = "simd-adler32-0.3.7.crate",
-    sha256 = "d66dc143e6b11c1eddc06d5c423cfc97062865baf299914ab64caa38182078fe",
-    strip_prefix = "simd-adler32-0.3.7",
-    urls = ["https://static.crates.io/crates/simd-adler32/0.3.7/download"],
+    name = "simd-adler32-0.3.8.crate",
+    sha256 = "e320a6c5ad31d271ad523dcf3ad13e2767ad8b1cb8f047f75a8aeaf8da139da2",
+    strip_prefix = "simd-adler32-0.3.8",
+    urls = ["https://static.crates.io/crates/simd-adler32/0.3.8/download"],
     visibility = [],
 )
 
 rust_bootstrap_library(
-    name = "simd-adler32-0.3.7",
-    srcs = [":simd-adler32-0.3.7.crate"],
+    name = "simd-adler32-0.3.8",
+    srcs = [":simd-adler32-0.3.8.crate"],
     crate = "simd_adler32",
-    crate_root = "simd-adler32-0.3.7.crate/src/lib.rs",
+    crate_root = "simd-adler32-0.3.8.crate/src/lib.rs",
     edition = "2018",
     visibility = [],
 )
@@ -14953,18 +14953,18 @@ rust_bootstrap_library(
 )
 
 crate_download(
-    name = "syn-2.0.108.crate",
-    sha256 = "da58917d35242480a05c2897064da0a80589a2a0476c9a3f2fdc83b53502e917",
-    strip_prefix = "syn-2.0.108",
-    urls = ["https://static.crates.io/crates/syn/2.0.108/download"],
+    name = "syn-2.0.111.crate",
+    sha256 = "390cc9a294ab71bdb1aa2e99d13be9c753cd2d7bd6560c77118597410c4d2e87",
+    strip_prefix = "syn-2.0.111",
+    urls = ["https://static.crates.io/crates/syn/2.0.111/download"],
     visibility = [],
 )
 
 rust_bootstrap_library(
-    name = "syn-2.0.108",
-    srcs = [":syn-2.0.108.crate"],
+    name = "syn-2.0.111",
+    srcs = [":syn-2.0.111.crate"],
     crate = "syn",
-    crate_root = "syn-2.0.108.crate/src/lib.rs",
+    crate_root = "syn-2.0.111.crate/src/lib.rs",
     edition = "2021",
     features = [
         "clone-impls",
@@ -14982,7 +14982,7 @@ rust_bootstrap_library(
     visibility = [],
     deps = [
         ":proc-macro2-1.0.103",
-        ":quote-1.0.41",
+        ":quote-1.0.42",
         ":unicode-ident-1.0.22",
     ],
 )
@@ -15008,8 +15008,8 @@ rust_bootstrap_library(
     visibility = [],
     deps = [
         ":proc-macro2-1.0.103",
-        ":quote-1.0.41",
-        ":syn-2.0.108",
+        ":quote-1.0.42",
+        ":syn-2.0.111",
     ],
 )
 
@@ -15332,8 +15332,8 @@ rust_bootstrap_library(
     visibility = [],
     deps = [
         ":proc-macro2-1.0.103",
-        ":quote-1.0.41",
-        ":syn-2.0.108",
+        ":quote-1.0.42",
+        ":syn-2.0.111",
     ],
 )
 
@@ -15358,8 +15358,8 @@ rust_bootstrap_library(
     visibility = [],
     deps = [
         ":proc-macro2-1.0.103",
-        ":quote-1.0.41",
-        ":syn-2.0.108",
+        ":quote-1.0.42",
+        ":syn-2.0.111",
     ],
 )
 
@@ -15382,7 +15382,7 @@ rust_bootstrap_library(
         ":gimli-0.31.1",
         ":hashbrown-0.15.5",
         ":object-0.36.7",
-        ":tracing-0.1.41",
+        ":tracing-0.1.43",
     ],
 )
 
@@ -15555,7 +15555,7 @@ rust_bootstrap_library(
     ],
     visibility = [],
     deps = [
-        ":indexmap-2.12.0",
+        ":indexmap-2.12.1",
         ":serde-1.0.228",
         ":serde_spanned-0.6.9",
         ":toml_datetime-0.6.11",
@@ -15564,18 +15564,18 @@ rust_bootstrap_library(
 )
 
 crate_download(
-    name = "tracing-0.1.41.crate",
-    sha256 = "784e0ac535deb450455cbfa28a6f0df145ea1bb7ae51b821cf5e7927fdcfbdd0",
-    strip_prefix = "tracing-0.1.41",
-    urls = ["https://static.crates.io/crates/tracing/0.1.41/download"],
+    name = "tracing-0.1.43.crate",
+    sha256 = "2d15d90a0b5c19378952d479dc858407149d7bb45a14de0142f6c534b16fc647",
+    strip_prefix = "tracing-0.1.43",
+    urls = ["https://static.crates.io/crates/tracing/0.1.43/download"],
     visibility = [],
 )
 
 rust_bootstrap_library(
-    name = "tracing-0.1.41",
-    srcs = [":tracing-0.1.41.crate"],
+    name = "tracing-0.1.43",
+    srcs = [":tracing-0.1.43.crate"],
     crate = "tracing",
-    crate_root = "tracing-0.1.41.crate/src/lib.rs",
+    crate_root = "tracing-0.1.43.crate/src/lib.rs",
     edition = "2018",
     features = [
         "attributes",
@@ -15588,47 +15588,47 @@ rust_bootstrap_library(
     visibility = [],
     deps = [
         ":pin-project-lite-0.2.16",
-        ":tracing-attributes-0.1.30",
-        ":tracing-core-0.1.34",
+        ":tracing-attributes-0.1.31",
+        ":tracing-core-0.1.35",
     ],
 )
 
 crate_download(
-    name = "tracing-attributes-0.1.30.crate",
-    sha256 = "81383ab64e72a7a8b8e13130c49e3dab29def6d0c7d76a03087b3cf71c5c6903",
-    strip_prefix = "tracing-attributes-0.1.30",
-    urls = ["https://static.crates.io/crates/tracing-attributes/0.1.30/download"],
+    name = "tracing-attributes-0.1.31.crate",
+    sha256 = "7490cfa5ec963746568740651ac6781f701c9c5ea257c58e057f3ba8cf69e8da",
+    strip_prefix = "tracing-attributes-0.1.31",
+    urls = ["https://static.crates.io/crates/tracing-attributes/0.1.31/download"],
     visibility = [],
 )
 
 rust_bootstrap_library(
-    name = "tracing-attributes-0.1.30",
-    srcs = [":tracing-attributes-0.1.30.crate"],
+    name = "tracing-attributes-0.1.31",
+    srcs = [":tracing-attributes-0.1.31.crate"],
     crate = "tracing_attributes",
-    crate_root = "tracing-attributes-0.1.30.crate/src/lib.rs",
+    crate_root = "tracing-attributes-0.1.31.crate/src/lib.rs",
     edition = "2018",
     proc_macro = True,
     visibility = [],
     deps = [
         ":proc-macro2-1.0.103",
-        ":quote-1.0.41",
-        ":syn-2.0.108",
+        ":quote-1.0.42",
+        ":syn-2.0.111",
     ],
 )
 
 crate_download(
-    name = "tracing-core-0.1.34.crate",
-    sha256 = "b9d12581f227e93f094d3af2ae690a574abb8a2b9b7a96e7cfe9647b2b617678",
-    strip_prefix = "tracing-core-0.1.34",
-    urls = ["https://static.crates.io/crates/tracing-core/0.1.34/download"],
+    name = "tracing-core-0.1.35.crate",
+    sha256 = "7a04e24fab5c89c6a36eb8558c9656f30d81de51dfa4d3b45f26b21d61fa0a6c",
+    strip_prefix = "tracing-core-0.1.35",
+    urls = ["https://static.crates.io/crates/tracing-core/0.1.35/download"],
     visibility = [],
 )
 
 rust_bootstrap_library(
-    name = "tracing-core-0.1.34",
-    srcs = [":tracing-core-0.1.34.crate"],
+    name = "tracing-core-0.1.35",
+    srcs = [":tracing-core-0.1.35.crate"],
     crate = "tracing_core",
-    crate_root = "tracing-core-0.1.34.crate/src/lib.rs",
+    crate_root = "tracing-core-0.1.35.crate/src/lib.rs",
     edition = "2018",
     features = [
         "default",
@@ -15659,25 +15659,25 @@ rust_bootstrap_library(
     ],
     visibility = [],
     deps = [
-        ":log-0.4.28",
+        ":log-0.4.29",
         ":once_cell-1.21.3",
-        ":tracing-core-0.1.34",
+        ":tracing-core-0.1.35",
     ],
 )
 
 crate_download(
-    name = "tracing-subscriber-0.3.20.crate",
-    sha256 = "2054a14f5307d601f88daf0553e1cbf472acc4f2c51afab632431cdcd72124d5",
-    strip_prefix = "tracing-subscriber-0.3.20",
-    urls = ["https://static.crates.io/crates/tracing-subscriber/0.3.20/download"],
+    name = "tracing-subscriber-0.3.22.crate",
+    sha256 = "2f30143827ddab0d256fd843b7a66d164e9f271cfa0dde49142c5ca0ca291f1e",
+    strip_prefix = "tracing-subscriber-0.3.22",
+    urls = ["https://static.crates.io/crates/tracing-subscriber/0.3.22/download"],
     visibility = [],
 )
 
 rust_bootstrap_library(
-    name = "tracing-subscriber-0.3.20",
-    srcs = [":tracing-subscriber-0.3.20.crate"],
+    name = "tracing-subscriber-0.3.22",
+    srcs = [":tracing-subscriber-0.3.22.crate"],
     crate = "tracing_subscriber",
-    crate_root = "tracing-subscriber-0.3.20.crate/src/lib.rs",
+    crate_root = "tracing-subscriber-0.3.22.crate/src/lib.rs",
     edition = "2018",
     features = [
         "alloc",
@@ -15705,8 +15705,8 @@ rust_bootstrap_library(
         ":sharded-slab-0.1.7",
         ":smallvec-1.15.1",
         ":thread_local-1.1.9",
-        ":tracing-0.1.41",
-        ":tracing-core-0.1.34",
+        ":tracing-0.1.43",
+        ":tracing-core-0.1.35",
     ],
 )
 
@@ -15731,9 +15731,9 @@ rust_bootstrap_library(
     visibility = [],
     deps = [
         ":nu-ansi-term-0.50.3",
-        ":tracing-core-0.1.34",
+        ":tracing-core-0.1.35",
         ":tracing-log-0.2.0",
-        ":tracing-subscriber-0.3.20",
+        ":tracing-subscriber-0.3.22",
     ],
 )
 
@@ -15884,8 +15884,8 @@ rust_bootstrap_library(
     visibility = [],
     deps = [
         ":proc-macro-hack-0.5.20+deprecated",
-        ":quote-1.0.41",
-        ":syn-2.0.108",
+        ":quote-1.0.42",
+        ":syn-2.0.111",
         ":unic-langid-impl-0.9.6",
     ],
 )
@@ -15965,18 +15965,18 @@ rust_bootstrap_library(
 )
 
 crate_download(
-    name = "unicode-script-0.5.7.crate",
-    sha256 = "9fb421b350c9aff471779e262955939f565ec18b86c15364e6bdf0d662ca7c1f",
-    strip_prefix = "unicode-script-0.5.7",
-    urls = ["https://static.crates.io/crates/unicode-script/0.5.7/download"],
+    name = "unicode-script-0.5.8.crate",
+    sha256 = "383ad40bb927465ec0ce7720e033cb4ca06912855fc35db31b5755d0de75b1ee",
+    strip_prefix = "unicode-script-0.5.8",
+    urls = ["https://static.crates.io/crates/unicode-script/0.5.8/download"],
     visibility = [],
 )
 
 rust_bootstrap_library(
-    name = "unicode-script-0.5.7",
-    srcs = [":unicode-script-0.5.7.crate"],
+    name = "unicode-script-0.5.8",
+    srcs = [":unicode-script-0.5.8.crate"],
     crate = "unicode_script",
-    crate_root = "unicode-script-0.5.7.crate/src/lib.rs",
+    crate_root = "unicode-script-0.5.8.crate/src/lib.rs",
     edition = "2018",
     visibility = [],
 )
@@ -15999,7 +15999,7 @@ rust_bootstrap_library(
     visibility = [],
     deps = [
         ":unicode-normalization-0.1.25",
-        ":unicode-script-0.5.7",
+        ":unicode-script-0.5.8",
     ],
 )
 
@@ -16361,8 +16361,8 @@ rust_bootstrap_library(
     visibility = [],
     deps = [
         ":proc-macro2-1.0.103",
-        ":quote-1.0.41",
-        ":syn-2.0.108",
+        ":quote-1.0.42",
+        ":syn-2.0.111",
     ],
 )
 
@@ -16384,8 +16384,8 @@ rust_bootstrap_library(
     visibility = [],
     deps = [
         ":proc-macro2-1.0.103",
-        ":quote-1.0.41",
-        ":syn-2.0.108",
+        ":quote-1.0.42",
+        ":syn-2.0.111",
     ],
 )
 
@@ -16509,31 +16509,6 @@ rust_bootstrap_library(
 )
 
 crate_download(
-    name = "windows-sys-0.60.2.crate",
-    sha256 = "f2f500e4d28234f72040990ec9d39e3a6b950f9f22d3dba18416c35882612bcb",
-    strip_prefix = "windows-sys-0.60.2",
-    urls = ["https://static.crates.io/crates/windows-sys/0.60.2/download"],
-    visibility = [],
-)
-
-rust_bootstrap_library(
-    name = "windows-sys-0.60.2",
-    srcs = [":windows-sys-0.60.2.crate"],
-    crate = "windows_sys",
-    crate_root = "windows-sys-0.60.2.crate/src/lib.rs",
-    edition = "2021",
-    features = [
-        "Win32",
-        "Win32_Foundation",
-        "Win32_System",
-        "Win32_System_Console",
-        "default",
-    ],
-    visibility = [],
-    deps = [":windows-targets-0.53.5"],
-)
-
-crate_download(
     name = "windows-sys-0.61.2.crate",
     sha256 = "ae137229bcbd6cdf0f7b80a31df61766145077ddf49416a728b02cb3921ff3fc",
     strip_prefix = "windows-sys-0.61.2",
@@ -16598,31 +16573,6 @@ rust_bootstrap_library(
 )
 
 crate_download(
-    name = "windows-targets-0.53.5.crate",
-    sha256 = "4945f9f551b88e0d65f3db0bc25c33b8acea4d9e41163edf90dcd0b19f9069f3",
-    strip_prefix = "windows-targets-0.53.5",
-    urls = ["https://static.crates.io/crates/windows-targets/0.53.5/download"],
-    visibility = [],
-)
-
-rust_bootstrap_library(
-    name = "windows-targets-0.53.5",
-    srcs = [":windows-targets-0.53.5.crate"],
-    crate = "windows_targets",
-    crate_root = "windows-targets-0.53.5.crate/src/lib.rs",
-    edition = "2021",
-    platform = {
-        "windows-gnu-compiler": dict(
-            deps = [":windows_x86_64_gnu-0.53.1"],
-        ),
-        "windows-msvc-compiler": dict(
-            deps = [":windows_x86_64_msvc-0.53.1"],
-        ),
-    },
-    visibility = [],
-)
-
-crate_download(
     name = "windows-threading-0.1.0.crate",
     sha256 = "b66463ad2e0ea3bbf808b7f1d371311c80e115c0b71d60efc142cafbcfb057a6",
     strip_prefix = "windows-threading-0.1.0",
@@ -16658,23 +16608,6 @@ rust_bootstrap_library(
 )
 
 crate_download(
-    name = "windows_x86_64_gnu-0.53.1.crate",
-    sha256 = "9c3842cdd74a865a8066ab39c8a7a473c0778a3f29370b5fd6b4b9aa7df4a499",
-    strip_prefix = "windows_x86_64_gnu-0.53.1",
-    urls = ["https://static.crates.io/crates/windows_x86_64_gnu/0.53.1/download"],
-    visibility = [],
-)
-
-rust_bootstrap_library(
-    name = "windows_x86_64_gnu-0.53.1",
-    srcs = [":windows_x86_64_gnu-0.53.1.crate"],
-    crate = "windows_x86_64_gnu",
-    crate_root = "windows_x86_64_gnu-0.53.1.crate/src/lib.rs",
-    edition = "2021",
-    visibility = [],
-)
-
-crate_download(
     name = "windows_x86_64_msvc-0.52.6.crate",
     sha256 = "589f6da84c646204747d1270a2a5661ea66ed1cced2631d546fdfb155959f9ec",
     strip_prefix = "windows_x86_64_msvc-0.52.6",
@@ -16687,23 +16620,6 @@ rust_bootstrap_library(
     srcs = [":windows_x86_64_msvc-0.52.6.crate"],
     crate = "windows_x86_64_msvc",
     crate_root = "windows_x86_64_msvc-0.52.6.crate/src/lib.rs",
-    edition = "2021",
-    visibility = [],
-)
-
-crate_download(
-    name = "windows_x86_64_msvc-0.53.1.crate",
-    sha256 = "d6bbff5f0aada427a1e5a6da5f1f98158182f26556f345ac9e04d36d0ebed650",
-    strip_prefix = "windows_x86_64_msvc-0.53.1",
-    urls = ["https://static.crates.io/crates/windows_x86_64_msvc/0.53.1/download"],
-    visibility = [],
-)
-
-rust_bootstrap_library(
-    name = "windows_x86_64_msvc-0.53.1",
-    srcs = [":windows_x86_64_msvc-0.53.1.crate"],
-    crate = "windows_x86_64_msvc",
-    crate_root = "windows_x86_64_msvc-0.53.1.crate/src/lib.rs",
     edition = "2021",
     visibility = [],
 )
@@ -16731,18 +16647,18 @@ rust_bootstrap_library(
 )
 
 crate_download(
-    name = "winnow-0.7.13.crate",
-    sha256 = "21a0236b59786fed61e2a80582dd500fe61f18b5dca67a4a067d0bc9039339cf",
-    strip_prefix = "winnow-0.7.13",
-    urls = ["https://static.crates.io/crates/winnow/0.7.13/download"],
+    name = "winnow-0.7.14.crate",
+    sha256 = "5a5364e9d77fcdeeaa6062ced926ee3381faa2ee02d3eb83a5c27a8825540829",
+    strip_prefix = "winnow-0.7.14",
+    urls = ["https://static.crates.io/crates/winnow/0.7.14/download"],
     visibility = [],
 )
 
 rust_bootstrap_library(
-    name = "winnow-0.7.13",
-    srcs = [":winnow-0.7.13.crate"],
+    name = "winnow-0.7.14",
+    srcs = [":winnow-0.7.14.crate"],
     crate = "winnow",
-    crate_root = "winnow-0.7.13.crate/src/lib.rs",
+    crate_root = "winnow-0.7.14.crate/src/lib.rs",
     edition = "2021",
     features = [
         "alloc",
@@ -16815,28 +16731,28 @@ rust_bootstrap_library(
     visibility = [],
     deps = [
         ":proc-macro2-1.0.103",
-        ":quote-1.0.41",
-        ":syn-2.0.108",
+        ":quote-1.0.42",
+        ":syn-2.0.111",
         ":synstructure-0.13.2",
     ],
 )
 
 crate_download(
-    name = "zerocopy-0.8.27.crate",
-    sha256 = "0894878a5fa3edfd6da3f88c4805f4c8558e2b996227a3d864f47fe11e38282c",
-    strip_prefix = "zerocopy-0.8.27",
-    urls = ["https://static.crates.io/crates/zerocopy/0.8.27/download"],
+    name = "zerocopy-0.8.31.crate",
+    sha256 = "fd74ec98b9250adb3ca554bdde269adf631549f51d8a8f8f0a10b50f1cb298c3",
+    strip_prefix = "zerocopy-0.8.31",
+    urls = ["https://static.crates.io/crates/zerocopy/0.8.31/download"],
     visibility = [],
 )
 
 rust_bootstrap_library(
-    name = "zerocopy-0.8.27",
-    srcs = [":zerocopy-0.8.27.crate"],
+    name = "zerocopy-0.8.31",
+    srcs = [":zerocopy-0.8.31.crate"],
     crate = "zerocopy",
-    crate_root = "zerocopy-0.8.27.crate/src/lib.rs",
+    crate_root = "zerocopy-0.8.31.crate/src/lib.rs",
     edition = "2021",
     env = {
-        "CARGO_PKG_VERSION": "0.8.27",
+        "CARGO_PKG_VERSION": "0.8.31",
     },
     features = ["simd"],
     visibility = [],
@@ -16882,8 +16798,8 @@ rust_bootstrap_library(
     visibility = [],
     deps = [
         ":proc-macro2-1.0.103",
-        ":quote-1.0.41",
-        ":syn-2.0.108",
+        ":quote-1.0.42",
+        ":syn-2.0.111",
         ":synstructure-0.13.2",
     ],
 )
@@ -16960,7 +16876,7 @@ rust_bootstrap_library(
     visibility = [],
     deps = [
         ":proc-macro2-1.0.103",
-        ":quote-1.0.41",
-        ":syn-2.0.108",
+        ":quote-1.0.42",
+        ":syn-2.0.111",
     ],
 )

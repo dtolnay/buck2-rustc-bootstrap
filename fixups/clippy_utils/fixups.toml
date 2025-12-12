@@ -1,6 +1,6 @@
 cargo_env = ["CARGO_PKG_VERSION_PATCH"]
 extra_deps = [
-    ":indexmap-2.12.0",
+    ":indexmap-2.12.1",
     ":rustc_abi-0.0.0",
     ":rustc_ast-0.0.0",
     ":rustc_attr_parsing-0.0.0",
