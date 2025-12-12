@@ -1,7 +1,7 @@
 load("@prelude//linking:link_info.bzl", "LinkStrategy")
 load("@prelude//rust:build_params.bzl", "MetadataKind")
 load("@prelude//rust:context.bzl", "DepCollectionContext")
-load("@prelude//rust:link_info.bzl", "RustDependency", "RustLinkInfo", "resolve_deps")
+load("@prelude//rust:link_info.bzl", "RustLinkInfo", "resolve_deps")
 load("@prelude//rust:rust_toolchain.bzl", "PanicRuntime", "RustToolchainInfo")
 
 SYSROOT_CRATES = [
@@ -72,24 +72,13 @@ def _sysroot_impl(ctx: AnalysisContext) -> list[Provider]:
         panic_runtime = PanicRuntime("unwind"),
     )
 
-    all_deps = resolve_deps(ctx = ctx, dep_ctx = dep_ctx)
-
-    rust_deps = []
-    for crate in all_deps:
-        rust_deps.append(RustDependency(
-            info = crate.dep[RustLinkInfo],
-            label = crate.dep.label,
-            dep = crate.dep,
-            name = crate.name,
-            flags = crate.flags,
-            proc_macro_marker = None,
-        ))
+    deps = resolve_deps(ctx = ctx, dep_ctx = dep_ctx)
 
     rustc_target_triple = ctx.attrs.rust_toolchain[RustToolchainInfo].rustc_target_triple
 
     sysroot_content = {}
-    for dep in rust_deps:
-        strategy = dep.info.strategies[LinkStrategy("static_pic")]
+    for crate in deps:
+        strategy = crate.dep[RustLinkInfo].strategies[LinkStrategy("static_pic")]
         dep_metadata_kind = MetadataKind("link")
         artifact = strategy.outputs[dep_metadata_kind]
         path = "lib/rustlib/{}/lib/{}".format(rustc_target_triple, artifact.basename)
