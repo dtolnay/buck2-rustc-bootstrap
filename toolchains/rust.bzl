@@ -53,7 +53,7 @@ def _rust_toolchain_impl(ctx: AnalysisContext) -> list[Provider]:
     return [
         DefaultInfo(),
         RustToolchainInfo(
-            advanced_unstable_linking = True,
+            advanced_unstable_linking = explicit_sysroot_deps != None,
             clippy_driver = ctx.attrs.clippy_driver[RunInfo],
             compiler = compiler,
             explicit_sysroot_deps = explicit_sysroot_deps,
