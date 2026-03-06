@@ -2,7 +2,12 @@ load("@prelude//linking:link_info.bzl", "LinkStrategy")
 load("@prelude//rust:build_params.bzl", "MetadataKind")
 load("@prelude//rust:context.bzl", "DepCollectionContext")
 load("@prelude//rust:link_info.bzl", "RustLinkInfo", "TransitiveDeps", "resolve_deps")
-load("@prelude//rust:rust_toolchain.bzl", "PanicRuntime", "RustToolchainInfo")
+load(
+    "@prelude//rust:rust_toolchain.bzl",
+    "PanicRuntime",
+    "RustExplicitSysrootDeps",
+    "RustToolchainInfo",
+)
 
 SYSROOT_CRATES = [
     "alloc",
@@ -68,7 +73,14 @@ def _sysroot_impl(ctx: AnalysisContext) -> list[Provider]:
         advanced_unstable_linking = True,
         include_doc_deps = False,
         is_proc_macro = False,
-        explicit_sysroot_deps = None,
+        explicit_sysroot_deps = RustExplicitSysrootDeps(
+            core = None,
+            proc_macro = None,
+            std = None,
+            panic_unwind = None,
+            panic_abort = None,
+            others = [],
+        ),
         panic_runtime = PanicRuntime("unwind"),
     )
 
