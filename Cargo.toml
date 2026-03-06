@@ -15,7 +15,7 @@ core = { path = "rust/library/core" }
 panic_abort = { path = "rust/library/panic_abort" }
 panic_unwind = { path = "rust/library/panic_unwind" }
 proc_macro = { path = "rust/library/proc_macro" }
-std = { path = "rust/library/std", features = ["backtrace", "std_detect_dlsym_getauxval", "std_detect_file_io"] }
+std = { path = "rust/library/std", features = ["backtrace"] }
 test = { path = "rust/library/test" }
 
 [target.'cfg(workspace = "compiler")'.dependencies]
