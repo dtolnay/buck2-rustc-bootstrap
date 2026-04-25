@@ -1,6 +1,6 @@
 load("@prelude//linking:link_info.bzl", "LinkStrategy")
 load("@prelude//rust:build_params.bzl", "MetadataKind")
-load("@prelude//rust:context.bzl", "DepCollectionContext")
+load("@prelude//rust:dep_context.bzl", "DepCollectionContext")
 load("@prelude//rust:link_info.bzl", "RustLinkInfo", "TransitiveDeps", "resolve_deps")
 load(
     "@prelude//rust:rust_toolchain.bzl",
