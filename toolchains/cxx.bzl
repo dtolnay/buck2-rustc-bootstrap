@@ -85,11 +85,13 @@ def _cxx_toolchain_impl(ctx: AnalysisContext):
                 compiler = RunInfo(tools.cxx_compiler),
                 compiler_flags = ["--target={}".format(target_triple)] + ctx.attrs.cxx_flags,
                 compiler_type = tools.compiler_type,
+                preprocessor_flags = [],
             ),
             c_compiler_info = CCompilerInfo(
                 compiler = RunInfo(tools.compiler),
                 compiler_flags = ["--target={}".format(target_triple)] + ctx.attrs.c_flags,
                 compiler_type = tools.compiler_type,
+                preprocessor_flags = [],
             ),
             as_compiler_info = CCompilerInfo(
                 compiler = RunInfo(tools.compiler),
