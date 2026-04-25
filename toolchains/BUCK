@@ -35,6 +35,10 @@ cxx_toolchain(
         "rust//constraints:opt-level=0": ["-O0"],
         "rust//constraints:opt-level=3": ["-O3"],
     }),
+    linker_flags = select({
+        "DEFAULT": [],
+        "prelude//os:linux": ["-Wl,--undefined-version"],
+    }),
     visibility = ["PUBLIC"],
 )
 
@@ -84,9 +88,6 @@ rust_toolchain(
             "rust//constraints:library": [],
         }),
         "rust//constraints:stage2": [],
-    }) + select({
-        "DEFAULT": [],
-        "prelude//os:linux": ["-Clink-arg=-Wl,--undefined-version"],
     }),
     rustdoc = select({
         "rust//constraints:stage1": "rust//stage0:rustdoc",

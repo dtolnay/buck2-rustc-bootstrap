@@ -61,7 +61,7 @@ def _cxx_toolchain_impl(ctx: AnalysisContext):
             linker_info = LinkerInfo(
                 type = linker_type,
                 linker = RunInfo(tools.linker),
-                linker_flags = linker_flags,
+                linker_flags = linker_flags + ctx.attrs.linker_flags,
                 archiver = RunInfo(tools.archiver),
                 archiver_type = tools.archiver_type,
                 lto_mode = LtoMode("none"),
@@ -114,6 +114,7 @@ cxx_toolchain = rule(
     attrs = {
         "c_flags": attrs.list(attrs.arg(), default = []),
         "cxx_flags": attrs.list(attrs.arg(), default = []),
+        "linker_flags": attrs.list(attrs.arg(), default = []),
         "target_triple": attrs.default_only(attrs.dep(providers = [TargetTriple], default = "//target:clang_target_triple")),
         "_cxx_tools_info": attrs.exec_dep(providers = [CxxToolsInfo], default = "prelude//toolchains/msvc:msvc_tools" if host_info().os.is_windows else "prelude//toolchains/cxx/clang:path_clang_tools"),
         "_internal_tools": attrs.default_only(attrs.exec_dep(providers = [CxxInternalTools], default = "prelude//cxx/tools:internal_tools")),
