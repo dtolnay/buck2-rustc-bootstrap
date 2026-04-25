@@ -9,6 +9,7 @@ load(
     "LinkerInfo",
     "LinkerType",
     "PicBehavior",
+    "RuntimeDependencyHandling",
     "ShlibInterfacesMode",
 )
 load("@prelude//cxx:headers.bzl", "HeaderMode")
@@ -102,6 +103,7 @@ def _cxx_toolchain_impl(ctx: AnalysisContext):
             ),
             header_mode = HeaderMode("symlink_tree_only"),
             pic_behavior = pic_behavior,
+            runtime_dependency_handling = RuntimeDependencyHandling("no_symlink"),
         ),
     ]
 
