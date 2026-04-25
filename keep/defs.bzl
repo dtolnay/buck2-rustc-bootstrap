@@ -2,7 +2,7 @@ load("@prelude//:artifact_tset.bzl", "make_artifact_tset")
 load("@prelude//linking:link_info.bzl", "LinkStrategy")
 load("@prelude//linking:shared_libraries.bzl", "SharedLibraryInfo")
 load("@prelude//rust:build_params.bzl", "MetadataKind")
-load("@prelude//rust:context.bzl", "CrateName")
+load("@prelude//rust:crate_name.bzl", "CrateName")
 load("@prelude//rust:link_info.bzl", "RustLinkInfo", "RustLinkStrategyInfo")
 load("@toolchains//:rust.bzl", "RustcFlags")
 
