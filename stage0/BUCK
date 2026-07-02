@@ -39,6 +39,7 @@ stage0_extract(
 stage0_executable(
     name = "rustc",
     dist = ":extract[rustc]",
+    env = {"RUSTC_BOOTSTRAP": "1"},
     incoming_transition = ":stage0_configuration",
     visibility = ["PUBLIC"],
 )
