@@ -3524,15 +3524,8 @@ rust_bootstrap_library(
     crate_root = "errno-0.3.14.crate/src/lib.rs",
     edition = "2018",
     features = ["std"],
-    platform = {
-        "macos-arm64-compiler": dict(
-            deps = [":libc-0.2"],
-        ),
-        "macos-x86_64-compiler": dict(
-            deps = [":libc-0.2"],
-        ),
-    },
     visibility = [],
+    deps = [":libc-0.2"],
 )
 
 crate_download(
