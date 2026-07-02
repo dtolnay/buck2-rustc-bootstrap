@@ -20,7 +20,7 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 45
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@v7
       - uses: dtolnay/rust-toolchain@stable
       - uses: dtolnay/install@reindeer
       - name: git submodule init
@@ -36,7 +36,7 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 45
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@v7
       - uses: dtolnay/install-buck2@latest
       - run: git ls-files '*.bzl' '*.bxl' | xargs buck2 starlark lint
 
@@ -47,7 +47,7 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 45
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@v7
       - run: go install github.com/bazelbuild/buildtools/buildifier@latest
       - run: echo $(go env GOPATH)/bin >> $GITHUB_PATH
       - run: git ls-files '*.bzl' | xargs buildifier
@@ -63,7 +63,7 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 45
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@v7
       - uses: dtolnay/install-buck2@latest
       - name: git submodule init
         uses: ./.github/actions/checkout

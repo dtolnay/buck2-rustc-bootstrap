@@ -19,7 +19,7 @@ jobs:
          #- windows
     timeout-minutes: 90
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@v7
       - uses: dtolnay/install-buck2@latest
       - name: git submodule init
         uses: ./.github/actions/checkout
