@@ -54,18 +54,6 @@ def rust_bootstrap_library(
         target_compatible_with = None,
         visibility = None,
         **kwargs):
-    target_compatible_with = target_compatible_with or _target_constraints(crate_root)
-
-    if name.endswith("-0.0.0"):
-        versioned_name = name
-        name = name.removesuffix("-0.0.0")
-        native.alias(
-            name = versioned_name,
-            actual = ":{}".format(name),
-            target_compatible_with = target_compatible_with,
-        )
-        visibility = ["PUBLIC"]
-
     extra_deps = []
     extra_env = {}
     extra_rustc_flags = []
@@ -91,6 +79,19 @@ def rust_bootstrap_library(
     else:
         default_target_platform = None
         extra_rustc_flags.append("--cap-lints=allow")
+
+    target_compatible_with = target_compatible_with or _target_constraints(crate_root)
+
+    if name.endswith("-0.0.0"):
+        versioned_name = name
+        name = name.removesuffix("-0.0.0")
+        native.alias(
+            name = versioned_name,
+            actual = ":{}".format(name),
+            default_target_platform = default_target_platform,
+            target_compatible_with = target_compatible_with,
+        )
+        visibility = ["PUBLIC"]
 
     if proc_macro:
         rust_proc_macro_alias(
