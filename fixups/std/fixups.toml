@@ -1,5 +1,6 @@
 extra_srcs = [
     "../backtrace/src/**/*.rs",
+    "../core/src/autodiff.md",
     "../core/src/error.md",
     "../core/src/ffi/*.md",
     "../core/src/primitive_docs.rs",

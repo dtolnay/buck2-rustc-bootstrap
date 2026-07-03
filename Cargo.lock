@@ -326,7 +326,7 @@ checksum = "613afe47fcd5fac7ccf1db93babcb082c5994d996f20b8b159f2ad1658eb5724"
 
 [[package]]
 name = "clippy"
-version = "0.1.95"
+version = "0.1.96"
 dependencies = [
  "anstream",
  "clippy_config",
@@ -340,7 +340,7 @@ dependencies = [
 
 [[package]]
 name = "clippy_config"
-version = "0.1.95"
+version = "0.1.96"
 dependencies = [
  "clippy_utils",
  "itertools",
@@ -350,7 +350,7 @@ dependencies = [
 
 [[package]]
 name = "clippy_lints"
-version = "0.1.95"
+version = "0.1.96"
 dependencies = [
  "arrayvec",
  "cargo_metadata",
@@ -370,7 +370,7 @@ dependencies = [
 
 [[package]]
 name = "clippy_utils"
-version = "0.1.95"
+version = "0.1.96"
 dependencies = [
  "arrayvec",
  "itertools",
@@ -538,7 +538,7 @@ checksum = "a0afaad2b26fa326569eb264b1363e8ae3357618c43982b3f285f0774ce76b69"
 
 [[package]]
 name = "declare_clippy_lint"
-version = "0.1.95"
+version = "0.1.96"
 
 [[package]]
 name = "defmt"
@@ -1849,6 +1849,7 @@ dependencies = [
  "rand_xoshiro",
  "rustc_data_structures",
  "rustc_error_messages",
+ "rustc_errors",
  "rustc_hashes",
  "rustc_index",
  "rustc_macros",
@@ -2252,7 +2253,6 @@ dependencies = [
  "anstream",
  "anstyle",
  "derive_setters",
- "rustc_abi",
  "rustc_ast",
  "rustc_data_structures",
  "rustc_error_codes",
@@ -2365,7 +2365,6 @@ dependencies = [
  "rustc_hir",
  "rustc_index",
  "rustc_infer",
- "rustc_lint",
  "rustc_lint_defs",
  "rustc_macros",
  "rustc_middle",
@@ -2582,6 +2581,7 @@ version = "0.0.0"
 dependencies = [
  "cc",
  "libc",
+ "shlex",
 ]
 
 [[package]]
@@ -2687,7 +2687,7 @@ dependencies = [
  "rustc_hir",
  "rustc_index",
  "rustc_infer",
- "rustc_lint",
+ "rustc_lint_defs",
  "rustc_macros",
  "rustc_middle",
  "rustc_pattern_analysis",
@@ -2910,11 +2910,9 @@ dependencies = [
  "rustc_data_structures",
  "rustc_errors",
  "rustc_hir",
- "rustc_index",
  "rustc_macros",
  "rustc_middle",
  "rustc_serialize",
- "rustc_session",
  "rustc_span",
  "rustc_thread_pool",
  "tracing",
@@ -3029,7 +3027,6 @@ dependencies = [
  "rustc-demangle",
  "rustc_abi",
  "rustc_data_structures",
- "rustc_errors",
  "rustc_hashes",
  "rustc_hir",
  "rustc_middle",
@@ -3150,6 +3147,7 @@ dependencies = [
  "ena",
  "indexmap",
  "rustc-hash 2.1.3",
+ "rustc_abi",
  "rustc_ast_ir",
  "rustc_data_structures",
  "rustc_error_messages",
@@ -3494,9 +3492,9 @@ dependencies = [
 
 [[package]]
 name = "stringdex"
-version = "0.0.5"
+version = "0.0.6"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "07ab85c3f308f022ce6861ab57576b5b6ebc4835f9577e67e0f35f6c351e3f0a"
+checksum = "155cb460a7ede06f71ac9961e28d3ba4b3408355e233f8edd158b957ceba3950"
 dependencies = [
  "stacker",
 ]
