@@ -1,41 +1,14 @@
 load("//platforms:name.bzl", "platform_info_label")
 
-def _unified_constraint_impl(ctx: AnalysisContext) -> list[Provider]:
-    label = ctx.label.raw_target()
-    setting = ConstraintSettingInfo(label = label)
-    value = ConstraintValueInfo(setting = setting, label = label)
-
-    return [
-        DefaultInfo(),
-        setting,
-        value,
-        ConfigurationInfo(
-            constraints = {label: value},
-            values = {},
-        ),
-    ]
-
-unified_constraint = rule(
-    impl = _unified_constraint_impl,
-    attrs = {},
-    is_configuration_rule = True,
-)
-
-def constraint(setting, values = []):
-    if values:
-        native.constraint_setting(
-            name = setting,
-            visibility = ["PUBLIC"],
-        )
-        for value in values:
-            native.constraint_value(
-                name = value,
-                constraint_setting = ":{}".format(setting),
-                visibility = ["PUBLIC"],
-            )
-    else:
-        unified_constraint(
-            name = setting,
+def constraint(setting, values):
+    native.constraint_setting(
+        name = setting,
+        visibility = ["PUBLIC"],
+    )
+    for value in values:
+        native.constraint_value(
+            name = value,
+            constraint_setting = ":{}".format(setting),
             visibility = ["PUBLIC"],
         )
 
