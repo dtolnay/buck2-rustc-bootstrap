@@ -2,7 +2,6 @@ load("@prelude//http_archive:exec_deps.bzl", "HttpArchiveExecDeps")
 load("@prelude//http_archive:unarchive.bzl", "unarchive")
 load("@prelude//os_lookup:defs.bzl", "OsLookup")
 load("@prelude//rust:targets.bzl", "targets")
-load("@prelude//utils:cmd_script.bzl", "cmd_script")
 load("//stage1:defs.bzl", "RustDistInfo")
 
 Stage0Info = provider(
@@ -199,16 +198,11 @@ def _stage0_executable_impl(ctx: AnalysisContext) -> list[Provider]:
     command = overlay.project("bin").project(ctx.label.name).with_associated_artifacts([overlay] + hidden)
 
     if ctx.attrs.env:
-        command = cmd_script(
-            actions = ctx.actions,
-            name = ctx.label.name,
-            cmd = cmd_args(
-                ctx.attrs._exec[RunInfo],
-                command,
-                ["{}={}".format(k, v) for k, v in ctx.attrs.env.items()],
-                "--",
-            ),
-            language = ctx.attrs._exec_os_type[OsLookup].script,
+        command = cmd_args(
+            ctx.attrs._exec[RunInfo],
+            command,
+            ["{}={}".format(k, v) for k, v in ctx.attrs.env.items()],
+            "--",
         )
 
     return [
@@ -224,7 +218,6 @@ stage0_executable = rule(
         "libdir": attrs.option(attrs.dep(), default = None),
         "_exec": attrs.default_only(attrs.exec_dep(providers = [RunInfo], default = "//stage0:exec")),
         "_frob": attrs.default_only(attrs.exec_dep(providers = [RunInfo], default = "//stage0:frob")),
-        "_exec_os_type": attrs.default_only(attrs.dep(providers = [OsLookup], default = "//platforms/exec:os_lookup")),
     },
     supports_incoming_transition = True,
 )
