@@ -1,4 +1,0 @@
-buildscript.run = true
-
-[env]
-MIME_TYPES_GENERATED_PATH = "$(location :mime_guess-2.0.5-build-script-run[out_dir])/mime_types_generated.rs"
