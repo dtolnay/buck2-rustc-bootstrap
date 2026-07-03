@@ -13,7 +13,6 @@ rust_library(
     ],
     preferred_linkage = "static",
     rustc_flags = [
-        "-Clink-arg=-fvisibility=hidden",
         "-Ainternal_features",
     ],
     visibility = ["PUBLIC"],
