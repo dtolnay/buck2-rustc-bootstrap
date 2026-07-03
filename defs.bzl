@@ -151,6 +151,7 @@ def cxx_bootstrap_library(
         name = "{}-compile".format(name),
         deps = deps + extra_deps,
         preferred_linkage = "static",
+        default_target_platform = "//platforms:host",
         target_compatible_with = target_compatible_with,
         **kwargs
     )
@@ -159,6 +160,7 @@ def cxx_bootstrap_library(
         name = name,
         actual = ":{}-compile".format(name),
         incoming_transition = "toolchains//cxx:prune_cxx_configuration",
+        default_target_platform = "//platforms:host",
         target_compatible_with = target_compatible_with,
         visibility = visibility,
     )
