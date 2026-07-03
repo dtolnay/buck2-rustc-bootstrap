@@ -4,6 +4,7 @@ unresolved_fixup_error = true
 bindeps = true
 
 [buck]
+platform_compatibility_on_all_targets = true
 buckfile_imports = """
 load("//crates.io:crate_download.bzl", "crate_download")
 load(
@@ -27,12 +28,15 @@ rust_bootstrap_library(
     crate = "rustc_driver",
     crate_root = "rust/compiler/rustc_driver/src/lib.rs",
     edition = "2024",
+    platform = {},
+    target_compatible_with = ["//constraints:compiler"],
     visibility = [],
     deps = [":rustc_driver_impl-0.0.0"],
 )
 """
 
 alias = "rust_bootstrap_alias"
+alias_with_platforms = "rust_bootstrap_alias"
 buildscript_genrule = "rust_bootstrap_buildscript_run"
 cxx_library = "cxx_bootstrap_library"
 http_archive = "crate_download"

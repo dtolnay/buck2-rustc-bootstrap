@@ -2,10 +2,13 @@ load("@prelude//:rules.bzl", "rust_library")
 load("@prelude//rust:cargo_buildscript.bzl", "buildscript_run")
 load("@prelude//rust:cargo_package.bzl", "apply_platform_attrs")
 load("@prelude//rust:proc_macro_alias.bzl", "rust_proc_macro_alias")
+load("@prelude//utils:lazy.bzl", "lazy")
+load("@prelude//utils:selects.bzl", "selects")
 load("@prelude//utils:type_defs.bzl", "is_select")
 load("//constraints:defs.bzl", "transition_alias")
 
 REINDEER_PLATFORMS = select({
+    "DEFAULT": None,
     "prelude//os:linux": select({
         "prelude//cpu:arm64": select({
             "//constraints:library": "linux-arm64-library",
@@ -42,11 +45,12 @@ REINDEER_PLATFORMS = select({
     }),
 })
 
-def rust_bootstrap_alias(actual, **kwargs):
+def rust_bootstrap_alias(actual, platforms, **kwargs):
     if not actual.endswith("-0.0.0"):
         native.alias(
             actual = actual,
-            target_compatible_with = _target_constraints(None),
+            default_target_platform = _default_target_platform(platforms),
+            target_compatible_with = _target_constraints(platforms, kwargs),
             **kwargs
         )
 
@@ -54,7 +58,7 @@ def rust_bootstrap_binary(
         name,
         crate,
         crate_root,
-        platform = {},
+        platform,
         rustc_flags = [],
         **kwargs):
     extra_rustc_flags = []
@@ -73,7 +77,7 @@ def rust_bootstrap_binary(
         crate_root = crate_root,
         default_target_platform = default_target_platform,
         rustc_flags = rustc_flags + extra_rustc_flags,
-        target_compatible_with = _target_constraints(crate_root),
+        target_compatible_with = _target_constraints(platform, kwargs),
         **apply_platform_attrs(platform, kwargs)
     )
 
@@ -81,9 +85,9 @@ def rust_bootstrap_library(
         name,
         crate,
         crate_root,
+        platform,
         deps = [],
         env = {},
-        platform = {},
         preferred_linkage = None,
         proc_macro = False,
         rustc_flags = [],
@@ -114,10 +118,10 @@ def rust_bootstrap_library(
         extra_env["CFG_COMPILER_HOST_TRIPLE"] = "$(target_triple)"
         extra_deps.append("toolchains//target:rustc_target_triple")
     else:
-        default_target_platform = None
+        default_target_platform = _default_target_platform(platform)
         extra_rustc_flags.append("--cap-lints=allow")
 
-    target_compatible_with = target_compatible_with or _target_constraints(crate_root)
+    target_compatible_with = target_compatible_with or _target_constraints(platform, kwargs)
 
     if name.endswith("-0.0.0"):
         versioned_name = name
@@ -159,8 +163,8 @@ def rust_bootstrap_library(
         ))
     )
 
-def rust_bootstrap_buildscript_run(**kwargs):
-    constraints = _target_constraints(None)
+def rust_bootstrap_buildscript_run(platform, **kwargs):
+    constraints = _target_constraints(platform, kwargs)
     buildscript_run(
         target_compatible_with = constraints,
         buildscript_compatible_with = select({
@@ -172,6 +176,7 @@ def rust_bootstrap_buildscript_run(**kwargs):
 
 def cxx_bootstrap_library(
         name,
+        platform,
         deps = [],
         target_compatible_with = [],
         visibility = None,
@@ -194,7 +199,7 @@ def cxx_bootstrap_library(
         preferred_linkage = "static",
         default_target_platform = "//platforms:host",
         target_compatible_with = target_compatible_with,
-        **kwargs
+        **apply_platform_attrs(platform, kwargs)
     )
 
     transition_alias(
@@ -206,16 +211,21 @@ def cxx_bootstrap_library(
         visibility = visibility,
     )
 
-def _target_constraints(crate_root):
-    if crate_root and crate_root.startswith("rust/library/"):
-        target_compatible_with = ["//constraints:library"]
-    elif crate_root and (crate_root.startswith("rust/compiler/") or crate_root.startswith("rust/src/")):
-        target_compatible_with = ["//constraints:compiler"]
+def _default_target_platform(platforms):
+    if lazy.is_any(lambda p: p.endswith("-compiler"), platforms):
+        return "//platforms/stage1:compiler"
+    elif lazy.is_any(lambda p: p.endswith("-library"), platforms):
+        return "//platforms/stage1:library"
     else:
-        target_compatible_with = select({
-            "DEFAULT": ["prelude//:none"],
-            "//constraints:compiler": [],
-            "//constraints:library": [],
-        })
+        fail()
 
-    return target_compatible_with
+def _target_constraints(platforms, kwargs):
+    target_compatible_with = kwargs.pop("target_compatible_with", [])
+
+    if kwargs.get("proc_macro", False) or platforms == {}:
+        return target_compatible_with
+    else:
+        return selects.apply(
+            REINDEER_PLATFORMS,
+            lambda p: target_compatible_with if p in platforms else ["prelude//:none"],
+        )
