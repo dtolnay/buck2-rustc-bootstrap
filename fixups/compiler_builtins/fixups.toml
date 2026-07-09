@@ -9,6 +9,9 @@ rustc_flags = [
     "-Ccodegen-units=10000",
 ]
 
+[buildscript.build]
+extra_srcs = ["../libm/configure.rs"]
+
 [buildscript.run.env]
 # Read by the  build script, but only relevant to libm tests.
 OPT_LEVEL = "3"
