@@ -3053,23 +3053,27 @@ rust_bootstrap_buildscript_run(
 )
 
 crate_download(
-    name = "crossbeam-deque-0.8.6.crate",
-    sha256 = "9dd111b7b7f7d55b72c0a6ae361660ee5853c9af73f70c3c2ef6858b950e2e51",
-    strip_prefix = "crossbeam-deque-0.8.6",
-    urls = ["https://static.crates.io/crates/crossbeam-deque/0.8.6/download"],
+    name = "crossbeam-deque-0.8.7.crate",
+    sha256 = "5181e0de7b61eb03a81e347d6dd8797bae9da5146707b51077e2d71a54ec0ceb",
+    strip_prefix = "crossbeam-deque-0.8.7",
+    urls = ["https://static.crates.io/crates/crossbeam-deque/0.8.7/download"],
     visibility = [],
 )
 
 rust_bootstrap_library(
     name = "crossbeam-deque-0.8",
-    srcs = [":crossbeam-deque-0.8.6.crate"],
+    srcs = [":crossbeam-deque-0.8.7.crate"],
     crate = "crossbeam_deque",
-    crate_root = "crossbeam-deque-0.8.6.crate/src/lib.rs",
+    crate_root = "crossbeam-deque-0.8.7.crate/src/lib.rs",
     edition = "2021",
+    env = {
+        "OUT_DIR": "$(location :crossbeam-deque-0.8-build-script-run[out_dir])",
+    },
     features = [
         "default",
         "std",
     ],
+    rustc_flags = ["@$(location :crossbeam-deque-0.8-build-script-run[rustc_flags])"],
     visibility = [],
     deps = [
         ":crossbeam-epoch-0.9",
@@ -3077,41 +3081,93 @@ rust_bootstrap_library(
     ],
 )
 
+rust_bootstrap_binary(
+    name = "crossbeam-deque-0.8-build-script-build",
+    srcs = [":crossbeam-deque-0.8.7.crate"],
+    crate = "build_script_build",
+    crate_root = "crossbeam-deque-0.8.7.crate/build.rs",
+    edition = "2021",
+    features = [
+        "default",
+        "std",
+    ],
+    visibility = [],
+)
+
+rust_bootstrap_buildscript_run(
+    name = "crossbeam-deque-0.8-build-script-run",
+    package_name = "crossbeam-deque",
+    buildscript_rule = ":crossbeam-deque-0.8-build-script-build",
+    features = [
+        "default",
+        "std",
+    ],
+    version = "0.8.7",
+)
+
 crate_download(
-    name = "crossbeam-epoch-0.9.18.crate",
-    sha256 = "5b82ac4a3c2ca9c3460964f020e1402edd5753411d7737aa39c3714ad1b5420e",
-    strip_prefix = "crossbeam-epoch-0.9.18",
-    urls = ["https://static.crates.io/crates/crossbeam-epoch/0.9.18/download"],
+    name = "crossbeam-epoch-0.9.20.crate",
+    sha256 = "2d6914041f254d6e9176c01941b21115dcfb7089e55135a35411081bd106ef3f",
+    strip_prefix = "crossbeam-epoch-0.9.20",
+    urls = ["https://static.crates.io/crates/crossbeam-epoch/0.9.20/download"],
     visibility = [],
 )
 
 rust_bootstrap_library(
     name = "crossbeam-epoch-0.9",
-    srcs = [":crossbeam-epoch-0.9.18.crate"],
+    srcs = [":crossbeam-epoch-0.9.20.crate"],
     crate = "crossbeam_epoch",
-    crate_root = "crossbeam-epoch-0.9.18.crate/src/lib.rs",
+    crate_root = "crossbeam-epoch-0.9.20.crate/src/lib.rs",
+    edition = "2021",
+    env = {
+        "OUT_DIR": "$(location :crossbeam-epoch-0.9-build-script-run[out_dir])",
+    },
+    features = [
+        "alloc",
+        "std",
+    ],
+    rustc_flags = ["@$(location :crossbeam-epoch-0.9-build-script-run[rustc_flags])"],
+    visibility = [],
+    deps = [":crossbeam-utils-0.8"],
+)
+
+rust_bootstrap_binary(
+    name = "crossbeam-epoch-0.9-build-script-build",
+    srcs = [":crossbeam-epoch-0.9.20.crate"],
+    crate = "build_script_build",
+    crate_root = "crossbeam-epoch-0.9.20.crate/build.rs",
     edition = "2021",
     features = [
         "alloc",
         "std",
     ],
     visibility = [],
-    deps = [":crossbeam-utils-0.8"],
+)
+
+rust_bootstrap_buildscript_run(
+    name = "crossbeam-epoch-0.9-build-script-run",
+    package_name = "crossbeam-epoch",
+    buildscript_rule = ":crossbeam-epoch-0.9-build-script-build",
+    features = [
+        "alloc",
+        "std",
+    ],
+    version = "0.9.20",
 )
 
 crate_download(
-    name = "crossbeam-utils-0.8.21.crate",
-    sha256 = "d0a5c400df2834b80a4c3327b3aad3a4c4cd4de0629063962b03235697506a28",
-    strip_prefix = "crossbeam-utils-0.8.21",
-    urls = ["https://static.crates.io/crates/crossbeam-utils/0.8.21/download"],
+    name = "crossbeam-utils-0.8.22.crate",
+    sha256 = "61803da095bee82a81bb1a452ecc25d3b2f1416d1897eb86430c6159ef717c17",
+    strip_prefix = "crossbeam-utils-0.8.22",
+    urls = ["https://static.crates.io/crates/crossbeam-utils/0.8.22/download"],
     visibility = [],
 )
 
 rust_bootstrap_library(
     name = "crossbeam-utils-0.8",
-    srcs = [":crossbeam-utils-0.8.21.crate"],
+    srcs = [":crossbeam-utils-0.8.22.crate"],
     crate = "crossbeam_utils",
-    crate_root = "crossbeam-utils-0.8.21.crate/src/lib.rs",
+    crate_root = "crossbeam-utils-0.8.22.crate/src/lib.rs",
     edition = "2021",
     features = [
         "default",
@@ -4018,6 +4074,12 @@ rust_bootstrap_library(
         "macos-x86_64-compiler": dict(
             deps = [":libc-0.2"],
         ),
+        "windows-gnu-compiler": dict(
+            features = ["std"],
+        ),
+        "windows-msvc-compiler": dict(
+            features = ["std"],
+        ),
     },
     visibility = [],
     deps = [":cfg-if-1"],
@@ -4691,18 +4753,18 @@ rust_bootstrap_library(
 )
 
 crate_download(
-    name = "jiff-0.2.31.crate",
-    sha256 = "ccfe6121cbe750cf81efa362d85c0bde7ea298ec43092d3a193baca59cdbd634",
-    strip_prefix = "jiff-0.2.31",
-    urls = ["https://static.crates.io/crates/jiff/0.2.31/download"],
+    name = "jiff-0.2.32.crate",
+    sha256 = "961d16382652bfdd8c6f68b223b26a8c93e0d475c672f414411db31c6c5c900e",
+    strip_prefix = "jiff-0.2.32",
+    urls = ["https://static.crates.io/crates/jiff/0.2.32/download"],
     visibility = [],
 )
 
 rust_bootstrap_library(
     name = "jiff-0.2",
-    srcs = [":jiff-0.2.31.crate"],
+    srcs = [":jiff-0.2.32.crate"],
     crate = "jiff",
-    crate_root = "jiff-0.2.31.crate/src/lib.rs",
+    crate_root = "jiff-0.2.32.crate/src/lib.rs",
     edition = "2021",
     features = [
         "alloc",
@@ -4712,18 +4774,18 @@ rust_bootstrap_library(
 )
 
 crate_download(
-    name = "jobserver-0.1.34.crate",
-    sha256 = "9afb3de4395d6b3e67a780b6de64b51c978ecf11cb9a462c66be7d4ca9039d33",
-    strip_prefix = "jobserver-0.1.34",
-    urls = ["https://static.crates.io/crates/jobserver/0.1.34/download"],
+    name = "jobserver-0.1.35.crate",
+    sha256 = "1c00acbd29eabad4a2392fa0e921c874934dbbf4194312ad20f04a0ed67a3cb3",
+    strip_prefix = "jobserver-0.1.35",
+    urls = ["https://static.crates.io/crates/jobserver/0.1.35/download"],
     visibility = [],
 )
 
 rust_bootstrap_library(
     name = "jobserver-0.1",
-    srcs = [":jobserver-0.1.34.crate"],
+    srcs = [":jobserver-0.1.35.crate"],
     crate = "jobserver",
-    crate_root = "jobserver-0.1.34.crate/src/lib.rs",
+    crate_root = "jobserver-0.1.35.crate/src/lib.rs",
     edition = "2021",
     platform = {
         "linux-arm64-compiler": dict(
@@ -4742,10 +4804,10 @@ rust_bootstrap_library(
             deps = [":libc-0.2"],
         ),
         "windows-gnu-compiler": dict(
-            deps = [":getrandom-0.3"],
+            deps = [":getrandom-0.4"],
         ),
         "windows-msvc-compiler": dict(
-            deps = [":getrandom-0.3"],
+            deps = [":getrandom-0.4"],
         ),
     },
     visibility = [],
@@ -5343,18 +5405,18 @@ rust_bootstrap_library(
 )
 
 crate_download(
-    name = "memchr-2.8.2.crate",
-    sha256 = "88904434abc2901f197fe8cc55f0445e7ded921dba5911dad2e2b39b48e663c4",
-    strip_prefix = "memchr-2.8.2",
-    urls = ["https://static.crates.io/crates/memchr/2.8.2/download"],
+    name = "memchr-2.8.3.crate",
+    sha256 = "cf8baf1c55e62ffcace7a9f06f4bd9cd3f0c4beb022d3b367256b91b87513d98",
+    strip_prefix = "memchr-2.8.3",
+    urls = ["https://static.crates.io/crates/memchr/2.8.3/download"],
     visibility = [],
 )
 
 rust_bootstrap_library(
     name = "memchr-2",
-    srcs = [":memchr-2.8.2.crate"],
+    srcs = [":memchr-2.8.3.crate"],
     crate = "memchr",
-    crate_root = "memchr-2.8.2.crate/src/lib.rs",
+    crate_root = "memchr-2.8.3.crate/src/lib.rs",
     edition = "2021",
     platform = {
         "linux-arm64-compiler": dict(
@@ -7477,18 +7539,18 @@ rust_bootstrap_library(
 )
 
 crate_download(
-    name = "regex-1.12.4.crate",
-    sha256 = "f1292b7759ae1cb9ec195452d1390a074f0cd8541ab7a5a8c31cd6db45d4a6ba",
-    strip_prefix = "regex-1.12.4",
-    urls = ["https://static.crates.io/crates/regex/1.12.4/download"],
+    name = "regex-1.13.0.crate",
+    sha256 = "2a0e75113e14dc5acb068cd0786884f214f1312650a3d36d269f5c4f3cdee8a2",
+    strip_prefix = "regex-1.13.0",
+    urls = ["https://static.crates.io/crates/regex/1.13.0/download"],
     visibility = [],
 )
 
 rust_bootstrap_library(
     name = "regex-1",
-    srcs = [":regex-1.12.4.crate"],
+    srcs = [":regex-1.13.0.crate"],
     crate = "regex",
-    crate_root = "regex-1.12.4.crate/src/lib.rs",
+    crate_root = "regex-1.13.0.crate/src/lib.rs",
     edition = "2021",
     features = [
         "default",
@@ -7519,18 +7581,18 @@ rust_bootstrap_library(
 )
 
 crate_download(
-    name = "regex-automata-0.4.14.crate",
-    sha256 = "6e1dd4122fc1595e8162618945476892eefca7b88c52820e74af6262213cae8f",
-    strip_prefix = "regex-automata-0.4.14",
-    urls = ["https://static.crates.io/crates/regex-automata/0.4.14/download"],
+    name = "regex-automata-0.4.15.crate",
+    sha256 = "1f388202e4b80542a0921078cc23b6333bcf1409c1e3f86404cae4766a6131db",
+    strip_prefix = "regex-automata-0.4.15",
+    urls = ["https://static.crates.io/crates/regex-automata/0.4.15/download"],
     visibility = [],
 )
 
 rust_bootstrap_library(
     name = "regex-automata-0.4",
-    srcs = [":regex-automata-0.4.14.crate"],
+    srcs = [":regex-automata-0.4.15.crate"],
     crate = "regex_automata",
-    crate_root = "regex-automata-0.4.14.crate/src/lib.rs",
+    crate_root = "regex-automata-0.4.15.crate/src/lib.rs",
     edition = "2021",
     features = [
         "alloc",
@@ -7596,18 +7658,18 @@ rust_bootstrap_library(
 )
 
 crate_download(
-    name = "rustc-demangle-0.1.27.crate",
-    sha256 = "b50b8869d9fc858ce7266cce0194bd74df58b9d0e3f6df3a9fc8eb470d95c09d",
-    strip_prefix = "rustc-demangle-0.1.27",
-    urls = ["https://static.crates.io/crates/rustc-demangle/0.1.27/download"],
+    name = "rustc-demangle-0.1.28.crate",
+    sha256 = "b74b56ffa8bb2830709a538c2cbcae9aa062db0d2a42563bfb09bdaae44020eb",
+    strip_prefix = "rustc-demangle-0.1.28",
+    urls = ["https://static.crates.io/crates/rustc-demangle/0.1.28/download"],
     visibility = [],
 )
 
 rust_bootstrap_library(
     name = "rustc-demangle-0.1",
-    srcs = [":rustc-demangle-0.1.27.crate"],
+    srcs = [":rustc-demangle-0.1.28.crate"],
     crate = "rustc_demangle",
-    crate_root = "rustc-demangle-0.1.27.crate/src/lib.rs",
+    crate_root = "rustc-demangle-0.1.28.crate/src/lib.rs",
     edition = "2015",
     platform = {
         "linux-arm64-library": dict(
@@ -16994,21 +17056,21 @@ rust_bootstrap_library(
 )
 
 crate_download(
-    name = "zerocopy-0.8.52.crate",
-    sha256 = "ce1022995ff5ff5d841ad7d994facc23098cd40152f2c1d11cd607c6f530653f",
-    strip_prefix = "zerocopy-0.8.52",
-    urls = ["https://static.crates.io/crates/zerocopy/0.8.52/download"],
+    name = "zerocopy-0.8.54.crate",
+    sha256 = "b7cbbc0a705a0fd05cc3676525980d2bf5a9bc4adac6d6475209a7887cf59d19",
+    strip_prefix = "zerocopy-0.8.54",
+    urls = ["https://static.crates.io/crates/zerocopy/0.8.54/download"],
     visibility = [],
 )
 
 rust_bootstrap_library(
     name = "zerocopy-0.8",
-    srcs = [":zerocopy-0.8.52.crate"],
+    srcs = [":zerocopy-0.8.54.crate"],
     crate = "zerocopy",
-    crate_root = "zerocopy-0.8.52.crate/src/lib.rs",
+    crate_root = "zerocopy-0.8.54.crate/src/lib.rs",
     edition = "2021",
     env = {
-        "CARGO_PKG_VERSION": "0.8.52",
+        "CARGO_PKG_VERSION": "0.8.54",
     },
     features = ["simd"],
     visibility = [],
