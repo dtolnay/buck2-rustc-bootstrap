@@ -57,7 +57,7 @@ def _llvm_rustc_flags_impl(ctx: AnalysisContext) -> list[Provider]:
 llvm_rustc_flags = rule(
     impl = _llvm_rustc_flags_impl,
     attrs = {
-        "host_llvm_config": attrs.dep(providers = [RunInfo]),
+        "host_llvm_config": attrs.exec_dep(providers = [RunInfo]),
         "_redirect_stdout": attrs.default_only(attrs.exec_dep(providers = [RunInfo], default = "prelude//rust/tools:redirect_stdout")),
     },
 )
@@ -108,7 +108,7 @@ def _llvm_cxx_flags_impl(ctx: AnalysisContext) -> list[Provider]:
 llvm_cxx_flags = rule(
     impl = _llvm_cxx_flags_impl,
     attrs = {
-        "host_llvm_config": attrs.dep(providers = [RunInfo]),
+        "host_llvm_config": attrs.exec_dep(providers = [RunInfo]),
         "_redirect_stdout": attrs.default_only(attrs.exec_dep(providers = [RunInfo], default = "prelude//rust/tools:redirect_stdout")),
     },
 )
@@ -157,7 +157,7 @@ def _llvm_preprocessor_flags_impl(ctx: AnalysisContext) -> list[Provider]:
 llvm_preprocessor_flags = rule(
     impl = _llvm_preprocessor_flags_impl,
     attrs = {
-        "host_llvm_config": attrs.dep(providers = [RunInfo]),
+        "host_llvm_config": attrs.exec_dep(providers = [RunInfo]),
         "_redirect_stdout": attrs.default_only(attrs.exec_dep(providers = [RunInfo], default = "prelude//rust/tools:redirect_stdout")),
     },
 )
@@ -245,7 +245,7 @@ def _llvm_linker_flags_impl(ctx: AnalysisContext) -> list[Provider]:
 llvm_linker_flags = rule(
     impl = _llvm_linker_flags_impl,
     attrs = {
-        "host_llvm_config": attrs.dep(providers = [RunInfo]),
+        "host_llvm_config": attrs.exec_dep(providers = [RunInfo]),
         "target_llvm": attrs.dep(),
         "_frob": attrs.default_only(attrs.exec_dep(providers = [RunInfo], default = "//stage0:frob")),
         "_redirect_stdout": attrs.default_only(attrs.exec_dep(providers = [RunInfo], default = "prelude//rust/tools:redirect_stdout")),

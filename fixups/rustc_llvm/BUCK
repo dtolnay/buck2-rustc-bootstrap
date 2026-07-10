@@ -12,33 +12,27 @@ llvm_config(
     llvm = "//stage0:ci_llvm",
 )
 
-configured_alias(
-    name = "host-llvm-config",
-    actual = ":llvm-config",
-    platform = "//platforms:host",
-)
-
 llvm_rustc_flags(
     name = "rustc-flags",
-    host_llvm_config = ":host-llvm-config",
+    host_llvm_config = ":llvm-config",
     visibility = ["//:rustc_llvm"],
 )
 
 llvm_cxx_flags(
     name = "cxx-flags",
-    host_llvm_config = ":host-llvm-config",
+    host_llvm_config = ":llvm-config",
     visibility = ["//:rustc_llvm-0.0.0-llvm-wrapper-compile"],
 )
 
 llvm_preprocessor_flags(
     name = "preprocessor-flags",
-    host_llvm_config = ":host-llvm-config",
+    host_llvm_config = ":llvm-config",
     visibility = ["//:rustc_llvm-0.0.0-llvm-wrapper-compile"],
 )
 
 llvm_linker_flags(
     name = "linker-flags",
-    host_llvm_config = ":host-llvm-config",
+    host_llvm_config = ":llvm-config",
     target_llvm = "//stage0:ci_llvm",
 )
 
