@@ -8,7 +8,10 @@ load("@prelude//platforms:defs.bzl", "host_configuration")
 def platform_info_label(constraints: dict[TargetLabel, ConstraintValueInfo]) -> str:
     settings = {}
     for constraint in constraints.values():
-        settings[str(constraint.setting.label)] = constraint.label.name
+        if constraint.label.sub_target:
+            settings[str(constraint.setting.label)] = "-".join(constraint.label.sub_target)
+        else:
+            settings[str(constraint.setting.label)] = constraint.label.name
 
     stage = settings.get("rust//constraints:bootstrap-stage")
     workspace = settings.get("rust//constraints:workspace")
