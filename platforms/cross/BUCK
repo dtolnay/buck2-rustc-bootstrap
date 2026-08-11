@@ -2,8 +2,8 @@
     platform(
         name = name,
         constraint_values = [
-            "prelude//cpu/constraints:{}".format(cpu),
-            "prelude//os/constraints:{}".format(os),
+            "prelude//cpu/constraints:cpu[{}]".format(cpu),
+            "prelude//os/constraints:os[{}]".format(os),
         ],
         visibility = ["PUBLIC"],
     )

@@ -17,8 +17,8 @@ srcs = [
 compiler_flags = ["-mavx512f", "-mavx512vl"]
 headers = ["c/*.h"]
 target_compatible_with = [
-    "prelude//cpu/constraints:x86_64",
-    "prelude//os/constraints:linux || prelude//os/constraints:macos",
+    "prelude//cpu/constraints:cpu[x86_64]",
+    "prelude//os/constraints:os[linux] || prelude//os/constraints:os[macos]",
 ]
 
 [['cfg(all(target_arch = "x86_64", target_os = "windows", target_env = "gnu"))'.cxx_library]]
@@ -35,8 +35,8 @@ srcs = [
 compiler_flags = ["-mavx512f", "-mavx512vl"]
 headers = ["c/*.h"]
 target_compatible_with = [
-    "prelude//cpu/constraints:x86_64",
-    "prelude//os/constraints:windows",
+    "prelude//cpu/constraints:cpu[x86_64]",
+    "prelude//os/constraints:os[windows]",
 ]
 
 [['cfg(all(target_arch = "x86_64", target_os = "windows", target_env = "msvc"))'.cxx_library]]
@@ -52,8 +52,8 @@ srcs = [
 ]
 headers = ["c/*.h"]
 target_compatible_with = [
-    "prelude//cpu/constraints:x86_64",
-    "prelude//os/constraints:windows",
+    "prelude//cpu/constraints:cpu[x86_64]",
+    "prelude//os/constraints:os[windows]",
 ]
 
 ['cfg(any(target_arch = "aarch64", target_arch = "arm"))']
@@ -64,5 +64,5 @@ name = "simd_neon-aarch64"
 srcs = ["c/blake3_neon.c"]
 headers = ["c/*.h"]
 target_compatible_with = [
-    "prelude//cpu/constraints:arm64",
+    "prelude//cpu/constraints:cpu[arm64]",
 ]

@@ -14,9 +14,9 @@ def executor_config(configuration: ConfigurationInfo) -> CommandExecutorConfig:
     use_windows_path_separators = False
     remote_arch = "amd64"
     for value in configuration.constraints.values():
-        if str(value.label) == "prelude//os/constraints:windows":
+        if str(value.label) == "prelude//os/constraints:os[windows]":
             use_windows_path_separators = True
-        if str(value.label) == "prelude//cpu/constraints:arm64":
+        if str(value.label) == "prelude//cpu/constraints:cpu[arm64]":
             remote_arch = "arm64"
 
     if read_config("buck2_re_client", "engine_address"):

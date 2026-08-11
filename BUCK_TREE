@@ -15,13 +15,13 @@ set_cfg_constructor(
         stage1 = "//constraints:stage1",
         stage2 = "//constraints:stage2",
         # Architecture (prelude//cpu/constraints:cpu)
-        aarch64 = "prelude//cpu/constraints:arm64",
-        riscv64 = "prelude//cpu/constraints:riscv64",
-        x86_64 = "prelude//cpu/constraints:x86_64",
+        aarch64 = "prelude//cpu/constraints:cpu[arm64]",
+        riscv64 = "prelude//cpu/constraints:cpu[riscv64]",
+        x86_64 = "prelude//cpu/constraints:cpu[x86_64]",
         # Operating system (prelude//os/constraints:os)
-        linux = "prelude//os/constraints:linux",
-        macos = "prelude//os/constraints:macos",
-        windows = "prelude//os/constraints:windows",
+        linux = "prelude//os/constraints:os[linux]",
+        macos = "prelude//os/constraints:os[macos]",
+        windows = "prelude//os/constraints:os[windows]",
     ),  # buildifier: leave-alone
     extra_data = struct(),
     key = MODIFIER_METADATA_KEY,

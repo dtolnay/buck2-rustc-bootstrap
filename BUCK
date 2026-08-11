@@ -777,7 +777,7 @@ cxx_bootstrap_library(
         ":blake3-1.8.5.crate[c/blake3.h]",
         ":blake3-1.8.5.crate[c/blake3_impl.h]",
     ],
-    target_compatible_with = ["prelude//cpu/constraints:arm64"],
+    target_compatible_with = ["prelude//cpu/constraints:cpu[arm64]"],
     visibility = [],
 )
 
@@ -801,8 +801,8 @@ cxx_bootstrap_library(
         "-mavx512vl",
     ],
     target_compatible_with = [
-        "prelude//cpu/constraints:x86_64",
-        "prelude//os/constraints:linux || prelude//os/constraints:macos",
+        "prelude//cpu/constraints:cpu[x86_64]",
+        "prelude//os/constraints:os[linux] || prelude//os/constraints:os[macos]",
     ],
     visibility = [],
 )
@@ -827,8 +827,8 @@ cxx_bootstrap_library(
         "-mavx512vl",
     ],
     target_compatible_with = [
-        "prelude//cpu/constraints:x86_64",
-        "prelude//os/constraints:windows",
+        "prelude//cpu/constraints:cpu[x86_64]",
+        "prelude//os/constraints:os[windows]",
     ],
     visibility = [],
 )
@@ -849,8 +849,8 @@ cxx_bootstrap_library(
         ":blake3-1.8.5.crate[c/blake3_impl.h]",
     ],
     target_compatible_with = [
-        "prelude//cpu/constraints:x86_64",
-        "prelude//os/constraints:windows",
+        "prelude//cpu/constraints:cpu[x86_64]",
+        "prelude//os/constraints:os[windows]",
     ],
     visibility = [],
 )
@@ -7112,8 +7112,8 @@ cxx_bootstrap_library(
     headers = [":psm-0.1.26.crate[src/arch/psm.h]"],
     compiler_flags = ["-xassembler-with-cpp"],
     target_compatible_with = [
-        "prelude//cpu/constraints:arm64",
-        "prelude//os/constraints:linux",
+        "prelude//cpu/constraints:cpu[arm64]",
+        "prelude//os/constraints:os[linux]",
     ],
     visibility = [],
 )
@@ -7124,8 +7124,8 @@ cxx_bootstrap_library(
     headers = [":psm-0.1.26.crate[src/arch/psm.h]"],
     compiler_flags = ["-xassembler-with-cpp"],
     target_compatible_with = [
-        "prelude//cpu/constraints:x86_64",
-        "prelude//os/constraints:linux",
+        "prelude//cpu/constraints:cpu[x86_64]",
+        "prelude//os/constraints:os[linux]",
     ],
     visibility = [],
 )
@@ -7137,8 +7137,8 @@ cxx_bootstrap_library(
     compiler_flags = ["-xassembler-with-cpp"],
     preprocessor_flags = ["-DCFG_TARGET_OS_macos"],
     target_compatible_with = [
-        "prelude//cpu/constraints:arm64",
-        "prelude//os/constraints:macos",
+        "prelude//cpu/constraints:cpu[arm64]",
+        "prelude//os/constraints:os[macos]",
     ],
     visibility = [],
 )
@@ -7150,8 +7150,8 @@ cxx_bootstrap_library(
     compiler_flags = ["-xassembler-with-cpp"],
     preprocessor_flags = ["-DCFG_TARGET_OS_macos"],
     target_compatible_with = [
-        "prelude//cpu/constraints:x86_64",
-        "prelude//os/constraints:macos",
+        "prelude//cpu/constraints:cpu[x86_64]",
+        "prelude//os/constraints:os[macos]",
     ],
     visibility = [],
 )
@@ -7162,8 +7162,8 @@ cxx_bootstrap_library(
     headers = [":psm-0.1.26.crate[src/arch/psm.h]"],
     compiler_flags = ["-xassembler-with-cpp"],
     target_compatible_with = [
-        "prelude//cpu/constraints:x86_64",
-        "prelude//os/constraints:windows",
+        "prelude//cpu/constraints:cpu[x86_64]",
+        "prelude//os/constraints:os[windows]",
     ],
     visibility = [],
 )
@@ -7173,8 +7173,8 @@ cxx_bootstrap_library(
     srcs = [":psm-0.1.26.crate[src/arch/x86_64_msvc.asm]"],
     headers = [":psm-0.1.26.crate[src/arch/psm.h]"],
     target_compatible_with = [
-        "prelude//cpu/constraints:x86_64",
-        "prelude//os/constraints:windows",
+        "prelude//cpu/constraints:cpu[x86_64]",
+        "prelude//os/constraints:os[windows]",
     ],
     visibility = [],
 )
@@ -13438,7 +13438,7 @@ cxx_bootstrap_library(
     srcs = [":stacker-0.1.21.crate[src/arch/windows.c]"],
     headers = [],
     compiler_flags = ["-DWINDOWS"],
-    target_compatible_with = ["prelude//os/constraints:windows"],
+    target_compatible_with = ["prelude//os/constraints:os[windows]"],
     visibility = [],
 )
 
