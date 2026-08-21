@@ -127,18 +127,18 @@ rust_bootstrap_library(
 )
 
 crate_download(
-    name = "aho-corasick-1.1.4.crate",
-    sha256 = "ddd31a130427c27518df266943a5308ed92d4b226cc639f5a8f1002816174301",
-    strip_prefix = "aho-corasick-1.1.4",
-    urls = ["https://static.crates.io/crates/aho-corasick/1.1.4/download"],
+    name = "aho-corasick-1.1.5.crate",
+    sha256 = "c982642fa9e8606056828ee9a8505737230110bb1099153c79efe865c59d12ba",
+    strip_prefix = "aho-corasick-1.1.5",
+    urls = ["https://static.crates.io/crates/aho-corasick/1.1.5/download"],
     visibility = [],
 )
 
 rust_bootstrap_library(
     name = "aho-corasick-1",
-    srcs = [":aho-corasick-1.1.4.crate"],
+    srcs = [":aho-corasick-1.1.5.crate"],
     crate = "aho_corasick",
-    crate_root = "aho-corasick-1.1.4.crate/src/lib.rs",
+    crate_root = "aho-corasick-1.1.5.crate/src/lib.rs",
     edition = "2021",
     features = [
         "perf-literal",
@@ -424,38 +424,21 @@ rust_bootstrap_library(
 )
 
 crate_download(
-    name = "ar_archive_writer-0.5.2.crate",
-    sha256 = "4087686b4b0a3427190bae57a1d9a478dbb2d40c5dc1bd6e2b6d797913bdd348",
-    strip_prefix = "ar_archive_writer-0.5.2",
-    urls = ["https://static.crates.io/crates/ar_archive_writer/0.5.2/download"],
+    name = "ar_archive_writer-0.5.3.crate",
+    sha256 = "73cd58deff2140a0a8eae87e417bd01db68a33e148aa93d1e8cd837e55e312b6",
+    strip_prefix = "ar_archive_writer-0.5.3",
+    urls = ["https://static.crates.io/crates/ar_archive_writer/0.5.3/download"],
     visibility = [],
 )
 
 rust_bootstrap_library(
     name = "ar_archive_writer-0.5",
-    srcs = [":ar_archive_writer-0.5.2.crate"],
+    srcs = [":ar_archive_writer-0.5.3.crate"],
     crate = "ar_archive_writer",
-    crate_root = "ar_archive_writer-0.5.2.crate/src/lib.rs",
+    crate_root = "ar_archive_writer-0.5.3.crate/src/lib.rs",
     edition = "2024",
     visibility = [],
-    deps = [":object-0.37"],
-)
-
-crate_download(
-    name = "arrayref-0.3.9.crate",
-    sha256 = "76a2e8124351fda1ef8aaaa3bbd7ebbcb486bbcd4225aca0aa0d84bb2db8fecb",
-    strip_prefix = "arrayref-0.3.9",
-    urls = ["https://static.crates.io/crates/arrayref/0.3.9/download"],
-    visibility = [],
-)
-
-rust_bootstrap_library(
-    name = "arrayref-0.3",
-    srcs = [":arrayref-0.3.9.crate"],
-    crate = "arrayref",
-    crate_root = "arrayref-0.3.9.crate/src/lib.rs",
-    edition = "2015",
-    visibility = [],
+    deps = [":object-0.39"],
 )
 
 crate_download(
@@ -632,18 +615,18 @@ rust_bootstrap_library(
 )
 
 crate_download(
-    name = "bitflags-2.13.0.crate",
-    sha256 = "b4388bee8683e3d04af747c73422af53102d2bd24d9eadb6cbc100baef4b43f8",
-    strip_prefix = "bitflags-2.13.0",
-    urls = ["https://static.crates.io/crates/bitflags/2.13.0/download"],
+    name = "bitflags-2.13.1.crate",
+    sha256 = "b588b76d00fde79687d7646a9b5bdf3cc0f655e0bbd080335a95d7e96f3587da",
+    strip_prefix = "bitflags-2.13.1",
+    urls = ["https://static.crates.io/crates/bitflags/2.13.1/download"],
     visibility = [],
 )
 
 rust_bootstrap_library(
     name = "bitflags-2",
-    srcs = [":bitflags-2.13.0.crate"],
+    srcs = [":bitflags-2.13.1.crate"],
     crate = "bitflags",
-    crate_root = "bitflags-2.13.0.crate/src/lib.rs",
+    crate_root = "bitflags-2.13.1.crate/src/lib.rs",
     edition = "2021",
     platform = {
         "linux-arm64-compiler": dict(
@@ -666,9 +649,9 @@ rust_bootstrap_library(
 )
 
 crate_download(
-    name = "blake3-1.8.5.crate",
-    sha256 = "0aa83c34e62843d924f905e0f5c866eb1dd6545fc4d719e803d9ba6030371fce",
-    strip_prefix = "blake3-1.8.5",
+    name = "blake3-1.8.7.crate",
+    sha256 = "6d9e454fc11f76977dc803893aff6304ed33d6a26efae8696573bea74baa27ae",
+    strip_prefix = "blake3-1.8.7",
     sub_targets = [
         "c/blake3.c",
         "c/blake3.h",
@@ -689,15 +672,15 @@ crate_download(
         "c/blake3_sse41_x86-64_windows_gnu.S",
         "c/blake3_sse41_x86-64_windows_msvc.asm",
     ],
-    urls = ["https://static.crates.io/crates/blake3/1.8.5/download"],
+    urls = ["https://static.crates.io/crates/blake3/1.8.7/download"],
     visibility = [],
 )
 
 rust_bootstrap_library(
     name = "blake3-1",
-    srcs = [":blake3-1.8.5.crate"],
+    srcs = [":blake3-1.8.7.crate"],
     crate = "blake3",
-    crate_root = "blake3-1.8.5.crate/src/lib.rs",
+    crate_root = "blake3-1.8.7.crate/src/lib.rs",
     edition = "2024",
     features = [
         "default",
@@ -763,7 +746,6 @@ rust_bootstrap_library(
     },
     visibility = [],
     deps = [
-        ":arrayref-0.3",
         ":arrayvec-0.7",
         ":cfg-if-1",
         ":constant_time_eq-0.4",
@@ -772,10 +754,10 @@ rust_bootstrap_library(
 
 cxx_bootstrap_library(
     name = "blake3-1-simd_neon-aarch64",
-    srcs = [":blake3-1.8.5.crate[c/blake3_neon.c]"],
+    srcs = [":blake3-1.8.7.crate[c/blake3_neon.c]"],
     headers = [
-        ":blake3-1.8.5.crate[c/blake3.h]",
-        ":blake3-1.8.5.crate[c/blake3_impl.h]",
+        ":blake3-1.8.7.crate[c/blake3.h]",
+        ":blake3-1.8.7.crate[c/blake3_impl.h]",
     ],
     target_compatible_with = ["prelude//cpu/constraints:cpu[arm64]"],
     visibility = [],
@@ -784,17 +766,17 @@ cxx_bootstrap_library(
 cxx_bootstrap_library(
     name = "blake3-1-simd_x86_unix",
     srcs = [
-        ":blake3-1.8.5.crate[c/blake3.c]",
-        ":blake3-1.8.5.crate[c/blake3_avx2_x86-64_unix.S]",
-        ":blake3-1.8.5.crate[c/blake3_avx512_x86-64_unix.S]",
-        ":blake3-1.8.5.crate[c/blake3_dispatch.c]",
-        ":blake3-1.8.5.crate[c/blake3_portable.c]",
-        ":blake3-1.8.5.crate[c/blake3_sse2_x86-64_unix.S]",
-        ":blake3-1.8.5.crate[c/blake3_sse41_x86-64_unix.S]",
+        ":blake3-1.8.7.crate[c/blake3.c]",
+        ":blake3-1.8.7.crate[c/blake3_avx2_x86-64_unix.S]",
+        ":blake3-1.8.7.crate[c/blake3_avx512_x86-64_unix.S]",
+        ":blake3-1.8.7.crate[c/blake3_dispatch.c]",
+        ":blake3-1.8.7.crate[c/blake3_portable.c]",
+        ":blake3-1.8.7.crate[c/blake3_sse2_x86-64_unix.S]",
+        ":blake3-1.8.7.crate[c/blake3_sse41_x86-64_unix.S]",
     ],
     headers = [
-        ":blake3-1.8.5.crate[c/blake3.h]",
-        ":blake3-1.8.5.crate[c/blake3_impl.h]",
+        ":blake3-1.8.7.crate[c/blake3.h]",
+        ":blake3-1.8.7.crate[c/blake3_impl.h]",
     ],
     compiler_flags = [
         "-mavx512f",
@@ -810,17 +792,17 @@ cxx_bootstrap_library(
 cxx_bootstrap_library(
     name = "blake3-1-simd_x86_windows_gnu",
     srcs = [
-        ":blake3-1.8.5.crate[c/blake3.c]",
-        ":blake3-1.8.5.crate[c/blake3_avx2_x86-64_windows_gnu.S]",
-        ":blake3-1.8.5.crate[c/blake3_avx512_x86-64_windows_gnu.S]",
-        ":blake3-1.8.5.crate[c/blake3_dispatch.c]",
-        ":blake3-1.8.5.crate[c/blake3_portable.c]",
-        ":blake3-1.8.5.crate[c/blake3_sse2_x86-64_windows_gnu.S]",
-        ":blake3-1.8.5.crate[c/blake3_sse41_x86-64_windows_gnu.S]",
+        ":blake3-1.8.7.crate[c/blake3.c]",
+        ":blake3-1.8.7.crate[c/blake3_avx2_x86-64_windows_gnu.S]",
+        ":blake3-1.8.7.crate[c/blake3_avx512_x86-64_windows_gnu.S]",
+        ":blake3-1.8.7.crate[c/blake3_dispatch.c]",
+        ":blake3-1.8.7.crate[c/blake3_portable.c]",
+        ":blake3-1.8.7.crate[c/blake3_sse2_x86-64_windows_gnu.S]",
+        ":blake3-1.8.7.crate[c/blake3_sse41_x86-64_windows_gnu.S]",
     ],
     headers = [
-        ":blake3-1.8.5.crate[c/blake3.h]",
-        ":blake3-1.8.5.crate[c/blake3_impl.h]",
+        ":blake3-1.8.7.crate[c/blake3.h]",
+        ":blake3-1.8.7.crate[c/blake3_impl.h]",
     ],
     compiler_flags = [
         "-mavx512f",
@@ -836,17 +818,17 @@ cxx_bootstrap_library(
 cxx_bootstrap_library(
     name = "blake3-1-simd_x86_windows_msvc",
     srcs = [
-        ":blake3-1.8.5.crate[c/blake3.c]",
-        ":blake3-1.8.5.crate[c/blake3_avx2_x86-64_windows_msvc.asm]",
-        ":blake3-1.8.5.crate[c/blake3_avx512_x86-64_windows_msvc.asm]",
-        ":blake3-1.8.5.crate[c/blake3_dispatch.c]",
-        ":blake3-1.8.5.crate[c/blake3_portable.c]",
-        ":blake3-1.8.5.crate[c/blake3_sse2_x86-64_windows_msvc.asm]",
-        ":blake3-1.8.5.crate[c/blake3_sse41_x86-64_windows_msvc.asm]",
+        ":blake3-1.8.7.crate[c/blake3.c]",
+        ":blake3-1.8.7.crate[c/blake3_avx2_x86-64_windows_msvc.asm]",
+        ":blake3-1.8.7.crate[c/blake3_avx512_x86-64_windows_msvc.asm]",
+        ":blake3-1.8.7.crate[c/blake3_dispatch.c]",
+        ":blake3-1.8.7.crate[c/blake3_portable.c]",
+        ":blake3-1.8.7.crate[c/blake3_sse2_x86-64_windows_msvc.asm]",
+        ":blake3-1.8.7.crate[c/blake3_sse41_x86-64_windows_msvc.asm]",
     ],
     headers = [
-        ":blake3-1.8.5.crate[c/blake3.h]",
-        ":blake3-1.8.5.crate[c/blake3_impl.h]",
+        ":blake3-1.8.7.crate[c/blake3.h]",
+        ":blake3-1.8.7.crate[c/blake3_impl.h]",
     ],
     target_compatible_with = [
         "prelude//cpu/constraints:cpu[x86_64]",
@@ -893,18 +875,18 @@ rust_bootstrap_library(
 )
 
 crate_download(
-    name = "bstr-1.12.3.crate",
-    sha256 = "5cee35f73844aa3014bb606320a6c1f010249dbdf43342fe54b5a4f6a8ed4b79",
-    strip_prefix = "bstr-1.12.3",
-    urls = ["https://static.crates.io/crates/bstr/1.12.3/download"],
+    name = "bstr-1.13.1.crate",
+    sha256 = "6bb31b46c14244e20ee9984b11bf5c992b91fb6939fea616e3512c8baecdbe5f",
+    strip_prefix = "bstr-1.13.1",
+    urls = ["https://static.crates.io/crates/bstr/1.13.1/download"],
     visibility = [],
 )
 
 rust_bootstrap_library(
     name = "bstr-1",
-    srcs = [":bstr-1.12.3.crate"],
+    srcs = [":bstr-1.13.1.crate"],
     crate = "bstr",
-    crate_root = "bstr-1.12.3.crate/src/lib.rs",
+    crate_root = "bstr-1.13.1.crate/src/lib.rs",
     edition = "2021",
     features = [
         "alloc",
@@ -920,18 +902,18 @@ rust_bootstrap_library(
 )
 
 crate_download(
-    name = "camino-1.2.4.crate",
-    sha256 = "5f2d30e4173c4026932d51d31d6b0613b1fd3014bf3f9f8943d4ba139c437ba0",
-    strip_prefix = "camino-1.2.4",
-    urls = ["https://static.crates.io/crates/camino/1.2.4/download"],
+    name = "camino-1.2.5.crate",
+    sha256 = "bb1307f12aa967b5a58416e87b3653360e0fd614a016b6e970db08fecbb1b80d",
+    strip_prefix = "camino-1.2.5",
+    urls = ["https://static.crates.io/crates/camino/1.2.5/download"],
     visibility = [],
 )
 
 rust_bootstrap_library(
     name = "camino-1",
-    srcs = [":camino-1.2.4.crate"],
+    srcs = [":camino-1.2.5.crate"],
     crate = "camino",
-    crate_root = "camino-1.2.4.crate/src/lib.rs",
+    crate_root = "camino-1.2.5.crate/src/lib.rs",
     edition = "2021",
     env = {
         "OUT_DIR": "$(location :camino-1-build-script-run[out_dir])",
@@ -944,9 +926,9 @@ rust_bootstrap_library(
 
 rust_bootstrap_binary(
     name = "camino-1-build-script-build",
-    srcs = [":camino-1.2.4.crate"],
+    srcs = [":camino-1.2.5.crate"],
     crate = "build_script_build",
-    crate_root = "camino-1.2.4.crate/build.rs",
+    crate_root = "camino-1.2.5.crate/build.rs",
     edition = "2021",
     features = ["serde1"],
     visibility = [],
@@ -957,7 +939,7 @@ rust_bootstrap_buildscript_run(
     package_name = "camino",
     buildscript_rule = ":camino-1-build-script-build",
     features = ["serde1"],
-    version = "1.2.4",
+    version = "1.2.5",
 )
 
 crate_download(
@@ -1105,18 +1087,18 @@ rust_bootstrap_library(
 )
 
 crate_download(
-    name = "cfg_aliases-0.2.1.crate",
-    sha256 = "613afe47fcd5fac7ccf1db93babcb082c5994d996f20b8b159f2ad1658eb5724",
-    strip_prefix = "cfg_aliases-0.2.1",
-    urls = ["https://static.crates.io/crates/cfg_aliases/0.2.1/download"],
+    name = "cfg_aliases-0.2.2.crate",
+    sha256 = "f079e83a288787bcd14a6aea84cee5c87a67c5a3e660c30f557a3d24761b3527",
+    strip_prefix = "cfg_aliases-0.2.2",
+    urls = ["https://static.crates.io/crates/cfg_aliases/0.2.2/download"],
     visibility = [],
 )
 
 rust_bootstrap_library(
     name = "cfg_aliases-0.2",
-    srcs = [":cfg_aliases-0.2.1.crate"],
+    srcs = [":cfg_aliases-0.2.2.crate"],
     crate = "cfg_aliases",
-    crate_root = "cfg_aliases-0.2.1.crate/src/lib.rs",
+    crate_root = "cfg_aliases-0.2.2.crate/src/lib.rs",
     edition = "2018",
     visibility = [],
 )
@@ -3488,25 +3470,25 @@ rust_bootstrap_library(
 )
 
 crate_download(
-    name = "displaydoc-0.2.6.crate",
-    sha256 = "1ac70aa55017e108007fbaf5aa0f54b021c98f92ff8af59d42eda9da96e3dd4f",
-    strip_prefix = "displaydoc-0.2.6",
-    urls = ["https://static.crates.io/crates/displaydoc/0.2.6/download"],
+    name = "displaydoc-0.2.7.crate",
+    sha256 = "c6232dd377dcc64799954cbd3a9bb882e9cdc1308ccd87b1c098f1fb2eaf82a8",
+    strip_prefix = "displaydoc-0.2.7",
+    urls = ["https://static.crates.io/crates/displaydoc/0.2.7/download"],
     visibility = [],
 )
 
 rust_bootstrap_library(
     name = "displaydoc-0.2",
-    srcs = [":displaydoc-0.2.6.crate"],
+    srcs = [":displaydoc-0.2.7.crate"],
     crate = "displaydoc",
-    crate_root = "displaydoc-0.2.6.crate/src/lib.rs",
+    crate_root = "displaydoc-0.2.7.crate/src/lib.rs",
     edition = "2021",
     proc_macro = True,
     visibility = [],
     deps = [
         ":proc-macro2-1",
         ":quote-1",
-        ":syn-2",
+        ":syn-3",
     ],
 )
 
@@ -3528,18 +3510,18 @@ rust_bootstrap_library(
 )
 
 crate_download(
-    name = "either-1.16.0.crate",
-    sha256 = "91622ff5e7162018101f2fea40d6ebf4a78bbe5a49736a2020649edf9693679e",
-    strip_prefix = "either-1.16.0",
-    urls = ["https://static.crates.io/crates/either/1.16.0/download"],
+    name = "either-1.18.0.crate",
+    sha256 = "252afb9ae5eaa683babdc6a068b3f5726eb19e05070c731f9b2a23a7c3e8ed34",
+    strip_prefix = "either-1.18.0",
+    urls = ["https://static.crates.io/crates/either/1.18.0/download"],
     visibility = [],
 )
 
 rust_bootstrap_library(
     name = "either-1",
-    srcs = [":either-1.16.0.crate"],
+    srcs = [":either-1.18.0.crate"],
     crate = "either",
-    crate_root = "either-1.16.0.crate/src/lib.rs",
+    crate_root = "either-1.18.0.crate/src/lib.rs",
     edition = "2021",
     features = [
         "default",
@@ -3644,18 +3626,18 @@ rust_bootstrap_library(
 )
 
 crate_download(
-    name = "fastrand-2.4.1.crate",
-    sha256 = "9f1f227452a390804cdb637b74a86990f2a7d7ba4b7d5693aac9b4dd6defd8d6",
-    strip_prefix = "fastrand-2.4.1",
-    urls = ["https://static.crates.io/crates/fastrand/2.4.1/download"],
+    name = "fastrand-2.5.0.crate",
+    sha256 = "da7c62ceae207dd37ea5b845da6a0696c799f85e97da1ab5b7910be3c1c80223",
+    strip_prefix = "fastrand-2.5.0",
+    urls = ["https://static.crates.io/crates/fastrand/2.5.0/download"],
     visibility = [],
 )
 
 rust_bootstrap_library(
     name = "fastrand-2",
-    srcs = [":fastrand-2.4.1.crate"],
+    srcs = [":fastrand-2.5.0.crate"],
     crate = "fastrand",
-    crate_root = "fastrand-2.4.1.crate/src/lib.rs",
+    crate_root = "fastrand-2.5.0.crate/src/lib.rs",
     edition = "2018",
     features = [
         "alloc",
@@ -3666,19 +3648,19 @@ rust_bootstrap_library(
 )
 
 crate_download(
-    name = "find-msvc-tools-0.1.9.crate",
-    sha256 = "5baebc0774151f905a1a2cc41989300b1e6fbb29aff0ceffa1064fdd3088d582",
-    strip_prefix = "find-msvc-tools-0.1.9",
-    urls = ["https://static.crates.io/crates/find-msvc-tools/0.1.9/download"],
+    name = "find-msvc-tools-0.1.11.crate",
+    sha256 = "d45db016d36b838f563236e9193d0ee6ce38f3f68b6c94e914b4929c96bbb890",
+    strip_prefix = "find-msvc-tools-0.1.11",
+    urls = ["https://static.crates.io/crates/find-msvc-tools/0.1.11/download"],
     visibility = [],
 )
 
 rust_bootstrap_library(
     name = "find-msvc-tools-0.1",
-    srcs = [":find-msvc-tools-0.1.9.crate"],
+    srcs = [":find-msvc-tools-0.1.11.crate"],
     crate = "find_msvc_tools",
-    crate_root = "find-msvc-tools-0.1.9.crate/src/lib.rs",
-    edition = "2018",
+    crate_root = "find-msvc-tools-0.1.11.crate/src/lib.rs",
+    edition = "2021",
     visibility = [],
 )
 
@@ -4174,19 +4156,19 @@ rust_bootstrap_library(
 )
 
 crate_download(
-    name = "glob-0.3.3.crate",
-    sha256 = "0cc23270f6e1808e30a928bdc84dea0b9b4136a8bc82338574f23baf47bbd280",
-    strip_prefix = "glob-0.3.3",
-    urls = ["https://static.crates.io/crates/glob/0.3.3/download"],
+    name = "glob-0.3.4.crate",
+    sha256 = "e4eba85ea1d0a966a983acd07deee566e67395d2d96b6fb39e62b5a833f1eb0b",
+    strip_prefix = "glob-0.3.4",
+    urls = ["https://static.crates.io/crates/glob/0.3.4/download"],
     visibility = [],
 )
 
 rust_bootstrap_library(
     name = "glob-0.3",
-    srcs = [":glob-0.3.3.crate"],
+    srcs = [":glob-0.3.4.crate"],
     crate = "glob",
-    crate_root = "glob-0.3.3.crate/src/lib.rs",
-    edition = "2015",
+    crate_root = "glob-0.3.4.crate/src/lib.rs",
+    edition = "2021",
     visibility = [],
 )
 
@@ -4351,19 +4333,19 @@ rust_bootstrap_library(
 )
 
 crate_download(
-    name = "icu_collections-2.2.0.crate",
-    sha256 = "2984d1cd16c883d7935b9e07e44071dca8d917fd52ecc02c04d5fa0b5a3f191c",
-    strip_prefix = "icu_collections-2.2.0",
-    urls = ["https://static.crates.io/crates/icu_collections/2.2.0/download"],
+    name = "icu_collections-2.3.0.crate",
+    sha256 = "fa68d21081c4a05d5a901a1c62add574c77048b6a1c67be3b50ce0b60d4ca513",
+    strip_prefix = "icu_collections-2.3.0",
+    urls = ["https://static.crates.io/crates/icu_collections/2.3.0/download"],
     visibility = [],
 )
 
 rust_bootstrap_library(
     name = "icu_collections-2",
-    srcs = [":icu_collections-2.2.0.crate"],
+    srcs = [":icu_collections-2.3.0.crate"],
     crate = "icu_collections",
-    crate_root = "icu_collections-2.2.0.crate/src/lib.rs",
-    edition = "2021",
+    crate_root = "icu_collections-2.3.0.crate/src/lib.rs",
+    edition = "2024",
     visibility = [],
     deps = [
         ":displaydoc-0.2",
@@ -4376,19 +4358,19 @@ rust_bootstrap_library(
 )
 
 crate_download(
-    name = "icu_list-2.2.0.crate",
-    sha256 = "aeeaf517689324395bed4767f7c65504f5455942ed4c14ee54c2087ca00b816e",
-    strip_prefix = "icu_list-2.2.0",
-    urls = ["https://static.crates.io/crates/icu_list/2.2.0/download"],
+    name = "icu_list-2.3.0.crate",
+    sha256 = "5a5c625125085fac4bf9ad111888a90c6ab9dc7bcaec392ca79cab417f46e3fb",
+    strip_prefix = "icu_list-2.3.0",
+    urls = ["https://static.crates.io/crates/icu_list/2.3.0/download"],
     visibility = [],
 )
 
 rust_bootstrap_library(
     name = "icu_list-2",
-    srcs = [":icu_list-2.2.0.crate"],
+    srcs = [":icu_list-2.3.0.crate"],
     crate = "icu_list",
-    crate_root = "icu_list-2.2.0.crate/src/lib.rs",
-    edition = "2021",
+    crate_root = "icu_list-2.3.0.crate/src/lib.rs",
+    edition = "2024",
     features = ["alloc"],
     visibility = [],
     deps = [
@@ -4400,46 +4382,46 @@ rust_bootstrap_library(
 )
 
 crate_download(
-    name = "icu_locale-2.2.0.crate",
-    sha256 = "d5a396343c7208121dc86e35623d3dfe19814a7613cfd14964994cdc9c9a2e26",
-    strip_prefix = "icu_locale-2.2.0",
-    urls = ["https://static.crates.io/crates/icu_locale/2.2.0/download"],
+    name = "icu_locale-2.3.1.crate",
+    sha256 = "785f595c61ef57169a467eeed7b4b6936a66f6cacbb116a96ee86da983251bf4",
+    strip_prefix = "icu_locale-2.3.1",
+    urls = ["https://static.crates.io/crates/icu_locale/2.3.1/download"],
     visibility = [],
 )
 
 rust_bootstrap_library(
     name = "icu_locale-2",
-    srcs = [":icu_locale-2.2.0.crate"],
+    srcs = [":icu_locale-2.3.1.crate"],
     crate = "icu_locale",
-    crate_root = "icu_locale-2.2.0.crate/src/lib.rs",
-    edition = "2021",
+    crate_root = "icu_locale-2.3.1.crate/src/lib.rs",
+    edition = "2024",
     features = ["compiled_data"],
     visibility = [],
     deps = [
         ":icu_collections-2",
         ":icu_locale_core-2",
         ":icu_locale_data-2",
+        ":icu_locale_fallback-2",
         ":icu_provider-2",
-        ":potential_utf-0.1",
         ":tinystr-0.8",
         ":zerovec-0.11",
     ],
 )
 
 crate_download(
-    name = "icu_locale_core-2.2.0.crate",
-    sha256 = "92219b62b3e2b4d88ac5119f8904c10f8f61bf7e95b640d25ba3075e6cac2c29",
-    strip_prefix = "icu_locale_core-2.2.0",
-    urls = ["https://static.crates.io/crates/icu_locale_core/2.2.0/download"],
+    name = "icu_locale_core-2.3.0.crate",
+    sha256 = "d56e28588da92eee5c3201a6eff33fabdd49b62269c8938d4ff050ce4d900deb",
+    strip_prefix = "icu_locale_core-2.3.0",
+    urls = ["https://static.crates.io/crates/icu_locale_core/2.3.0/download"],
     visibility = [],
 )
 
 rust_bootstrap_library(
     name = "icu_locale_core-2",
-    srcs = [":icu_locale_core-2.2.0.crate"],
+    srcs = [":icu_locale_core-2.3.0.crate"],
     crate = "icu_locale_core",
-    crate_root = "icu_locale_core-2.2.0.crate/src/lib.rs",
-    edition = "2021",
+    crate_root = "icu_locale_core-2.3.0.crate/src/lib.rs",
+    edition = "2024",
     features = [
         "alloc",
         "zerovec",
@@ -4455,36 +4437,79 @@ rust_bootstrap_library(
 )
 
 crate_download(
-    name = "icu_locale_data-2.2.0.crate",
-    sha256 = "d5fdcc9ac77c6d74ff5cf6e65ef3181d6af32003b16fce3a77fb451d2f695993",
-    strip_prefix = "icu_locale_data-2.2.0",
-    urls = ["https://static.crates.io/crates/icu_locale_data/2.2.0/download"],
+    name = "icu_locale_data-2.3.0.crate",
+    sha256 = "d37d91460e362a5cf58907cd7ce871411775ee6294e49a5cc8e6cec16dfa75ea",
+    strip_prefix = "icu_locale_data-2.3.0",
+    urls = ["https://static.crates.io/crates/icu_locale_data/2.3.0/download"],
     visibility = [],
 )
 
 rust_bootstrap_library(
     name = "icu_locale_data-2",
-    srcs = [":icu_locale_data-2.2.0.crate"],
+    srcs = [":icu_locale_data-2.3.0.crate"],
     crate = "icu_locale_data",
-    crate_root = "icu_locale_data-2.2.0.crate/src/lib.rs",
-    edition = "2021",
+    crate_root = "icu_locale_data-2.3.0.crate/src/lib.rs",
+    edition = "2024",
     visibility = [],
 )
 
 crate_download(
-    name = "icu_normalizer-2.2.0.crate",
-    sha256 = "c56e5ee99d6e3d33bd91c5d85458b6005a22140021cc324cea84dd0e72cff3b4",
-    strip_prefix = "icu_normalizer-2.2.0",
-    urls = ["https://static.crates.io/crates/icu_normalizer/2.2.0/download"],
+    name = "icu_locale_fallback-2.3.0.crate",
+    sha256 = "251af8e57c9400e3eb58242fe5b8b1152b2a64fdf4cf632f923c38ccee6f2fa9",
+    strip_prefix = "icu_locale_fallback-2.3.0",
+    urls = ["https://static.crates.io/crates/icu_locale_fallback/2.3.0/download"],
+    visibility = [],
+)
+
+rust_bootstrap_library(
+    name = "icu_locale_fallback-2",
+    srcs = [":icu_locale_fallback-2.3.0.crate"],
+    crate = "icu_locale_fallback",
+    crate_root = "icu_locale_fallback-2.3.0.crate/src/lib.rs",
+    edition = "2024",
+    features = ["compiled_data"],
+    visibility = [],
+    deps = [
+        ":icu_locale_core-2",
+        ":icu_locale_fallback_data-2",
+        ":icu_provider-2",
+        ":potential_utf-0.1",
+        ":tinystr-0.8",
+        ":zerovec-0.11",
+    ],
+)
+
+crate_download(
+    name = "icu_locale_fallback_data-2.3.0.crate",
+    sha256 = "decf2a22ec8fa68f1a0c1129a3f8583f8f8bc24e8b9ccbe98ead99f62a4dc3a8",
+    strip_prefix = "icu_locale_fallback_data-2.3.0",
+    urls = ["https://static.crates.io/crates/icu_locale_fallback_data/2.3.0/download"],
+    visibility = [],
+)
+
+rust_bootstrap_library(
+    name = "icu_locale_fallback_data-2",
+    srcs = [":icu_locale_fallback_data-2.3.0.crate"],
+    crate = "icu_locale_fallback_data",
+    crate_root = "icu_locale_fallback_data-2.3.0.crate/src/lib.rs",
+    edition = "2024",
+    visibility = [],
+)
+
+crate_download(
+    name = "icu_normalizer-2.3.0.crate",
+    sha256 = "12f9cf5f235641ed274641dd81c3f28d870e276763d0797aeeab72317b1c646f",
+    strip_prefix = "icu_normalizer-2.3.0",
+    urls = ["https://static.crates.io/crates/icu_normalizer/2.3.0/download"],
     visibility = [],
 )
 
 rust_bootstrap_library(
     name = "icu_normalizer-2",
-    srcs = [":icu_normalizer-2.2.0.crate"],
+    srcs = [":icu_normalizer-2.3.0.crate"],
     crate = "icu_normalizer",
-    crate_root = "icu_normalizer-2.2.0.crate/src/lib.rs",
-    edition = "2021",
+    crate_root = "icu_normalizer-2.3.0.crate/src/lib.rs",
+    edition = "2024",
     features = ["compiled_data"],
     visibility = [],
     deps = [
@@ -4497,39 +4522,40 @@ rust_bootstrap_library(
 )
 
 crate_download(
-    name = "icu_normalizer_data-2.2.0.crate",
-    sha256 = "da3be0ae77ea334f4da67c12f149704f19f81d1adf7c51cf482943e84a2bad38",
-    strip_prefix = "icu_normalizer_data-2.2.0",
-    urls = ["https://static.crates.io/crates/icu_normalizer_data/2.2.0/download"],
+    name = "icu_normalizer_data-2.3.0.crate",
+    sha256 = "1563da1ed3e0b3bf3d74c9b85917ac9c56464d2f57242270c09c9e752f8021a0",
+    strip_prefix = "icu_normalizer_data-2.3.0",
+    urls = ["https://static.crates.io/crates/icu_normalizer_data/2.3.0/download"],
     visibility = [],
 )
 
 rust_bootstrap_library(
     name = "icu_normalizer_data-2",
-    srcs = [":icu_normalizer_data-2.2.0.crate"],
+    srcs = [":icu_normalizer_data-2.3.0.crate"],
     crate = "icu_normalizer_data",
-    crate_root = "icu_normalizer_data-2.2.0.crate/src/lib.rs",
-    edition = "2021",
+    crate_root = "icu_normalizer_data-2.3.0.crate/src/lib.rs",
+    edition = "2024",
     visibility = [],
 )
 
 crate_download(
-    name = "icu_properties-2.2.0.crate",
-    sha256 = "bee3b67d0ea5c2cca5003417989af8996f8604e34fb9ddf96208a033901e70de",
-    strip_prefix = "icu_properties-2.2.0",
-    urls = ["https://static.crates.io/crates/icu_properties/2.2.0/download"],
+    name = "icu_properties-2.3.0.crate",
+    sha256 = "7e7ca276ad3145661a65914e6daf131ca5120cd3dcee8f8f3214b8875184a148",
+    strip_prefix = "icu_properties-2.3.0",
+    urls = ["https://static.crates.io/crates/icu_properties/2.3.0/download"],
     visibility = [],
 )
 
 rust_bootstrap_library(
     name = "icu_properties-2",
-    srcs = [":icu_properties-2.2.0.crate"],
+    srcs = [":icu_properties-2.3.0.crate"],
     crate = "icu_properties",
-    crate_root = "icu_properties-2.2.0.crate/src/lib.rs",
-    edition = "2021",
+    crate_root = "icu_properties-2.3.0.crate/src/lib.rs",
+    edition = "2024",
     features = ["compiled_data"],
     visibility = [],
     deps = [
+        ":displaydoc-0.2",
         ":icu_collections-2",
         ":icu_locale_core-2",
         ":icu_properties_data-2",
@@ -4540,36 +4566,36 @@ rust_bootstrap_library(
 )
 
 crate_download(
-    name = "icu_properties_data-2.2.0.crate",
-    sha256 = "8e2bbb201e0c04f7b4b3e14382af113e17ba4f63e2c9d2ee626b720cbce54a14",
-    strip_prefix = "icu_properties_data-2.2.0",
-    urls = ["https://static.crates.io/crates/icu_properties_data/2.2.0/download"],
+    name = "icu_properties_data-2.3.0.crate",
+    sha256 = "e590f038c1464a96894fd6d10127e90a8be4509f56ff7ecef851b15cee0b7caa",
+    strip_prefix = "icu_properties_data-2.3.0",
+    urls = ["https://static.crates.io/crates/icu_properties_data/2.3.0/download"],
     visibility = [],
 )
 
 rust_bootstrap_library(
     name = "icu_properties_data-2",
-    srcs = [":icu_properties_data-2.2.0.crate"],
+    srcs = [":icu_properties_data-2.3.0.crate"],
     crate = "icu_properties_data",
-    crate_root = "icu_properties_data-2.2.0.crate/src/lib.rs",
-    edition = "2021",
+    crate_root = "icu_properties_data-2.3.0.crate/src/lib.rs",
+    edition = "2024",
     visibility = [],
 )
 
 crate_download(
-    name = "icu_provider-2.2.0.crate",
-    sha256 = "139c4cf31c8b5f33d7e199446eff9c1e02decfc2f0eec2c8d71f65befa45b421",
-    strip_prefix = "icu_provider-2.2.0",
-    urls = ["https://static.crates.io/crates/icu_provider/2.2.0/download"],
+    name = "icu_provider-2.3.1.crate",
+    sha256 = "d27bbb9d3abbefac45d55f647c9de1d44aafcd1186eb91879afef17c396c3e73",
+    strip_prefix = "icu_provider-2.3.1",
+    urls = ["https://static.crates.io/crates/icu_provider/2.3.1/download"],
     visibility = [],
 )
 
 rust_bootstrap_library(
     name = "icu_provider-2",
-    srcs = [":icu_provider-2.2.0.crate"],
+    srcs = [":icu_provider-2.3.1.crate"],
     crate = "icu_provider",
-    crate_root = "icu_provider-2.2.0.crate/src/lib.rs",
-    edition = "2021",
+    crate_root = "icu_provider-2.3.1.crate/src/lib.rs",
+    edition = "2024",
     features = [
         "alloc",
         "baked",
@@ -4779,18 +4805,42 @@ rust_bootstrap_library(
 )
 
 crate_download(
-    name = "jiff-0.2.32.crate",
-    sha256 = "961d16382652bfdd8c6f68b223b26a8c93e0d475c672f414411db31c6c5c900e",
-    strip_prefix = "jiff-0.2.32",
-    urls = ["https://static.crates.io/crates/jiff/0.2.32/download"],
+    name = "jiff-0.2.35.crate",
+    sha256 = "668b7183bd07af9a4885f5c35b0cc5c83c4607a913c16b7e17291832910d2dcc",
+    strip_prefix = "jiff-0.2.35",
+    urls = ["https://static.crates.io/crates/jiff/0.2.35/download"],
     visibility = [],
 )
 
 rust_bootstrap_library(
     name = "jiff-0.2",
-    srcs = [":jiff-0.2.32.crate"],
+    srcs = [":jiff-0.2.35.crate"],
     crate = "jiff",
-    crate_root = "jiff-0.2.32.crate/src/lib.rs",
+    crate_root = "jiff-0.2.35.crate/src/lib.rs",
+    edition = "2021",
+    features = [
+        "alloc",
+        "std",
+    ],
+    named_deps = {
+        "jcore": ":jiff-core-0.1",
+    },
+    visibility = [],
+)
+
+crate_download(
+    name = "jiff-core-0.1.0.crate",
+    sha256 = "7feca88439efe53da3754500c1851dedf3cb36c524dd5cf8225cc0794de95d09",
+    strip_prefix = "jiff-core-0.1.0",
+    urls = ["https://static.crates.io/crates/jiff-core/0.1.0/download"],
+    visibility = [],
+)
+
+rust_bootstrap_library(
+    name = "jiff-core-0.1",
+    srcs = [":jiff-core-0.1.0.crate"],
+    crate = "jiff_core",
+    crate_root = "jiff-core-0.1.0.crate/src/lib.rs",
     edition = "2021",
     features = [
         "alloc",
@@ -5299,18 +5349,18 @@ rust_bootstrap_library(
 )
 
 crate_download(
-    name = "litemap-0.8.2.crate",
-    sha256 = "92daf443525c4cce67b150400bc2316076100ce0b3686209eb8cf3c31612e6f0",
-    strip_prefix = "litemap-0.8.2",
-    urls = ["https://static.crates.io/crates/litemap/0.8.2/download"],
+    name = "litemap-0.8.3.crate",
+    sha256 = "47d9d19d1d6efa0109d2f65ff4c85cddd50bd572e5a00127ab10987290bcefae",
+    strip_prefix = "litemap-0.8.3",
+    urls = ["https://static.crates.io/crates/litemap/0.8.3/download"],
     visibility = [],
 )
 
 rust_bootstrap_library(
     name = "litemap-0.8",
-    srcs = [":litemap-0.8.2.crate"],
+    srcs = [":litemap-0.8.3.crate"],
     crate = "litemap",
-    crate_root = "litemap-0.8.2.crate/src/lib.rs",
+    crate_root = "litemap-0.8.3.crate/src/lib.rs",
     edition = "2021",
     features = ["alloc"],
     visibility = [],
@@ -6574,6 +6624,77 @@ rust_bootstrap_buildscript_run(
 )
 
 crate_download(
+    name = "object-0.39.1.crate",
+    sha256 = "2e5a6c098c7a3b6547378093f5cc30bc54fd361ce711e05293a5cc589562739b",
+    strip_prefix = "object-0.39.1",
+    urls = ["https://static.crates.io/crates/object/0.39.1/download"],
+    visibility = [],
+)
+
+rust_bootstrap_library(
+    name = "object-0.39",
+    srcs = [":object-0.39.1.crate"],
+    crate = "object",
+    crate_root = "object-0.39.1.crate/src/lib.rs",
+    edition = "2018",
+    env = {
+        "OUT_DIR": "$(location :object-0.39-build-script-run[out_dir])",
+    },
+    features = [
+        "archive",
+        "coff",
+        "elf",
+        "macho",
+        "pe",
+        "read",
+        "read_core",
+        "std",
+        "xcoff",
+    ],
+    rustc_flags = ["@$(location :object-0.39-build-script-run[rustc_flags])"],
+    visibility = [],
+    deps = [":memchr-2"],
+)
+
+rust_bootstrap_binary(
+    name = "object-0.39-build-script-build",
+    srcs = [":object-0.39.1.crate"],
+    crate = "build_script_build",
+    crate_root = "object-0.39.1.crate/build.rs",
+    edition = "2018",
+    features = [
+        "archive",
+        "coff",
+        "elf",
+        "macho",
+        "pe",
+        "read",
+        "read_core",
+        "std",
+        "xcoff",
+    ],
+    visibility = [],
+)
+
+rust_bootstrap_buildscript_run(
+    name = "object-0.39-build-script-run",
+    package_name = "object",
+    buildscript_rule = ":object-0.39-build-script-build",
+    features = [
+        "archive",
+        "coff",
+        "elf",
+        "macho",
+        "pe",
+        "read",
+        "read_core",
+        "std",
+        "xcoff",
+    ],
+    version = "0.39.1",
+)
+
+crate_download(
     name = "odht-0.3.1.crate",
     sha256 = "5a518809ac14b25b569624d0268eba1e88498f71615893dca57982bed7621abb",
     strip_prefix = "odht-0.3.1",
@@ -6888,18 +7009,18 @@ rust_bootstrap_library(
 )
 
 crate_download(
-    name = "potential_utf-0.1.5.crate",
-    sha256 = "0103b1cef7ec0cf76490e969665504990193874ea05c85ff9bab8b911d0a0564",
-    strip_prefix = "potential_utf-0.1.5",
-    urls = ["https://static.crates.io/crates/potential_utf/0.1.5/download"],
+    name = "potential_utf-0.1.6.crate",
+    sha256 = "d83eb9bc6d8e5cf568e7a1101d60ee05e81ed50ea106026f3d18deeb046d7661",
+    strip_prefix = "potential_utf-0.1.6",
+    urls = ["https://static.crates.io/crates/potential_utf/0.1.6/download"],
     visibility = [],
 )
 
 rust_bootstrap_library(
     name = "potential_utf-0.1",
-    srcs = [":potential_utf-0.1.5.crate"],
+    srcs = [":potential_utf-0.1.6.crate"],
     crate = "potential_utf",
-    crate_root = "potential_utf-0.1.5.crate/src/lib.rs",
+    crate_root = "potential_utf-0.1.6.crate/src/lib.rs",
     edition = "2021",
     features = [
         "alloc",
@@ -6954,18 +7075,18 @@ rust_bootstrap_library(
 )
 
 crate_download(
-    name = "proc-macro2-1.0.106.crate",
-    sha256 = "8fd00f0bb2e90d81d1044c2b32617f68fcb9fa3bb7640c23e9c748e53fb30934",
-    strip_prefix = "proc-macro2-1.0.106",
-    urls = ["https://static.crates.io/crates/proc-macro2/1.0.106/download"],
+    name = "proc-macro2-1.0.107.crate",
+    sha256 = "985e7ec9bb745e6ce6535b544d84d6cd6f7ad8bd711c398938ae983b91a766d9",
+    strip_prefix = "proc-macro2-1.0.107",
+    urls = ["https://static.crates.io/crates/proc-macro2/1.0.107/download"],
     visibility = [],
 )
 
 rust_bootstrap_library(
     name = "proc-macro2-1",
-    srcs = [":proc-macro2-1.0.106.crate"],
+    srcs = [":proc-macro2-1.0.107.crate"],
     crate = "proc_macro2",
-    crate_root = "proc-macro2-1.0.106.crate/src/lib.rs",
+    crate_root = "proc-macro2-1.0.107.crate/src/lib.rs",
     edition = "2021",
     env = {
         "OUT_DIR": "$(location :proc-macro2-1-build-script-run[out_dir])",
@@ -6981,9 +7102,9 @@ rust_bootstrap_library(
 
 rust_bootstrap_binary(
     name = "proc-macro2-1-build-script-build",
-    srcs = [":proc-macro2-1.0.106.crate"],
+    srcs = [":proc-macro2-1.0.107.crate"],
     crate = "build_script_build",
-    crate_root = "proc-macro2-1.0.106.crate/build.rs",
+    crate_root = "proc-macro2-1.0.107.crate/build.rs",
     edition = "2021",
     features = [
         "default",
@@ -7000,7 +7121,7 @@ rust_bootstrap_buildscript_run(
         "default",
         "proc-macro",
     ],
-    version = "1.0.106",
+    version = "1.0.107",
 )
 
 rust_bootstrap_alias(
@@ -7260,18 +7381,18 @@ rust_bootstrap_library(
 )
 
 crate_download(
-    name = "quote-1.0.46.crate",
-    sha256 = "dfbc457d0c7a0759a614551b11a6409e5951f6c7537be1f1b7682b9ae9230368",
-    strip_prefix = "quote-1.0.46",
-    urls = ["https://static.crates.io/crates/quote/1.0.46/download"],
+    name = "quote-1.0.47.crate",
+    sha256 = "1fbf4db142a473a8d80c26bbf18454ed458bf8d26c8219c331daecfdbd079001",
+    strip_prefix = "quote-1.0.47",
+    urls = ["https://static.crates.io/crates/quote/1.0.47/download"],
     visibility = [],
 )
 
 rust_bootstrap_library(
     name = "quote-1",
-    srcs = [":quote-1.0.46.crate"],
+    srcs = [":quote-1.0.47.crate"],
     crate = "quote",
-    crate_root = "quote-1.0.46.crate/src/lib.rs",
+    crate_root = "quote-1.0.47.crate/src/lib.rs",
     edition = "2021",
     env = {
         "OUT_DIR": "$(location :quote-1-build-script-run[out_dir])",
@@ -7287,9 +7408,9 @@ rust_bootstrap_library(
 
 rust_bootstrap_binary(
     name = "quote-1-build-script-build",
-    srcs = [":quote-1.0.46.crate"],
+    srcs = [":quote-1.0.47.crate"],
     crate = "build_script_build",
-    crate_root = "quote-1.0.46.crate/build.rs",
+    crate_root = "quote-1.0.47.crate/build.rs",
     edition = "2021",
     features = [
         "default",
@@ -7306,22 +7427,22 @@ rust_bootstrap_buildscript_run(
         "default",
         "proc-macro",
     ],
-    version = "1.0.46",
+    version = "1.0.47",
 )
 
 crate_download(
-    name = "rand-0.8.6.crate",
-    sha256 = "5ca0ecfa931c29007047d1bc58e623ab12e5590e8c7cc53200d5202b69266d8a",
-    strip_prefix = "rand-0.8.6",
-    urls = ["https://static.crates.io/crates/rand/0.8.6/download"],
+    name = "rand-0.8.7.crate",
+    sha256 = "22f6172bdec972074665ed81ed53b71da00bfc44b65a753cfde883ec4c702a1a",
+    strip_prefix = "rand-0.8.7",
+    urls = ["https://static.crates.io/crates/rand/0.8.7/download"],
     visibility = [],
 )
 
 rust_bootstrap_library(
     name = "rand-0.8",
-    srcs = [":rand-0.8.6.crate"],
+    srcs = [":rand-0.8.7.crate"],
     crate = "rand",
-    crate_root = "rand-0.8.6.crate/src/lib.rs",
+    crate_root = "rand-0.8.7.crate/src/lib.rs",
     edition = "2018",
     features = [
         "alloc",
@@ -7357,18 +7478,18 @@ rust_bootstrap_library(
 )
 
 crate_download(
-    name = "rand-0.9.4.crate",
-    sha256 = "44c5af06bb1b7d3216d91932aed5265164bf384dc89cd6ba05cf59a35f5f76ea",
-    strip_prefix = "rand-0.9.4",
-    urls = ["https://static.crates.io/crates/rand/0.9.4/download"],
+    name = "rand-0.9.5.crate",
+    sha256 = "b9ef1d0d795eb7d84685bca4f72f3649f064e6641543d3a8c415898726a57b41",
+    strip_prefix = "rand-0.9.5",
+    urls = ["https://static.crates.io/crates/rand/0.9.5/download"],
     visibility = [],
 )
 
 rust_bootstrap_library(
     name = "rand-0.9",
-    srcs = [":rand-0.9.4.crate"],
+    srcs = [":rand-0.9.5.crate"],
     crate = "rand",
-    crate_root = "rand-0.9.4.crate/src/lib.rs",
+    crate_root = "rand-0.9.5.crate/src/lib.rs",
     edition = "2021",
     features = [
         "alloc",
@@ -7494,21 +7615,21 @@ rust_bootstrap_library(
 )
 
 crate_download(
-    name = "ref-cast-1.0.25.crate",
-    sha256 = "f354300ae66f76f1c85c5f84693f0ce81d747e2c3f21a45fef496d89c960bf7d",
-    strip_prefix = "ref-cast-1.0.25",
-    urls = ["https://static.crates.io/crates/ref-cast/1.0.25/download"],
+    name = "ref-cast-1.0.27.crate",
+    sha256 = "7e440fb4e4b4147295338efb76001ab9e4efc0e5839df2c47fc5ac2381d365c3",
+    strip_prefix = "ref-cast-1.0.27",
+    urls = ["https://static.crates.io/crates/ref-cast/1.0.27/download"],
     visibility = [],
 )
 
 rust_bootstrap_library(
     name = "ref-cast-1",
-    srcs = [":ref-cast-1.0.25.crate"],
+    srcs = [":ref-cast-1.0.27.crate"],
     crate = "ref_cast",
-    crate_root = "ref-cast-1.0.25.crate/src/lib.rs",
+    crate_root = "ref-cast-1.0.27.crate/src/lib.rs",
     edition = "2021",
     env = {
-        "CARGO_PKG_VERSION_PATCH": "25",
+        "CARGO_PKG_VERSION_PATCH": "27",
         "OUT_DIR": "$(location :ref-cast-1-build-script-run[out_dir])",
     },
     rustc_flags = ["@$(location :ref-cast-1-build-script-run[rustc_flags])"],
@@ -7518,12 +7639,12 @@ rust_bootstrap_library(
 
 rust_bootstrap_binary(
     name = "ref-cast-1-build-script-build",
-    srcs = [":ref-cast-1.0.25.crate"],
+    srcs = [":ref-cast-1.0.27.crate"],
     crate = "build_script_build",
-    crate_root = "ref-cast-1.0.25.crate/build.rs",
+    crate_root = "ref-cast-1.0.27.crate/build.rs",
     edition = "2021",
     env = {
-        "CARGO_PKG_VERSION_PATCH": "25",
+        "CARGO_PKG_VERSION_PATCH": "27",
     },
     visibility = [],
 )
@@ -7533,50 +7654,50 @@ rust_bootstrap_buildscript_run(
     package_name = "ref-cast",
     buildscript_rule = ":ref-cast-1-build-script-build",
     env = {
-        "CARGO_PKG_VERSION_PATCH": "25",
+        "CARGO_PKG_VERSION_PATCH": "27",
     },
-    version = "1.0.25",
+    version = "1.0.27",
 )
 
 crate_download(
-    name = "ref-cast-impl-1.0.25.crate",
-    sha256 = "b7186006dcb21920990093f30e3dea63b7d6e977bf1256be20c3563a5db070da",
-    strip_prefix = "ref-cast-impl-1.0.25",
-    urls = ["https://static.crates.io/crates/ref-cast-impl/1.0.25/download"],
+    name = "ref-cast-impl-1.0.27.crate",
+    sha256 = "92ecd8964f8453721699a1ed72037b0db49ce2f5a5138486ee89bed6f67cdf3a",
+    strip_prefix = "ref-cast-impl-1.0.27",
+    urls = ["https://static.crates.io/crates/ref-cast-impl/1.0.27/download"],
     visibility = [],
 )
 
 rust_bootstrap_library(
     name = "ref-cast-impl-1",
-    srcs = [":ref-cast-impl-1.0.25.crate"],
+    srcs = [":ref-cast-impl-1.0.27.crate"],
     crate = "ref_cast_impl",
-    crate_root = "ref-cast-impl-1.0.25.crate/src/lib.rs",
+    crate_root = "ref-cast-impl-1.0.27.crate/src/lib.rs",
     edition = "2021",
     env = {
-        "CARGO_PKG_VERSION_PATCH": "25",
+        "CARGO_PKG_VERSION_PATCH": "27",
     },
     proc_macro = True,
     visibility = [],
     deps = [
         ":proc-macro2-1",
         ":quote-1",
-        ":syn-2",
+        ":syn-3",
     ],
 )
 
 crate_download(
-    name = "regex-1.13.0.crate",
-    sha256 = "2a0e75113e14dc5acb068cd0786884f214f1312650a3d36d269f5c4f3cdee8a2",
-    strip_prefix = "regex-1.13.0",
-    urls = ["https://static.crates.io/crates/regex/1.13.0/download"],
+    name = "regex-1.13.1.crate",
+    sha256 = "f020237b6c8eed93db2e2cb53c00c60a8e1bc73da7d073199a1180401450218d",
+    strip_prefix = "regex-1.13.1",
+    urls = ["https://static.crates.io/crates/regex/1.13.1/download"],
     visibility = [],
 )
 
 rust_bootstrap_library(
     name = "regex-1",
-    srcs = [":regex-1.13.0.crate"],
+    srcs = [":regex-1.13.1.crate"],
     crate = "regex",
-    crate_root = "regex-1.13.0.crate/src/lib.rs",
+    crate_root = "regex-1.13.1.crate/src/lib.rs",
     edition = "2021",
     features = [
         "default",
@@ -7607,18 +7728,18 @@ rust_bootstrap_library(
 )
 
 crate_download(
-    name = "regex-automata-0.4.15.crate",
-    sha256 = "1f388202e4b80542a0921078cc23b6333bcf1409c1e3f86404cae4766a6131db",
-    strip_prefix = "regex-automata-0.4.15",
-    urls = ["https://static.crates.io/crates/regex-automata/0.4.15/download"],
+    name = "regex-automata-0.4.18.crate",
+    sha256 = "ad8553b9b26413251cbf30e620595c7a41b3887f03da04579c0e6b0d6a06b4b2",
+    strip_prefix = "regex-automata-0.4.18",
+    urls = ["https://static.crates.io/crates/regex-automata/0.4.18/download"],
     visibility = [],
 )
 
 rust_bootstrap_library(
     name = "regex-automata-0.4",
-    srcs = [":regex-automata-0.4.15.crate"],
+    srcs = [":regex-automata-0.4.18.crate"],
     crate = "regex_automata",
-    crate_root = "regex-automata-0.4.15.crate/src/lib.rs",
+    crate_root = "regex-automata-0.4.18.crate/src/lib.rs",
     edition = "2021",
     features = [
         "alloc",
@@ -12775,18 +12896,18 @@ rust_bootstrap_library(
 )
 
 crate_download(
-    name = "schemars-1.2.1.crate",
-    sha256 = "a2b42f36aa1cd011945615b92222f6bf73c599a102a300334cd7f8dbeec726cc",
-    strip_prefix = "schemars-1.2.1",
-    urls = ["https://static.crates.io/crates/schemars/1.2.1/download"],
+    name = "schemars-1.2.2.crate",
+    sha256 = "687274d293b6cdc6e73e0fee520bf2049650090d7164f87672d212a3c530cf4a",
+    strip_prefix = "schemars-1.2.2",
+    urls = ["https://static.crates.io/crates/schemars/1.2.2/download"],
     visibility = [],
 )
 
 rust_bootstrap_library(
     name = "schemars-1",
-    srcs = [":schemars-1.2.1.crate"],
+    srcs = [":schemars-1.2.2.crate"],
     crate = "schemars",
-    crate_root = "schemars-1.2.1.crate/src/lib.rs",
+    crate_root = "schemars-1.2.2.crate/src/lib.rs",
     edition = "2021",
     features = [
         "default",
@@ -12805,26 +12926,26 @@ rust_bootstrap_library(
 )
 
 crate_download(
-    name = "schemars_derive-1.2.1.crate",
-    sha256 = "7d115b50f4aaeea07e79c1912f645c7513d81715d0420f8bc77a18c6260b307f",
-    strip_prefix = "schemars_derive-1.2.1",
-    urls = ["https://static.crates.io/crates/schemars_derive/1.2.1/download"],
+    name = "schemars_derive-1.2.2.crate",
+    sha256 = "d98c67716b46af2f0b8cf752abc930f6f9aecfbf671ecfb531db8a31dbe4e2ba",
+    strip_prefix = "schemars_derive-1.2.2",
+    urls = ["https://static.crates.io/crates/schemars_derive/1.2.2/download"],
     visibility = [],
 )
 
 rust_bootstrap_library(
     name = "schemars_derive-1",
-    srcs = [":schemars_derive-1.2.1.crate"],
+    srcs = [":schemars_derive-1.2.2.crate"],
     crate = "schemars_derive",
-    crate_root = "schemars_derive-1.2.1.crate/src/lib.rs",
+    crate_root = "schemars_derive-1.2.2.crate/src/lib.rs",
     edition = "2021",
     proc_macro = True,
     visibility = [],
     deps = [
         ":proc-macro2-1",
         ":quote-1",
-        ":serde_derive_internals-0.29",
-        ":syn-2",
+        ":serde_derive_internals-0.30",
+        ":syn-3",
     ],
 )
 
@@ -12863,18 +12984,18 @@ rust_bootstrap_library(
 )
 
 crate_download(
-    name = "self_cell-1.2.2.crate",
-    sha256 = "b12e76d157a900eb52e81bc6e9f3069344290341720e9178cde2407113ac8d89",
-    strip_prefix = "self_cell-1.2.2",
-    urls = ["https://static.crates.io/crates/self_cell/1.2.2/download"],
+    name = "self_cell-1.3.0.crate",
+    sha256 = "2ab42ca02749e120097e328d91d415325bdf43b1c72c4c8badf37375fe40a813",
+    strip_prefix = "self_cell-1.3.0",
+    urls = ["https://static.crates.io/crates/self_cell/1.3.0/download"],
     visibility = [],
 )
 
 rust_bootstrap_library(
     name = "self_cell-1",
-    srcs = [":self_cell-1.2.2.crate"],
+    srcs = [":self_cell-1.3.0.crate"],
     crate = "self_cell",
-    crate_root = "self_cell-1.2.2.crate/src/lib.rs",
+    crate_root = "self_cell-1.3.0.crate/src/lib.rs",
     edition = "2018",
     visibility = [],
 )
@@ -12905,21 +13026,21 @@ rust_bootstrap_library(
 )
 
 crate_download(
-    name = "serde-1.0.228.crate",
-    sha256 = "9a8e94ea7f378bd32cbbd37198a4a91436180c5bb472411e48b5ec2e2124ae9e",
-    strip_prefix = "serde-1.0.228",
-    urls = ["https://static.crates.io/crates/serde/1.0.228/download"],
+    name = "serde-1.0.229.crate",
+    sha256 = "4148590afebada386688f18773da617792bf2ef03ffc1e4cbd2b1d45b023e0ba",
+    strip_prefix = "serde-1.0.229",
+    urls = ["https://static.crates.io/crates/serde/1.0.229/download"],
     visibility = [],
 )
 
 rust_bootstrap_library(
     name = "serde-1",
-    srcs = [":serde-1.0.228.crate"],
+    srcs = [":serde-1.0.229.crate"],
     crate = "serde",
-    crate_root = "serde-1.0.228.crate/src/lib.rs",
+    crate_root = "serde-1.0.229.crate/src/lib.rs",
     edition = "2021",
     env = {
-        "CARGO_PKG_VERSION_PATCH": "228",
+        "CARGO_PKG_VERSION_PATCH": "229",
         "OUT_DIR": "$(location :serde-1-build-script-run[out_dir])",
     },
     features = [
@@ -12939,12 +13060,12 @@ rust_bootstrap_library(
 
 rust_bootstrap_binary(
     name = "serde-1-build-script-build",
-    srcs = [":serde-1.0.228.crate"],
+    srcs = [":serde-1.0.229.crate"],
     crate = "build_script_build",
-    crate_root = "serde-1.0.228.crate/build.rs",
+    crate_root = "serde-1.0.229.crate/build.rs",
     edition = "2021",
     env = {
-        "CARGO_PKG_VERSION_PATCH": "228",
+        "CARGO_PKG_VERSION_PATCH": "229",
     },
     features = [
         "alloc",
@@ -12961,7 +13082,7 @@ rust_bootstrap_buildscript_run(
     package_name = "serde",
     buildscript_rule = ":serde-1-build-script-build",
     env = {
-        "CARGO_PKG_VERSION_PATCH": "228",
+        "CARGO_PKG_VERSION_PATCH": "229",
     },
     features = [
         "alloc",
@@ -12970,25 +13091,25 @@ rust_bootstrap_buildscript_run(
         "serde_derive",
         "std",
     ],
-    version = "1.0.228",
+    version = "1.0.229",
 )
 
 crate_download(
-    name = "serde_core-1.0.228.crate",
-    sha256 = "41d385c7d4ca58e59fc732af25c3983b67ac852c1a25000afe1175de458b67ad",
-    strip_prefix = "serde_core-1.0.228",
-    urls = ["https://static.crates.io/crates/serde_core/1.0.228/download"],
+    name = "serde_core-1.0.229.crate",
+    sha256 = "67dca2c9c51e58a4791a4b1ed58308b39c64224d349a935ab5039aa360942a48",
+    strip_prefix = "serde_core-1.0.229",
+    urls = ["https://static.crates.io/crates/serde_core/1.0.229/download"],
     visibility = [],
 )
 
 rust_bootstrap_library(
     name = "serde_core-1",
-    srcs = [":serde_core-1.0.228.crate"],
+    srcs = [":serde_core-1.0.229.crate"],
     crate = "serde_core",
-    crate_root = "serde_core-1.0.228.crate/src/lib.rs",
+    crate_root = "serde_core-1.0.229.crate/src/lib.rs",
     edition = "2021",
     env = {
-        "CARGO_PKG_VERSION_PATCH": "228",
+        "CARGO_PKG_VERSION_PATCH": "229",
         "OUT_DIR": "$(location :serde_core-1-build-script-run[out_dir])",
     },
     features = [
@@ -13003,12 +13124,12 @@ rust_bootstrap_library(
 
 rust_bootstrap_binary(
     name = "serde_core-1-build-script-build",
-    srcs = [":serde_core-1.0.228.crate"],
+    srcs = [":serde_core-1.0.229.crate"],
     crate = "build_script_build",
-    crate_root = "serde_core-1.0.228.crate/build.rs",
+    crate_root = "serde_core-1.0.229.crate/build.rs",
     edition = "2021",
     env = {
-        "CARGO_PKG_VERSION_PATCH": "228",
+        "CARGO_PKG_VERSION_PATCH": "229",
     },
     features = [
         "alloc",
@@ -13024,7 +13145,7 @@ rust_bootstrap_buildscript_run(
     package_name = "serde_core",
     buildscript_rule = ":serde_core-1-build-script-build",
     env = {
-        "CARGO_PKG_VERSION_PATCH": "228",
+        "CARGO_PKG_VERSION_PATCH": "229",
     },
     features = [
         "alloc",
@@ -13032,25 +13153,25 @@ rust_bootstrap_buildscript_run(
         "result",
         "std",
     ],
-    version = "1.0.228",
+    version = "1.0.229",
 )
 
 crate_download(
-    name = "serde_derive-1.0.228.crate",
-    sha256 = "d540f220d3187173da220f885ab66608367b6574e925011a9353e4badda91d79",
-    strip_prefix = "serde_derive-1.0.228",
-    urls = ["https://static.crates.io/crates/serde_derive/1.0.228/download"],
+    name = "serde_derive-1.0.229.crate",
+    sha256 = "e7a5d71263a5a7d47b41f6b3f06ba276f10cc18b0931f1799f710578e2309348",
+    strip_prefix = "serde_derive-1.0.229",
+    urls = ["https://static.crates.io/crates/serde_derive/1.0.229/download"],
     visibility = [],
 )
 
 rust_bootstrap_library(
     name = "serde_derive-1",
-    srcs = [":serde_derive-1.0.228.crate"],
+    srcs = [":serde_derive-1.0.229.crate"],
     crate = "serde_derive",
-    crate_root = "serde_derive-1.0.228.crate/src/lib.rs",
+    crate_root = "serde_derive-1.0.229.crate/src/lib.rs",
     edition = "2021",
     env = {
-        "CARGO_PKG_VERSION_PATCH": "228",
+        "CARGO_PKG_VERSION_PATCH": "229",
     },
     features = ["default"],
     proc_macro = True,
@@ -13058,45 +13179,45 @@ rust_bootstrap_library(
     deps = [
         ":proc-macro2-1",
         ":quote-1",
-        ":syn-2",
+        ":syn-3",
     ],
 )
 
 crate_download(
-    name = "serde_derive_internals-0.29.1.crate",
-    sha256 = "18d26a20a969b9e3fdf2fc2d9f21eda6c40e2de84c9408bb5d3b05d499aae711",
-    strip_prefix = "serde_derive_internals-0.29.1",
-    urls = ["https://static.crates.io/crates/serde_derive_internals/0.29.1/download"],
+    name = "serde_derive_internals-0.30.0.crate",
+    sha256 = "f852137cce035d6a4df67ccce505ff6b3e9fd3a10e3e52b24dc71e650bb1a9bd",
+    strip_prefix = "serde_derive_internals-0.30.0",
+    urls = ["https://static.crates.io/crates/serde_derive_internals/0.30.0/download"],
     visibility = [],
 )
 
 rust_bootstrap_library(
-    name = "serde_derive_internals-0.29",
-    srcs = [":serde_derive_internals-0.29.1.crate"],
+    name = "serde_derive_internals-0.30",
+    srcs = [":serde_derive_internals-0.30.0.crate"],
     crate = "serde_derive_internals",
-    crate_root = "serde_derive_internals-0.29.1.crate/lib.rs",
-    edition = "2015",
+    crate_root = "serde_derive_internals-0.30.0.crate/lib.rs",
+    edition = "2021",
     visibility = [],
     deps = [
         ":proc-macro2-1",
         ":quote-1",
-        ":syn-2",
+        ":syn-3",
     ],
 )
 
 crate_download(
-    name = "serde_json-1.0.150.crate",
-    sha256 = "e8014e44b4736ed0538adeecded0fce2a272f22dc9578a7eb6b2d9993c74cfb9",
-    strip_prefix = "serde_json-1.0.150",
-    urls = ["https://static.crates.io/crates/serde_json/1.0.150/download"],
+    name = "serde_json-1.0.151.crate",
+    sha256 = "c841b55ecdae098c80dcae9cf767f6f8a0c2cdb3416bbef72181df4d0fe73f14",
+    strip_prefix = "serde_json-1.0.151",
+    urls = ["https://static.crates.io/crates/serde_json/1.0.151/download"],
     visibility = [],
 )
 
 rust_bootstrap_library(
     name = "serde_json-1",
-    srcs = [":serde_json-1.0.150.crate"],
+    srcs = [":serde_json-1.0.151.crate"],
     crate = "serde_json",
-    crate_root = "serde_json-1.0.150.crate/src/lib.rs",
+    crate_root = "serde_json-1.0.151.crate/src/lib.rs",
     edition = "2021",
     env = {
         "OUT_DIR": "$(location :serde_json-1-build-script-run[out_dir])",
@@ -13119,9 +13240,9 @@ rust_bootstrap_library(
 
 rust_bootstrap_binary(
     name = "serde_json-1-build-script-build",
-    srcs = [":serde_json-1.0.150.crate"],
+    srcs = [":serde_json-1.0.151.crate"],
     crate = "build_script_build",
-    crate_root = "serde_json-1.0.150.crate/build.rs",
+    crate_root = "serde_json-1.0.151.crate/build.rs",
     edition = "2021",
     features = [
         "alloc",
@@ -13142,7 +13263,7 @@ rust_bootstrap_buildscript_run(
         "std",
         "unbounded_depth",
     ],
-    version = "1.0.150",
+    version = "1.0.151",
 )
 
 crate_download(
@@ -13207,18 +13328,18 @@ rust_bootstrap_library(
 )
 
 crate_download(
-    name = "sha1-0.10.6.crate",
-    sha256 = "e3bf829a2d51ab4a5ddf1352d8470c140cadc8301b2ae1789db023f01cedd6ba",
-    strip_prefix = "sha1-0.10.6",
-    urls = ["https://static.crates.io/crates/sha1/0.10.6/download"],
+    name = "sha1-0.10.7.crate",
+    sha256 = "a978451301f4db1d02937a4ab3ccce137717b81826e79b7d49ffe3244a13c3b8",
+    strip_prefix = "sha1-0.10.7",
+    urls = ["https://static.crates.io/crates/sha1/0.10.7/download"],
     visibility = [],
 )
 
 rust_bootstrap_library(
     name = "sha1-0.10",
-    srcs = [":sha1-0.10.6.crate"],
+    srcs = [":sha1-0.10.7.crate"],
     crate = "sha1",
-    crate_root = "sha1-0.10.6.crate/src/lib.rs",
+    crate_root = "sha1-0.10.7.crate/src/lib.rs",
     edition = "2018",
     features = [
         "default",
@@ -13336,18 +13457,18 @@ rust_bootstrap_library(
 )
 
 crate_download(
-    name = "simd-adler32-0.3.9.crate",
-    sha256 = "703d5c7ef118737c72f1af64ad2f6f8c5e1921f818cdcb97b8fe6fc69bf66214",
-    strip_prefix = "simd-adler32-0.3.9",
-    urls = ["https://static.crates.io/crates/simd-adler32/0.3.9/download"],
+    name = "simd-adler32-0.3.10.crate",
+    sha256 = "3a219298ac11a56ea9a6d2120044824d6f01aeb034955e7af7bc16858527deea",
+    strip_prefix = "simd-adler32-0.3.10",
+    urls = ["https://static.crates.io/crates/simd-adler32/0.3.10/download"],
     visibility = [],
 )
 
 rust_bootstrap_library(
     name = "simd-adler32-0.3",
-    srcs = [":simd-adler32-0.3.9.crate"],
+    srcs = [":simd-adler32-0.3.10.crate"],
     crate = "simd_adler32",
-    crate_root = "simd-adler32-0.3.9.crate/src/lib.rs",
+    crate_root = "simd-adler32-0.3.10.crate/src/lib.rs",
     edition = "2018",
     visibility = [],
 )
@@ -15242,18 +15363,18 @@ rust_bootstrap_library(
 )
 
 crate_download(
-    name = "syn-2.0.118.crate",
-    sha256 = "1b9ae57f904213ebb649ce6895b8a66c66f0203b9319718f69a5612a065b1422",
-    strip_prefix = "syn-2.0.118",
-    urls = ["https://static.crates.io/crates/syn/2.0.118/download"],
+    name = "syn-2.0.119.crate",
+    sha256 = "872831b642d1a07999a962a351ed35b955ea2cfc8f3862091e2a240a84f17297",
+    strip_prefix = "syn-2.0.119",
+    urls = ["https://static.crates.io/crates/syn/2.0.119/download"],
     visibility = [],
 )
 
 rust_bootstrap_library(
     name = "syn-2",
-    srcs = [":syn-2.0.118.crate"],
+    srcs = [":syn-2.0.119.crate"],
     crate = "syn",
-    crate_root = "syn-2.0.118.crate/src/lib.rs",
+    crate_root = "syn-2.0.119.crate/src/lib.rs",
     edition = "2021",
     features = [
         "clone-impls",
@@ -15267,6 +15388,37 @@ rust_bootstrap_library(
         "proc-macro",
         "visit",
         "visit-mut",
+    ],
+    visibility = [],
+    deps = [
+        ":proc-macro2-1",
+        ":quote-1",
+        ":unicode-ident-1",
+    ],
+)
+
+crate_download(
+    name = "syn-3.0.3.crate",
+    sha256 = "53e9bae58849f64dfa4f5d5ae372c8341f7305f82a3868709269343628b659a3",
+    strip_prefix = "syn-3.0.3",
+    urls = ["https://static.crates.io/crates/syn/3.0.3/download"],
+    visibility = [],
+)
+
+rust_bootstrap_library(
+    name = "syn-3",
+    srcs = [":syn-3.0.3.crate"],
+    crate = "syn",
+    crate_root = "syn-3.0.3.crate/src/lib.rs",
+    edition = "2021",
+    features = [
+        "clone-impls",
+        "default",
+        "derive",
+        "extra-traits",
+        "parsing",
+        "printing",
+        "proc-macro",
     ],
     visibility = [],
     deps = [
@@ -15463,18 +15615,18 @@ rust_bootstrap_library(
 )
 
 crate_download(
-    name = "thin-vec-0.2.18.crate",
-    sha256 = "b0f7e269b48f0a7dd0146680fa24b50cc67fc0373f086a5b2f99bd084639b482",
-    strip_prefix = "thin-vec-0.2.18",
-    urls = ["https://static.crates.io/crates/thin-vec/0.2.18/download"],
+    name = "thin-vec-0.2.19.crate",
+    sha256 = "79def32ffcd477db1ff26f76dab9e3a91f0bd42a85ca96577089b24623056f9d",
+    strip_prefix = "thin-vec-0.2.19",
+    urls = ["https://static.crates.io/crates/thin-vec/0.2.19/download"],
     visibility = [],
 )
 
 rust_bootstrap_library(
     name = "thin-vec-0.2",
-    srcs = [":thin-vec-0.2.18.crate"],
+    srcs = [":thin-vec-0.2.19.crate"],
     crate = "thin_vec",
-    crate_root = "thin-vec-0.2.18.crate/src/lib.rs",
+    crate_root = "thin-vec-0.2.19.crate/src/lib.rs",
     edition = "2018",
     features = [
         "default",
@@ -15484,21 +15636,21 @@ rust_bootstrap_library(
 )
 
 crate_download(
-    name = "thiserror-2.0.18.crate",
-    sha256 = "4288b5bcbc7920c07a1149a35cf9590a2aa808e0bc1eafaade0b80947865fbc4",
-    strip_prefix = "thiserror-2.0.18",
-    urls = ["https://static.crates.io/crates/thiserror/2.0.18/download"],
+    name = "thiserror-2.0.20.crate",
+    sha256 = "ec86235f5fcc2a73650310756d2ac5b138a5780bbbdfae3eeccec992c435ba4f",
+    strip_prefix = "thiserror-2.0.20",
+    urls = ["https://static.crates.io/crates/thiserror/2.0.20/download"],
     visibility = [],
 )
 
 rust_bootstrap_library(
     name = "thiserror-2",
-    srcs = [":thiserror-2.0.18.crate"],
+    srcs = [":thiserror-2.0.20.crate"],
     crate = "thiserror",
-    crate_root = "thiserror-2.0.18.crate/src/lib.rs",
+    crate_root = "thiserror-2.0.20.crate/src/lib.rs",
     edition = "2021",
     env = {
-        "CARGO_PKG_VERSION_PATCH": "18",
+        "CARGO_PKG_VERSION_PATCH": "20",
         "OUT_DIR": "$(location :thiserror-2-build-script-run[out_dir])",
     },
     features = [
@@ -15512,12 +15664,12 @@ rust_bootstrap_library(
 
 rust_bootstrap_binary(
     name = "thiserror-2-build-script-build",
-    srcs = [":thiserror-2.0.18.crate"],
+    srcs = [":thiserror-2.0.20.crate"],
     crate = "build_script_build",
-    crate_root = "thiserror-2.0.18.crate/build.rs",
+    crate_root = "thiserror-2.0.20.crate/build.rs",
     edition = "2021",
     env = {
-        "CARGO_PKG_VERSION_PATCH": "18",
+        "CARGO_PKG_VERSION_PATCH": "20",
     },
     features = [
         "default",
@@ -15531,38 +15683,38 @@ rust_bootstrap_buildscript_run(
     package_name = "thiserror",
     buildscript_rule = ":thiserror-2-build-script-build",
     env = {
-        "CARGO_PKG_VERSION_PATCH": "18",
+        "CARGO_PKG_VERSION_PATCH": "20",
     },
     features = [
         "default",
         "std",
     ],
-    version = "2.0.18",
+    version = "2.0.20",
 )
 
 crate_download(
-    name = "thiserror-impl-2.0.18.crate",
-    sha256 = "ebc4ee7f67670e9b64d05fa4253e753e016c6c95ff35b89b7941d6b856dec1d5",
-    strip_prefix = "thiserror-impl-2.0.18",
-    urls = ["https://static.crates.io/crates/thiserror-impl/2.0.18/download"],
+    name = "thiserror-impl-2.0.20.crate",
+    sha256 = "bc04cd3e1236dd4a98afca4569f2deb3f120e5422a4023be2cb683f8486292af",
+    strip_prefix = "thiserror-impl-2.0.20",
+    urls = ["https://static.crates.io/crates/thiserror-impl/2.0.20/download"],
     visibility = [],
 )
 
 rust_bootstrap_library(
     name = "thiserror-impl-2",
-    srcs = [":thiserror-impl-2.0.18.crate"],
+    srcs = [":thiserror-impl-2.0.20.crate"],
     crate = "thiserror_impl",
-    crate_root = "thiserror-impl-2.0.18.crate/src/lib.rs",
+    crate_root = "thiserror-impl-2.0.20.crate/src/lib.rs",
     edition = "2021",
     env = {
-        "CARGO_PKG_VERSION_PATCH": "18",
+        "CARGO_PKG_VERSION_PATCH": "20",
     },
     proc_macro = True,
     visibility = [],
     deps = [
         ":proc-macro2-1",
         ":quote-1",
-        ":syn-2",
+        ":syn-3",
     ],
 )
 
@@ -15590,18 +15742,18 @@ rust_bootstrap_library(
 )
 
 crate_download(
-    name = "thread_local-1.1.9.crate",
-    sha256 = "f60246a4944f24f6e018aa17cdeffb7818b76356965d03b07d6a9886e8962185",
-    strip_prefix = "thread_local-1.1.9",
-    urls = ["https://static.crates.io/crates/thread_local/1.1.9/download"],
+    name = "thread_local-1.1.10.crate",
+    sha256 = "1ad99c4c6d32803332c548b1af0540b357b3f5fc0be8f6c6bfe8b2e6ae784070",
+    strip_prefix = "thread_local-1.1.10",
+    urls = ["https://static.crates.io/crates/thread_local/1.1.10/download"],
     visibility = [],
 )
 
 rust_bootstrap_library(
     name = "thread_local-1",
-    srcs = [":thread_local-1.1.9.crate"],
+    srcs = [":thread_local-1.1.10.crate"],
     crate = "thread_local",
-    crate_root = "thread_local-1.1.9.crate/src/lib.rs",
+    crate_root = "thread_local-1.1.10.crate/src/lib.rs",
     edition = "2021",
     visibility = [],
     deps = [":cfg-if-1"],
@@ -15626,18 +15778,18 @@ rust_bootstrap_library(
 )
 
 crate_download(
-    name = "tinystr-0.8.3.crate",
-    sha256 = "c8323304221c2a851516f22236c5722a72eaa19749016521d6dff0824447d96d",
-    strip_prefix = "tinystr-0.8.3",
-    urls = ["https://static.crates.io/crates/tinystr/0.8.3/download"],
+    name = "tinystr-0.8.4.crate",
+    sha256 = "b1e27c91459209c2986af3dcf603a5a74a4368754ce37414f59acc971167f643",
+    strip_prefix = "tinystr-0.8.4",
+    urls = ["https://static.crates.io/crates/tinystr/0.8.4/download"],
     visibility = [],
 )
 
 rust_bootstrap_library(
     name = "tinystr-0.8",
-    srcs = [":tinystr-0.8.3.crate"],
+    srcs = [":tinystr-0.8.4.crate"],
     crate = "tinystr",
-    crate_root = "tinystr-0.8.3.crate/src/lib.rs",
+    crate_root = "tinystr-0.8.4.crate/src/lib.rs",
     edition = "2021",
     features = [
         "alloc",
@@ -15652,18 +15804,18 @@ rust_bootstrap_library(
 )
 
 crate_download(
-    name = "tinyvec-1.11.0.crate",
-    sha256 = "3e61e67053d25a4e82c844e8424039d9745781b3fc4f32b8d55ed50f5f667ef3",
-    strip_prefix = "tinyvec-1.11.0",
-    urls = ["https://static.crates.io/crates/tinyvec/1.11.0/download"],
+    name = "tinyvec-1.12.0.crate",
+    sha256 = "bb4ebadaa0af04fab11ae01eb5f9fdb5f9c5b875506e210e71c07873528baa7f",
+    strip_prefix = "tinyvec-1.12.0",
+    urls = ["https://static.crates.io/crates/tinyvec/1.12.0/download"],
     visibility = [],
 )
 
 rust_bootstrap_library(
     name = "tinyvec-1",
-    srcs = [":tinyvec-1.11.0.crate"],
+    srcs = [":tinyvec-1.12.0.crate"],
     crate = "tinyvec",
-    crate_root = "tinyvec-1.11.0.crate/src/lib.rs",
+    crate_root = "tinyvec-1.12.0.crate/src/lib.rs",
     edition = "2018",
     features = [
         "alloc",
@@ -15817,18 +15969,18 @@ rust_bootstrap_library(
 )
 
 crate_download(
-    name = "toml_parser-1.1.2+spec-1.1.0.crate",
-    sha256 = "a2abe9b86193656635d2411dc43050282ca48aa31c2451210f4202550afb7526",
-    strip_prefix = "toml_parser-1.1.2+spec-1.1.0",
-    urls = ["https://static.crates.io/crates/toml_parser/1.1.2+spec-1.1.0/download"],
+    name = "toml_parser-1.1.3+spec-1.1.0.crate",
+    sha256 = "1d38ac1cf9b95face32296c0a3ede1fdc270627c9d9c02a7274dd6d960dc4d56",
+    strip_prefix = "toml_parser-1.1.3+spec-1.1.0",
+    urls = ["https://static.crates.io/crates/toml_parser/1.1.3+spec-1.1.0/download"],
     visibility = [],
 )
 
 rust_bootstrap_library(
     name = "toml_parser-1",
-    srcs = [":toml_parser-1.1.2+spec-1.1.0.crate"],
+    srcs = [":toml_parser-1.1.3+spec-1.1.0.crate"],
     crate = "toml_parser",
-    crate_root = "toml_parser-1.1.2+spec-1.1.0.crate/src/lib.rs",
+    crate_root = "toml_parser-1.1.3+spec-1.1.0.crate/src/lib.rs",
     edition = "2024",
     features = [
         "alloc",
@@ -16928,18 +17080,18 @@ rust_bootstrap_library(
 )
 
 crate_download(
-    name = "winnow-1.0.3.crate",
-    sha256 = "0592e1c9d151f854e6fd382574c3a0855250e1d9b2f99d9281c6e6391af352f1",
-    strip_prefix = "winnow-1.0.3",
-    urls = ["https://static.crates.io/crates/winnow/1.0.3/download"],
+    name = "winnow-1.0.4.crate",
+    sha256 = "23b97319f7b8343df12cc98938e5c3eb436064524c8d2b4e30a1d3a36eecdf81",
+    strip_prefix = "winnow-1.0.4",
+    urls = ["https://static.crates.io/crates/winnow/1.0.4/download"],
     visibility = [],
 )
 
 rust_bootstrap_library(
     name = "winnow-1",
-    srcs = [":winnow-1.0.3.crate"],
+    srcs = [":winnow-1.0.4.crate"],
     crate = "winnow",
-    crate_root = "winnow-1.0.3.crate/src/lib.rs",
+    crate_root = "winnow-1.0.4.crate/src/lib.rs",
     edition = "2021",
     features = [
         "alloc",
@@ -16955,18 +17107,18 @@ rust_bootstrap_library(
 )
 
 crate_download(
-    name = "writeable-0.6.3.crate",
-    sha256 = "1ffae5123b2d3fc086436f8834ae3ab053a283cfac8fe0a0b8eaae044768a4c4",
-    strip_prefix = "writeable-0.6.3",
-    urls = ["https://static.crates.io/crates/writeable/0.6.3/download"],
+    name = "writeable-0.6.4.crate",
+    sha256 = "3ad82d2a33cdc9674dc7465672f271e096168fcdbe0f799d9e6db8c5892679dc",
+    strip_prefix = "writeable-0.6.4",
+    urls = ["https://static.crates.io/crates/writeable/0.6.4/download"],
     visibility = [],
 )
 
 rust_bootstrap_library(
     name = "writeable-0.6",
-    srcs = [":writeable-0.6.3.crate"],
+    srcs = [":writeable-0.6.4.crate"],
     crate = "writeable",
-    crate_root = "writeable-0.6.3.crate/src/lib.rs",
+    crate_root = "writeable-0.6.4.crate/src/lib.rs",
     edition = "2021",
     features = ["alloc"],
     visibility = [],
@@ -17024,21 +17176,21 @@ rust_bootstrap_library(
 )
 
 crate_download(
-    name = "zerocopy-0.8.54.crate",
-    sha256 = "b7cbbc0a705a0fd05cc3676525980d2bf5a9bc4adac6d6475209a7887cf59d19",
-    strip_prefix = "zerocopy-0.8.54",
-    urls = ["https://static.crates.io/crates/zerocopy/0.8.54/download"],
+    name = "zerocopy-0.8.56.crate",
+    sha256 = "556764e583adb45a9f8d413c2a147fa7e8d821e48e12b14fd560b607998b75eb",
+    strip_prefix = "zerocopy-0.8.56",
+    urls = ["https://static.crates.io/crates/zerocopy/0.8.56/download"],
     visibility = [],
 )
 
 rust_bootstrap_library(
     name = "zerocopy-0.8",
-    srcs = [":zerocopy-0.8.54.crate"],
+    srcs = [":zerocopy-0.8.56.crate"],
     crate = "zerocopy",
-    crate_root = "zerocopy-0.8.54.crate/src/lib.rs",
+    crate_root = "zerocopy-0.8.56.crate/src/lib.rs",
     edition = "2021",
     env = {
-        "CARGO_PKG_VERSION": "0.8.54",
+        "CARGO_PKG_VERSION": "0.8.56",
     },
     features = ["simd"],
     visibility = [],
@@ -17091,18 +17243,18 @@ rust_bootstrap_library(
 )
 
 crate_download(
-    name = "zerotrie-0.2.4.crate",
-    sha256 = "0f9152d31db0792fa83f70fb2f83148effb5c1f5b8c7686c3459e361d9bc20bf",
-    strip_prefix = "zerotrie-0.2.4",
-    urls = ["https://static.crates.io/crates/zerotrie/0.2.4/download"],
+    name = "zerotrie-0.2.5.crate",
+    sha256 = "4ea269c3bd32f0a32c321907a2ae912ba6f4649bb0fc764a15627e99a7095a3f",
+    strip_prefix = "zerotrie-0.2.5",
+    urls = ["https://static.crates.io/crates/zerotrie/0.2.5/download"],
     visibility = [],
 )
 
 rust_bootstrap_library(
     name = "zerotrie-0.2",
-    srcs = [":zerotrie-0.2.4.crate"],
+    srcs = [":zerotrie-0.2.5.crate"],
     crate = "zerotrie",
-    crate_root = "zerotrie-0.2.4.crate/src/lib.rs",
+    crate_root = "zerotrie-0.2.5.crate/src/lib.rs",
     edition = "2021",
     features = [
         "alloc",
@@ -17118,18 +17270,18 @@ rust_bootstrap_library(
 )
 
 crate_download(
-    name = "zerovec-0.11.6.crate",
-    sha256 = "90f911cbc359ab6af17377d242225f4d75119aec87ea711a880987b18cd7b239",
-    strip_prefix = "zerovec-0.11.6",
-    urls = ["https://static.crates.io/crates/zerovec/0.11.6/download"],
+    name = "zerovec-0.11.8.crate",
+    sha256 = "bb0464e17806c1d976d5cba29399c7f08e516e279e2ba493f63123b5fca67dd8",
+    strip_prefix = "zerovec-0.11.8",
+    urls = ["https://static.crates.io/crates/zerovec/0.11.8/download"],
     visibility = [],
 )
 
 rust_bootstrap_library(
     name = "zerovec-0.11",
-    srcs = [":zerovec-0.11.6.crate"],
+    srcs = [":zerovec-0.11.8.crate"],
     crate = "zerovec",
-    crate_root = "zerovec-0.11.6.crate/src/lib.rs",
+    crate_root = "zerovec-0.11.8.crate/src/lib.rs",
     edition = "2021",
     features = [
         "alloc",
@@ -17145,41 +17297,41 @@ rust_bootstrap_library(
 )
 
 crate_download(
-    name = "zerovec-derive-0.11.3.crate",
-    sha256 = "625dc425cab0dca6dc3c3319506e6593dcb08a9f387ea3b284dbd52a92c40555",
-    strip_prefix = "zerovec-derive-0.11.3",
-    urls = ["https://static.crates.io/crates/zerovec-derive/0.11.3/download"],
+    name = "zerovec-derive-0.11.6.crate",
+    sha256 = "34df6fc39dbd26ddc9c10e6a2984476e13acce22e64e4487636ef494369225da",
+    strip_prefix = "zerovec-derive-0.11.6",
+    urls = ["https://static.crates.io/crates/zerovec-derive/0.11.6/download"],
     visibility = [],
 )
 
 rust_bootstrap_library(
     name = "zerovec-derive-0.11",
-    srcs = [":zerovec-derive-0.11.3.crate"],
+    srcs = [":zerovec-derive-0.11.6.crate"],
     crate = "zerovec_derive",
-    crate_root = "zerovec-derive-0.11.3.crate/src/lib.rs",
+    crate_root = "zerovec-derive-0.11.6.crate/src/lib.rs",
     edition = "2021",
     proc_macro = True,
     visibility = [],
     deps = [
         ":proc-macro2-1",
         ":quote-1",
-        ":syn-2",
+        ":syn-3",
     ],
 )
 
 crate_download(
-    name = "zmij-1.0.21.crate",
-    sha256 = "b8848ee67ecc8aedbaf3e4122217aff892639231befc6a1b58d29fff4c2cabaa",
-    strip_prefix = "zmij-1.0.21",
-    urls = ["https://static.crates.io/crates/zmij/1.0.21/download"],
+    name = "zmij-1.0.23.crate",
+    sha256 = "29666d0abbfad1e3dc4dcf6144730dd3a3ab225bbbdac83319345b1b44ccfc1b",
+    strip_prefix = "zmij-1.0.23",
+    urls = ["https://static.crates.io/crates/zmij/1.0.23/download"],
     visibility = [],
 )
 
 rust_bootstrap_library(
     name = "zmij-1",
-    srcs = [":zmij-1.0.21.crate"],
+    srcs = [":zmij-1.0.23.crate"],
     crate = "zmij",
-    crate_root = "zmij-1.0.21.crate/src/lib.rs",
+    crate_root = "zmij-1.0.23.crate/src/lib.rs",
     edition = "2021",
     visibility = [],
 )
