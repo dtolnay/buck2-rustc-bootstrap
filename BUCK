@@ -1130,7 +1130,23 @@ rust_bootstrap_binary(
         "CARGO_PKG_VERSION_MINOR": "1",
         "CARGO_PKG_VERSION_PATCH": "97",
     },
-    linker_flags = ["-Wl,-rpath,$ORIGIN/../lib"],
+    platform = {
+        "linux-arm64-compiler": dict(
+            linker_flags = ["-Wl,-rpath,$ORIGIN/../lib"],
+        ),
+        "linux-riscv64-compiler": dict(
+            linker_flags = ["-Wl,-rpath,$ORIGIN/../lib"],
+        ),
+        "linux-x86_64-compiler": dict(
+            linker_flags = ["-Wl,-rpath,$ORIGIN/../lib"],
+        ),
+        "macos-arm64-compiler": dict(
+            linker_flags = ["-Wl,-rpath,@loader_path/../lib"],
+        ),
+        "macos-x86_64-compiler": dict(
+            linker_flags = ["-Wl,-rpath,@loader_path/../lib"],
+        ),
+    },
     visibility = [],
     deps = [
         ":anstream-0.6",
@@ -1163,7 +1179,23 @@ rust_bootstrap_binary(
         "CARGO_PKG_VERSION_MINOR": "1",
         "CARGO_PKG_VERSION_PATCH": "97",
     },
-    linker_flags = ["-Wl,-rpath,$ORIGIN/../lib"],
+    platform = {
+        "linux-arm64-compiler": dict(
+            linker_flags = ["-Wl,-rpath,$ORIGIN/../lib"],
+        ),
+        "linux-riscv64-compiler": dict(
+            linker_flags = ["-Wl,-rpath,$ORIGIN/../lib"],
+        ),
+        "linux-x86_64-compiler": dict(
+            linker_flags = ["-Wl,-rpath,$ORIGIN/../lib"],
+        ),
+        "macos-arm64-compiler": dict(
+            linker_flags = ["-Wl,-rpath,@loader_path/../lib"],
+        ),
+        "macos-x86_64-compiler": dict(
+            linker_flags = ["-Wl,-rpath,@loader_path/../lib"],
+        ),
+    },
     visibility = [],
     deps = [
         ":anstream-0.6",
@@ -8002,9 +8034,25 @@ rust_bootstrap_binary(
     crate_root = "rust/compiler/rustc/src/main.rs",
     edition = "2024",
     features = ["llvm"],
-    linker_flags = ["-Wl,-rpath,$ORIGIN/../lib"],
     named_deps = {
         "rustc_driver": ":rustc_driver-0.0.0",
+    },
+    platform = {
+        "linux-arm64-compiler": dict(
+            linker_flags = ["-Wl,-rpath,$ORIGIN/../lib"],
+        ),
+        "linux-riscv64-compiler": dict(
+            linker_flags = ["-Wl,-rpath,$ORIGIN/../lib"],
+        ),
+        "linux-x86_64-compiler": dict(
+            linker_flags = ["-Wl,-rpath,$ORIGIN/../lib"],
+        ),
+        "macos-arm64-compiler": dict(
+            linker_flags = ["-Wl,-rpath,@loader_path/../lib"],
+        ),
+        "macos-x86_64-compiler": dict(
+            linker_flags = ["-Wl,-rpath,@loader_path/../lib"],
+        ),
     },
     rustc_flags = ["-Zcrate-attr=allow(unfulfilled_lint_expectations)"],
     visibility = [],
@@ -12788,7 +12836,23 @@ rust_bootstrap_binary(
     crate = "rustdoc_tool_binary",
     crate_root = "rust/src/tools/rustdoc/main.rs",
     edition = "2024",
-    linker_flags = ["-Wl,-rpath,$ORIGIN/../lib"],
+    platform = {
+        "linux-arm64-compiler": dict(
+            linker_flags = ["-Wl,-rpath,$ORIGIN/../lib"],
+        ),
+        "linux-riscv64-compiler": dict(
+            linker_flags = ["-Wl,-rpath,$ORIGIN/../lib"],
+        ),
+        "linux-x86_64-compiler": dict(
+            linker_flags = ["-Wl,-rpath,$ORIGIN/../lib"],
+        ),
+        "macos-arm64-compiler": dict(
+            linker_flags = ["-Wl,-rpath,@loader_path/../lib"],
+        ),
+        "macos-x86_64-compiler": dict(
+            linker_flags = ["-Wl,-rpath,@loader_path/../lib"],
+        ),
+    },
     visibility = [],
     deps = [":rustdoc-0.0.0"],
 )

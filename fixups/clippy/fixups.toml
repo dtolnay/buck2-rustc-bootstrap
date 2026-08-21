@@ -11,4 +11,9 @@ extra_deps = [
     ":rustc_session-0.0.0",
     ":rustc_span-0.0.0",
 ]
+
+['cfg(target_os = "linux")']
 linker_flags = ["-Wl,-rpath,$ORIGIN/../lib"]
+
+['cfg(target_os = "macos")']
+linker_flags = ["-Wl,-rpath,@loader_path/../lib"]
