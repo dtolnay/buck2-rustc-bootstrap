@@ -1,1 +1,5 @@
+['cfg(target_os = "linux")']
 linker_flags = ["-Wl,-rpath,$ORIGIN/../lib"]
+
+['cfg(target_os = "macos")']
+linker_flags = ["-Wl,-rpath,@loader_path/../lib"]
