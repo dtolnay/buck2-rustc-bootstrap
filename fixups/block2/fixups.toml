@@ -1,0 +1,2 @@
+['cfg(version = "0.6")'.resolver.dependencies]
+objc2.narrow_to = "0.6"
