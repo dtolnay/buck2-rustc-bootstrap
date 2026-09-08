@@ -4,3 +4,4 @@
 /prelude/
 /rustc-ice-*
 /vendor/
+reindeer:!/vendor/
