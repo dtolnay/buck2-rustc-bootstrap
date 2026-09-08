@@ -1,0 +1,3 @@
+['cfg(version = "0.3")'.resolver.dependencies]
+block2.narrow_to = "0.6"
+objc2.narrow_to = "0.6"
