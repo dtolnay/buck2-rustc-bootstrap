@@ -3,3 +3,4 @@
 /buck-out/
 /prelude/
 /rustc-ice-*
+/vendor/
