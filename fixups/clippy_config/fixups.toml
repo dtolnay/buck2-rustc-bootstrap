@@ -1,4 +1,5 @@
 extra_deps = [
+    ":rustc_attr_parsing-0.0.0",
     ":rustc_data_structures-0.0.0",
     ":rustc_errors-0.0.0",
     ":rustc_hir-0.0.0",
