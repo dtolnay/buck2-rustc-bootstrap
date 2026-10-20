@@ -1,4 +1,4 @@
-load("@prelude//python_bootstrap:python_bootstrap.bzl", "PythonBootstrapToolchainInfo")
+load("@prelude//python_bootstrap:toolchain.bzl", "PythonBootstrapToolchainInfo")
 
 def _python_bootstrap_toolchain_impl(ctx: AnalysisContext) -> list[Provider]:
     return [
